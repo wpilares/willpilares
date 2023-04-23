@@ -68,11 +68,75 @@
   height: 528px;
 }
 
-@media (max-width: $sm) {
+@media (max-width: $lg) {
+
+  .title {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 50px;
+  }
+
+  .resume {
+    font-size: 20px;
+  }
+
+  .photo {
+    width: 320px;
+    height: 320px;
+  }
+
+  .buttonSet {
+
+    button {
+      width: 130px;
+      height: 55px;
+      font-size: 20px;
+    }
+
+  }
+}
+
+@media (max-width: $md) {
   .hero {
     display: flex;
     flex-direction: column;
   }
+
+  .title {
+    font-size: 17px;
+  }
+
+  .subtitle {
+    font-size: 40px;
+  }
+
+  .resume {
+    font-size: 20px;
+  }
+
+  .photo {
+    width: 260px;
+    height: 260px;
+  }
+
+  .buttonSet {
+    display: flex;
+    gap: 15px;
+
+    button {
+      width: 105px;
+      height: 47px;
+      font-size: 20px;
+    }
+
+  }
+}
+
+
+
+@media (max-width: $sm) {
 
   .title {
     font-size: 12px;
@@ -87,9 +151,6 @@
   }
 
   .photo {
-    border-radius: 50%;
-    border: 10px solid #444444;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
     width: 210px;
     height: 210px;
   }
