@@ -1,0 +1,29 @@
+@import '../../Vars';
+
+.title {
+  font-family: $poppins;
+  font-weight: bold;
+  font-size: 55px;
+  color: white;
+  background-color: #252525;
+  border-top: 2px solid #333333;
+  border-bottom: 2px solid #333333;
+  height: 150px;
+  line-height: 150px;
+}
+
+@media (max-width: $md) {
+  .title {
+    font-size: 45px;
+    height: 125px;
+    line-height: 125px;
+  }
+}
+
+@media (max-width: $sm) {
+  .title {
+    font-size: 35px;
+    height: 100px;
+    line-height: 100px;
+  }
+}
