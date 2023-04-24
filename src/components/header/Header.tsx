@@ -11,7 +11,7 @@ const Header = (): ReactElement => {
   };
 
   return (
-    <>
+    <div className={styles.nav}>
       <div className={styles.header}>
         <img
           src={isMenuOpen ? menu : close}
@@ -39,7 +39,7 @@ const Header = (): ReactElement => {
           <div>Contact</div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

@@ -1,5 +1,15 @@
 @import '../../Vars';
 
+.contact {
+  max-width: 1550px;
+  margin: auto;
+}
+
+img {
+  width: 85px;
+  height: 85px;
+}
+
 .contactSection {
   display: flex;
   align-items: center;
