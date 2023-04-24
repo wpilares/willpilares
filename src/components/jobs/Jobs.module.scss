@@ -1,0 +1,52 @@
+@import '../../Vars';
+
+.jobs {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  font-family: $poppins;
+  margin: 40px 0;
+}
+
+
+.jobTitle, .stackTitle {
+
+  display: flex;
+  align-items: center;
+  gap: 3%;
+
+  img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%
+  }
+}
+
+.title {
+  font-size: 28px;
+  color: white;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, #007CED 25%, #353535 75%) 1;
+  height: 90px;
+  line-height: 90px;
+}
+
+.jobResume {
+  font-size: 18px;
+  color: white;
+  margin-top: 30px;
+}
+
+.stackList {
+  list-style-type: square;
+  color: white;
+}
+
+
+@media (max-width: $md) {
+
+  .jobs {
+    grid-template-columns: 1fr;
+  }
+
+}
