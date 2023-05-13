@@ -1,0 +1,30 @@
+@import '../../Vars';
+
+.contact {
+  max-width: 1550px;
+  margin: auto;
+}
+
+img {
+  width: 85px;
+  height: 85px;
+}
+
+.contactSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+  font-family: $poppins;
+  margin: 40px 3%;
+  color: white;
+}
+
+@media (max-width: $md) {
+
+  .contactSection {
+    flex-direction: column;
+  }
+
+}
+

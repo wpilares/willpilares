@@ -1,0 +1,46 @@
+@import '../../Vars';
+
+.footer {
+  font-family: $poppins;
+  font-size: 16px;
+  line-height: 35px;
+  max-width: 1550px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 auto;
+  border-top: 2px solid #333333;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    margin-right: 10px;
+  }
+}
+
+
+
+@media (max-width: $md) {
+  .footer {
+    flex-direction: column;
+  }
+
+  .options {
+    flex-direction: column;
+    div {
+      margin-right: 0;
+    }
+  }
+
+  .copy {
+    font-size: 12px;
+    text-align: center;
+  }
+
+}

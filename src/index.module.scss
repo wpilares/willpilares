@@ -1,0 +1,26 @@
+@import 'src/Vars';
+
+body,html {
+  margin: 0;
+  background-color: #222222;
+  /* Estilo de la barra de desplazamiento */
+  ::-webkit-scrollbar {
+    width: 10px; /* Ancho de la barra de desplazamiento */
+  }
+
+  /* Estilo del riel de la barra de desplazamiento */
+  ::-webkit-scrollbar-track {
+    background-color: #212121; /* Color de fondo del riel */
+  }
+
+  /* Estilo del pulgar de la barra de desplazamiento */
+  ::-webkit-scrollbar-thumb {
+    background-color: #424242; /* Color del pulgar */
+    border-radius: 5px; /* Borde redondeado del pulgar */
+  }
+
+  /* Estilo del pulgar cuando se pasa el cursor sobre él */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #616161; /* Color del pulgar al pasar el cursor */
+  }
+}
