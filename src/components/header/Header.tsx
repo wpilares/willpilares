@@ -27,16 +27,28 @@ const Header = (): ReactElement => {
           <span className={styles.secondTitle}>Pilares</span>
         </div>
         <div className={styles.navbarLinks}>
-          <div>Home</div>
-          <div>Experience</div>
-          <div>Contact</div>
+          <a href="#" style={{ textDecoration: 'none' }}>
+            <div>Home</div>
+          </a>
+          <a href="/#experience" style={{ textDecoration: 'none' }}>
+            <div>Experience</div>
+          </a>
+          <a href="/#contact" style={{ textDecoration: 'none' }}>
+            <div>Contact</div>
+          </a>
         </div>
       </div>
       {!isMenuOpen && (
         <div className={styles.sideNavLinks}>
-          <div>Home</div>
-          <div>Experience</div>
-          <div>Contact</div>
+          <a href="#" style={{ textDecoration: 'none' }}>
+            <div>Home</div>
+          </a>
+          <a href="/#experience" style={{ textDecoration: 'none' }}>
+            <div>Experience</div>
+          </a>
+          <a href="/#contact" style={{ textDecoration: 'none' }}>
+            <div>Contact</div>
+          </a>
         </div>
       )}
     </div>

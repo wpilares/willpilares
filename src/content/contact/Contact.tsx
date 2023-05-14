@@ -7,23 +7,35 @@ import linkedin from '../../assets/contact/linkedin.svg';
 
 const Contact = (): ReactElement => {
   return (
-    <div className={styles.contact}>
+    <div className={styles.contact} id="contact">
       <SectionTitle title="Contact" />
       <div className={styles.contactSection}>
         <div>
           <img src={email} alt="email" />
           <div>Email</div>
-          <div>wgpilaresc@gmail.com</div>
+          <a
+            href="mailto:wgpilaresc@gmail.com"
+            style={{ textDecoration: 'none' }}>
+            <div>wgpilaresc@gmail.com</div>
+          </a>
         </div>
         <div>
           <img src={github} alt="github" />
           <div>Github</div>
-          <div>github.com/wpilares</div>
+          <a
+            href="https://github.com/wpilares"
+            style={{ textDecoration: 'none' }}>
+            <div>github.com/wpilares</div>
+          </a>
         </div>
         <div>
           <img src={linkedin} alt="linkedin" />
           <div>Linkedin</div>
-          <div>linkedin.com/in/wpilaresc</div>
+          <a
+            href="https://linkedin.com/in/wpilaresc"
+            style={{ textDecoration: 'none' }}>
+            <div>linkedin.com/in/wpilaresc</div>
+          </a>
         </div>
       </div>
     </div>

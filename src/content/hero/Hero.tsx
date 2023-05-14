@@ -21,7 +21,9 @@ const Hero = (): ReactElement => {
           <a href={CV} download>
             <button className={styles.button1}>Resume</button>
           </a>
-          <button className={styles.button2}>Contact</button>
+          <a href="/#contact">
+            <button className={styles.button2}>Contact</button>
+          </a>
         </div>
       </div>
     </div>
