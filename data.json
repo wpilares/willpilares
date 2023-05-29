@@ -6,19 +6,19 @@
     "descriptions": [
       "Implementation of complete web applications, covering both the frontend and the backend. On the frontend, creating responsive web views, following the best practices for component reuse and optimization of backend API calls. In the backend, creation of required APIs, implementation of authentication systems and protection of routes, guaranteeing a correct connection with the databases after having done the table modeling, configuration of CRON jobs to automate recurring tasks, ending with the deployment in AWS using CI/CD creating the pipelines",
       "Creation of a solid network infrastructure to facilitate the migration of servers from one domain to another using Terraform and Digital Ocean to create and manage droplets containing applications, databases, and firewalls. Configuration of VPCs to guarantee a secure and efficient connection between services",
-      "Creation of web applications and use of Software Defined Networks (SDN) to perform analysis of network devices, such as routers and switches. Implementation of analysis and monitoring services using SDN to improve network management",
+      "Creation of web applications and use of Software Defined Networks (SDN) to perform analysis of network devices, such as routers and switches. Implementation of analysis and monitoring services using SDN to improve network management"
     ],
     "stack": [
       "NodeJs",
       "React",
       "NextJs",
       "NestJs",
-      "Angular"
+      "Angular",
       "Typescript",
       "TypeORM",
       "Docker",
       "PostgreSQL",
-      "MongoDB",
+      "MongoDB"
     ]
   },
   "company_2":

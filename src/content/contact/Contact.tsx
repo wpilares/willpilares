@@ -21,7 +21,7 @@ const Contact = (): ReactElement => {
         </div>
         <div className={styles.itemSection}>
           <img src={github} alt="github" />
-          <div className={styles.itemTitle}>Github</div>
+          <div className={styles.itemTitle}>GitHub</div>
           <a
             href="https://github.com/wpilares"
             style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -30,7 +30,7 @@ const Contact = (): ReactElement => {
         </div>
         <div className={styles.itemSection}>
           <img src={linkedin} alt="linkedin" />
-          <div className={styles.itemTitle}>Linkedin</div>
+          <div className={styles.itemTitle}>LinkedIn</div>
           <a
             href="https://linkedin.com/in/wpilaresc"
             style={{ textDecoration: 'none', color: 'inherit' }}>
