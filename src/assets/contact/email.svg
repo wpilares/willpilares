@@ -1,1 +1,9 @@
-<svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><defs><style>.cls-1{fill:none;}</style></defs><title>email</title><path d="M28,6H4A2,2,0,0,0,2,8V24a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V8A2,2,0,0,0,28,6ZM25.8,8,16,14.78,6.2,8ZM4,24V8.91l11.43,7.91a1,1,0,0,0,1.14,0L28,8.91V24Z" fill="#007CED" transform="translate(0)"/><rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<svg id="icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>.cls-1{fill:none;}</style>
+  </defs>
+  <title>email</title>
+  <path d="M 29.714 3.717 L 2.308 3.717 C 1.046 3.717 0.023 4.815 0.023 6.17 L 0.023 25.796 C 0.023 27.152 1.046 28.249 2.308 28.249 L 29.714 28.249 C 30.974 28.249 31.996 27.152 31.996 25.796 L 31.996 6.17 C 31.996 4.815 30.974 3.717 29.714 3.717 Z M 27.201 6.17 L 16.011 14.486 L 4.819 6.17 L 27.201 6.17 Z M 2.308 25.796 L 2.308 7.286 L 15.359 16.989 C 15.749 17.281 16.27 17.281 16.661 16.989 L 29.714 7.286 L 29.714 25.796 L 2.308 25.796 Z" fill="#007CED" style=""/>
+  <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+</svg>
