@@ -1,9 +1,9 @@
-# PORTFOLIO WEB
+# MY WEB PORTFOLIO
 
-This is my web portfolio
-
-## Initialize Project
+## Stack Usado
 
 ```
-yarn dev
+* React
+* Typescript
+* Vite
 ```

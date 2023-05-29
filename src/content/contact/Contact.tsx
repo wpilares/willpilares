@@ -10,31 +10,31 @@ const Contact = (): ReactElement => {
     <div className={styles.contact} id="contact">
       <SectionTitle title="Contact" />
       <div className={styles.contactSection}>
-        <div>
+        <div className={styles.itemSection}>
           <img src={email} alt="email" />
-          <div>Email</div>
+          <div className={styles.itemTitle}>Email</div>
           <a
             href="mailto:wgpilaresc@gmail.com"
-            style={{ textDecoration: 'none' }}>
-            <div>wgpilaresc@gmail.com</div>
+            style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div className={styles.itemLink}>wgpilaresc@gmail.com</div>
           </a>
         </div>
-        <div>
+        <div className={styles.itemSection}>
           <img src={github} alt="github" />
-          <div>Github</div>
+          <div className={styles.itemTitle}>Github</div>
           <a
             href="https://github.com/wpilares"
-            style={{ textDecoration: 'none' }}>
-            <div>github.com/wpilares</div>
+            style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div className={styles.itemLink}>github.com/wpilares</div>
           </a>
         </div>
-        <div>
+        <div className={styles.itemSection}>
           <img src={linkedin} alt="linkedin" />
-          <div>Linkedin</div>
+          <div className={styles.itemTitle}>Linkedin</div>
           <a
             href="https://linkedin.com/in/wpilaresc"
-            style={{ textDecoration: 'none' }}>
-            <div>linkedin.com/in/wpilaresc</div>
+            style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div className={styles.itemLink}>linkedin.com/in/wpilaresc</div>
           </a>
         </div>
       </div>
