@@ -4,20 +4,21 @@
     "company": "Promitia",
     "image": "./jobs/promitia.png",
     "descriptions": [
-      "Creation of web application and implementation of REST for Software Defined Networks (SDN) to perform analysis of network devices (routers/switches)",
-      "Construction of a network infrastructure to perform server migration through Terraform and Digital Ocean, validating the correct creation of droplets and their applications",
-      "Creation of web application and implementation of REST for Software Defined Networks (SDN) to perform analysis of network devices (routers/switches)",
-      "Creation of web application and implementation of REST for Software Defined Networks (SDN) to perform analysis of network devices (routers/switches)"
+      "Implementation of complete web applications, covering both the frontend and the backend. On the frontend, creating responsive web views, following the best practices for component reuse and optimization of backend API calls. In the backend, creation of required APIs, implementation of authentication systems and protection of routes, guaranteeing a correct connection with the databases after having done the table modeling, configuration of CRON jobs to automate recurring tasks, ending with the deployment in AWS using CI/CD creating the pipelines",
+      "Creation of a solid network infrastructure to facilitate the migration of servers from one domain to another using Terraform and Digital Ocean to create and manage droplets containing applications, databases, and firewalls. Configuration of VPCs to guarantee a secure and efficient connection between services",
+      "Creation of web applications and use of Software Defined Networks (SDN) to perform analysis of network devices, such as routers and switches. Implementation of analysis and monitoring services using SDN to improve network management",
     ],
     "stack": [
-      "Node.js",
+      "NodeJs",
       "React",
       "NextJs",
       "NestJs",
+      "Angular"
       "Typescript",
       "TypeORM",
       "Docker",
-      "PostgreSQL"
+      "PostgreSQL",
+      "MongoDB",
     ]
   },
   "company_2":
@@ -25,7 +26,7 @@
     "company": "América Móvil Perú",
     "image": "./jobs/claro.png",
     "descriptions": [
-      "Intern in the area of voice and data administration, related to the telecommunications and networks sector, analyzing KPIs as well as the optimal functioning of the network, where I perform automation of reports and configuration scripts"
+      "Intern in the area of voice and data administration in a telecommunications and network environment. Analysis of KPIs and guarantee of the optimal functioning of the network. Automation of reports and development of configuration scripts for network elements"
     ],
     "stack": [
       "Python",
