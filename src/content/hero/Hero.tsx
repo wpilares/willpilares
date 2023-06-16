@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react';
 import styles from './Hero.module.scss';
-import profilePhoto from '../../assets/me.png';
+import profilePhoto from '../../assets/me.jpg';
 import CV from '../../assets/CV_Willber_Pilares.pdf';
 
 const Hero = (): ReactElement => {
