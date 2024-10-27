@@ -42,5 +42,6 @@
   "lint-staged": {
     "*.{ts,tsx}": "eslint --cache --fix",
     "*.{ts,tsx,css,md}": "prettier --write"
-  }
+  },
+  "packageManager": "yarn@4.5.1"
 }
