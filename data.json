@@ -1,4 +1,27 @@
 {
+  "company_0":
+  {
+    "company": "Softtek",
+    "image": "./jobs/softtek.png",
+    "descriptions": [
+      "I developed an end-to-end workflow using AWS Lambda to process daily policy data retrieved from a database via EventBridge. This process included updating database statuses based on processing results, generating logs for every change, and sending real-time updates to a frontend using WebSockets. Additionally, I enabled manual execution of the workflow directly from the user interface.",
+      "I also created Lambda functions to generate PDF documents based on information retrieved from the database, package them into ZIP files, and provide pre-signed S3 URLs for user downloads.",
+      "All AWS deployments were automated using CI/CD pipelines configured in Azure DevOps. To ensure code quality and reliability, I implemented automated tests using Jest and Cucumber."
+    ]
+  ,
+    "stack": [
+      "NodeJs",
+      "React",
+      "NestJs",
+      "Typescript",
+      "TypeORM",
+      "Docker",
+      "PostgreSQL",
+      "OracleDB",
+      "AWS",
+      "Azure"
+    ]
+  },
   "company_1":
   {
     "company": "Promitia",
