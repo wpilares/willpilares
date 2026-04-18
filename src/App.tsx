@@ -1,20 +1,16 @@
-import { type ReactElement } from 'react';
-import Header from './components/header/Header.tsx';
-import Hero from './content/hero/Hero.tsx';
-import Experience from './content/experience/Experience.tsx';
-import Contact from './content/contact/Contact.tsx';
-import Footer from './components/footer/Footer.tsx';
+import { Footer, Header } from '@components'
+import { Contact, Experience, Hero } from '@content'
 
-function App(): ReactElement {
+export const App = () => {
   return (
-    <>
+    <div className="min-h-screen bg-light-bg-primary transition-colors duration-300 dark:bg-dark-bg-primary">
       <Header />
-      <Hero />
-      <Experience />
-      <Contact />
+      <main>
+        <Hero />
+        <Experience />
+        <Contact />
+      </main>
       <Footer />
-    </>
-  );
+    </div>
+  )
 }
-
-export default App;
