@@ -1,0 +1,6 @@
+export { Footer } from './footer/Footer'
+export { Header } from './header/Header'
+export type { JobsProps } from './jobs/Jobs'
+export { Jobs } from './jobs/Jobs'
+export type { SectionTitleProps } from './sectionTitle/SectionTitle'
+export { SectionTitle } from './sectionTitle/SectionTitle'

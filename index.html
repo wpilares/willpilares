@@ -1,13 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang='en' class='dark'>
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Willber Pilares</title>
+    <meta charset='UTF-8' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta
+      name='description'
+      content='Willber Pilares - Full Stack Developer specializing in React, Node.js, TypeScript, and cloud technologies. 5+ years of experience building scalable web applications.'
+    />
+    <meta
+      name='keywords'
+      content='Full Stack Developer, React, Node.js, TypeScript, AWS, Software Engineer, Web Development'
+    />
+    <meta name='author' content='Willber Pilares' />
+    <meta name='theme-color' content='#0a0a0a' media='(prefers-color-scheme: dark)' />
+    <meta name='theme-color' content='#ffffff' media='(prefers-color-scheme: light)' />
+    <meta property='og:title' content='Willber Pilares - Full Stack Developer' />
+    <meta
+      property='og:description'
+      content='Passionate Full Stack Developer with 5+ years of experience building scalable web applications.'
+    />
+    <meta property='og:type' content='website' />
+    <title>Willber Pilares - Full Stack Developer</title>
+
+    <!-- Theme detection script for Zustand store -->
+    <script>
+      ;(() => {
+        // Check for Zustand persisted theme
+        const zustandStorage = localStorage.getItem('theme-storage')
+        let theme = 'dark'
+
+        if (zustandStorage) {
+          try {
+            const parsed = JSON.parse(zustandStorage)
+            theme = parsed.state?.theme || 'dark'
+          } catch (_e) {
+            // Fallback to system preference
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light'
+          }
+        } else {
+          // No stored theme, use system preference
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light'
+        }
+
+        document.documentElement.classList.remove('dark', 'light')
+        document.documentElement.classList.add(theme)
+      })()
+    </script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div id='root'></div>
+    <script type='module' src='/src/main.tsx'></script>
   </body>
 </html>
