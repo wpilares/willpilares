@@ -3,9 +3,9 @@
     "company": "Softtek",
     "image": "jobs/softtek.png",
     "descriptions": [
-      "I developed an end-to-end workflow using AWS Lambda to process daily policy data retrieved from a database via EventBridge. This process included updating database statuses based on processing results, generating logs for every change, and sending real-time updates to a frontend using WebSockets. Additionally, I enabled manual execution of the workflow directly from the user interface.",
-      "I also created Lambda functions to generate PDF documents based on information retrieved from the database, package them into ZIP files, and provide pre-signed S3 URLs for user downloads.",
-      "All AWS deployments were automated using CI/CD pipelines configured in Azure DevOps. To ensure code quality and reliability, I implemented automated tests using Jest and Cucumber."
+      "Designed and implemented end-to-end serverless workflows using AWS Lambda and EventBridge to process daily policy data, including real-time status updates, comprehensive logging, and WebSocket communication for frontend notifications.",
+      "Developed PDF generation services using Lambda functions, enabling document creation, ZIP packaging, and secure pre-signed S3 URLs for user downloads.",
+      "Automated AWS deployments through Azure DevOps CI/CD pipelines and maintained high code quality with Jest and Cucumber automated testing."
     ],
     "stack": [
       "NodeJs",
@@ -24,9 +24,9 @@
     "company": "Promitia",
     "image": "jobs/promitia.png",
     "descriptions": [
-      "Implementation of complete web applications, covering both the frontend and the backend. On the frontend, creating responsive web views, following the best practices for component reuse and optimization of backend API calls. In the backend, creation of required APIs, implementation of authentication systems and protection of routes, guaranteeing a correct connection with the databases after having done the table modeling, configuration of CRON jobs to automate recurring tasks, ending with the deployment in AWS using CI/CD creating the pipelines",
-      "Creation of a solid network infrastructure to facilitate the migration of servers from one domain to another using Terraform and Digital Ocean to create and manage droplets containing applications, databases, and firewalls. Configuration of VPCs to guarantee a secure and efficient connection between services",
-      "Creation of web applications and use of Software Defined Networks (SDN) to perform analysis of network devices, such as routers and switches. Implementation of analysis and monitoring services using SDN to improve network management"
+      "Built full-stack web applications with responsive frontend interfaces and optimized API integrations, implementing authentication, route protection, and CRON jobs for task automation.",
+      "Designed and deployed network infrastructure using Terraform and DigitalOcean for server migration between domains, including VPC configuration for secure service connectivity.",
+      "Developed SDN-based web applications for network device analysis and monitoring, improving network management capabilities for routers and switches."
     ],
     "stack": [
       "NodeJs",
@@ -45,7 +45,8 @@
     "company": "América Móvil Perú",
     "image": "jobs/claro.png",
     "descriptions": [
-      "Intern in the area of voice and data administration in a telecommunications and network environment. Analysis of KPIs and guarantee of the optimal functioning of the network. Automation of reports and development of configuration scripts for network elements"
+      "Interned in voice and data administration within a telecommunications network environment, analyzing KPIs and ensuring optimal network performance.",
+      "Automated reporting processes and developed configuration scripts for network elements, improving operational efficiency."
     ],
     "stack": ["Python", "HTML"]
   }

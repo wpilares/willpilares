@@ -1,5 +1,5 @@
 import { Footer, Header } from '@components'
-import { Contact, Experience, Hero } from '@content'
+import { AboutMe, Contact, Experience, Hero, Projects, Skills } from '@content'
 
 export const App = () => {
   return (
@@ -7,7 +7,10 @@ export const App = () => {
       <Header />
       <main>
         <Hero />
+        <AboutMe />
+        <Skills />
         <Experience />
+        <Projects />
         <Contact />
       </main>
       <Footer />

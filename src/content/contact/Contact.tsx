@@ -1,6 +1,6 @@
 import { SectionTitle } from '@components'
 import { useIntersectionObserver } from '@hooks'
-import { type LucideIcon, Mail, MessageCircle, Send } from 'lucide-react'
+import { type LucideIcon, Mail, Send } from 'lucide-react'
 
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -23,7 +23,7 @@ interface ContactLink {
   title: string
   value: string
   href: string
-  color: string
+  gradient: string
 }
 
 export const Contact = () => {
@@ -35,35 +35,31 @@ export const Contact = () => {
       title: 'Email',
       value: 'wgpilaresc@gmail.com',
       href: 'mailto:wgpilaresc@gmail.com',
-      color: 'from-red-500 to-red-700',
+      gradient: 'from-red-500 to-rose-600',
     },
     {
       icon: GithubIcon,
       title: 'GitHub',
       value: 'github.com/wpilares',
       href: 'https://github.com/wpilares',
-      color: 'from-gray-600 to-gray-800',
+      gradient: 'from-gray-600 to-gray-800',
     },
     {
       icon: LinkedinIcon,
       title: 'LinkedIn',
       value: 'linkedin.com/in/wpilaresc',
       href: 'https://linkedin.com/in/wpilaresc',
-      color: 'from-blue-600 to-blue-800',
+      gradient: 'from-blue-600 to-blue-800',
     },
   ]
 
   return (
     <section id="contact" className="px-4 py-20 sm:px-6 sm:py-28" ref={ref}>
       <div className="mx-auto max-w-5xl">
-        <SectionTitle
-          title="Let's Connect"
-          subtitle="Open for collaborations and new opportunities"
-          icon={MessageCircle}
-        />
+        <SectionTitle title="Let's Talk" subtitle="Open to collaborations and new opportunities" />
 
         <div
-          className={`grid gap-6 transition-all duration-700 sm:grid-cols-2 lg:grid-cols-3 ${
+          className={`grid gap-6 transition-all duration-700 sm:grid-cols-3 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}
         >
@@ -77,11 +73,11 @@ export const Contact = () => {
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div
-                className={`mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${link.color} shadow-lg transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl`}
+                className={`mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${link.gradient} shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl`}
               >
-                <link.icon className="h-7 w-7 text-white" />
+                <link.icon className="h-6 w-6 text-white" />
               </div>
-              <h3 className="mb-2 text-lg font-semibold text-light-text-primary dark:text-dark-text-primary">
+              <h3 className="mb-1 text-base font-semibold text-light-text-primary dark:text-dark-text-primary">
                 {link.title}
               </h3>
               <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary">
@@ -91,13 +87,13 @@ export const Contact = () => {
           ))}
         </div>
 
-        {/* Additional CTA */}
+        {/* CTA */}
         <div
-          className={`mt-16 text-center transition-all delay-300 duration-700 ${
+          className={`mt-12 text-center transition-all delay-300 duration-700 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}
         >
-          <p className="mb-6 text-light-text-secondary dark:text-dark-text-secondary">
+          <p className="mb-5 text-light-text-secondary dark:text-dark-text-secondary">
             Prefer to send a direct message?
           </p>
           <a
