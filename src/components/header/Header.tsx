@@ -1,5 +1,5 @@
 import { useThemeStore } from '@store'
-import { Code2, Home, Mail, Menu, Moon, Sun, User, X } from 'lucide-react'
+import { Code2, Menu, Moon, Sun, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 export const Header = () => {
@@ -16,9 +16,12 @@ export const Header = () => {
   }, [])
 
   const navLinks = [
-    { href: '#home', label: 'Home', icon: Home },
-    { href: '#experience', label: 'Experience', icon: User },
-    { href: '#contact', label: 'Contact', icon: Mail },
+    { href: '#home', label: 'Home' },
+    { href: '#about', label: 'About Me' },
+    { href: '#skills', label: 'Skills' },
+    { href: '#experience', label: 'Experience' },
+    { href: '#projects', label: 'Projects' },
+    { href: '#contact', label: 'Contact' },
   ]
 
   return (
@@ -40,14 +43,13 @@ export const Header = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-6 md:flex lg:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="group flex items-center gap-1.5 text-sm font-medium text-light-text-secondary transition-colors duration-300 hover:text-violet-600 dark:text-dark-text-secondary dark:hover:text-violet-400"
+                className="text-sm font-medium text-light-text-secondary transition-colors duration-300 hover:text-violet-600 dark:text-dark-text-secondary dark:hover:text-violet-400"
               >
-                <link.icon className="h-3.5 w-3.5 opacity-0 transition-all duration-300 group-hover:opacity-100" />
                 {link.label}
               </a>
             ))}
@@ -88,18 +90,17 @@ export const Header = () => {
         {/* Mobile Navigation */}
         <div
           className={`overflow-hidden transition-all duration-300 md:hidden ${
-            isMenuOpen ? 'mt-4 max-h-48' : 'max-h-0'
+            isMenuOpen ? 'mt-4 max-h-80' : 'max-h-0'
           }`}
         >
-          <nav className="flex flex-col gap-2 pb-4">
+          <nav className="glass flex flex-col gap-1 rounded-xl border border-light-border/50 p-2 shadow-lg">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-light-text-secondary transition-all duration-300 hover:bg-light-bg-tertiary hover:text-violet-600 dark:text-dark-text-secondary dark:hover:bg-dark-bg-tertiary dark:hover:text-violet-400"
+                className="rounded-lg px-4 py-3 text-sm font-medium text-light-text-secondary transition-all duration-300 hover:bg-light-bg-tertiary hover:text-violet-600 dark:text-dark-text-secondary dark:hover:bg-dark-bg-tertiary dark:hover:text-violet-400"
               >
-                <link.icon className="h-4 w-4" />
                 {link.label}
               </a>
             ))}
