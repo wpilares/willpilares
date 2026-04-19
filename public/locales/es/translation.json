@@ -1,0 +1,112 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre Mí",
+    "skills": "Habilidades",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "badge": "Willber Pilares",
+    "titleStart": "Construyendo",
+    "highlight": "experiencias digitales excepcionales",
+    "description": "Apasionado por crear y aprender tecnología, con fuertes capacidades analíticas y de resolución de problemas. Un profesional responsable, creativo y puntual que acepta desafíos, trabaja bien en equipo y se enfoca en entregar resultados.",
+    "downloadCV": "Descargar CV"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "description": "Apasionado por crear y aprender tecnología, con fuertes capacidades analíticas y de resolución de problemas. Un profesional responsable, creativo y puntual que acepta desafíos, trabaja bien en equipo y se enfoca en entregar resultados.",
+    "highlights": {
+      "years": {
+        "title": "5+ Años",
+        "description": "Experiencia profesional en desarrollo de software"
+      },
+      "fullstack": {
+        "title": "Full Stack",
+        "description": "Desarrollo frontend y backend de extremo a extremo"
+      },
+      "cloud": {
+        "title": "Cloud & DevOps",
+        "description": "AWS, Azure, Docker, pipelines CI/CD"
+      },
+      "database": {
+        "title": "Bases de Datos",
+        "description": "PostgreSQL, MongoDB, OracleDB"
+      }
+    }
+  },
+  "skills": {
+    "title": "Habilidades Técnicas",
+    "subtitle": "Tecnologías y herramientas que uso para construir soluciones de alta calidad",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "cloud": "Cloud & DevOps",
+      "databases": "Bases de Datos"
+    }
+  },
+  "experience": {
+    "title": "Experiencia Laboral",
+    "subtitle": "Trayectoria profesional entregando soluciones impactantes",
+    "position": "Desarrollador Full Stack",
+    "companies": {
+      "softtek": {
+        "descriptions": [
+          "Diseñé e implementé flujos de trabajo serverless de extremo a extremo usando AWS Lambda y EventBridge para procesar datos de pólizas diarias, incluyendo actualizaciones de estado en tiempo real, logging completo y comunicación WebSocket para notificaciones del frontend.",
+          "Desarrollé servicios de generación de PDF usando funciones Lambda, habilitando la creación de documentos, empaquetado ZIP y URLs pre-firmadas seguras de S3 para descargas de usuarios.",
+          "Automaticé despliegues en AWS a través de pipelines CI/CD de Azure DevOps y mantuve alta calidad de código con pruebas automatizadas Jest y Cucumber."
+        ]
+      },
+      "promitia": {
+        "descriptions": [
+          "Construí aplicaciones web full-stack con interfaces frontend responsivas e integraciones de API optimizadas, implementando autenticación, protección de rutas y jobs CRON para automatización de tareas.",
+          "Diseñé y desplegué infraestructura de red usando Terraform y DigitalOcean para migración de servidores entre dominios, incluyendo configuración VPC para conectividad segura de servicios.",
+          "Desarrollé aplicaciones web basadas en SDN para análisis y monitoreo de dispositivos de red, mejorando las capacidades de gestión de red para routers y switches."
+        ]
+      },
+      "americaMovil": {
+        "descriptions": [
+          "Realicé prácticas en administración de voz y datos dentro de un entorno de red de telecomunicaciones, analizando KPIs y asegurando rendimiento óptimo de la red.",
+          "Automaticé procesos de reportes y desarrollé scripts de configuración para elementos de red, mejorando la eficiencia operativa."
+        ]
+      }
+    }
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "items": {
+      "ecommerce": {
+        "title": "Plataforma E-Commerce",
+        "description": "Plataforma de comercio electrónico completa con carrito de compras, pasarela de pagos y panel de administración."
+      },
+      "scraping": {
+        "title": "Herramienta de Web Scraping",
+        "description": "Herramienta automatizada de web scraping para recolección y análisis de datos con reportes programados."
+      },
+      "chatbot": {
+        "title": "App Chatbot IA",
+        "description": "Aplicación de chatbot impulsada por IA para servicio al cliente con procesamiento de lenguaje natural."
+      },
+      "analytics": {
+        "title": "Panel de Analytics",
+        "description": "Panel de analíticas en tiempo real con visualizaciones interactivas y reportes personalizados."
+      }
+    }
+  },
+  "contact": {
+    "title": "Hablemos",
+    "subtitle": "Abierto a colaboraciones y nuevas oportunidades",
+    "directMessage": "¿Prefieres enviar un mensaje directo?",
+    "sendEmail": "Enviar Email",
+    "links": {
+      "email": "Email",
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "footer": {
+    "madeWith": "Hecho con",
+    "rights": "Todos los derechos reservados."
+  }
+}

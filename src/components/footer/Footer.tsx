@@ -1,4 +1,5 @@
 import { Code2, Heart } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -18,6 +19,7 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear()
+  const { t } = useTranslation()
 
   return (
     <footer className="border-t border-light-border bg-light-bg-secondary px-4 py-8 dark:border-dark-border dark:bg-dark-bg-secondary sm:px-6 lg:px-8">
@@ -32,9 +34,9 @@ export const Footer = () => {
         </div>
 
         <p className="flex items-center gap-1.5 text-sm text-light-text-muted dark:text-dark-text-muted">
-          © {currentYear} Made with
+          © {currentYear} {t('footer.madeWith')}
           <Heart className="h-3.5 w-3.5 fill-red-500 text-red-500" />
-          All rights reserved.
+          {t('footer.rights')}
         </p>
 
         <div className="flex items-center gap-4">

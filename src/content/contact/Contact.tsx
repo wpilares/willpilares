@@ -1,6 +1,7 @@
 import { SectionTitle } from '@components'
 import { useIntersectionObserver } from '@hooks'
-import { type LucideIcon, Mail, Send } from 'lucide-react'
+import { Mail, Send } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -18,35 +19,28 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
-interface ContactLink {
-  icon: LucideIcon | typeof GithubIcon
-  title: string
-  value: string
-  href: string
-  gradient: string
-}
-
 export const Contact = () => {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 })
+  const { t } = useTranslation()
 
-  const contactLinks: ContactLink[] = [
+  const contactLinks = [
     {
       icon: Mail,
-      title: 'Email',
+      title: t('contact.links.email'),
       value: 'wgpilaresc@gmail.com',
       href: 'mailto:wgpilaresc@gmail.com',
       gradient: 'from-red-500 to-rose-600',
     },
     {
       icon: GithubIcon,
-      title: 'GitHub',
+      title: t('contact.links.github'),
       value: 'github.com/wpilares',
       href: 'https://github.com/wpilares',
       gradient: 'from-gray-600 to-gray-800',
     },
     {
       icon: LinkedinIcon,
-      title: 'LinkedIn',
+      title: t('contact.links.linkedin'),
       value: 'linkedin.com/in/wpilaresc',
       href: 'https://linkedin.com/in/wpilaresc',
       gradient: 'from-blue-600 to-blue-800',
@@ -56,35 +50,38 @@ export const Contact = () => {
   return (
     <section id="contact" className="px-4 py-20 sm:px-6 sm:py-28" ref={ref}>
       <div className="mx-auto max-w-5xl">
-        <SectionTitle title="Let's Talk" subtitle="Open to collaborations and new opportunities" />
+        <SectionTitle title={t('contact.title')} subtitle={t('contact.subtitle')} />
 
         <div
           className={`grid gap-6 transition-all duration-700 sm:grid-cols-3 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}
         >
-          {contactLinks.map((link, index) => (
-            <a
-              key={link.title}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card group flex flex-col items-center p-6 text-center transition-all duration-300 hover:-translate-y-1"
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <div
-                className={`mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${link.gradient} shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl`}
+          {contactLinks.map((link, index) => {
+            const IconComponent = link.icon
+            return (
+              <a
+                key={link.title}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card group flex flex-col items-center p-6 text-center transition-all duration-300 hover:-translate-y-1"
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <link.icon className="h-6 w-6 text-white" />
-              </div>
-              <h3 className="mb-1 text-base font-semibold text-light-text-primary dark:text-dark-text-primary">
-                {link.title}
-              </h3>
-              <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary">
-                {link.value}
-              </p>
-            </a>
-          ))}
+                <div
+                  className={`mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${link.gradient} shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl`}
+                >
+                  <IconComponent className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="mb-1 text-base font-semibold text-light-text-primary dark:text-dark-text-primary">
+                  {link.title}
+                </h3>
+                <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary">
+                  {link.value}
+                </p>
+              </a>
+            )
+          })}
         </div>
 
         {/* CTA */}
@@ -94,14 +91,14 @@ export const Contact = () => {
           }`}
         >
           <p className="mb-5 text-light-text-secondary dark:text-dark-text-secondary">
-            Prefer to send a direct message?
+            {t('contact.directMessage')}
           </p>
           <a
             href="mailto:wgpilaresc@gmail.com"
             className="btn-primary inline-flex items-center gap-2"
           >
             <Send className="h-5 w-5" />
-            Send Email
+            {t('contact.sendEmail')}
           </a>
         </div>
       </div>
