@@ -1,20 +1,11 @@
 import { useIntersectionObserver } from '@hooks'
 import { Wrench } from 'lucide-react'
-
-export interface JobData {
-  company: string
-  image: string
-  descriptions: string[]
-  stack: string[]
-}
-
-export interface JobsProps {
-  data: JobData
-  index?: number
-}
+import { useTranslation } from 'react-i18next'
+import type { JobsProps } from '@/types'
 
 export const Jobs = ({ data, index = 0 }: JobsProps) => {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 })
+  const { t } = useTranslation()
 
   return (
     <div
@@ -39,16 +30,16 @@ export const Jobs = ({ data, index = 0 }: JobsProps) => {
             {data.company}
           </h3>
           <p className="text-sm text-light-text-muted dark:text-dark-text-muted">
-            Full Stack Developer
+            {t('experience.position')}
           </p>
         </div>
       </div>
 
       {/* Descriptions */}
       <div className="space-y-3 p-5 sm:p-6">
-        {data.descriptions.map((desc) => (
+        {data.descriptions.map((desc, idx) => (
           <p
-            key={desc.slice(0, 30)}
+            key={idx}
             className="text-sm leading-relaxed text-light-text-secondary dark:text-dark-text-secondary"
           >
             {desc}

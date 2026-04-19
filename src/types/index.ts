@@ -1,0 +1,6 @@
+export type { ContactLink } from './contact.types'
+export type { CompanyData, ExperienceData } from './experience.types'
+export type { JobData, JobsProps } from './jobs.types'
+export type { Project } from './projects.types'
+export type { SectionTitleProps } from './section.types'
+export type { SkillCategory, SkillItem } from './skills.types'

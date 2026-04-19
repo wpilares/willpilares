@@ -1,0 +1,112 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Me",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Willber Pilares",
+    "titleStart": "Building",
+    "highlight": "exceptional digital experiences",
+    "description": "Passionate about creating and learning technology, with strong analytical and problem-solving capabilities. A responsible, creative, and punctual professional who welcomes challenges, works well in teams, and focuses on delivering results.",
+    "downloadCV": "Download CV"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Passionate about creating and learning technology, with strong analytical and problem-solving capabilities. A responsible, creative, and punctual professional who welcomes challenges, works well in teams, and focuses on delivering results.",
+    "highlights": {
+      "years": {
+        "title": "5+ Years",
+        "description": "Professional software development experience"
+      },
+      "fullstack": {
+        "title": "Full Stack",
+        "description": "End-to-end frontend and backend development"
+      },
+      "cloud": {
+        "title": "Cloud & DevOps",
+        "description": "AWS, Azure, Docker, CI/CD pipelines"
+      },
+      "database": {
+        "title": "Databases",
+        "description": "PostgreSQL, MongoDB, OracleDB"
+      }
+    }
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "subtitle": "Technologies and tools I use to build high-quality solutions",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "cloud": "Cloud & DevOps",
+      "databases": "Databases"
+    }
+  },
+  "experience": {
+    "title": "Work Experience",
+    "subtitle": "Professional journey delivering impactful solutions",
+    "position": "Full Stack Developer",
+    "companies": {
+      "softtek": {
+        "descriptions": [
+          "Designed and implemented end-to-end serverless workflows using AWS Lambda and EventBridge to process daily policy data, including real-time status updates, comprehensive logging, and WebSocket communication for frontend notifications.",
+          "Developed PDF generation services using Lambda functions, enabling document creation, ZIP packaging, and secure pre-signed S3 URLs for user downloads.",
+          "Automated AWS deployments through Azure DevOps CI/CD pipelines and maintained high code quality with Jest and Cucumber automated testing."
+        ]
+      },
+      "promitia": {
+        "descriptions": [
+          "Built full-stack web applications with responsive frontend interfaces and optimized API integrations, implementing authentication, route protection, and CRON jobs for task automation.",
+          "Designed and deployed network infrastructure using Terraform and DigitalOcean for server migration between domains, including VPC configuration for secure service connectivity.",
+          "Developed SDN-based web applications for network device analysis and monitoring, improving network management capabilities for routers and switches."
+        ]
+      },
+      "americaMovil": {
+        "descriptions": [
+          "Interned in voice and data administration within a telecommunications network environment, analyzing KPIs and ensuring optimal network performance.",
+          "Automated reporting processes and developed configuration scripts for network elements, improving operational efficiency."
+        ]
+      }
+    }
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "items": {
+      "ecommerce": {
+        "title": "E-Commerce Platform",
+        "description": "Complete e-commerce platform with shopping cart, payment gateway, and admin panel."
+      },
+      "scraping": {
+        "title": "Web Scraping Tool",
+        "description": "Automated web scraping tool for data collection and analysis with scheduled reports."
+      },
+      "chatbot": {
+        "title": "AI Chatbot App",
+        "description": "AI-powered chatbot application for customer service with natural language processing."
+      },
+      "analytics": {
+        "title": "Analytics Dashboard",
+        "description": "Real-time analytics dashboard with interactive visualizations and custom reports."
+      }
+    }
+  },
+  "contact": {
+    "title": "Let's Talk",
+    "subtitle": "Open to collaborations and new opportunities",
+    "directMessage": "Prefer to send a direct message?",
+    "sendEmail": "Send Email",
+    "links": {
+      "email": "Email",
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    }
+  },
+  "footer": {
+    "madeWith": "Made with",
+    "rights": "All rights reserved."
+  }
+}

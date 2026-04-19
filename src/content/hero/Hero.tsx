@@ -1,6 +1,7 @@
 import { cvPdf, profilePhoto } from '@assets'
 import { useIntersectionObserver } from '@hooks'
 import { Download } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -20,6 +21,7 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 
 export const Hero = () => {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 })
+  const { t } = useTranslation()
 
   return (
     <section
@@ -49,26 +51,25 @@ export const Hero = () => {
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-violet-500/10 px-4 py-1.5">
           <div className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
           <span className="text-sm font-medium text-violet-600 dark:text-violet-400">
-            W Pilares
+            {t('hero.badge')}
           </span>
         </div>
 
         {/* Main Heading */}
-        <h1 className="mb-4 text-4xl font-bold leading-tight text-light-text-primary dark:text-dark-text-primary sm:text-5xl lg:text-6xl">
-          Building <span className="gradient-text">exceptional digital experiences</span>
+        <h1 className="mb-4 max-w-full break-words text-3xl font-bold leading-tight text-light-text-primary dark:text-dark-text-primary sm:text-4xl md:text-5xl lg:text-6xl">
+          <span className="block">{t('hero.titleStart')}</span>
+          <span className="gradient-text block">{t('hero.highlight')}</span>
         </h1>
 
         {/* Description */}
         <p className="mb-8 max-w-xl text-lg leading-relaxed text-light-text-secondary dark:text-dark-text-secondary">
-          Passionate about creating and learning technology, with strong analytical and
-          problem-solving capabilities. A responsible, creative, and punctual professional who
-          welcomes challenges, works well in teams, and focuses on delivering results.
+          {t('hero.description')}
         </p>
 
         {/* CTA Button */}
         <a href={cvPdf} download className="btn-primary mb-8 inline-flex items-center gap-2">
           <Download className="h-5 w-5" />
-          Download CV
+          {t('hero.downloadCV')}
         </a>
 
         {/* Social Icons */}

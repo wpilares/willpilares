@@ -1,21 +1,12 @@
 import { SectionTitle } from '@components'
-import { techIconUrls } from '@components/TechIcons'
 import { useIntersectionObserver } from '@hooks'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { techIconUrls } from '@/constants/skills'
 
-interface SkillItem {
-  name: string
-  iconUrl: string
-}
-
-interface SkillCategory {
-  title: string
-  skills: SkillItem[]
-}
-
-const categories: SkillCategory[] = [
+const categories = [
   {
-    title: 'Frontend',
+    key: 'frontend',
     skills: [
       { name: 'React', iconUrl: techIconUrls.React },
       { name: 'Angular', iconUrl: techIconUrls.Angular },
@@ -26,7 +17,7 @@ const categories: SkillCategory[] = [
     ],
   },
   {
-    title: 'Backend',
+    key: 'backend',
     skills: [
       { name: 'Node.js', iconUrl: techIconUrls['Node.js'] },
       { name: 'NestJS', iconUrl: techIconUrls.NestJS },
@@ -35,7 +26,7 @@ const categories: SkillCategory[] = [
     ],
   },
   {
-    title: 'Cloud & DevOps',
+    key: 'cloud',
     skills: [
       { name: 'AWS', iconUrl: techIconUrls.AWS },
       { name: 'Azure', iconUrl: techIconUrls.Azure },
@@ -45,7 +36,7 @@ const categories: SkillCategory[] = [
     ],
   },
   {
-    title: 'Databases',
+    key: 'databases',
     skills: [
       { name: 'PostgreSQL', iconUrl: techIconUrls.PostgreSQL },
       { name: 'MongoDB', iconUrl: techIconUrls.MongoDB },
@@ -57,6 +48,7 @@ const categories: SkillCategory[] = [
 export const Skills = () => {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.05 })
   const [activeTab, setActiveTab] = useState(0)
+  const { t } = useTranslation()
 
   return (
     <section
@@ -65,10 +57,7 @@ export const Skills = () => {
       ref={ref}
     >
       <div className="mx-auto max-w-5xl">
-        <SectionTitle
-          title="Technical Skills"
-          subtitle="Technologies and tools I use to build high-quality solutions"
-        />
+        <SectionTitle title={t('skills.title')} subtitle={t('skills.subtitle')} />
 
         {/* Category Tabs */}
         <div
@@ -78,7 +67,7 @@ export const Skills = () => {
         >
           {categories.map((cat, index) => (
             <button
-              key={cat.title}
+              key={cat.key}
               type="button"
               onClick={() => setActiveTab(index)}
               className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 ${
@@ -87,7 +76,7 @@ export const Skills = () => {
                   : 'border border-light-border bg-light-bg-card text-light-text-secondary hover:border-violet-500/50 dark:border-dark-border dark:bg-dark-bg-card dark:text-dark-text-secondary dark:hover:border-violet-500/50'
               }`}
             >
-              {cat.title}
+              {t(`skills.categories.${cat.key}`)}
             </button>
           ))}
         </div>
@@ -125,10 +114,10 @@ export const Skills = () => {
           }`}
         >
           {categories.map((cat) => (
-            <div key={cat.title} className="card overflow-hidden">
+            <div key={cat.key} className="card overflow-hidden">
               <div className="border-b border-light-border bg-gradient-to-r from-violet-500/10 to-purple-600/10 px-5 py-3 dark:border-dark-border">
                 <h3 className="text-sm font-bold text-light-text-primary dark:text-dark-text-primary">
-                  {cat.title}
+                  {t(`skills.categories.${cat.key}`)}
                 </h3>
               </div>
               <div className="space-y-2 p-4">
