@@ -1,4 +1,5 @@
 import { BarChart3, Bot, Globe, ShoppingCart } from 'lucide-react'
+import type { Project } from '@/types'
 
 export const projectIcons = {
   ShoppingCart,
@@ -7,7 +8,7 @@ export const projectIcons = {
   BarChart3,
 }
 
-export const projectData = [
+export const projectData: Project[] = [
   {
     key: 'ecommerce',
     icon: 'ShoppingCart',

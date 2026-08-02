@@ -1,10 +1,9 @@
-import type { LucideIcon } from 'lucide-react'
+import type { projectIcons } from '@/constants/projects'
+
+export type ProjectIconName = keyof typeof projectIcons
 
 export interface Project {
-  title: string
-  description: string
-  tags: string[]
-  icon: LucideIcon
+  key: string
+  icon: ProjectIconName
   gradient: string
-  link?: string
 }
