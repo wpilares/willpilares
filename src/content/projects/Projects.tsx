@@ -19,7 +19,7 @@ export const Projects = () => {
           }`}
         >
           {projectData.map((project, index) => {
-            const IconComponent = projectIcons[project.icon as keyof typeof projectIcons]
+            const IconComponent = projectIcons[project.icon]
             return (
               <div
                 key={project.key}

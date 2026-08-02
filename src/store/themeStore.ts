@@ -9,35 +9,29 @@ export interface ThemeState {
   setTheme: (theme: Theme) => void
 }
 
+const getSystemTheme = (): Theme =>
+  window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+
+const applyTheme = (theme: Theme) => {
+  document.documentElement.classList.remove('dark', 'light')
+  document.documentElement.classList.add(theme)
+}
+
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set, get) => ({
-      theme: 'dark',
-      toggleTheme: () => {
-        const newTheme = get().theme === 'dark' ? 'light' : 'dark'
-        set({ theme: newTheme })
-        document.documentElement.classList.remove('dark', 'light')
-        document.documentElement.classList.add(newTheme)
-      },
-      setTheme: (theme: Theme) => {
-        set({ theme })
-        document.documentElement.classList.remove('dark', 'light')
-        document.documentElement.classList.add(theme)
-      },
+      theme: getSystemTheme(),
+      toggleTheme: () => set({ theme: get().theme === 'dark' ? 'light' : 'dark' }),
+      setTheme: (theme: Theme) => set({ theme }),
     }),
     {
       name: 'theme-storage',
+      // Runs after hydration, including when storage is missing or corrupt
+      onRehydrateStorage: () => (state) => {
+        applyTheme(state?.theme ?? getSystemTheme())
+      },
     }
   )
 )
 
-export const initializeTheme = () => {
-  const stored = localStorage.getItem('theme-storage')
-  const theme = stored
-    ? (JSON.parse(stored).state.theme as Theme)
-    : window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light'
-  document.documentElement.classList.remove('dark', 'light')
-  document.documentElement.classList.add(theme)
-}
+useThemeStore.subscribe((state) => applyTheme(state.theme))
