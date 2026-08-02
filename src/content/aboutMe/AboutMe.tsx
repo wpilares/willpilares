@@ -22,7 +22,6 @@ export const AboutMe = () => {
           </p>
         </div>
 
-        {/* Highlight Cards */}
         <div
           className={`grid grid-cols-2 gap-4 transition-all delay-200 duration-700 sm:gap-6 lg:grid-cols-4 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'

@@ -34,7 +34,6 @@ export const Hero = () => {
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}
       >
-        {/* Profile Photo */}
         <div className="relative mb-8">
           <div className="absolute -inset-3 rounded-full bg-gradient-to-br from-violet-500/40 to-purple-700/40 blur-xl" />
           <div className="relative h-36 w-36 overflow-hidden rounded-full border-4 border-violet-500/40 shadow-2xl shadow-violet-500/20 sm:h-44 sm:w-44">
@@ -47,7 +46,6 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Badge */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-violet-500/10 px-4 py-1.5">
           <div className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
           <span className="text-sm font-medium text-violet-600 dark:text-violet-400">
@@ -55,24 +53,20 @@ export const Hero = () => {
           </span>
         </div>
 
-        {/* Main Heading */}
         <h1 className="mb-4 max-w-full break-words text-3xl font-bold leading-tight text-light-text-primary dark:text-dark-text-primary sm:text-4xl md:text-5xl lg:text-6xl">
           <span className="block">{t('hero.titleStart')}</span>
           <span className="gradient-text block">{t('hero.highlight')}</span>
         </h1>
 
-        {/* Description */}
         <p className="mb-8 max-w-xl text-lg leading-relaxed text-light-text-secondary dark:text-dark-text-secondary">
           {t('hero.description')}
         </p>
 
-        {/* CTA Button */}
         <a href={cvPdf} download className="btn-primary mb-8 inline-flex items-center gap-2">
           <Download className="h-5 w-5" />
           {t('hero.downloadCV')}
         </a>
 
-        {/* Social Icons */}
         <div className="flex items-center gap-5">
           <a
             href="https://linkedin.com/in/wpilaresc"

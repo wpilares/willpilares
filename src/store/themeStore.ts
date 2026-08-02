@@ -26,7 +26,6 @@ export const useThemeStore = create<ThemeState>()(
     }),
     {
       name: 'theme-storage',
-      // Runs after hydration, including when storage is missing or corrupt
       onRehydrateStorage: () => (state) => {
         applyTheme(state?.theme ?? getSystemTheme())
       },

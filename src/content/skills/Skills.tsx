@@ -59,7 +59,6 @@ export const Skills = () => {
       <div className="mx-auto max-w-5xl">
         <SectionTitle title={t('skills.title')} subtitle={t('skills.subtitle')} />
 
-        {/* Category Tabs */}
         <div
           className={`mb-8 flex flex-wrap justify-center gap-3 transition-all duration-700 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
@@ -81,7 +80,6 @@ export const Skills = () => {
           ))}
         </div>
 
-        {/* Skills Grid */}
         <div
           className={`transition-all delay-200 duration-700 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
@@ -107,7 +105,6 @@ export const Skills = () => {
           </div>
         </div>
 
-        {/* All categories view (desktop) */}
         <div
           className={`mt-10 hidden gap-6 lg:grid lg:grid-cols-4 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'

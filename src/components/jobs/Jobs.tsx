@@ -15,7 +15,6 @@ export const Jobs = ({ data, index = 0 }: JobsProps) => {
       }`}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
-      {/* Company header with logo */}
       <div className="flex items-center gap-4 border-b border-light-border p-5 dark:border-dark-border sm:p-6">
         <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl bg-light-bg-tertiary p-2 dark:bg-dark-bg-tertiary sm:h-14 sm:w-14">
           <img
@@ -35,11 +34,10 @@ export const Jobs = ({ data, index = 0 }: JobsProps) => {
         </div>
       </div>
 
-      {/* Descriptions */}
       <div className="space-y-3 p-5 sm:p-6">
-        {data.descriptions.map((desc, idx) => (
+        {data.descriptions.map((desc) => (
           <p
-            key={idx}
+            key={desc}
             className="text-sm leading-relaxed text-light-text-secondary dark:text-dark-text-secondary"
           >
             {desc}
@@ -47,7 +45,6 @@ export const Jobs = ({ data, index = 0 }: JobsProps) => {
         ))}
       </div>
 
-      {/* Tech Stack */}
       <div className="border-t border-light-border px-5 py-4 dark:border-dark-border sm:px-6">
         <p className="mb-2 flex items-center gap-1.5 text-xs font-medium uppercase tracking-wider text-light-text-muted dark:text-dark-text-muted">
           <Wrench className="h-3 w-3" />

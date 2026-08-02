@@ -2,12 +2,10 @@ import '@testing-library/jest-dom/vitest'
 import { cleanup } from '@testing-library/react'
 import { afterEach, vi } from 'vitest'
 
-// Auto-cleanup does not register without vitest globals
 afterEach(() => {
   cleanup()
 })
 
-// jsdom does not implement matchMedia; themeStore reads it at module load
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
   value: vi.fn().mockImplementation((query: string) => ({

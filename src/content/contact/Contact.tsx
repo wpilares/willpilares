@@ -84,7 +84,6 @@ export const Contact = () => {
           })}
         </div>
 
-        {/* CTA */}
         <div
           className={`mt-12 text-center transition-all delay-300 duration-700 ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
