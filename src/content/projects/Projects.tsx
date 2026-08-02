@@ -26,14 +26,12 @@ export const Projects = () => {
                 className="card group overflow-hidden transition-all duration-300 hover:-translate-y-1"
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                {/* Gradient header */}
                 <div
                   className={`flex h-40 items-center justify-center bg-gradient-to-br ${project.gradient} p-6`}
                 >
                   <IconComponent className="h-16 w-16 text-white/80 transition-transform duration-300 group-hover:scale-110" />
                 </div>
 
-                {/* Content */}
                 <div className="p-5 sm:p-6">
                   <div className="mb-2 flex items-center justify-between">
                     <h3 className="text-lg font-bold text-light-text-primary dark:text-dark-text-primary">

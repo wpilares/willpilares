@@ -20,7 +20,6 @@ export const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
@@ -46,7 +45,6 @@ export const Header = () => {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo */}
           <a href="#home" className="group flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-purple-700 text-white shadow-lg shadow-violet-500/25 transition-shadow duration-300 group-hover:shadow-violet-500/40">
               <Code2 className="h-5 w-5" strokeWidth={2.5} />
@@ -56,7 +54,6 @@ export const Header = () => {
             </span>
           </a>
 
-          {/* Desktop Navigation */}
           <nav className="hidden items-center gap-6 md:flex lg:gap-8">
             {navLinks.map((link) => (
               <a
@@ -69,9 +66,7 @@ export const Header = () => {
             ))}
           </nav>
 
-          {/* Theme Toggle, Language & Mobile Menu */}
           <div className="flex items-center gap-3">
-            {/* Language Selector */}
             <div className="relative" ref={langDropdownRef}>
               <button
                 type="button"
@@ -86,7 +81,6 @@ export const Header = () => {
                 />
               </button>
 
-              {/* Language Dropdown */}
               {isLangDropdownOpen && (
                 <div className="glass absolute right-0 mt-2 w-36 overflow-hidden rounded-xl border border-light-border/50 shadow-lg">
                   <button
@@ -117,7 +111,6 @@ export const Header = () => {
               )}
             </div>
 
-            {/* Theme Toggle */}
             <button
               type="button"
               onClick={toggleTheme}
@@ -131,7 +124,6 @@ export const Header = () => {
               )}
             </button>
 
-            {/* Mobile Menu Button */}
             <button
               type="button"
               className="rounded-xl border border-light-border bg-light-bg-tertiary p-2.5 transition-all duration-300 hover:border-violet-500/50 dark:border-dark-border dark:bg-dark-bg-tertiary dark:hover:border-violet-500/50 md:hidden"
@@ -147,7 +139,6 @@ export const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         <div
           className={`overflow-hidden transition-all duration-300 md:hidden ${
             isMenuOpen ? 'mt-4 max-h-80' : 'max-h-0'
