@@ -30,4 +30,7 @@ export const techIconUrls: Record<string, string> = {
 export const techIconUrlsAlt: Record<string, string> = {
   AWS: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
   'CI/CD': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/circleci/circleci-plain.svg',
+  Claude: 'https://cdn.simpleicons.org/claude',
+  OpenCode: 'https://cdn.simpleicons.org/opencode/9ca3af',
+  MCP: 'https://cdn.simpleicons.org/modelcontextprotocol/9ca3af',
 }

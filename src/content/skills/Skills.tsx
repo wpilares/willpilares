@@ -45,6 +45,14 @@ const categories = [
       { name: 'OracleDB', iconUrl: techIconUrls.OracleDB },
     ],
   },
+  {
+    key: 'ai',
+    skills: [
+      { name: 'Claude', iconUrl: techIconUrls.Claude },
+      { name: 'OpenCode', iconUrl: techIconUrls.OpenCode },
+      { name: 'MCP', iconUrl: techIconUrls.MCP },
+    ],
+  },
 ]
 
 export const Skills = () => {

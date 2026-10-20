@@ -11,12 +11,12 @@
     "badge": "Willber Pilares",
     "titleStart": "Construyendo",
     "highlight": "software confiable y escalable",
-    "description": "Software Engineer con más de 5 años construyendo sistemas en producción de extremo a extremo para distintas industrias: desde bibliotecas de componentes compartidas y autenticación centralizada hasta modernización de sistemas legacy y flujos serverless en la nube.",
+    "description": "Software Engineer y líder de squad con más de 5 años construyendo sistemas en producción de extremo a extremo para distintas industrias: desde bibliotecas de componentes compartidas y autenticación centralizada hasta modernización de sistemas legacy, flujos serverless en la nube y desarrollo asistido por IA.",
     "downloadCV": "Descargar CV"
   },
   "about": {
     "title": "Sobre mí",
-    "description": "Diseño y entrego sistemas full-stack de extremo a extremo, desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. Más allá de las funcionalidades, construyo las bases compartidas en las que se apoyan otros equipos: una biblioteca de componentes para toda la empresa, autenticación centralizada con Keycloak y la modernización de servicios legacy. Valoro el código mantenible, las pruebas automatizadas y las decisiones técnicas pragmáticas, y uso herramientas de desarrollo asistido por IA a diario, respaldadas por code review y pruebas.",
+    "description": "Diseño y entrego sistemas full-stack de extremo a extremo, desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. Como líder de squad, guío a un equipo de desarrolladores en las decisiones técnicas y el code review, y construyo las bases compartidas en las que se apoyan otros equipos: una biblioteca de componentes para toda la empresa, autenticación centralizada con Keycloak y la modernización de servicios legacy. Trabajo con un enfoque AI-first usando Claude, OpenCode, servidores MCP y skills de agentes personalizadas, manteniendo la calidad con code review y pruebas automatizadas.",
     "highlights": {
       "years": {
         "title": "+5 años",
@@ -43,7 +43,8 @@
       "frontend": "Frontend",
       "backend": "Backend",
       "cloud": "Cloud & DevOps",
-      "databases": "Bases de datos"
+      "databases": "Bases de datos",
+      "ai": "Desarrollo asistido por IA"
     }
   },
   "experience": {
@@ -51,29 +52,31 @@
     "subtitle": "Trayectoria profesional entregando soluciones impactantes",
     "companies": {
       "whitelion": {
-        "position": "Software Engineer",
+        "position": "Software Engineer · Squad Lead",
         "period": "Mar 2025 – Actualidad",
         "descriptions": [
-          "Construí y mantuve plataformas full-stack para clientes del sector minero, abarcando identificación de personal, registro de comedores, alojamiento y gestión de transporte.",
-          "Diseñé y construí la biblioteca de componentes React compartida de la empresa, estandarizando la UI en todos los proyectos frontend.",
-          "Co-desarrollé una plataforma de autenticación unificada con Keycloak, centralizando el SSO y el control de acceso en las aplicaciones de la empresa.",
-          "Migré servicios legacy de .NET a Python como parte de la modernización del backend, mejorando la mantenibilidad y simplificando el desarrollo futuro."
+          "Lidero un squad de 5 desarrolladores, a cargo de la dirección técnica, la planificación de tareas y el code review para mantener una entrega predecible y una calidad consistente.",
+          "Construí y mantuve plataformas full-stack para clientes del sector minero que cubren identificación de personal, registro de comedores, alojamiento y transporte, usadas a diario por más de 2,000 trabajadores.",
+          "Diseñé y construí la biblioteca de componentes React compartida de la empresa, adoptada por más de 8 proyectos frontend y reduciendo en ~40% el tiempo de desarrollo de nuevas interfaces.",
+          "Co-desarrollé una plataforma de autenticación unificada con Keycloak, centralizando el SSO y el control de acceso en más de 10 aplicaciones de la empresa.",
+          "Migré servicios legacy de .NET a Python como parte de la modernización del backend, reduciendo en ~30% el tiempo promedio de respuesta de las APIs.",
+          "Introduje flujos de desarrollo asistido por IA con Claude, OpenCode, servidores MCP y skills de agentes personalizadas, acompañados de code review y pruebas automatizadas."
         ]
       },
       "softtek": {
         "position": "Full Stack Developer",
         "period": "May 2024 – Mar 2025",
         "descriptions": [
-          "Diseñé y entregué flujos serverless de extremo a extremo con AWS Lambda y EventBridge para procesar datos diarios de pólizas, con actualizaciones de estado en tiempo real, logging completo y notificaciones WebSocket al frontend.",
+          "Diseñé y entregué flujos serverless de extremo a extremo con AWS Lambda y EventBridge para procesar más de 10,000 registros de pólizas al día, con actualizaciones de estado en tiempo real, logging completo y notificaciones WebSocket al frontend.",
           "Construí servicios de generación de PDF en AWS Lambda que cubren la creación de documentos, el empaquetado ZIP y presigned URLs de S3 para descargas seguras.",
-          "Automaticé despliegues en AWS mediante pipelines CI/CD de Azure DevOps y aseguré la calidad del código con pruebas automatizadas en Jest y Cucumber."
+          "Automaticé despliegues en AWS mediante pipelines CI/CD de Azure DevOps, reduciendo el tiempo de release de horas a menos de 15 minutos, y aseguré la calidad del código con pruebas automatizadas en Jest y Cucumber."
         ]
       },
       "promitia": {
         "position": "Full Stack Developer",
         "period": "Ene 2021 – May 2024",
         "descriptions": [
-          "Construí aplicaciones web full-stack con interfaces responsive e integraciones de API optimizadas, implementando autenticación, protección de rutas y cron jobs para automatizar tareas.",
+          "Construí más de 6 aplicaciones web full-stack con interfaces responsive e integraciones de API optimizadas, implementando autenticación, protección de rutas y cron jobs para automatizar tareas.",
           "Diseñé y desplegué infraestructura de red con Terraform y DigitalOcean para migrar servidores entre dominios, incluyendo la configuración de VPC para una conectividad segura entre servicios.",
           "Desarrollé aplicaciones web basadas en SDN para el análisis y monitoreo de dispositivos de red, mejorando la gestión de routers y switches."
         ]
