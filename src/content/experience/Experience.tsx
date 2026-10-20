@@ -35,6 +35,7 @@ export const Experience = () => {
               const translatedCompany = {
                 ...company,
                 position: t(`${translationPrefix}.position`),
+                period: t(`${translationPrefix}.period`),
                 descriptions: toStringList(
                   t(`${translationPrefix}.descriptions`, { returnObjects: true })
                 ),

@@ -10,21 +10,21 @@
   "hero": {
     "badge": "Willber Pilares",
     "titleStart": "Construyendo",
-    "highlight": "experiencias digitales excepcionales",
-    "description": "Apasionado por crear y aprender tecnología, con fuertes capacidades analíticas y de resolución de problemas. Un profesional responsable, creativo y puntual que acepta desafíos, trabaja bien en equipo y se enfoca en entregar resultados.",
+    "highlight": "software escalable para operaciones reales",
+    "description": "Ingeniero de Software con más de 5 años diseñando y entregando sistemas full-stack — desde sistemas de diseño compartidos y autenticación centralizada hasta modernización de sistemas legacy y flujos cloud-native.",
     "downloadCV": "Descargar CV"
   },
   "about": {
     "title": "Sobre Mí",
-    "description": "Apasionado por crear y aprender tecnología, con fuertes capacidades analíticas y de resolución de problemas. Un profesional responsable, creativo y puntual que acepta desafíos, trabaja bien en equipo y se enfoca en entregar resultados.",
+    "description": "Me encargo de funcionalidades de extremo a extremo, desde el modelo de datos hasta la interfaz, en plataformas operativas para el sector minero que gestionan identificación de personal, comedores, alojamiento y transporte. Construí la librería de componentes compartida que estandarizó el desarrollo frontend entre equipos, migré servicios legacy de .NET a Python y diseñé flujos serverless en AWS. Me importan el código mantenible, las pruebas significativas y las decisiones técnicas claras.",
     "highlights": {
       "years": {
         "title": "5+ Años",
         "description": "Experiencia profesional en desarrollo de software"
       },
       "fullstack": {
-        "title": "Full Stack",
-        "description": "Desarrollo frontend y backend de extremo a extremo"
+        "title": "Ingeniería Full Stack",
+        "description": "React, TypeScript, Node.js, Python, .NET"
       },
       "cloud": {
         "title": "Cloud & DevOps",
@@ -52,34 +52,38 @@
     "companies": {
       "whitelion": {
         "position": "Ingeniero de Software",
+        "period": "Mar 2025 – Actualidad",
         "descriptions": [
-          "Desarrollé soluciones full-stack para el sector minero, incluyendo sistemas de identificación de personal, registro de comedores, gestión hotelera y transporte.",
-          "Diseñé y construí una librería de componentes UI compartida para todos los proyectos frontend, estandarizando el diseño y acelerando el desarrollo.",
-          "Apoyé en la implementación de un sistema de autenticación unificado con Keycloak, centralizando el acceso a las aplicaciones de la empresa.",
-          "Apoyé la optimización del backend migrando servicios legacy de .NET a Python, mejorando su mantenibilidad y rendimiento."
+          "Construí y mantuve plataformas operativas full-stack para el sector minero, abarcando identificación de personal, registro de comedores, alojamiento y gestión de transporte.",
+          "Creé la librería de componentes React compartida de la empresa, estableciendo un estándar de UI común adoptado en todos los proyectos frontend y reduciendo el trabajo duplicado entre equipos.",
+          "Contribuí a una plataforma de autenticación unificada con Keycloak, centralizando el inicio de sesión único y el control de acceso en las aplicaciones de la empresa.",
+          "Contribuí a la modernización del backend migrando servicios legacy de .NET a Python, mejorando la mantenibilidad y simplificando el desarrollo futuro."
         ]
       },
       "softtek": {
         "position": "Desarrollador Full Stack",
+        "period": "May 2024 – Mar 2025",
         "descriptions": [
-          "Diseñé e implementé flujos de trabajo serverless de extremo a extremo usando AWS Lambda y EventBridge para procesar datos de pólizas diarias, incluyendo actualizaciones de estado en tiempo real, logging completo y comunicación WebSocket para notificaciones del frontend.",
-          "Desarrollé servicios de generación de PDF usando funciones Lambda, habilitando la creación de documentos, empaquetado ZIP y URLs pre-firmadas seguras de S3 para descargas de usuarios.",
-          "Automaticé despliegues en AWS a través de pipelines CI/CD de Azure DevOps y mantuve alta calidad de código con pruebas automatizadas Jest y Cucumber."
+          "Diseñé y entregué flujos serverless de extremo a extremo con AWS Lambda y EventBridge para procesar datos diarios de pólizas, con actualizaciones de estado en tiempo real, logging completo y notificaciones WebSocket al frontend.",
+          "Construí servicios de generación de PDF en Lambda que cubren la creación de documentos, el empaquetado ZIP y URLs pre-firmadas seguras de S3 para descargas de usuarios.",
+          "Automaticé despliegues en AWS mediante pipelines CI/CD de Azure DevOps y aseguré la calidad del código con pruebas automatizadas en Jest y Cucumber."
         ]
       },
       "promitia": {
         "position": "Desarrollador Full Stack",
+        "period": "Ene 2021 – May 2024",
         "descriptions": [
-          "Construí aplicaciones web full-stack con interfaces frontend responsivas e integraciones de API optimizadas, implementando autenticación, protección de rutas y jobs CRON para automatización de tareas.",
-          "Diseñé y desplegué infraestructura de red usando Terraform y DigitalOcean para migración de servidores entre dominios, incluyendo configuración VPC para conectividad segura de servicios.",
-          "Desarrollé aplicaciones web basadas en SDN para análisis y monitoreo de dispositivos de red, mejorando las capacidades de gestión de red para routers y switches."
+          "Construí aplicaciones web full-stack con interfaces responsivas e integraciones de API optimizadas, implementando autenticación, protección de rutas y jobs CRON para automatización de tareas.",
+          "Diseñé y desplegué infraestructura de red con Terraform y DigitalOcean para migrar servidores entre dominios, incluyendo configuración VPC para conectividad segura de servicios.",
+          "Desarrollé aplicaciones web basadas en SDN para el análisis y monitoreo de dispositivos de red, mejorando la gestión de routers y switches."
         ]
       },
       "americaMovil": {
-        "position": "Desarrollador Full Stack",
+        "position": "Practicante de Administración de Voz y Datos",
+        "period": "Oct 2019 – Ene 2021",
         "descriptions": [
-          "Realicé prácticas en administración de voz y datos dentro de un entorno de red de telecomunicaciones, analizando KPIs y asegurando rendimiento óptimo de la red.",
-          "Automaticé procesos de reportes y desarrollé scripts de configuración para elementos de red, mejorando la eficiencia operativa."
+          "Analicé KPIs de administración de voz y datos en un entorno de red de telecomunicaciones para mantener un rendimiento óptimo de la red.",
+          "Automaticé la generación de reportes con Python y desarrollé scripts de configuración para elementos de red, mejorando la eficiencia operativa."
         ]
       }
     }

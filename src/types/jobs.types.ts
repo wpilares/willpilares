@@ -1,6 +1,7 @@
 export interface JobData {
   company: string
   position: string
+  period: string
   image: string
   descriptions: string[]
   stack: string[]

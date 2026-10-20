@@ -11,6 +11,8 @@ export const techIconUrls: Record<string, string> = {
   NestJS: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg',
   Python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
   TypeORM: 'https://cdn.simpleicons.org/typeorm',
+  '.NET': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg',
+  Keycloak: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oauth/oauth-original.svg',
 
   AWS: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
   Azure: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg',
