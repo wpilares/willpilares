@@ -105,6 +105,10 @@
   "projects": {
     "title": "Proyectos destacados",
     "items": {
+      "netpulse": {
+        "title": "NetPulse",
+        "description": "Plataforma de monitoreo de redes SDN en tiempo real, en desarrollo activo: una red Mininet controlada por OS-Ken envía telemetría OpenFlow a TimescaleDB, y un backend en FastAPI expondrá KPIs de red, detección de anomalías y alertas en vivo a un dashboard en React mediante WebSockets."
+      },
       "ecommerce": {
         "title": "Plataforma E-Commerce",
         "description": "Plataforma de comercio electrónico completa con carrito de compras, pasarela de pagos y panel de administración."
@@ -116,12 +120,12 @@
       "chatbot": {
         "title": "Chatbot con IA",
         "description": "Aplicación de chatbot impulsada por IA para servicio al cliente con procesamiento de lenguaje natural."
-      },
-      "analytics": {
-        "title": "Dashboard de analítica",
-        "description": "Dashboard de analítica en tiempo real con visualizaciones interactivas y reportes personalizados."
       }
-    }
+    },
+    "status": {
+      "inProgress": "En desarrollo"
+    },
+    "viewCode": "Ver código"
   },
   "contact": {
     "title": "Hablemos",

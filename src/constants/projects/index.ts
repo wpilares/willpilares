@@ -1,14 +1,22 @@
-import { BarChart3, Bot, Globe, ShoppingCart } from 'lucide-react'
+import { Bot, Globe, RadioTower, ShoppingCart } from 'lucide-react'
 import type { Project } from '@/types'
 
 export const projectIcons = {
   ShoppingCart,
   Globe,
   Bot,
-  BarChart3,
+  RadioTower,
 }
 
 export const projectData: Project[] = [
+  {
+    key: 'netpulse',
+    icon: 'RadioTower',
+    gradient: 'from-violet-600 to-indigo-700',
+    status: 'inProgress',
+    stack: ['Python', 'FastAPI', 'OS-Ken', 'Mininet', 'TimescaleDB', 'React', 'Docker'],
+    repoUrl: 'https://github.com/wpilares/netpulse',
+  },
   {
     key: 'ecommerce',
     icon: 'ShoppingCart',
@@ -23,10 +31,5 @@ export const projectData: Project[] = [
     key: 'chatbot',
     icon: 'Bot',
     gradient: 'from-purple-500 to-pink-600',
-  },
-  {
-    key: 'analytics',
-    icon: 'BarChart3',
-    gradient: 'from-orange-500 to-red-600',
   },
 ]
