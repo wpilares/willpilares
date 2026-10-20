@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Inicio",
-    "about": "Sobre Mí",
+    "about": "Sobre mí",
     "skills": "Habilidades",
     "experience": "Experiencia",
     "projects": "Proyectos",
@@ -10,16 +10,16 @@
   "hero": {
     "badge": "Willber Pilares",
     "titleStart": "Construyendo",
-    "highlight": "software escalable para operaciones reales",
-    "description": "Ingeniero de Software con más de 5 años diseñando y entregando sistemas full-stack — desde sistemas de diseño compartidos y autenticación centralizada hasta modernización de sistemas legacy y flujos cloud-native.",
+    "highlight": "software confiable y escalable",
+    "description": "Software Engineer con más de 5 años construyendo sistemas en producción de extremo a extremo para distintas industrias: desde bibliotecas de componentes compartidas y autenticación centralizada hasta modernización de sistemas legacy y flujos serverless en la nube.",
     "downloadCV": "Descargar CV"
   },
   "about": {
-    "title": "Sobre Mí",
-    "description": "Me encargo de funcionalidades de extremo a extremo, desde el modelo de datos hasta la interfaz, en plataformas operativas para el sector minero que gestionan identificación de personal, comedores, alojamiento y transporte. Construí la librería de componentes compartida que estandarizó el desarrollo frontend entre equipos, migré servicios legacy de .NET a Python y diseñé flujos serverless en AWS. Me importan el código mantenible, las pruebas significativas y las decisiones técnicas claras.",
+    "title": "Sobre mí",
+    "description": "Diseño y entrego sistemas full-stack de extremo a extremo, desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. Más allá de las funcionalidades, construyo las bases compartidas en las que se apoyan otros equipos: una biblioteca de componentes para toda la empresa, autenticación centralizada con Keycloak y la modernización de servicios legacy. Valoro el código mantenible, las pruebas automatizadas y las decisiones técnicas pragmáticas, y uso herramientas de desarrollo asistido por IA a diario, respaldadas por code review y pruebas.",
     "highlights": {
       "years": {
-        "title": "5+ Años",
+        "title": "+5 años",
         "description": "Experiencia profesional en desarrollo de software"
       },
       "fullstack": {
@@ -31,50 +31,50 @@
         "description": "AWS, Azure, Docker, pipelines CI/CD"
       },
       "database": {
-        "title": "Bases de Datos",
+        "title": "Bases de datos",
         "description": "PostgreSQL, MongoDB, OracleDB"
       }
     }
   },
   "skills": {
-    "title": "Habilidades Técnicas",
+    "title": "Habilidades técnicas",
     "subtitle": "Tecnologías y herramientas que uso para construir soluciones de alta calidad",
     "categories": {
       "frontend": "Frontend",
       "backend": "Backend",
       "cloud": "Cloud & DevOps",
-      "databases": "Bases de Datos"
+      "databases": "Bases de datos"
     }
   },
   "experience": {
-    "title": "Experiencia Laboral",
+    "title": "Experiencia laboral",
     "subtitle": "Trayectoria profesional entregando soluciones impactantes",
     "companies": {
       "whitelion": {
-        "position": "Ingeniero de Software",
+        "position": "Software Engineer",
         "period": "Mar 2025 – Actualidad",
         "descriptions": [
-          "Construí y mantuve plataformas operativas full-stack para el sector minero, abarcando identificación de personal, registro de comedores, alojamiento y gestión de transporte.",
-          "Creé la librería de componentes React compartida de la empresa, estableciendo un estándar de UI común adoptado en todos los proyectos frontend y reduciendo el trabajo duplicado entre equipos.",
-          "Contribuí a una plataforma de autenticación unificada con Keycloak, centralizando el inicio de sesión único y el control de acceso en las aplicaciones de la empresa.",
-          "Contribuí a la modernización del backend migrando servicios legacy de .NET a Python, mejorando la mantenibilidad y simplificando el desarrollo futuro."
+          "Construí y mantuve plataformas full-stack para clientes del sector minero, abarcando identificación de personal, registro de comedores, alojamiento y gestión de transporte.",
+          "Diseñé y construí la biblioteca de componentes React compartida de la empresa, estandarizando la UI en todos los proyectos frontend.",
+          "Co-desarrollé una plataforma de autenticación unificada con Keycloak, centralizando el SSO y el control de acceso en las aplicaciones de la empresa.",
+          "Migré servicios legacy de .NET a Python como parte de la modernización del backend, mejorando la mantenibilidad y simplificando el desarrollo futuro."
         ]
       },
       "softtek": {
-        "position": "Desarrollador Full Stack",
+        "position": "Full Stack Developer",
         "period": "May 2024 – Mar 2025",
         "descriptions": [
           "Diseñé y entregué flujos serverless de extremo a extremo con AWS Lambda y EventBridge para procesar datos diarios de pólizas, con actualizaciones de estado en tiempo real, logging completo y notificaciones WebSocket al frontend.",
-          "Construí servicios de generación de PDF en Lambda que cubren la creación de documentos, el empaquetado ZIP y URLs pre-firmadas seguras de S3 para descargas de usuarios.",
+          "Construí servicios de generación de PDF en AWS Lambda que cubren la creación de documentos, el empaquetado ZIP y presigned URLs de S3 para descargas seguras.",
           "Automaticé despliegues en AWS mediante pipelines CI/CD de Azure DevOps y aseguré la calidad del código con pruebas automatizadas en Jest y Cucumber."
         ]
       },
       "promitia": {
-        "position": "Desarrollador Full Stack",
+        "position": "Full Stack Developer",
         "period": "Ene 2021 – May 2024",
         "descriptions": [
-          "Construí aplicaciones web full-stack con interfaces responsivas e integraciones de API optimizadas, implementando autenticación, protección de rutas y jobs CRON para automatización de tareas.",
-          "Diseñé y desplegué infraestructura de red con Terraform y DigitalOcean para migrar servidores entre dominios, incluyendo configuración VPC para conectividad segura de servicios.",
+          "Construí aplicaciones web full-stack con interfaces responsive e integraciones de API optimizadas, implementando autenticación, protección de rutas y cron jobs para automatizar tareas.",
+          "Diseñé y desplegué infraestructura de red con Terraform y DigitalOcean para migrar servidores entre dominios, incluyendo la configuración de VPC para una conectividad segura entre servicios.",
           "Desarrollé aplicaciones web basadas en SDN para el análisis y monitoreo de dispositivos de red, mejorando la gestión de routers y switches."
         ]
       },
@@ -89,7 +89,7 @@
     }
   },
   "projects": {
-    "title": "Proyectos Destacados",
+    "title": "Proyectos destacados",
     "items": {
       "ecommerce": {
         "title": "Plataforma E-Commerce",
@@ -100,12 +100,12 @@
         "description": "Herramienta automatizada de web scraping para recolección y análisis de datos con reportes programados."
       },
       "chatbot": {
-        "title": "App Chatbot IA",
+        "title": "Chatbot con IA",
         "description": "Aplicación de chatbot impulsada por IA para servicio al cliente con procesamiento de lenguaje natural."
       },
       "analytics": {
-        "title": "Panel de Analytics",
-        "description": "Panel de analíticas en tiempo real con visualizaciones interactivas y reportes personalizados."
+        "title": "Dashboard de analítica",
+        "description": "Dashboard de analítica en tiempo real con visualizaciones interactivas y reportes personalizados."
       }
     }
   },
@@ -113,7 +113,7 @@
     "title": "Hablemos",
     "subtitle": "Abierto a colaboraciones y nuevas oportunidades",
     "directMessage": "¿Prefieres enviar un mensaje directo?",
-    "sendEmail": "Enviar Email",
+    "sendEmail": "Enviar correo",
     "links": {
       "email": "Email",
       "github": "GitHub",

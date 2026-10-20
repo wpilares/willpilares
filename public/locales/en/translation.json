@@ -10,13 +10,13 @@
   "hero": {
     "badge": "Willber Pilares",
     "titleStart": "Building",
-    "highlight": "scalable software for real-world operations",
-    "description": "Software Engineer with 5+ years designing and shipping full-stack systems — from shared design systems and centralized authentication to legacy modernization and cloud-native workflows.",
+    "highlight": "reliable, scalable software",
+    "description": "Software Engineer with 5+ years building production systems end-to-end across industries — from shared component libraries and centralized authentication to legacy modernization and serverless cloud workflows.",
     "downloadCV": "Download CV"
   },
   "about": {
     "title": "About Me",
-    "description": "I own features end-to-end, from data model to interface, on operational platforms for the mining industry that handle personnel identification, dining, lodging, and transportation. I built the shared component library that standardized frontend development across teams, migrated legacy .NET services to Python, and designed serverless workflows on AWS. I care about maintainable code, meaningful tests, and clear technical decisions.",
+    "description": "I design and ship full-stack systems end-to-end, from React interfaces to Python, Node.js, and serverless backends on AWS. Beyond feature work, I build the shared foundations other teams rely on: a company-wide component library, centralized authentication with Keycloak, and the modernization of legacy services. I value maintainable code, automated testing, and pragmatic technical decisions, and I use AI-assisted development tools daily, backed by code review and tests.",
     "highlights": {
       "years": {
         "title": "5+ Years",
@@ -54,10 +54,10 @@
         "position": "Software Engineer",
         "period": "Mar 2025 – Present",
         "descriptions": [
-          "Built and maintained full-stack operational platforms for the mining industry, covering personnel identification, dining hall registration, lodging, and transportation management.",
-          "Created the company's shared React component library, establishing a common UI standard adopted across all frontend projects and reducing duplicated work between teams.",
-          "Contributed to a unified authentication platform with Keycloak, centralizing single sign-on and access control across company applications.",
-          "Contributed to backend modernization by migrating legacy .NET services to Python, improving maintainability and simplifying future development."
+          "Built and maintained full-stack platforms for mining-industry clients, covering personnel identification, dining hall registration, lodging, and transportation management.",
+          "Designed and built the company's shared React component library, standardizing the UI across all frontend projects.",
+          "Co-developed a unified authentication platform with Keycloak, centralizing SSO and access control across company applications.",
+          "Migrated legacy .NET services to Python as part of the backend modernization effort, improving maintainability and simplifying future development."
         ]
       },
       "softtek": {
