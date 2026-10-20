@@ -57,6 +57,7 @@ export default {
         'bounce-soft': 'bounceSoft 2s infinite',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         float: 'float 6s ease-in-out infinite',
+        'fade-up': 'fadeUp 0.4s ease-out',
       },
       keyframes: {
         fadeIn: {
@@ -78,6 +79,10 @@ export default {
         bounceSoft: {
           '0%, 100%': { transform: 'translateY(-5%)' },
           '50%': { transform: 'translateY(0)' },
+        },
+        fadeUp: {
+          '0%': { transform: 'translateY(8px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },

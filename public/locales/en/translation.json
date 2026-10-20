@@ -8,11 +8,21 @@
     "contact": "Contact"
   },
   "hero": {
-    "badge": "Willber Pilares",
     "titleStart": "Building",
     "highlight": "reliable, scalable software",
     "description": "Software Engineer and squad lead with 5+ years building production systems end-to-end across industries — from shared component libraries and centralized authentication to legacy modernization, serverless cloud workflows, and AI-assisted development.",
-    "downloadCV": "Download CV"
+    "downloadCV": "Download CV",
+    "availability": "Open to new opportunities",
+    "name": "Willber Pilares",
+    "role": "Senior Software Engineer · Squad Lead",
+    "ctaContact": "Get in touch",
+    "ctaExperience": "View experience",
+    "stats": {
+      "years": "Years of experience",
+      "sso": "Apps secured with SSO",
+      "library": "Projects on my UI library",
+      "squad": "Devs in my squad"
+    }
   },
   "about": {
     "title": "About Me",
@@ -89,7 +99,8 @@
           "Automated report generation with Python and wrote configuration scripts for network elements, improving operational efficiency."
         ]
       }
-    }
+    },
+    "current": "Current"
   },
   "projects": {
     "title": "Featured Projects",
