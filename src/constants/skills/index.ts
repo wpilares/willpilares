@@ -25,12 +25,12 @@ export const techIconUrls: Record<string, string> = {
     'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
   MongoDB: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
   OracleDB: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg',
+  Claude: 'https://cdn.simpleicons.org/claude',
+  OpenCode: 'https://cdn.simpleicons.org/opencode/9ca3af',
+  MCP: 'https://cdn.simpleicons.org/modelcontextprotocol/9ca3af',
 }
 
 export const techIconUrlsAlt: Record<string, string> = {
   AWS: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
   'CI/CD': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/circleci/circleci-plain.svg',
-  Claude: 'https://cdn.simpleicons.org/claude',
-  OpenCode: 'https://cdn.simpleicons.org/opencode/9ca3af',
-  MCP: 'https://cdn.simpleicons.org/modelcontextprotocol/9ca3af',
 }
