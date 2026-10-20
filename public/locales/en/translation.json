@@ -10,21 +10,21 @@
   "hero": {
     "badge": "Willber Pilares",
     "titleStart": "Building",
-    "highlight": "exceptional digital experiences",
-    "description": "Passionate about creating and learning technology, with strong analytical and problem-solving capabilities. A responsible, creative, and punctual professional who welcomes challenges, works well in teams, and focuses on delivering results.",
+    "highlight": "scalable software for real-world operations",
+    "description": "Software Engineer with 5+ years designing and shipping full-stack systems — from shared design systems and centralized authentication to legacy modernization and cloud-native workflows.",
     "downloadCV": "Download CV"
   },
   "about": {
     "title": "About Me",
-    "description": "Passionate about creating and learning technology, with strong analytical and problem-solving capabilities. A responsible, creative, and punctual professional who welcomes challenges, works well in teams, and focuses on delivering results.",
+    "description": "I own features end-to-end, from data model to interface, on operational platforms for the mining industry that handle personnel identification, dining, lodging, and transportation. I built the shared component library that standardized frontend development across teams, migrated legacy .NET services to Python, and designed serverless workflows on AWS. I care about maintainable code, meaningful tests, and clear technical decisions.",
     "highlights": {
       "years": {
         "title": "5+ Years",
         "description": "Professional software development experience"
       },
       "fullstack": {
-        "title": "Full Stack",
-        "description": "End-to-end frontend and backend development"
+        "title": "Full Stack Engineering",
+        "description": "React, TypeScript, Node.js, Python, .NET"
       },
       "cloud": {
         "title": "Cloud & DevOps",
@@ -52,34 +52,38 @@
     "companies": {
       "whitelion": {
         "position": "Software Engineer",
+        "period": "Mar 2025 – Present",
         "descriptions": [
-          "Developed full-stack solutions for the mining industry, including personnel identification, dining hall registration, lodging management, and transportation systems.",
-          "Designed and built a shared UI component library adopted across all frontend projects, standardizing design and accelerating development.",
-          "Contributed to the implementation of a unified authentication system with Keycloak, centralizing access across company applications.",
-          "Contributed to backend optimization by migrating legacy .NET services to Python, improving maintainability and performance."
+          "Built and maintained full-stack operational platforms for the mining industry, covering personnel identification, dining hall registration, lodging, and transportation management.",
+          "Created the company's shared React component library, establishing a common UI standard adopted across all frontend projects and reducing duplicated work between teams.",
+          "Contributed to a unified authentication platform with Keycloak, centralizing single sign-on and access control across company applications.",
+          "Contributed to backend modernization by migrating legacy .NET services to Python, improving maintainability and simplifying future development."
         ]
       },
       "softtek": {
         "position": "Full Stack Developer",
+        "period": "May 2024 – Mar 2025",
         "descriptions": [
-          "Designed and implemented end-to-end serverless workflows using AWS Lambda and EventBridge to process daily policy data, including real-time status updates, comprehensive logging, and WebSocket communication for frontend notifications.",
-          "Developed PDF generation services using Lambda functions, enabling document creation, ZIP packaging, and secure pre-signed S3 URLs for user downloads.",
-          "Automated AWS deployments through Azure DevOps CI/CD pipelines and maintained high code quality with Jest and Cucumber automated testing."
+          "Designed and delivered end-to-end serverless workflows with AWS Lambda and EventBridge to process daily policy data, with real-time status updates, comprehensive logging, and WebSocket notifications to the frontend.",
+          "Built PDF generation services on Lambda covering document creation, ZIP packaging, and secure pre-signed S3 URLs for user downloads.",
+          "Automated AWS deployments through Azure DevOps CI/CD pipelines and enforced code quality with Jest and Cucumber automated tests."
         ]
       },
       "promitia": {
         "position": "Full Stack Developer",
+        "period": "Jan 2021 – May 2024",
         "descriptions": [
-          "Built full-stack web applications with responsive frontend interfaces and optimized API integrations, implementing authentication, route protection, and CRON jobs for task automation.",
-          "Designed and deployed network infrastructure using Terraform and DigitalOcean for server migration between domains, including VPC configuration for secure service connectivity.",
-          "Developed SDN-based web applications for network device analysis and monitoring, improving network management capabilities for routers and switches."
+          "Built full-stack web applications with responsive interfaces and optimized API integrations, implementing authentication, route protection, and CRON jobs for task automation.",
+          "Designed and deployed network infrastructure with Terraform and DigitalOcean to migrate servers between domains, including VPC configuration for secure service connectivity.",
+          "Developed SDN-based web applications for analyzing and monitoring network devices, improving network management for routers and switches."
         ]
       },
       "americaMovil": {
-        "position": "Full Stack Developer",
+        "position": "Voice & Data Administration Intern",
+        "period": "Oct 2019 – Jan 2021",
         "descriptions": [
-          "Interned in voice and data administration within a telecommunications network environment, analyzing KPIs and ensuring optimal network performance.",
-          "Automated reporting processes and developed configuration scripts for network elements, improving operational efficiency."
+          "Analyzed KPIs for voice and data administration in a telecommunications network environment to keep network performance at optimal levels.",
+          "Automated report generation with Python and wrote configuration scripts for network elements, improving operational efficiency."
         ]
       }
     }

@@ -27,6 +27,7 @@ export const Jobs = ({ data, index = 0 }: JobsProps) => {
             {data.company}
           </h3>
           <p className="text-sm text-light-text-muted dark:text-dark-text-muted">{data.position}</p>
+          <p className="text-xs text-light-text-muted dark:text-dark-text-muted">{data.period}</p>
         </div>
       </div>
 

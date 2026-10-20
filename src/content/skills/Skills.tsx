@@ -22,6 +22,8 @@ const categories = [
       { name: 'Node.js', iconUrl: techIconUrls['Node.js'] },
       { name: 'NestJS', iconUrl: techIconUrls.NestJS },
       { name: 'Python', iconUrl: techIconUrls.Python },
+      { name: '.NET', iconUrl: techIconUrls['.NET'] },
+      { name: 'Keycloak', iconUrl: techIconUrls.Keycloak },
       { name: 'TypeORM', iconUrl: techIconUrls.TypeORM },
     ],
   },
