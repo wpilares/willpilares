@@ -49,9 +49,18 @@
   "experience": {
     "title": "Work Experience",
     "subtitle": "Professional journey delivering impactful solutions",
-    "position": "Full Stack Developer",
     "companies": {
+      "whitelion": {
+        "position": "Software Engineer",
+        "descriptions": [
+          "Developed full-stack solutions for the mining industry, including personnel identification, dining hall registration, lodging management, and transportation systems.",
+          "Designed and built a shared UI component library adopted across all frontend projects, standardizing design and accelerating development.",
+          "Contributed to the implementation of a unified authentication system with Keycloak, centralizing access across company applications.",
+          "Contributed to backend optimization by migrating legacy .NET services to Python, improving maintainability and performance."
+        ]
+      },
       "softtek": {
+        "position": "Full Stack Developer",
         "descriptions": [
           "Designed and implemented end-to-end serverless workflows using AWS Lambda and EventBridge to process daily policy data, including real-time status updates, comprehensive logging, and WebSocket communication for frontend notifications.",
           "Developed PDF generation services using Lambda functions, enabling document creation, ZIP packaging, and secure pre-signed S3 URLs for user downloads.",
@@ -59,6 +68,7 @@
         ]
       },
       "promitia": {
+        "position": "Full Stack Developer",
         "descriptions": [
           "Built full-stack web applications with responsive frontend interfaces and optimized API integrations, implementing authentication, route protection, and CRON jobs for task automation.",
           "Designed and deployed network infrastructure using Terraform and DigitalOcean for server migration between domains, including VPC configuration for secure service connectivity.",
@@ -66,6 +76,7 @@
         ]
       },
       "americaMovil": {
+        "position": "Full Stack Developer",
         "descriptions": [
           "Interned in voice and data administration within a telecommunications network environment, analyzing KPIs and ensuring optimal network performance.",
           "Automated reporting processes and developed configuration scripts for network elements, improving operational efficiency."
