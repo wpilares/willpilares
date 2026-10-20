@@ -1,53 +1,50 @@
 {
-  "company_0": {
-    "company": "Softtek",
-    "image": "jobs/softtek.png",
-    "descriptions": [
-      "Designed and implemented end-to-end serverless workflows using AWS Lambda and EventBridge to process daily policy data, including real-time status updates, comprehensive logging, and WebSocket communication for frontend notifications.",
-      "Developed PDF generation services using Lambda functions, enabling document creation, ZIP packaging, and secure pre-signed S3 URLs for user downloads.",
-      "Automated AWS deployments through Azure DevOps CI/CD pipelines and maintained high code quality with Jest and Cucumber automated testing."
-    ],
-    "stack": [
-      "NodeJs",
-      "React",
-      "NestJs",
-      "Typescript",
-      "TypeORM",
-      "Docker",
-      "PostgreSQL",
-      "OracleDB",
-      "AWS",
-      "Azure"
-    ]
-  },
-  "company_1": {
-    "company": "Promitia",
-    "image": "jobs/promitia.png",
-    "descriptions": [
-      "Built full-stack web applications with responsive frontend interfaces and optimized API integrations, implementing authentication, route protection, and CRON jobs for task automation.",
-      "Designed and deployed network infrastructure using Terraform and DigitalOcean for server migration between domains, including VPC configuration for secure service connectivity.",
-      "Developed SDN-based web applications for network device analysis and monitoring, improving network management capabilities for routers and switches."
-    ],
-    "stack": [
-      "NodeJs",
-      "React",
-      "NextJs",
-      "NestJs",
-      "Angular",
-      "Typescript",
-      "TypeORM",
-      "Docker",
-      "PostgreSQL",
-      "MongoDB"
-    ]
-  },
-  "company_2": {
-    "company": "América Móvil Perú",
-    "image": "jobs/claro.png",
-    "descriptions": [
-      "Interned in voice and data administration within a telecommunications network environment, analyzing KPIs and ensuring optimal network performance.",
-      "Automated reporting processes and developed configuration scripts for network elements, improving operational efficiency."
-    ],
-    "stack": ["Python", "HTML"]
-  }
+  "companies": [
+    {
+      "key": "whitelion",
+      "company": "Whitelion Technology",
+      "image": "jobs/whitelion.png",
+      "stack": ["React", "Python", ".NET", "Keycloak"]
+    },
+    {
+      "key": "softtek",
+      "company": "Softtek",
+      "image": "jobs/softtek.png",
+      "stack": [
+        "NodeJs",
+        "React",
+        "NestJs",
+        "Typescript",
+        "TypeORM",
+        "Docker",
+        "PostgreSQL",
+        "OracleDB",
+        "AWS",
+        "Azure"
+      ]
+    },
+    {
+      "key": "promitia",
+      "company": "Promitia",
+      "image": "jobs/promitia.png",
+      "stack": [
+        "NodeJs",
+        "React",
+        "NextJs",
+        "NestJs",
+        "Angular",
+        "Typescript",
+        "TypeORM",
+        "Docker",
+        "PostgreSQL",
+        "MongoDB"
+      ]
+    },
+    {
+      "key": "americaMovil",
+      "company": "América Móvil Perú",
+      "image": "jobs/claro.png",
+      "stack": ["Python", "HTML"]
+    }
+  ]
 }

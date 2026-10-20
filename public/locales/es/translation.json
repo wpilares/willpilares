@@ -49,9 +49,18 @@
   "experience": {
     "title": "Experiencia Laboral",
     "subtitle": "Trayectoria profesional entregando soluciones impactantes",
-    "position": "Desarrollador Full Stack",
     "companies": {
+      "whitelion": {
+        "position": "Ingeniero de Software",
+        "descriptions": [
+          "Desarrollé soluciones full-stack para el sector minero, incluyendo sistemas de identificación de personal, registro de comedores, gestión hotelera y transporte.",
+          "Diseñé y construí una librería de componentes UI compartida para todos los proyectos frontend, estandarizando el diseño y acelerando el desarrollo.",
+          "Apoyé en la implementación de un sistema de autenticación unificado con Keycloak, centralizando el acceso a las aplicaciones de la empresa.",
+          "Apoyé la optimización del backend migrando servicios legacy de .NET a Python, mejorando su mantenibilidad y rendimiento."
+        ]
+      },
       "softtek": {
+        "position": "Desarrollador Full Stack",
         "descriptions": [
           "Diseñé e implementé flujos de trabajo serverless de extremo a extremo usando AWS Lambda y EventBridge para procesar datos de pólizas diarias, incluyendo actualizaciones de estado en tiempo real, logging completo y comunicación WebSocket para notificaciones del frontend.",
           "Desarrollé servicios de generación de PDF usando funciones Lambda, habilitando la creación de documentos, empaquetado ZIP y URLs pre-firmadas seguras de S3 para descargas de usuarios.",
@@ -59,6 +68,7 @@
         ]
       },
       "promitia": {
+        "position": "Desarrollador Full Stack",
         "descriptions": [
           "Construí aplicaciones web full-stack con interfaces frontend responsivas e integraciones de API optimizadas, implementando autenticación, protección de rutas y jobs CRON para automatización de tareas.",
           "Diseñé y desplegué infraestructura de red usando Terraform y DigitalOcean para migración de servidores entre dominios, incluyendo configuración VPC para conectividad segura de servicios.",
@@ -66,6 +76,7 @@
         ]
       },
       "americaMovil": {
+        "position": "Desarrollador Full Stack",
         "descriptions": [
           "Realicé prácticas en administración de voz y datos dentro de un entorno de red de telecomunicaciones, analizando KPIs y asegurando rendimiento óptimo de la red.",
           "Automaticé procesos de reportes y desarrollé scripts de configuración para elementos de red, mejorando la eficiencia operativa."

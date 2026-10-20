@@ -1,15 +1,17 @@
 import { Jobs, SectionTitle } from '@components'
 import { useIntersectionObserver } from '@hooks'
 import { useTranslation } from 'react-i18next'
+import type { ExperienceData } from '@/types'
 import data from '../../../data.json'
 
-const companyKeys = ['softtek', 'promitia', 'americaMovil'] as const
+const { companies }: ExperienceData = data
+
+const toStringList = (value: unknown): string[] =>
+  Array.isArray(value) ? value.filter((item): item is string => typeof item === 'string') : []
 
 export const Experience = () => {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.05 })
   const { t } = useTranslation()
-
-  const companies = [data.company_0, data.company_1, data.company_2]
 
   return (
     <section
@@ -29,18 +31,13 @@ export const Experience = () => {
 
           <div className="space-y-12">
             {companies.map((company, index) => {
-              const companyKey = companyKeys[index]
-              const descriptions = [
-                t(`experience.companies.${companyKey}.descriptions.0`),
-                t(`experience.companies.${companyKey}.descriptions.1`),
-                ...(company.descriptions.length > 2
-                  ? [t(`experience.companies.${companyKey}.descriptions.2`)]
-                  : []),
-              ]
-
-              const companyWithTranslatedDescs = {
+              const translationPrefix = `experience.companies.${company.key}`
+              const translatedCompany = {
                 ...company,
-                descriptions,
+                position: t(`${translationPrefix}.position`),
+                descriptions: toStringList(
+                  t(`${translationPrefix}.descriptions`, { returnObjects: true })
+                ),
               }
 
               return (
@@ -62,7 +59,7 @@ export const Experience = () => {
                       index % 2 === 0 ? 'sm:pr-8' : 'sm:pl-8'
                     }`}
                   >
-                    <Jobs data={companyWithTranslatedDescs} index={index} />
+                    <Jobs data={translatedCompany} index={index} />
                   </div>
                 </div>
               )
