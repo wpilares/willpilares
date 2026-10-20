@@ -1,7 +1,9 @@
 import { cvPdf, profilePhoto } from '@assets'
-import { useIntersectionObserver } from '@hooks'
-import { Download } from 'lucide-react'
+import { useCountUp, useIntersectionObserver } from '@hooks'
+import { ArrowRight, Download, Mail } from 'lucide-react'
+import type { CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
+import { type HeroStat, heroStats } from '@/constants'
 
 const GithubIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -19,92 +21,166 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
+const socialLinkClass =
+  'rounded-full border border-light-border bg-light-bg-tertiary p-2.5 text-light-text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:border-violet-500/50 hover:text-violet-600 dark:border-dark-border dark:bg-dark-bg-tertiary dark:text-dark-text-secondary dark:hover:border-violet-500/50 dark:hover:text-violet-400'
+
+const revealDelay = (milliseconds: number): CSSProperties => ({
+  transitionDelay: `${milliseconds}ms`,
+})
+
+interface HeroStatCardProps {
+  stat: HeroStat
+  label: string
+  start: boolean
+}
+
+const HeroStatCard = ({ stat, label, start }: HeroStatCardProps) => {
+  const value = useCountUp(stat.value, { start })
+
+  return (
+    <div className="card flex flex-col items-center justify-center px-3 py-5 text-center sm:px-4">
+      <span className="gradient-text text-3xl font-bold tabular-nums sm:text-4xl">
+        {value}
+        {stat.suffix}
+      </span>
+      <span className="mt-1 text-xs font-medium leading-snug text-light-text-secondary dark:text-dark-text-secondary sm:text-sm">
+        {label}
+      </span>
+    </div>
+  )
+}
+
 export const Hero = () => {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 })
   const { t } = useTranslation()
+  const revealClass = `reveal ${isVisible ? 'reveal-visible' : ''}`
 
   return (
     <section
       id="home"
       ref={ref}
-      className="flex min-h-screen flex-col items-center justify-center px-4 pb-16 pt-24"
+      className="relative flex min-h-screen items-center overflow-hidden px-4 pb-16 pt-28 sm:px-6 lg:px-8"
     >
-      <div
-        className={`flex max-w-3xl flex-col items-center text-center transition-all duration-700 ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-        }`}
-      >
-        <div className="relative mb-8">
-          <div className="absolute -inset-3 rounded-full bg-gradient-to-br from-violet-500/40 to-purple-700/40 blur-xl" />
-          <div className="relative h-36 w-36 overflow-hidden rounded-full border-4 border-violet-500/40 shadow-2xl shadow-violet-500/20 sm:h-44 sm:w-44">
-            <img
-              src={profilePhoto}
-              alt="Willber Pilares"
-              className="h-full w-full object-cover"
-              loading="eager"
-            />
+      <div className="pointer-events-none absolute -right-32 top-24 h-72 w-72 rounded-full bg-violet-500/10 blur-3xl sm:h-96 sm:w-96" />
+      <div className="pointer-events-none absolute -left-32 top-1/3 h-72 w-72 rounded-full bg-purple-600/10 blur-3xl" />
+
+      <div className="relative mx-auto w-full max-w-6xl">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-16">
+          <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+            <div
+              className={`${revealClass} mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5`}
+            >
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
+              </span>
+              <span className="text-sm font-medium text-emerald-700 dark:text-emerald-400">
+                {t('hero.availability')}
+              </span>
+            </div>
+
+            <h1
+              className={`${revealClass} text-4xl font-bold tracking-tight text-light-text-primary dark:text-dark-text-primary sm:text-5xl lg:text-6xl`}
+              style={revealDelay(100)}
+            >
+              {t('hero.name')}
+            </h1>
+
+            <p
+              className={`${revealClass} mt-3 text-base font-semibold text-violet-600 dark:text-violet-400 sm:text-lg`}
+              style={revealDelay(150)}
+            >
+              {t('hero.role')}
+            </p>
+
+            <p
+              className={`${revealClass} mt-6 max-w-full break-words text-2xl font-bold leading-tight text-light-text-primary dark:text-dark-text-primary sm:text-3xl lg:text-4xl`}
+              style={revealDelay(200)}
+            >
+              {t('hero.titleStart')} <span className="gradient-text">{t('hero.highlight')}</span>
+            </p>
+
+            <p
+              className={`${revealClass} mt-5 max-w-xl text-base leading-relaxed text-light-text-secondary dark:text-dark-text-secondary sm:text-lg`}
+              style={revealDelay(250)}
+            >
+              {t('hero.description')}
+            </p>
+
+            <div
+              className={`${revealClass} mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start`}
+              style={revealDelay(300)}
+            >
+              <a href="#contact" className="btn-primary inline-flex items-center gap-2">
+                {t('hero.ctaContact')}
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <a href="#experience" className="btn-secondary inline-flex items-center">
+                {t('hero.ctaExperience')}
+              </a>
+              <a href={cvPdf} download className="btn-ghost inline-flex items-center gap-2">
+                <Download className="h-4 w-4" />
+                {t('hero.downloadCV')}
+              </a>
+            </div>
+
+            <div className={`${revealClass} mt-8 flex items-center gap-4`} style={revealDelay(350)}>
+              <a
+                href="https://linkedin.com/in/wpilaresc"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={socialLinkClass}
+                aria-label="LinkedIn"
+              >
+                <LinkedinIcon className="h-5 w-5" />
+              </a>
+              <a
+                href="https://github.com/wpilares"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={socialLinkClass}
+                aria-label="GitHub"
+              >
+                <GithubIcon className="h-5 w-5" />
+              </a>
+              <a href="mailto:wgpilaresc@gmail.com" className={socialLinkClass} aria-label="Email">
+                <Mail className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
+
+          <div
+            className={`${revealClass} order-first flex justify-center lg:order-none`}
+            style={revealDelay(150)}
+          >
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-violet-500/40 to-purple-700/40 blur-2xl" />
+              <div className="relative h-40 w-40 overflow-hidden rounded-full border-4 border-violet-500/40 shadow-2xl shadow-violet-500/20 sm:h-52 sm:w-52 lg:h-80 lg:w-80">
+                <img
+                  src={profilePhoto}
+                  alt="Willber Pilares"
+                  width={320}
+                  height={320}
+                  className="h-full w-full object-cover"
+                  loading="eager"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-violet-500/10 px-4 py-1.5">
-          <div className="h-2 w-2 animate-pulse rounded-full bg-green-400" />
-          <span className="text-sm font-medium text-violet-600 dark:text-violet-400">
-            {t('hero.badge')}
-          </span>
-        </div>
-
-        <h1 className="mb-4 max-w-full break-words text-3xl font-bold leading-tight text-light-text-primary dark:text-dark-text-primary sm:text-4xl md:text-5xl lg:text-6xl">
-          <span className="block">{t('hero.titleStart')}</span>
-          <span className="gradient-text block">{t('hero.highlight')}</span>
-        </h1>
-
-        <p className="mb-8 max-w-xl text-lg leading-relaxed text-light-text-secondary dark:text-dark-text-secondary">
-          {t('hero.description')}
-        </p>
-
-        <a href={cvPdf} download className="btn-primary mb-8 inline-flex items-center gap-2">
-          <Download className="h-5 w-5" />
-          {t('hero.downloadCV')}
-        </a>
-
-        <div className="flex items-center gap-5">
-          <a
-            href="https://linkedin.com/in/wpilaresc"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-light-border bg-light-bg-tertiary p-2.5 text-light-text-secondary transition-all duration-300 hover:border-violet-500/50 hover:text-violet-600 dark:border-dark-border dark:bg-dark-bg-tertiary dark:text-dark-text-secondary dark:hover:border-violet-500/50 dark:hover:text-violet-400"
-            aria-label="LinkedIn"
-          >
-            <LinkedinIcon className="h-5 w-5" />
-          </a>
-          <a
-            href="https://github.com/wpilares"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-light-border bg-light-bg-tertiary p-2.5 text-light-text-secondary transition-all duration-300 hover:border-violet-500/50 hover:text-violet-600 dark:border-dark-border dark:bg-dark-bg-tertiary dark:text-dark-text-secondary dark:hover:border-violet-500/50 dark:hover:text-violet-400"
-            aria-label="GitHub"
-          >
-            <GithubIcon className="h-5 w-5" />
-          </a>
-          <a
-            href="mailto:wgpilaresc@gmail.com"
-            className="rounded-full border border-light-border bg-light-bg-tertiary p-2.5 text-light-text-secondary transition-all duration-300 hover:border-violet-500/50 hover:text-violet-600 dark:border-dark-border dark:bg-dark-bg-tertiary dark:text-dark-text-secondary dark:hover:border-violet-500/50 dark:hover:text-violet-400"
-            aria-label="Email"
-          >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              />
-            </svg>
-          </a>
+        <div
+          className={`${revealClass} mt-14 grid grid-cols-2 gap-3 sm:gap-4 lg:mt-20 lg:grid-cols-4`}
+          style={revealDelay(400)}
+        >
+          {heroStats.map((stat) => (
+            <HeroStatCard
+              key={stat.key}
+              stat={stat}
+              label={t(`hero.stats.${stat.key}`)}
+              start={isVisible}
+            />
+          ))}
         </div>
       </div>
     </section>

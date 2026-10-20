@@ -13,6 +13,22 @@
     @apply scroll-smooth;
   }
 
+  section[id] {
+    scroll-margin-top: 4.5rem;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  [tabindex]:focus-visible {
+    @apply outline-none ring-2 ring-violet-500 ring-offset-2 ring-offset-white;
+  }
+
+  html.dark a:focus-visible,
+  html.dark button:focus-visible,
+  html.dark [tabindex]:focus-visible {
+    @apply ring-violet-400 ring-offset-[#0a0a0a];
+  }
+
   body {
     @apply font-poppins antialiased;
   }
@@ -81,11 +97,29 @@
 
   /* Card */
   .card {
-    @apply rounded-2xl border border-[#e4e4e7] bg-[#f9fafb] transition-all duration-300 hover:border-violet-500/50;
+    @apply rounded-2xl border border-[#e4e4e7] bg-[#f9fafb] transition-all duration-300;
+    @apply hover:-translate-y-0.5 hover:border-violet-500/50 hover:shadow-xl hover:shadow-violet-500/10;
   }
 
   html.dark .card {
-    @apply border-[#27272a] bg-[#111111] hover:border-violet-500/50;
+    @apply border-[#27272a] bg-[#111111] hover:border-violet-500/50 hover:shadow-violet-500/5;
+  }
+
+  .reveal {
+    @apply translate-y-6 opacity-0 transition-all duration-700 ease-out;
+  }
+
+  .reveal-visible {
+    @apply translate-y-0 opacity-100;
+  }
+
+  .btn-ghost {
+    @apply px-5 py-3 rounded-full font-medium transition-all duration-300 active:scale-95;
+    @apply text-[#52525b] hover:bg-violet-600/10 hover:text-violet-600;
+  }
+
+  html.dark .btn-ghost {
+    @apply text-[#a1a1aa] hover:bg-violet-500/10 hover:text-violet-400;
   }
 
   /* Primary Button */
@@ -137,5 +171,25 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:root {
+    scroll-behavior: auto;
+  }
+
+  #root *,
+  #root *::before,
+  #root *::after {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
+    transition-delay: 0ms;
+  }
+
+  #root .reveal {
+    opacity: 1;
+    transform: none;
   }
 }

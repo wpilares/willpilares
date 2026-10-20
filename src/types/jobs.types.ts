@@ -9,5 +9,5 @@ export interface JobData {
 
 export interface JobsProps {
   data: JobData
-  index?: number
+  isCurrent?: boolean
 }
