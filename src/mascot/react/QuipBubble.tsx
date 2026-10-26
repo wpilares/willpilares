@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { QuipKey } from '../behavior/bus'
 
@@ -9,29 +10,60 @@ export type QuipBubbleProps = {
 }
 
 const BUBBLE_GAP = 12
+const VIEWPORT_MARGIN = 16
+const MAX_BUBBLE_WIDTH = 288
+const TAIL_INSET = 14
+
+const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max)
+
+const viewportWidth = () => (typeof window === 'undefined' ? MAX_BUBBLE_WIDTH : window.innerWidth)
 
 export const QuipBubble = ({ quipKey, x, y, width }: QuipBubbleProps) => {
   const { t } = useTranslation()
+  const bubbleRef = useRef<HTMLDivElement>(null)
+  const [bubbleWidth, setBubbleWidth] = useState(0)
   const text = quipKey === null ? '' : t(`mascot.quips.${quipKey}`)
+
+  useLayoutEffect(() => {
+    setBubbleWidth(bubbleRef.current?.offsetWidth ?? 0)
+  })
+
+  const anchorX = x + width / 2
+  const containerWidth = Math.min(MAX_BUBBLE_WIDTH, viewportWidth() - 2 * VIEWPORT_MARGIN)
+  const bubbleLeft = clamp(
+    anchorX - bubbleWidth / 2,
+    VIEWPORT_MARGIN,
+    Math.max(VIEWPORT_MARGIN, viewportWidth() - VIEWPORT_MARGIN - bubbleWidth)
+  )
+  const tailLeft = clamp(
+    anchorX - bubbleLeft,
+    TAIL_INSET,
+    Math.max(TAIL_INSET, bubbleWidth - TAIL_INSET)
+  )
 
   return (
     <div
       role="status"
       aria-live="polite"
-      className="pointer-events-none absolute left-0 top-0"
+      className="pointer-events-none absolute top-0"
       style={{
-        transform: `translate3d(${x + width / 2}px, ${y - BUBBLE_GAP}px, 0) translate(-50%, -100%)`,
-        maxWidth: 'min(18rem, calc(100vw - 2rem))',
+        left: `${bubbleLeft}px`,
+        transform: `translate3d(0, ${y - BUBBLE_GAP}px, 0) translateY(-100%)`,
+        maxWidth: `${containerWidth}px`,
       }}
     >
       {quipKey !== null && (
-        <div className="relative rounded-xl border border-ink bg-paper px-3 py-2 text-ink">
-          <p className="bubble-line whitespace-nowrap" style={{ fontSize: '0.95rem' }}>
+        <div
+          ref={bubbleRef}
+          className="relative w-max max-w-full rounded-xl border border-ink bg-paper px-3 py-2 text-ink"
+        >
+          <p className="bubble-line" style={{ fontSize: '0.95rem' }}>
             {text}
           </p>
           <span
             aria-hidden="true"
-            className="absolute left-1/2 top-full -ml-1.5 h-3 w-3 -translate-y-1/2 rotate-45 border-b border-r border-ink bg-paper"
+            className="absolute top-full h-3 w-3 -translate-x-1/2 -translate-y-1/2 rotate-45 border-b border-r border-ink bg-paper"
+            style={{ left: `${tailLeft}px` }}
           />
         </div>
       )}
