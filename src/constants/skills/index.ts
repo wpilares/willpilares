@@ -1,4 +1,4 @@
-export const techIconUrls: Record<string, string> = {
+const techIconUrls: Record<string, string> = {
   React: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
   Angular: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg',
   'Next.js': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',

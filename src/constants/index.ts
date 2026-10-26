@@ -1,5 +1,5 @@
 export { netpulseProject } from './projects'
 export type { SkillCategoryKey, SkillPlate, SkillShelf } from './skills'
-export { skillShelves, techIconUrls } from './skills'
+export { skillShelves } from './skills'
 export type { HeroStat } from './stats'
 export { heroStats } from './stats'

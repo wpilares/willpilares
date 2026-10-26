@@ -55,14 +55,12 @@ export const QuipBubble = ({ quipKey, x, y, width }: QuipBubbleProps) => {
       {quipKey !== null && (
         <div
           ref={bubbleRef}
-          className="relative w-max max-w-full rounded-xl border border-ink bg-paper px-3 py-2 text-ink"
+          className="relative w-max max-w-full rounded-xl border border-night bg-parchment px-3 py-2 text-night shadow-[0_6px_16px_rgba(0,0,0,0.45)]"
         >
-          <p className="bubble-line" style={{ fontSize: '0.95rem' }}>
-            {text}
-          </p>
+          <p className="font-fell text-base leading-snug italic">{text}</p>
           <span
             aria-hidden="true"
-            className="absolute top-full h-3 w-3 -translate-x-1/2 -translate-y-1/2 rotate-45 border-b border-r border-ink bg-paper"
+            className="absolute top-full h-3 w-3 -translate-x-1/2 -translate-y-1/2 rotate-45 border-b border-r border-night bg-parchment"
             style={{ left: `${tailLeft}px` }}
           />
         </div>

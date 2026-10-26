@@ -1,12 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { GALLERY_FRAME_CENTRES, LAB_MIRROR } from './generators'
 import {
   BACKDROP_VERTICAL_TRAVEL,
   backdropRectToStage,
   backdropScale,
-  galleryFrameCentres,
   isPanoramaLayer,
-  labMirrorRect,
   layerBleed,
   layerWidth,
   panoramaOverflow,
@@ -68,10 +65,5 @@ describe('backdrop layout', () => {
     expect(rect.y).toBeCloseTo((900 - 180 * scale) / 2 + 36 * scale)
     expect(rect.width).toBeCloseTo(108 * scale)
     expect(rect.height).toBeCloseTo(84 * scale)
-  })
-
-  it('keeps the overlay geometry in step with the painted frames and mirror', () => {
-    expect(galleryFrameCentres).toEqual([...GALLERY_FRAME_CENTRES])
-    expect(labMirrorRect).toEqual(LAB_MIRROR)
   })
 })

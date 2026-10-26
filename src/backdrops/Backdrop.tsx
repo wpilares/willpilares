@@ -3,11 +3,13 @@ import type { MotionStyle } from 'motion/react'
 import * as m from 'motion/react-m'
 import { type CSSProperties, type ReactNode, useRef } from 'react'
 import {
+  BACKDROP_VERTICAL_TRAVEL,
   type BackdropId,
   type BackdropLayerName,
   backdropDepths,
   backdropLayerNames,
   isPanoramaLayer,
+  layerBleed,
   panoramaOverflow,
 } from './layout'
 import { useBackdrop } from './useBackdrop'
@@ -21,14 +23,10 @@ type BackdropProps = {
   readonly layerStyles?: BackdropLayerStyles
 }
 
-const VERTICAL_TRAVEL = 120
-
 const pixelated: CSSProperties = { imageRendering: 'pixelated' }
 
 const panoramaImageClass =
   'absolute top-0 left-1/2 h-full w-auto min-w-full max-w-none -translate-x-1/2 object-cover'
-
-const bleedFor = (depth: number): number => Math.ceil((VERTICAL_TRAVEL * depth) / 2)
 
 type LayerImageProps = {
   readonly src: string
@@ -89,9 +87,9 @@ export const Backdrop = ({ id, className, layerStyles }: BackdropProps) => {
               </SceneLayer>
             )
           }
-          const bleed = bleedFor(depth)
+          const bleed = layerBleed(depth)
           return (
-            <SceneLayer key={layer} depth={depth} travel={VERTICAL_TRAVEL}>
+            <SceneLayer key={layer} depth={depth} travel={BACKDROP_VERTICAL_TRAVEL}>
               <StyledLayer style={layerStyles?.[layer]}>
                 <LayerImage
                   src={urls[layer]}

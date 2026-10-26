@@ -1,9 +1,9 @@
+import { labMirrorRect } from '../layout'
 import { createPixelBuffer, type PixelBuffer } from '../painter'
 import type { Rng } from '../prng'
 import { arch, bricks, ditherFill, glow, HEIGHT, WIDTH } from './shared'
 import type { BackdropLayers } from './types'
 
-export const LAB_MIRROR = { x: 56, y: 36, width: 108, height: 84 } as const
 const BENCH_Y = 120
 const ELECTRODES = [276, 294] as const
 const SPARK_Y = 82
@@ -56,7 +56,7 @@ const pipes = (mid: PixelBuffer) => {
 }
 
 const mirror = (mid: PixelBuffer) => {
-  const { x, y, width, height } = LAB_MIRROR
+  const { x, y, width, height } = labMirrorRect
   const centre = x + width / 2
   arch(mid, centre, y + 2, 14, 12, y + 4, 'gold')
   arch(mid, centre, y + 2, 10, 8, y + 4, 'copper')

@@ -19,8 +19,6 @@
       "@/*": ["src/*"],
       "@components": ["src/components/index.ts"],
       "@components/*": ["src/components/*"],
-      "@content": ["src/content/index.ts"],
-      "@content/*": ["src/content/*"],
       "@hooks": ["src/hooks/index.ts"],
       "@hooks/*": ["src/hooks/*"],
       "@mascot": ["src/mascot/index.ts"],

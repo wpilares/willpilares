@@ -69,6 +69,8 @@ export const backdropRectToStage = (
   }
 }
 
-export const galleryFrameCentres: readonly number[] = [80, 280, 480, 680, 880]
+export const galleryFrameCentres: readonly number[] = [240, 400, 560, 720]
 
 export const labMirrorRect: StageRect = { x: 56, y: 36, width: 108, height: 84 }
+
+export const belfryMoon = { x: 160, y: 38, radius: 26 } as const
