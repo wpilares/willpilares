@@ -1,11 +1,12 @@
+import { PROLOGUE_CANDLE_X, PROLOGUE_WAX_TOP } from '../layout'
 import { createPixelBuffer, type PixelBuffer } from '../painter'
 import type { Rng } from '../prng'
-import { flame, glow, HEIGHT, WIDTH } from './shared'
+import { glow, HEIGHT, WIDTH } from './shared'
 import type { BackdropLayers } from './types'
 
-const CANDLE_X = 160
+const CANDLE_X = PROLOGUE_CANDLE_X
 const DISH_Y = 136
-const WAX_TOP = 106
+const WAX_TOP = PROLOGUE_WAX_TOP
 
 const paintFar = (): PixelBuffer => {
   const far = createPixelBuffer(WIDTH, HEIGHT)
@@ -49,7 +50,6 @@ const paintMid = (): PixelBuffer => {
   mid.fillRect(CANDLE_X - 8, WAX_TOP - 1, 16, 2, 'moon')
   mid.pixel(CANDLE_X, WAX_TOP - 2, 'night')
   mid.pixel(CANDLE_X, WAX_TOP - 3, 'night')
-  flame(mid, CANDLE_X, WAX_TOP - 4, 3)
   return mid
 }
 
