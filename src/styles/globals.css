@@ -85,7 +85,7 @@
 
   .display-headline {
     @apply font-display font-semibold;
-    font-size: clamp(2.5rem, 8vw, 8rem);
+    font-size: clamp(2.25rem, 6.5vw, 6.5rem);
     letter-spacing: -0.02em;
     line-height: 0.95;
   }

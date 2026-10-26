@@ -38,7 +38,7 @@ export const Hero = () => {
       </div>
 
       <div
-        className={`${revealClass} col-span-full self-end pt-16 pb-40 md:col-span-10 md:pb-48`}
+        className={`${revealClass} col-span-full self-end pt-10 pb-28 md:col-span-10 md:pb-36`}
         style={revealDelay(100)}
       >
         <h1 className="display-headline">

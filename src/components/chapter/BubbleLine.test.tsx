@@ -70,6 +70,19 @@ describe('BubbleLine', () => {
     expect(container.querySelector('span.text-tint-lemon')).not.toBeNull()
   })
 
+  it('lays the line out as inline text with the accent inside the paragraph', () => {
+    mockReducedMotion(false)
+    const { container } = render(<BubbleLine i18nKey="about.lines.one" />)
+
+    const line = container.querySelector('p')
+    if (line === null) throw new Error('paragraph missing')
+    const layoutTokens = [...line.classList].filter((token) => /^(grid|flex)$/.test(token))
+
+    expect(layoutTokens).toEqual([])
+    expect(line).toHaveClass('max-w-[26ch]')
+    expect(container.querySelector('p > span.text-blue')).not.toBeNull()
+  })
+
   it('starts hidden until it intersects when motion is allowed', () => {
     mockReducedMotion(false)
     const { container } = render(<BubbleLine i18nKey="about.lines.one" />)
