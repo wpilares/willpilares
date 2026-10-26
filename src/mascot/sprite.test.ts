@@ -81,8 +81,24 @@ describe('flipFrame', () => {
 })
 
 describe('assertSpriteSize', () => {
-  it('accepts a 24x32 frame', () => {
+  it('uses a 32x32 sprite grid', () => {
+    expect(SPRITE_WIDTH).toBe(32)
+    expect(SPRITE_HEIGHT).toBe(32)
+  })
+
+  it('accepts a frame of the sprite size', () => {
     expect(() => assertSpriteSize(placeholderFrame())).not.toThrow()
+  })
+
+  it('rejects the former 24x32 grid', () => {
+    const narrow = Array.from({ length: 32 }, () => '.'.repeat(24))
+    expect(() => assertSpriteSize(narrow)).toThrow(
+      expect.objectContaining<Partial<SpriteDecodeError>>({ reason: 'size' })
+    )
+  })
+
+  it('accepts a custom grid size', () => {
+    expect(() => assertSpriteSize(['ab', 'ab'], { width: 2, height: 2 })).not.toThrow()
   })
 
   it('throws size for other dimensions', () => {

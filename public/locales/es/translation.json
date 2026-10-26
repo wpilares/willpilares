@@ -146,15 +146,15 @@
   },
   "mascot": {
     "quips": {
-      "hello": "Hola, soy el compañero de Will. Baja y te muestro todo.",
+      "hello": "Miau. Soy el familiar de Will. Baja y te alumbro el camino.",
       "grabHint": "Psst. Mantén presionado para levantarme.",
-      "held": "¡Eh, con cuidado!",
-      "released": "Uf. De vuelta al trabajo.",
-      "mobile": "Uy, modo móvil.",
-      "scrollBack": "Ah, volviste.",
-      "copied": "¡Copiado! Hablamos pronto.",
-      "trick": "¡Tachán!",
-      "sleepy": "¿Sigues ahí?"
+      "held": "¡Fff! Bájame con cuidado.",
+      "released": "Hmph. ¿Dónde estaba?",
+      "mobile": "Pantalla pequeña. Acogedora.",
+      "scrollBack": "¿Volviste? Prrr.",
+      "copied": "El cuervo ya partió.",
+      "trick": "Contempla.",
+      "sleepy": "¿Sigues ahí? Me echaré una siesta."
     }
   },
   "footer": {

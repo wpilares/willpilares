@@ -1,5 +1,7 @@
 import { fireEvent, render } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { lanternPoint } from '../lantern'
+import { SPRITE_HEIGHT, SPRITE_WIDTH } from '../sprite'
 import { Mascot } from './Mascot'
 
 vi.mock('react-i18next', () => ({
@@ -77,10 +79,46 @@ describe('Mascot', () => {
     expect(canvas).toHaveAttribute('aria-hidden', 'true')
     expect(canvas?.style.cursor).toBe('grab')
     expect(canvas?.style.imageRendering).toBe('pixelated')
-    expect(canvas?.width).toBe(24 * 2)
+    expect(canvas?.width).toBe(32 * 2)
     expect(canvas?.height).toBe(32 * 2)
     expect(observe).not.toHaveBeenCalled()
     expect(window.requestAnimationFrame).toHaveBeenCalled()
+  })
+
+  it('does not render the lantern glow when the renderer is unavailable', () => {
+    mockMatchMedia(() => false)
+
+    const { container } = render(<Mascot />)
+
+    expect(container.querySelector('[data-lantern-glow]')).toBeNull()
+  })
+
+  it('renders the lantern glow at the lantern when the renderer is available', () => {
+    mockMatchMedia(() => false)
+    const context = {
+      setTransform: vi.fn(),
+      clearRect: vi.fn(),
+      fillRect: vi.fn(),
+      fillStyle: '',
+      imageSmoothingEnabled: true,
+    }
+    vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockImplementation(
+      () => context as unknown as CanvasRenderingContext2D
+    )
+    const scale = 2
+    const margin = 16
+    const position = {
+      x: Math.round((window.innerWidth - SPRITE_WIDTH * scale) / 2),
+      y: window.innerHeight - margin - SPRITE_HEIGHT * scale,
+    }
+    const expected = lanternPoint(position, 'right', scale)
+
+    const { container } = render(<Mascot />)
+    const glow = container.querySelector<HTMLElement>('[data-lantern-glow]')
+
+    expect(glow).not.toBeNull()
+    expect(glow?.style.getPropertyValue('--lx')).toBe(`${expected.x}px`)
+    expect(glow?.style.getPropertyValue('--ly')).toBe(`${expected.y}px`)
   })
 
   it('uses scale 3 from 480 px', () => {
@@ -88,7 +126,7 @@ describe('Mascot', () => {
 
     const { container } = render(<Mascot />)
 
-    expect(queryCanvas(container)?.width).toBe(24 * 3)
+    expect(queryCanvas(container)?.width).toBe(32 * 3)
   })
 
   it('uses scale 4 from 1024 px', () => {
@@ -96,12 +134,12 @@ describe('Mascot', () => {
 
     const { container } = render(<Mascot />)
 
-    expect(queryCanvas(container)?.width).toBe(24 * 4)
+    expect(queryCanvas(container)?.width).toBe(32 * 4)
   })
 
   it('places the canvas at the hero anchor before any section observer fires', () => {
     mockMatchMedia(() => false)
-    const spriteWidth = 24 * 2
+    const spriteWidth = 32 * 2
     const spriteHeight = 32 * 2
     const margin = 16
     const expectedX = Math.round((window.innerWidth - spriteWidth) / 2)

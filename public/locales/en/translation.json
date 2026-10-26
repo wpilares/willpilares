@@ -146,15 +146,15 @@
   },
   "mascot": {
     "quips": {
-      "hello": "Hi, I'm Will's sidekick. Scroll down and I'll show you around.",
+      "hello": "Meow. I'm Will's familiar. Scroll and I'll light the way.",
       "grabHint": "Psst. Hold me to pick me up.",
-      "held": "Whoa, careful!",
-      "released": "Phew. Back to work.",
-      "mobile": "Ooh, mobile mode.",
-      "scrollBack": "Oh hi, you're back.",
-      "copied": "Copied! Talk soon.",
-      "trick": "Ta-da!",
-      "sleepy": "Still there?"
+      "held": "Hiss! Put me down gently.",
+      "released": "Hmph. Where was I?",
+      "mobile": "A small screen. Cozy.",
+      "scrollBack": "Back again? Purr.",
+      "copied": "The raven has flown.",
+      "trick": "Behold.",
+      "sleepy": "Still there? I'll nap."
     }
   },
   "footer": {

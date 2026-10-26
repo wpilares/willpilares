@@ -16,13 +16,15 @@ describe('createGestureSet', () => {
   it('builds a definition for every gesture name', () => {
     const names: readonly GestureName[] = [
       'idle',
-      'wave',
       'walk',
-      'think',
-      'thumbs',
+      'sit',
+      'lick',
+      'stretch',
       'cheer',
       'sulk',
       'sleep',
+      'wave',
+      'purr',
     ]
     for (const name of names) expect(gestures[name].frames.length).toBeGreaterThan(0)
   })

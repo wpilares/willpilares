@@ -11,8 +11,15 @@ export type PixelMatrix = {
 export type SpriteDecodeReason = 'empty' | 'ragged' | 'unknown-key' | 'size'
 
 export const TRANSPARENT_KEY = '.'
-export const SPRITE_WIDTH = 24
+export const SPRITE_WIDTH = 32
 export const SPRITE_HEIGHT = 32
+
+export type SpriteSize = {
+  readonly width: number
+  readonly height: number
+}
+
+export const SPRITE_SIZE: SpriteSize = { width: SPRITE_WIDTH, height: SPRITE_HEIGHT }
 
 export class SpriteDecodeError extends Error {
   readonly reason: SpriteDecodeReason
@@ -80,12 +87,12 @@ export const composeFrame = (base: SpriteFrame, overlay: SpriteFrame): SpriteFra
 export const flipFrame = (frame: SpriteFrame): SpriteFrame =>
   frame.map((row) => Array.from(row).reverse().join(''))
 
-export const assertSpriteSize = (frame: SpriteFrame): void => {
+export const assertSpriteSize = (frame: SpriteFrame, size: SpriteSize = SPRITE_SIZE): void => {
   const width = assertRectangular(frame)
-  if (width !== SPRITE_WIDTH || frame.length !== SPRITE_HEIGHT) {
+  if (width !== size.width || frame.length !== size.height) {
     throw new SpriteDecodeError(
       'size',
-      `frame is ${width}x${frame.length}, expected ${SPRITE_WIDTH}x${SPRITE_HEIGHT}`
+      `frame is ${width}x${frame.length}, expected ${size.width}x${size.height}`
     )
   }
 }

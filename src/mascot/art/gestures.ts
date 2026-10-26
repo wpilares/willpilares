@@ -4,26 +4,25 @@ import {
   type GestureName,
   type GestureSet,
 } from '../gestures'
-import {
-  cheerFrames,
-  idleFrames,
-  sleepFrames,
-  sulkFrames,
-  thinkFrames,
-  thumbsFrames,
-  walkFrames,
-  waveFrames,
-} from './frames'
+import { framesFor } from './frames'
 
-const definitions: Readonly<Record<GestureName, GestureDefinition>> = {
-  idle: { frames: idleFrames, frameDuration: 600, loop: true },
-  wave: { frames: waveFrames, frameDuration: 300, loop: true },
-  walk: { frames: walkFrames, frameDuration: 140, loop: true },
-  think: { frames: thinkFrames, frameDuration: 800, loop: true },
-  thumbs: { frames: thumbsFrames, frameDuration: 800, loop: true },
-  cheer: { frames: cheerFrames, frameDuration: 250, loop: true },
-  sulk: { frames: sulkFrames, frameDuration: 800, loop: true },
-  sleep: { frames: sleepFrames, frameDuration: 700, loop: true },
+const timings: Readonly<Record<GestureName, number>> = {
+  idle: 650,
+  walk: 130,
+  sit: 900,
+  lick: 220,
+  stretch: 300,
+  cheer: 240,
+  sulk: 800,
+  sleep: 800,
+  wave: 280,
+  purr: 400,
 }
 
-export const createMascotGestures = (): GestureSet => createGestureSet((name) => definitions[name])
+const define = (name: GestureName): GestureDefinition => ({
+  frames: framesFor(name),
+  frameDuration: timings[name],
+  loop: true,
+})
+
+export const createMascotGestures = (): GestureSet => createGestureSet(define)

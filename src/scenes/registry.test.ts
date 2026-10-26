@@ -1,3 +1,4 @@
+import { GESTURE_NAMES, OUTFIT_NAMES } from '@mascot'
 import { describe, expect, it } from 'vitest'
 import { chapters, scenes } from './registry'
 
@@ -32,6 +33,43 @@ describe('scenes', () => {
       if (scene.chapter) {
         expect(scene.titleKey).toBe(`journal.chapters.${scene.id}.title`)
       }
+    }
+  })
+})
+
+describe('scene mascot', () => {
+  it('assigns a cat gesture to every scene', () => {
+    expect(scenes.map((scene) => [scene.id, scene.mascotGesture])).toEqual([
+      ['prologue', 'sit'],
+      ['city', 'sit'],
+      ['hunter', 'lick'],
+      ['arms', 'stretch'],
+      ['hunts', 'idle'],
+      ['lab', 'purr'],
+      ['archive', 'sit'],
+      ['raven', 'wave'],
+      ['epilogue', 'sleep'],
+    ])
+  })
+
+  it('dresses the cat as an inventor in the lab and a scholar in the archive', () => {
+    expect(scenes.map((scene) => [scene.id, scene.mascotOutfit])).toEqual([
+      ['prologue', 'hunter'],
+      ['city', 'hunter'],
+      ['hunter', 'hunter'],
+      ['arms', 'hunter'],
+      ['hunts', 'hunter'],
+      ['lab', 'inventor'],
+      ['archive', 'scholar'],
+      ['raven', 'hunter'],
+      ['epilogue', 'hunter'],
+    ])
+  })
+
+  it('only uses known gestures and outfits', () => {
+    for (const scene of scenes) {
+      expect(GESTURE_NAMES).toContain(scene.mascotGesture)
+      expect(OUTFIT_NAMES).toContain(scene.mascotOutfit)
     }
   })
 })

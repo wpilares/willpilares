@@ -1,5 +1,7 @@
 export type { MascotEvent, QuipKey } from '../behavior/bus'
 export { mascotBus } from '../behavior/bus'
+export type { LanternGlowProps } from './LanternGlow'
+export { LanternGlow } from './LanternGlow'
 export { Mascot } from './Mascot'
 export type { QuipBubbleProps } from './QuipBubble'
 export { QuipBubble } from './QuipBubble'

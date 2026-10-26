@@ -1,53 +1,72 @@
-import { createGestureSet, type GestureSet } from '../gestures'
+import { createGestureSet, GESTURE_NAMES, type GestureName, type GestureSet } from '../gestures'
 import { composeFrame, type Palette, type SpriteFrame } from '../sprite'
-import { chatbotOverlay, ecommerceOverlay, netpulseOverlay, scrapingOverlay } from './overlays'
+import { paint } from './canvas'
+import { type Pose, poses } from './frames'
+import {
+  brassGoggles,
+  gogglesStrap,
+  type HeadwearPiece,
+  hunterHat,
+  placeHeadwear,
+  roundSpectacles,
+} from './headwear'
 import { basePalette } from './palettes'
 
-export type OutfitName = 'default' | 'netpulse' | 'ecommerce' | 'scraping' | 'chatbot'
+export type OutfitName = 'hunter' | 'inventor' | 'scholar'
+
+export type OutfitOverlays = Readonly<Record<GestureName, readonly SpriteFrame[]>>
 
 export type Outfit = {
   readonly name: OutfitName
   readonly palette: Palette
-  readonly overlay?: SpriteFrame
+  readonly overlays: OutfitOverlays
 }
 
-export const OUTFIT_NAMES: readonly OutfitName[] = [
-  'default',
-  'netpulse',
-  'ecommerce',
-  'scraping',
-  'chatbot',
-]
+export const OUTFIT_NAMES: readonly OutfitName[] = ['hunter', 'inventor', 'scholar']
+
+export const DEFAULT_OUTFIT: OutfitName = 'hunter'
+
+const dress = (pose: Pose, pieces: readonly HeadwearPiece[]): SpriteFrame => {
+  const shiftX = pose.shiftX ?? 0
+  const outlined = pieces.filter((piece) => piece.outline)
+  const flat = pieces.filter((piece) => !piece.outline)
+  const toLayers = (group: readonly HeadwearPiece[]) =>
+    group.flatMap((piece) => {
+      const placed = placeHeadwear(piece, pose.head)
+      return placed === null ? [] : [placed]
+    })
+  return paint(toLayers(outlined), { shiftX, after: toLayers(flat) })
+}
+
+const overlaysFor = (pieces: readonly HeadwearPiece[]): OutfitOverlays =>
+  GESTURE_NAMES.reduce<Partial<Record<GestureName, readonly SpriteFrame[]>>>((set, name) => {
+    set[name] = poses[name].map((pose) => dress(pose, pieces))
+    return set
+  }, {}) as OutfitOverlays
 
 export const outfits: Readonly<Record<OutfitName, Outfit>> = {
-  default: { name: 'default', palette: basePalette },
-  netpulse: {
-    name: 'netpulse',
-    palette: { ...basePalette, c: '#0a3149', d: '#061d2c', l: '#1f5a7d', k: '#c2a7f4' },
-    overlay: netpulseOverlay,
+  hunter: { name: 'hunter', palette: basePalette, overlays: overlaysFor([hunterHat]) },
+  inventor: {
+    name: 'inventor',
+    palette: { ...basePalette, r: '#9a5b34' },
+    overlays: overlaysFor([gogglesStrap, brassGoggles]),
   },
-  ecommerce: {
-    name: 'ecommerce',
-    palette: { ...basePalette, c: '#d9772b', d: '#a3521a', l: '#f2a65a', a: '#fbfbf8' },
-    overlay: ecommerceOverlay,
-  },
-  scraping: {
-    name: 'scraping',
-    palette: { ...basePalette, c: '#7a6a4f', d: '#55492f', l: '#a08e6c' },
-    overlay: scrapingOverlay,
-  },
-  chatbot: {
-    name: 'chatbot',
-    palette: { ...basePalette, c: '#8f6fe0', d: '#5c3fb0', l: '#c2a7f4' },
-    overlay: chatbotOverlay,
+  scholar: {
+    name: 'scholar',
+    palette: { ...basePalette, c: '#1f2a24', d: '#141c18', r: '#b08d57' },
+    overlays: overlaysFor([hunterHat, roundSpectacles]),
   },
 }
 
-export const applyOutfit = (gestures: GestureSet, outfit: Outfit): GestureSet => {
-  const overlay = outfit.overlay
-  if (overlay === undefined) return gestures
-  return createGestureSet((name) => {
+export const applyOutfit = (gestures: GestureSet, outfit: Outfit): GestureSet =>
+  createGestureSet((name) => {
     const definition = gestures[name]
-    return { ...definition, frames: definition.frames.map((frame) => composeFrame(frame, overlay)) }
+    const overlays = outfit.overlays[name]
+    return {
+      ...definition,
+      frames: definition.frames.map((frame, index) => {
+        const overlay = overlays[index]
+        return overlay === undefined ? frame : composeFrame(frame, overlay)
+      }),
+    }
   })
-}
