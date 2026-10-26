@@ -4,22 +4,33 @@ import type { SceneMeta } from './registry'
 import { type SceneStage, SceneStageContext, useSceneRegistry } from './SceneContext'
 import { useStaticScenes } from './useStaticScenes'
 
+export type SceneProgressMode = 'pinned' | 'exit'
+
 type SceneProps = {
   meta: SceneMeta
+  progressMode?: SceneProgressMode
   children: ReactNode
   className?: string
 }
 
 const pinnedStageClass = 'sticky top-0 h-svh overflow-hidden'
 const staticStageClass = 'relative min-h-svh'
+const exitStageClass = 'relative h-svh overflow-hidden'
 
-export const Scene = ({ meta, children, className }: SceneProps) => {
+type ScrollOffset = NonNullable<NonNullable<Parameters<typeof useScroll>[0]>['offset']>
+
+const scrollOffsets: Readonly<Record<SceneProgressMode, ScrollOffset>> = {
+  pinned: ['start start', 'end end'],
+  exit: ['start start', 'end start'],
+}
+
+export const Scene = ({ meta, progressMode = 'pinned', children, className }: SceneProps) => {
   const sectionRef = useRef<HTMLElement>(null)
   const isStatic = useStaticScenes()
   const { register } = useSceneRegistry()
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start start', 'end end'],
+    offset: scrollOffsets[progressMode],
   })
   const finalProgress = useMotionValue(1)
   const progress = isStatic ? finalProgress : scrollYProgress
@@ -39,7 +50,12 @@ export const Scene = ({ meta, children, className }: SceneProps) => {
       style={isStatic ? undefined : { height: `${meta.lengthVh}svh` }}
       className={className ? `relative ${className}` : 'relative'}
     >
-      <div data-scene-stage className={isStatic ? staticStageClass : pinnedStageClass}>
+      <div
+        data-scene-stage
+        className={
+          isStatic ? staticStageClass : progressMode === 'exit' ? exitStageClass : pinnedStageClass
+        }
+      >
         <SceneStageContext.Provider value={stage}>{children}</SceneStageContext.Provider>
       </div>
     </section>

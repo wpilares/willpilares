@@ -1,5 +1,6 @@
 import { Footer, Header } from '@components'
-import { AboutMe, Contact, Experience, Hero, Projects, Skills } from '@content'
+import { AboutMe, Contact, Experience, Projects, Skills } from '@content'
+import { ChapterRail, City, MoonProgress, Prologue } from '@journal'
 import { Mascot } from '@mascot/react'
 import { SceneProvider } from '@scenes'
 
@@ -12,7 +13,8 @@ export const App = () => {
         <div className="relative z-10">
           <Header />
           <main>
-            <Hero />
+            <Prologue />
+            <City />
             <AboutMe />
             <Skills />
             <Experience />
@@ -21,6 +23,8 @@ export const App = () => {
           </main>
           <Footer />
         </div>
+        <ChapterRail />
+        <MoonProgress />
         <Mascot />
       </div>
     </SceneProvider>

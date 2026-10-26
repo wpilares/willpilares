@@ -31,3 +31,17 @@ export const activeSceneIndex = (progresses: readonly number[]): number => {
   if (active !== -1) return active
   return lastCompleted !== -1 ? lastCompleted : 0
 }
+
+export type SceneCameraPath = {
+  readonly start: number
+  readonly end: number
+  readonly distance: number
+  readonly minDepth: number
+}
+
+export const descentOffset = (progress: number, depth: number, camera: SceneCameraPath): number => {
+  if (depth < camera.minDepth) return 0
+  const offset =
+    Math.round(-segment(progress, camera.start, camera.end) * camera.distance * depth * 100) / 100
+  return offset === 0 ? 0 : offset
+}

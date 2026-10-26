@@ -2,17 +2,6 @@
   "header": {
     "getInTouch": "Send a raven"
   },
-  "hero": {
-    "titleStart": "Software that",
-    "highlight": "holds up in production",
-    "description": "Software engineer and squad lead. I ship full-stack systems and lead the team that keeps them running.",
-    "downloadCV": "Download CV",
-    "availability": "Open to new opportunities",
-    "name": "Willber Pilares",
-    "role": "Software Engineer · Squad Lead",
-    "ctaContact": "Get in touch",
-    "scrollHint": "Scroll down"
-  },
   "about": {
     "statement": "I build the foundations other teams rely on.",
     "description": "From React interfaces to Python, Node.js and serverless backends on AWS. At Whitelion Technology I lead a squad of developers, own the shared component library and the Keycloak-based authentication platform, and work AI-first with Claude, OpenCode and MCP servers, with code review and automated tests keeping the bar high.",
@@ -161,5 +150,36 @@
     "rights": "All rights reserved.",
     "doATrick": "Do a trick",
     "sayHi": "Say hi"
+  },
+  "journal": {
+    "prologue": {
+      "hint": "Scroll to open the journal"
+    },
+    "city": {
+      "tagline": "Since 2019 I have been hunting what breaks in production.",
+      "ctaContact": "Send a raven",
+      "ctaCv": "Download the scroll",
+      "availability": "Open to senior roles"
+    },
+    "chapters": {
+      "hunter": {
+        "title": "Of the hunter"
+      },
+      "arms": {
+        "title": "Arms and crafts"
+      },
+      "hunts": {
+        "title": "Past hunts"
+      },
+      "lab": {
+        "title": "The current hunt"
+      },
+      "raven": {
+        "title": "Send a raven"
+      }
+    },
+    "nav": {
+      "label": "Journal chapters"
+    }
   }
 }

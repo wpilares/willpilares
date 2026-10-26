@@ -16,11 +16,7 @@ export const Header = () => {
 
   return (
     <header className="absolute left-0 right-0 top-0 z-50 py-5 text-parchment">
-      <div className="flex items-center justify-between gap-2 px-[var(--inline-inset)] md:gap-3">
-        <a href="#home" className="whitespace-nowrap font-blackletter text-2xl text-parchment">
-          Willber Pilares
-        </a>
-
+      <div className="flex items-center justify-end gap-2 px-[var(--inline-inset)] md:gap-3">
         <nav aria-label="Site actions" className="flex items-center gap-2 md:gap-3">
           <fieldset className="flex items-center rounded-full border border-gold/60 p-1 font-fell text-sm tracking-[0.14em]">
             <legend className="sr-only">Language</legend>

@@ -97,6 +97,25 @@ describe('Scene', () => {
     expect(stageOf(section)).not.toHaveClass('sticky')
   })
 
+  it('keeps an exit scene one viewport tall without pinning it', () => {
+    mockMatchMedia([])
+    const prologue = scenes.find((scene) => scene.id === 'prologue')
+    if (!prologue) throw new Error('prologue scene missing from the registry')
+    const { container } = render(
+      <MotionProvider>
+        <Scene meta={prologue} progressMode="exit">
+          <p>Ink</p>
+        </Scene>
+      </MotionProvider>
+    )
+    const section = container.querySelector('section')
+
+    if (!section) throw new Error('section not rendered')
+    expect(section.style.height).toBe('100svh')
+    expect(stageOf(section)).not.toHaveClass('sticky')
+    expect(stageOf(section)).toHaveClass('h-svh')
+  })
+
   it('reports a completed static scene as active', async () => {
     mockMatchMedia(['(prefers-reduced-motion: reduce)'])
     renderScene()

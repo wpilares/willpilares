@@ -15,6 +15,7 @@ export type MascotEvent =
   | { type: 'quip'; key: QuipKey }
   | { type: 'trick' }
   | { type: 'gesture'; name: GestureName }
+  | { type: 'travel'; anchor: string }
 
 export type MascotListener = (event: MascotEvent) => void
 

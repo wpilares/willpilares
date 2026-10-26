@@ -335,6 +335,13 @@
   .btn-ghost-gothic {
     @apply inline-flex items-center gap-2 rounded-full border border-gold/60 px-5 py-3 font-fell text-sm uppercase tracking-[0.14em] text-parchment transition-colors duration-300 hover:bg-gold/10;
   }
+
+  .wax-dot {
+    @apply inline-block h-2.5 w-2.5 rounded-full bg-blood;
+    box-shadow:
+      inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+      0 0 0 2px rgb(139 30 30 / 0.35);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

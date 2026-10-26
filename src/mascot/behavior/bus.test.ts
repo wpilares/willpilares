@@ -41,6 +41,16 @@ describe('createMascotBus', () => {
     expect(dropped).not.toHaveBeenCalled()
   })
 
+  it('carries travel events with their anchor', () => {
+    const bus = createMascotBus()
+    const listener = vi.fn()
+    bus.subscribe(listener)
+
+    bus.emit({ type: 'travel', anchor: 'skills' })
+
+    expect(listener).toHaveBeenCalledWith({ type: 'travel', anchor: 'skills' })
+  })
+
   it('exposes a shared singleton bus', () => {
     const listener = vi.fn()
     const unsubscribe = mascotBus.subscribe(listener)

@@ -2,17 +2,6 @@
   "header": {
     "getInTouch": "Envía un cuervo"
   },
-  "hero": {
-    "titleStart": "Software que",
-    "highlight": "rinde en producción",
-    "description": "Software engineer y squad lead. Entrego sistemas full-stack y lidero el equipo que los mantiene funcionando.",
-    "downloadCV": "Descargar CV",
-    "availability": "Disponible para nuevas oportunidades",
-    "name": "Willber Pilares",
-    "role": "Software Engineer · Squad Lead",
-    "ctaContact": "Hablemos",
-    "scrollHint": "Desliza hacia abajo"
-  },
   "about": {
     "statement": "Construyo las bases en las que se apoyan otros equipos.",
     "description": "Desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. En Whitelion Technology lidero un squad de desarrolladores, soy responsable de la biblioteca de componentes compartida y de la plataforma de autenticación basada en Keycloak, y trabajo con un enfoque AI-first con Claude, OpenCode y servidores MCP, con code review y pruebas automatizadas que mantienen el nivel alto.",
@@ -161,5 +150,36 @@
     "rights": "Todos los derechos reservados.",
     "doATrick": "Haz un truco",
     "sayHi": "Saluda"
+  },
+  "journal": {
+    "prologue": {
+      "hint": "Desliza para abrir el diario"
+    },
+    "city": {
+      "tagline": "Desde 2019 persigo lo que se rompe en producción.",
+      "ctaContact": "Envía un cuervo",
+      "ctaCv": "Descargar el pergamino",
+      "availability": "Disponible para roles senior"
+    },
+    "chapters": {
+      "hunter": {
+        "title": "Del cazador"
+      },
+      "arms": {
+        "title": "Armas y oficios"
+      },
+      "hunts": {
+        "title": "Cacerías pasadas"
+      },
+      "lab": {
+        "title": "La cacería actual"
+      },
+      "raven": {
+        "title": "Envía un cuervo"
+      }
+    },
+    "nav": {
+      "label": "Capítulos del diario"
+    }
   }
 }
