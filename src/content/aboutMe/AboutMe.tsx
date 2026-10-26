@@ -1,25 +1,7 @@
+import { BubbleLine } from '@components'
 import { useCountUp, useIntersectionObserver } from '@hooks'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { type HeroStat, heroStats, highlightData } from '@/constants'
-
-const bubbleComponents = { accent: <span className="text-blue" /> }
-
-interface BubbleLineProps {
-  i18nKey: string
-}
-
-const BubbleLine = ({ i18nKey }: BubbleLineProps) => {
-  const [ref, isVisible] = useIntersectionObserver<HTMLParagraphElement>({ threshold: 0.4 })
-
-  return (
-    <p
-      ref={ref}
-      className={`bubble-line reveal flex min-h-[36svh] items-center ${isVisible ? 'reveal-visible' : ''}`}
-    >
-      <Trans i18nKey={i18nKey} components={bubbleComponents} />
-    </p>
-  )
-}
 
 interface StatFigureProps {
   stat: HeroStat
