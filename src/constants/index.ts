@@ -1,4 +1,4 @@
-export { projectData } from './projects'
+export { netpulseProject } from './projects'
 export type { SkillCategoryKey, SkillPlate, SkillShelf } from './skills'
 export { skillShelves, techIconUrls } from './skills'
 export type { HeroStat } from './stats'

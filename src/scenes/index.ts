@@ -23,5 +23,6 @@ export { useSceneIsStatic, useSceneProgress, useSceneStage } from './SceneContex
 export { SceneLayer } from './SceneLayer'
 export { SceneProvider } from './SceneProvider'
 export { SceneReveal } from './SceneReveal'
+export { SceneWindow } from './SceneWindow'
 export { useActiveScene } from './useActiveScene'
 export { useStaticScenes } from './useStaticScenes'

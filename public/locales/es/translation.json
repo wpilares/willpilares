@@ -3,7 +3,6 @@
     "getInTouch": "Envía un cuervo"
   },
   "experience": {
-    "title": "Dónde he trabajado.",
     "companies": {
       "whitelion": {
         "position": "Software Engineer · Squad Lead",
@@ -43,61 +42,7 @@
           "Automaticé la generación de reportes con Python y desarrollé scripts de configuración para elementos de red, mejorando la eficiencia operativa."
         ]
       }
-    },
-    "current": "Actual"
-  },
-  "projects": {
-    "items": {
-      "netpulse": {
-        "title": "NetPulse",
-        "description": "Monitoreo de redes SDN en tiempo real: una red Mininet bajo un controlador OS-Ken envía telemetría de puertos a TimescaleDB; FastAPI expone KPIs, topología y alertas a un dashboard en React mediante WebSockets, con detección de anomalías por EWMA, alertas reconocibles e inyección de fallos programada.",
-        "lines": {
-          "one": "Este es <accent>NetPulse</accent>, una plataforma de monitoreo SDN en tiempo real que estoy construyendo.",
-          "two": "Una red Mininet bajo un <accent>controlador OS-Ken</accent> envía estadísticas de puertos a TimescaleDB cada cinco segundos.",
-          "three": "El dashboard muestra <accent>KPIs en vivo, la topología y el throughput por puerto</accent> mediante WebSockets.",
-          "four": "<accent>Baselines EWMA</accent> puntúan cada puerto; las anomalías abren alertas que puedes reconocer.",
-          "five": "La inyección de fallos lo demuestra: un host caído genera una <accent>alerta crítica de drop rate</accent> en un solo poll."
-        },
-        "facts": {
-          "poll": "intervalo de poll",
-          "alert": "hasta una alerta crítica",
-          "releases": "versiones publicadas"
-        }
-      },
-      "ecommerce": {
-        "title": "Plataforma E-Commerce",
-        "description": "Plataforma de comercio electrónico completa con carrito de compras, pasarela de pagos y panel de administración.",
-        "lines": {
-          "one": "Esta es una <accent>plataforma de e-commerce</accent> que construí de punta a punta.",
-          "two": "Desarrollé el <accent>carrito, el checkout y el panel de administración</accent>.",
-          "three": "Los pagos pasan por <accent>Stripe</accent> y los pedidos se mantienen sincronizados."
-        }
-      },
-      "scraping": {
-        "title": "Herramienta de Web Scraping",
-        "description": "Herramienta automatizada de web scraping para recolección y análisis de datos con reportes programados.",
-        "lines": {
-          "one": "Esta es una <accent>herramienta de web scraping</accent> para recolectar y analizar datos.",
-          "two": "Escribí los <accent>crawlers y el planificador</accent> que los ejecuta.",
-          "three": "Genera <accent>reportes programados</accent> sin intervención manual."
-        }
-      },
-      "chatbot": {
-        "title": "Chatbot con IA",
-        "description": "Aplicación de chatbot impulsada por IA para servicio al cliente con procesamiento de lenguaje natural.",
-        "lines": {
-          "one": "Este es un <accent>chatbot con IA</accent> para servicio al cliente.",
-          "two": "Construí el <accent>flujo de conversación y la capa de NLP</accent>.",
-          "three": "Responde en <accent>lenguaje natural</accent>, a cualquier hora."
-        }
-      }
-    },
-    "status": {
-      "inProgress": "En desarrollo"
-    },
-    "viewCode": "Ver código",
-    "viewProject": "Ver proyecto",
-    "allWork": "Todos los proyectos"
+    }
   },
   "contact": {
     "headline": "¿Construimos algo?",
@@ -179,6 +124,32 @@
         "databases": "Bases de datos",
         "ai": "Desarrollo asistido por IA"
       }
+    },
+    "hunts": {
+      "current": "Actual",
+      "readMore": "Leer el registro completo"
+    },
+    "lab": {
+      "name": "NetPulse",
+      "lines": {
+        "one": "Este es <accent>NetPulse</accent>, una plataforma de monitoreo SDN en tiempo real que estoy construyendo.",
+        "two": "Una red Mininet bajo un <accent>controlador OS-Ken</accent> envía estadísticas de puertos a TimescaleDB cada cinco segundos.",
+        "three": "El dashboard muestra <accent>KPIs en vivo, la topología y el throughput por puerto</accent> mediante WebSockets.",
+        "four": "<accent>Baselines EWMA</accent> puntúan cada puerto; las anomalías abren alertas que puedes reconocer.",
+        "five": "La inyección de fallos lo demuestra: un host caído genera una <accent>alerta crítica de drop rate</accent> en un solo poll."
+      },
+      "facts": {
+        "poll": "intervalo de poll",
+        "alert": "hasta una alerta crítica",
+        "releases": "versiones publicadas"
+      },
+      "gauges": "Lecturas",
+      "topology": "Topología: el switch s1 enlaza s2 y s3; s2 atiende a 10.0.0.1 y 10.0.0.2, s3 atiende a 10.0.0.3 y 10.0.0.4.",
+      "stack": "Forjado con",
+      "status": {
+        "inProgress": "En desarrollo"
+      },
+      "viewCode": "Ver el código"
     }
   }
 }

@@ -305,8 +305,10 @@
   }
 
   .chapter-numeral {
-    @apply font-blackletter text-gold;
+    @apply font-fell text-gold;
     font-size: clamp(3rem, 8vw, 7rem);
+    font-variant: normal;
+    letter-spacing: 0.04em;
     line-height: 1;
   }
 

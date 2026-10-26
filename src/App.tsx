@@ -1,6 +1,6 @@
 import { Footer, Header } from '@components'
-import { Contact, Experience, Projects } from '@content'
-import { Arms, ChapterRail, City, Hunter, MoonProgress, Prologue } from '@journal'
+import { Contact } from '@content'
+import { Arms, ChapterRail, City, Hunter, Hunts, Lab, MoonProgress, Prologue } from '@journal'
 import { Mascot } from '@mascot/react'
 import { SceneProvider } from '@scenes'
 
@@ -17,8 +17,8 @@ export const App = () => {
             <City />
             <Hunter />
             <Arms />
-            <Experience />
-            <Projects />
+            <Hunts />
+            <Lab />
             <Contact />
           </main>
           <Footer />

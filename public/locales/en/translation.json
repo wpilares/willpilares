@@ -3,7 +3,6 @@
     "getInTouch": "Send a raven"
   },
   "experience": {
-    "title": "Where I've worked.",
     "companies": {
       "whitelion": {
         "position": "Software Engineer · Squad Lead",
@@ -43,61 +42,7 @@
           "Automated report generation with Python and wrote configuration scripts for network elements, improving operational efficiency."
         ]
       }
-    },
-    "current": "Current"
-  },
-  "projects": {
-    "items": {
-      "netpulse": {
-        "title": "NetPulse",
-        "description": "Real-time SDN network monitoring: a Mininet network under an OS-Ken controller streams port telemetry into TimescaleDB; FastAPI serves KPIs, topology and alerts to a React dashboard over WebSockets, with EWMA anomaly detection, acknowledgeable alerts and scheduled fault injection.",
-        "lines": {
-          "one": "This is <accent>NetPulse</accent>, a real-time SDN monitoring platform I'm building.",
-          "two": "A Mininet network under an <accent>OS-Ken controller</accent> streams port stats into TimescaleDB every five seconds.",
-          "three": "The dashboard shows <accent>live KPIs, the topology and per-port throughput</accent> over WebSockets.",
-          "four": "<accent>EWMA baselines</accent> score every port; anomalies open alerts you can acknowledge.",
-          "five": "Fault injection proves it: a downed host raises a <accent>critical drop-rate alert</accent> within one poll."
-        },
-        "facts": {
-          "poll": "poll interval",
-          "alert": "to a critical alert",
-          "releases": "releases shipped"
-        }
-      },
-      "ecommerce": {
-        "title": "E-Commerce Platform",
-        "description": "Complete e-commerce platform with shopping cart, payment gateway, and admin panel.",
-        "lines": {
-          "one": "This is an <accent>e-commerce platform</accent> I built end to end.",
-          "two": "I shipped the <accent>cart, checkout and admin panel</accent> myself.",
-          "three": "Payments run through <accent>Stripe</accent> and orders stay in sync."
-        }
-      },
-      "scraping": {
-        "title": "Web Scraping Tool",
-        "description": "Automated web scraping tool for data collection and analysis with scheduled reports.",
-        "lines": {
-          "one": "This is a <accent>web scraping tool</accent> for data collection and analysis.",
-          "two": "I wrote the <accent>crawlers and the scheduler</accent> that runs them.",
-          "three": "It ships <accent>scheduled reports</accent> without anyone touching it."
-        }
-      },
-      "chatbot": {
-        "title": "AI Chatbot App",
-        "description": "AI-powered chatbot application for customer service with natural language processing.",
-        "lines": {
-          "one": "This is an <accent>AI chatbot</accent> for customer service.",
-          "two": "I built the <accent>conversation flow and the NLP layer</accent>.",
-          "three": "It answers in <accent>natural language</accent>, around the clock."
-        }
-      }
-    },
-    "status": {
-      "inProgress": "In progress"
-    },
-    "viewCode": "View code",
-    "viewProject": "View project",
-    "allWork": "All work"
+    }
   },
   "contact": {
     "headline": "Let's build something.",
@@ -179,6 +124,32 @@
         "databases": "Databases",
         "ai": "AI-Assisted Development"
       }
+    },
+    "hunts": {
+      "current": "Current",
+      "readMore": "Read the full record"
+    },
+    "lab": {
+      "name": "NetPulse",
+      "lines": {
+        "one": "This is <accent>NetPulse</accent>, a real-time SDN monitoring platform I'm building.",
+        "two": "A Mininet network under an <accent>OS-Ken controller</accent> streams port stats into TimescaleDB every five seconds.",
+        "three": "The dashboard shows <accent>live KPIs, the topology and per-port throughput</accent> over WebSockets.",
+        "four": "<accent>EWMA baselines</accent> score every port; anomalies open alerts you can acknowledge.",
+        "five": "Fault injection proves it: a downed host raises a <accent>critical drop-rate alert</accent> within one poll."
+      },
+      "facts": {
+        "poll": "poll interval",
+        "alert": "to a critical alert",
+        "releases": "releases shipped"
+      },
+      "gauges": "Readings",
+      "topology": "Topology: switch s1 links s2 and s3; s2 serves 10.0.0.1 and 10.0.0.2, s3 serves 10.0.0.3 and 10.0.0.4.",
+      "stack": "Forged with",
+      "status": {
+        "inProgress": "In progress"
+      },
+      "viewCode": "View the code"
     }
   }
 }

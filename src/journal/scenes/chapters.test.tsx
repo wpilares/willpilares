@@ -5,6 +5,8 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { Arms } from './Arms'
 import { Hunter } from './Hunter'
+import { Hunts } from './Hunts'
+import { Lab } from './Lab'
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),
@@ -89,5 +91,53 @@ describe('hunter and arms chapters', () => {
     fireEvent.focus(screen.getByRole('button', { name: 'Docker' }))
     unsubscribe()
     expect(events).toEqual([{ type: 'gesture', name: 'stretch' }])
+  })
+})
+
+const renderHuntsAndLab = () =>
+  render(
+    <MotionProvider>
+      <SceneProvider>
+        <Hunts />
+        <Lab />
+      </SceneProvider>
+    </MotionProvider>
+  )
+
+describe('past hunts and current hunt chapters', () => {
+  it('anchors the gallery at experience and the lab at projects in the inventor outfit', () => {
+    mockMatchMedia([])
+    const { container } = renderHuntsAndLab()
+    expect(container.querySelector('section#experience')).toHaveAttribute('data-scene', 'hunts')
+    const lab = container.querySelector('section#projects')
+    expect(lab).toHaveAttribute('data-scene', 'lab')
+    expect(lab).toHaveAttribute('data-mascot-outfit', 'inventor')
+  })
+
+  it('hangs one portrait per company in order and marks only the current employer', () => {
+    mockMatchMedia(['(prefers-reduced-motion: reduce)'])
+    const { container } = renderHuntsAndLab()
+    const portraits = [...container.querySelectorAll('[data-portrait]')].map((node) =>
+      node.getAttribute('data-portrait')
+    )
+    expect(portraits).toEqual(['whitelion', 'softtek', 'promitia', 'americaMovil'])
+    expect(screen.getAllByText('journal.hunts.current')).toHaveLength(1)
+    expect(screen.getByRole('heading', { name: 'Whitelion Technology' })).toBeInTheDocument()
+  })
+
+  it('writes the five lab entries, three gauges and the link to the code', () => {
+    mockMatchMedia(['(prefers-reduced-motion: reduce)'])
+    renderHuntsAndLab()
+    for (const line of ['one', 'two', 'three', 'four', 'five']) {
+      expect(screen.getByText(`journal.lab.lines.${line}`)).toBeInTheDocument()
+    }
+    expect(screen.getByText('journal.lab.facts.poll')).toBeInTheDocument()
+    expect(screen.getByText('journal.lab.facts.alert')).toBeInTheDocument()
+    expect(screen.getByText('journal.lab.facts.releases')).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'journal.lab.topology' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'journal.lab.viewCode' })).toHaveAttribute(
+      'href',
+      'https://github.com/wpilares/netpulse'
+    )
   })
 })
