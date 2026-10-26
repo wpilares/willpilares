@@ -23,6 +23,7 @@ export default {
       animation: {
         'fade-up': 'fadeUp 0.4s ease-out',
         'scroll-nudge': 'scrollNudge 1.6s ease-in-out infinite',
+        'float-soft': 'floatSoft 6s ease-in-out infinite',
       },
       keyframes: {
         fadeUp: {
@@ -32,6 +33,10 @@ export default {
         scrollNudge: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(0.35rem)' },
+        },
+        floatSoft: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-8px)' },
         },
       },
     },

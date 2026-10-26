@@ -1,3 +1,5 @@
+import { MaskedText, revealedClass, staggerIndex } from '@components'
+import { useIntersectionObserver } from '@hooks'
 import { mascotBus } from '@mascot'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -14,6 +16,8 @@ export const Contact = () => {
   const { t } = useTranslation()
   const [copied, setCopied] = useState(false)
   const resetTimer = useRef<number | undefined>(undefined)
+  const [contentRef, contentVisible] = useIntersectionObserver({ threshold: 0.2 })
+  const revealedToken = revealedClass(contentVisible)
 
   useEffect(() => () => window.clearTimeout(resetTimer.current), [])
 
@@ -57,16 +61,19 @@ export const Contact = () => {
       data-mascot-gesture="wave"
       className="bg-ink text-paper bg-grid grid-page relative min-h-svh content-start py-[18svh]"
     >
-      <div className="col-span-full pb-40 md:pb-48">
-        <h2 className="display-headline">{t('contact.headline')}</h2>
-        <p className="bubble-line mt-6 text-paper/80">{t('contact.availability')}</p>
+      <div ref={contentRef} className="col-span-full pb-40 md:pb-48">
+        <MaskedText as="h2" className="display-headline" text={t('contact.headline')} />
+        <p className={`pop ${revealedToken} bubble-line mt-6 text-paper/80`}>
+          {t('contact.availability')}
+        </p>
 
         <div className="mt-16 md:mt-24">
           <p className="label-mono text-paper/60">{t('contact.links.email')}</p>
           <button
             type="button"
             onClick={copyEmail}
-            className="mt-4 break-all text-left font-display text-2xl font-semibold tracking-tight underline decoration-2 underline-offset-8 transition-colors duration-300 hover:decoration-blue focus-visible:ring-offset-ink md:text-4xl"
+            className={`stagger-item ${revealedToken} mt-4 break-all text-left font-display text-2xl font-semibold tracking-tight underline decoration-2 underline-offset-8 hover:decoration-blue focus-visible:ring-offset-ink md:text-4xl`}
+            style={staggerIndex(0)}
           >
             {copied ? t('contact.copied') : email}
           </button>
@@ -75,9 +82,9 @@ export const Contact = () => {
           </p>
         </div>
 
-        <ul className="mt-10 flex flex-wrap gap-3">
-          {socialLinks.map((link) => (
-            <li key={link.href}>
+        <ul className={`${revealedToken} mt-10 flex flex-wrap gap-3`}>
+          {socialLinks.map((link, index) => (
+            <li key={link.href} className="stagger-item" style={staggerIndex(index + 1)}>
               <a
                 href={link.href}
                 target="_blank"

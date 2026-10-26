@@ -1,4 +1,5 @@
-import { Jobs } from '@components'
+import { Jobs, MaskedText, revealedClass } from '@components'
+import { useIntersectionObserver } from '@hooks'
 import { useTranslation } from 'react-i18next'
 import type { ExperienceData } from '@/types'
 import data from '../../../data.json'
@@ -10,6 +11,7 @@ const toStringList = (value: unknown): string[] =>
 
 export const Experience = () => {
   const { t } = useTranslation()
+  const [listRef, listVisible] = useIntersectionObserver<HTMLOListElement>({ threshold: 0.1 })
 
   return (
     <section
@@ -18,9 +20,12 @@ export const Experience = () => {
       data-mascot-gesture="idle"
       className="bg-stone text-ink bg-grid grid-page py-[16svh]"
     >
-      <h2 className="display-headline col-span-full">{t('experience.title')}</h2>
+      <MaskedText as="h2" className="display-headline col-span-full" text={t('experience.title')} />
 
-      <ol className="col-span-full mt-16 border-b border-ink/10 md:mt-24">
+      <ol
+        ref={listRef}
+        className={`${revealedClass(listVisible)} col-span-full mt-16 border-b border-ink/10 md:mt-24`}
+      >
         {companies.map((company, index) => {
           const translationPrefix = `experience.companies.${company.key}`
           const translatedCompany = {
@@ -32,7 +37,14 @@ export const Experience = () => {
             ),
           }
 
-          return <Jobs key={company.key} data={translatedCompany} isCurrent={index === 0} />
+          return (
+            <Jobs
+              key={company.key}
+              data={translatedCompany}
+              index={index}
+              isCurrent={index === 0}
+            />
+          )
         })}
       </ol>
     </section>

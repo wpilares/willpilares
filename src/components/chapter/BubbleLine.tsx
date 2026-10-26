@@ -7,9 +7,9 @@ export interface BubbleLineProps {
   minHeightClassName?: string
 }
 
-const revealClasses = (prefersReducedMotion: boolean, isVisible: boolean) => {
+const popClasses = (prefersReducedMotion: boolean, isVisible: boolean) => {
   if (prefersReducedMotion) return ''
-  return isVisible ? 'reveal reveal-visible' : 'reveal'
+  return isVisible ? 'pop is-revealed' : 'pop'
 }
 
 export const BubbleLine = ({
@@ -24,7 +24,7 @@ export const BubbleLine = ({
     <div className={`flex items-center ${minHeightClassName}`}>
       <p
         ref={ref}
-        className={`bubble-line max-w-[26ch] ${revealClasses(prefersReducedMotion, isVisible)}`}
+        className={`bubble-line max-w-[26ch] ${popClasses(prefersReducedMotion, isVisible)}`}
       >
         <Trans i18nKey={i18nKey} components={{ accent: <span className={accentClassName} /> }} />
       </p>

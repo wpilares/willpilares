@@ -1,3 +1,5 @@
+import { MaskedText, revealedClass, staggerIndex } from '@components'
+import { useIntersectionObserver } from '@hooks'
 import { useTranslation } from 'react-i18next'
 import { techIconUrls } from '@/constants/skills'
 
@@ -54,6 +56,7 @@ const categories = [
 
 export const Skills = () => {
   const { t } = useTranslation()
+  const [listRef, listVisible] = useIntersectionObserver<HTMLUListElement>({ threshold: 0.1 })
 
   return (
     <section
@@ -62,15 +65,19 @@ export const Skills = () => {
       data-mascot-gesture="cheer"
       className="bg-paper text-ink bg-grid grid-page py-[16svh]"
     >
-      <h2 className="display-headline col-span-full">{t('skills.title')}</h2>
+      <MaskedText as="h2" className="display-headline col-span-full" text={t('skills.title')} />
 
-      <ul className="col-span-full mt-16 border-b border-ink/10 md:mt-24">
-        {categories.map((category) => (
+      <ul
+        ref={listRef}
+        className={`${revealedClass(listVisible)} col-span-full mt-16 border-b border-ink/10 md:mt-24`}
+      >
+        {categories.map((category, index) => (
           <li
             key={category.key}
-            className="grid gap-x-[var(--gutter)] gap-y-4 border-t border-ink/10 py-7 md:grid-cols-12 md:py-9"
+            className="stagger-item group grid gap-x-[var(--gutter)] gap-y-4 border-t border-ink/10 py-7 hover:border-blue md:grid-cols-12 md:py-9"
+            style={staggerIndex(index)}
           >
-            <h3 className="font-display text-xl font-semibold tracking-tight md:col-span-3 md:text-2xl">
+            <h3 className="font-display text-xl font-semibold tracking-tight transition-transform duration-500 group-hover:translate-x-2 md:col-span-3 md:text-2xl">
               {t(`skills.categories.${category.key}`)}
             </h3>
 
