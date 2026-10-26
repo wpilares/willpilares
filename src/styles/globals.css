@@ -37,6 +37,103 @@
     scrollbar-color: #2c2833 #0b0a0f;
   }
 
+  canvas[data-cursor="glove-open"] {
+    cursor: grab;
+  }
+
+  canvas[data-cursor="glove-grip"] {
+    cursor: grabbing;
+  }
+
+  @media (pointer: fine) and (forced-colors: none) {
+    html {
+      cursor:
+        url("/cursors/quill.png") 1 1,
+        auto;
+    }
+
+    a[href],
+    button,
+    [role="button"],
+    summary,
+    label[for],
+    select,
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"],
+    input[type="checkbox"],
+    input[type="radio"] {
+      cursor:
+        url("/cursors/glove.png") 2 2,
+        pointer;
+    }
+
+    canvas[data-cursor="glove-open"] {
+      cursor:
+        url("/cursors/glove-open.png") 16 18,
+        grab;
+    }
+
+    canvas[data-cursor="glove-grip"] {
+      cursor:
+        url("/cursors/glove-grip.png") 16 16,
+        grabbing;
+    }
+
+    @supports (
+        cursor:
+          image-set(url("/cursors/quill.png") 1x) 1 1,
+          auto
+      ) {
+      html {
+        cursor:
+          image-set(url("/cursors/quill.png") 1x, url("/cursors/quill@2x.png") 2x) 1 1,
+          auto;
+      }
+
+      a[href],
+      button,
+      [role="button"],
+      summary,
+      label[for],
+      select,
+      input[type="button"],
+      input[type="submit"],
+      input[type="reset"],
+      input[type="checkbox"],
+      input[type="radio"] {
+        cursor:
+          image-set(url("/cursors/glove.png") 1x, url("/cursors/glove@2x.png") 2x) 2 2,
+          pointer;
+      }
+
+      canvas[data-cursor="glove-open"] {
+        cursor:
+          image-set(url("/cursors/glove-open.png") 1x, url("/cursors/glove-open@2x.png") 2x) 16 18,
+          grab;
+      }
+
+      canvas[data-cursor="glove-grip"] {
+        cursor:
+          image-set(url("/cursors/glove-grip.png") 1x, url("/cursors/glove-grip@2x.png") 2x) 16 16,
+          grabbing;
+      }
+    }
+  }
+
+  input:not([type="button"], [type="submit"], [type="reset"], [type="checkbox"], [type="radio"]),
+  textarea,
+  [contenteditable]:not([contenteditable="false"]) {
+    cursor: text;
+  }
+
+  :is(a, button, input, select, textarea, summary, label, [role="button"]):is(
+      :disabled,
+      [aria-disabled="true"]
+    ) {
+    cursor: not-allowed;
+  }
+
   body {
     @apply bg-night font-serif text-[1.125rem] leading-relaxed text-parchment antialiased;
   }

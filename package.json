@@ -13,6 +13,7 @@
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
     "ci": "biome ci --changed",
+    "cursors": "bun scripts/build-cursors.ts",
     "prepare": "husky"
   },
   "dependencies": {
