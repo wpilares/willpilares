@@ -1,3 +1,5 @@
+export type { BrowserMockupProps } from './BrowserMockup'
+export { BrowserMockup } from './BrowserMockup'
 export type { BubbleLineProps } from './BubbleLine'
 export { BubbleLine } from './BubbleLine'
 export type { ChapterProps } from './Chapter'
