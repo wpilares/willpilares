@@ -25,6 +25,8 @@
       "@hooks/*": ["src/hooks/*"],
       "@mascot": ["src/mascot/index.ts"],
       "@mascot/*": ["src/mascot/*"],
+      "@scenes": ["src/scenes/index.ts"],
+      "@scenes/*": ["src/scenes/*"],
       "@styles/*": ["src/styles/*"],
       "@assets": ["src/assets/index.ts"],
       "@assets/*": ["src/assets/*"],
