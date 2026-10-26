@@ -44,16 +44,6 @@
       }
     }
   },
-  "contact": {
-    "headline": "¿Construimos algo?",
-    "availability": "Abierto a roles senior y problemas difíciles.",
-    "copied": "¡Copiado!",
-    "links": {
-      "email": "Email",
-      "github": "GitHub",
-      "linkedin": "LinkedIn"
-    }
-  },
   "mascot": {
     "quips": {
       "hello": "Miau. Soy el familiar de Will. Baja y te alumbro el camino.",
@@ -64,13 +54,9 @@
       "scrollBack": "¿Volviste? Prrr.",
       "copied": "El cuervo ya partió.",
       "trick": "Contempla.",
-      "sleepy": "¿Sigues ahí? Me echaré una siesta."
+      "sleepy": "¿Sigues ahí? Me echaré una siesta.",
+      "purr": "Prrrr."
     }
-  },
-  "footer": {
-    "rights": "Todos los derechos reservados.",
-    "doATrick": "Haz un truco",
-    "sayHi": "Saluda"
   },
   "journal": {
     "prologue": {
@@ -150,6 +136,40 @@
         "inProgress": "En desarrollo"
       },
       "viewCode": "Ver el código"
+    },
+    "archive": {
+      "label": "Del archivo",
+      "title": "Cacerías por venir",
+      "comingSoon": "Próximamente",
+      "volumes": {
+        "designSystem": {
+          "title": "Un design system",
+          "note": "Tokens, componentes y documentación compartidos entre productos."
+        },
+        "mcp": {
+          "title": "Un servidor MCP con skills propias",
+          "note": "Herramientas para que los agentes de IA trabajen en codebases reales."
+        },
+        "identity": {
+          "title": "Una plataforma de identidad multi-tenant",
+          "note": "SSO y control de acceso con Keycloak para muchos tenants."
+        }
+      }
+    },
+    "raven": {
+      "headline": "¿Construimos algo?",
+      "availability": "Abierto a roles senior y problemas difíciles.",
+      "copied": "El cuervo ya partió",
+      "links": {
+        "email": "Email",
+        "github": "GitHub",
+        "linkedin": "LinkedIn"
+      }
+    },
+    "epilogue": {
+      "end": "Fin del diario",
+      "trick": "Haz un truco",
+      "pet": "Acaricia al gato"
     }
   }
 }
