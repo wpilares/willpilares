@@ -48,7 +48,13 @@ export const Contact = () => {
   ]
 
   return (
-    <section id="contact" className="px-4 py-20 sm:px-6 sm:py-28" ref={ref}>
+    <section
+      id="contact"
+      data-mascot="outro"
+      data-mascot-gesture="wave"
+      className="px-4 py-20 sm:px-6 sm:py-28"
+      ref={ref}
+    >
       <div className="mx-auto max-w-5xl">
         <SectionTitle title={t('contact.title')} subtitle={t('contact.subtitle')} />
 

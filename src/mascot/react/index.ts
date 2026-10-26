@@ -1,0 +1,7 @@
+export type { MascotEvent, QuipKey } from '../behavior/bus'
+export { mascotBus } from '../behavior/bus'
+export { Mascot } from './Mascot'
+export type { QuipBubbleProps } from './QuipBubble'
+export { QuipBubble } from './QuipBubble'
+export type { UseMascotOptions, UseMascotResult } from './useMascot'
+export { useMascot } from './useMascot'

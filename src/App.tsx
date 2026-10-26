@@ -1,5 +1,6 @@
 import { Footer, Header } from '@components'
 import { AboutMe, Contact, Experience, Hero, Projects, Skills } from '@content'
+import { Mascot } from '@mascot/react'
 
 export const App = () => {
   return (
@@ -14,6 +15,7 @@ export const App = () => {
         <Contact />
       </main>
       <Footer />
+      <Mascot />
     </div>
   )
 }

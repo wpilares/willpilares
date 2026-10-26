@@ -1,0 +1,138 @@
+import { fireEvent, render } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { Mascot } from './Mascot'
+
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: (key: string) => key }),
+}))
+
+const observe = vi.fn()
+const disconnect = vi.fn()
+
+class MockIntersectionObserver implements Partial<IntersectionObserver> {
+  observe = observe
+  unobserve = vi.fn()
+  disconnect = disconnect
+}
+
+const originalMatchMedia = window.matchMedia
+
+const mockMatchMedia = (matches: (query: string) => boolean) => {
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    configurable: true,
+    value: vi.fn().mockImplementation((query: string) => ({
+      matches: matches(query),
+      media: query,
+      onchange: null,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })),
+  })
+}
+
+beforeEach(() => {
+  vi.clearAllMocks()
+  vi.stubGlobal('IntersectionObserver', MockIntersectionObserver)
+  vi.stubGlobal('requestAnimationFrame', vi.fn().mockReturnValue(1))
+  vi.stubGlobal('cancelAnimationFrame', vi.fn())
+  vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(null)
+})
+
+afterEach(() => {
+  vi.unstubAllGlobals()
+  vi.restoreAllMocks()
+  Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    configurable: true,
+    value: originalMatchMedia,
+  })
+})
+
+const queryCanvas = (container: HTMLElement) => container.querySelector('canvas')
+
+describe('Mascot', () => {
+  it('renders nothing when matchMedia is unavailable', () => {
+    Object.defineProperty(window, 'matchMedia', {
+      writable: true,
+      configurable: true,
+      value: undefined,
+    })
+
+    const { container } = render(<Mascot />)
+
+    expect(container).toBeEmptyDOMElement()
+  })
+
+  it('renders a hidden canvas and survives an unavailable renderer', () => {
+    mockMatchMedia(() => false)
+
+    const { container } = render(<Mascot />)
+    const canvas = queryCanvas(container)
+
+    expect(canvas).not.toBeNull()
+    expect(canvas).toHaveAttribute('aria-hidden', 'true')
+    expect(canvas?.style.cursor).toBe('grab')
+    expect(canvas?.style.imageRendering).toBe('pixelated')
+    expect(canvas?.width).toBe(24 * 3)
+    expect(canvas?.height).toBe(32 * 3)
+    expect(observe).not.toHaveBeenCalled()
+    expect(window.requestAnimationFrame).toHaveBeenCalled()
+  })
+
+  it('uses the desktop scale above 768 px', () => {
+    mockMatchMedia((query) => query === '(min-width: 768px)')
+
+    const { container } = render(<Mascot />)
+
+    expect(queryCanvas(container)?.width).toBe(24 * 4)
+  })
+
+  it('observes every section with a data-mascot attribute', () => {
+    mockMatchMedia(() => false)
+    const section = document.createElement('section')
+    section.setAttribute('data-mascot', 'left')
+    document.body.appendChild(section)
+
+    render(<Mascot />)
+
+    expect(observe).toHaveBeenCalledWith(section)
+    section.remove()
+  })
+
+  it('shows the hello quip on mount through a polite status region', () => {
+    mockMatchMedia(() => false)
+
+    const { getByRole } = render(<Mascot />)
+
+    expect(getByRole('status')).toHaveTextContent('mascot.quips.hello')
+  })
+
+  it('does not attach pointer handlers or an animation loop under reduced motion', () => {
+    mockMatchMedia((query) => query === '(prefers-reduced-motion: reduce)')
+
+    const { container } = render(<Mascot />)
+    const canvas = queryCanvas(container)
+    if (canvas === null) throw new Error('canvas missing')
+
+    fireEvent.pointerDown(canvas, { clientX: 10, clientY: 10, pointerId: 1 })
+    fireEvent.pointerMove(canvas, { clientX: 12, clientY: 12, pointerId: 1 })
+
+    expect(canvas.style.cursor).not.toBe('grab')
+    expect(canvas.style.cursor).not.toBe('grabbing')
+    expect(canvas.style.pointerEvents).toBe('none')
+    expect(window.requestAnimationFrame).not.toHaveBeenCalled()
+  })
+
+  it('disconnects the section observer on unmount', () => {
+    mockMatchMedia(() => false)
+
+    const { unmount } = render(<Mascot />)
+    unmount()
+
+    expect(disconnect).toHaveBeenCalled()
+  })
+})

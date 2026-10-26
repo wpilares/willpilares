@@ -30,7 +30,12 @@ export const Experience = () => {
   const { t } = useTranslation()
 
   return (
-    <section id="experience" className="bg-stone px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+    <section
+      id="experience"
+      data-mascot="badge"
+      data-mascot-gesture="idle"
+      className="bg-stone px-4 py-20 sm:px-6 sm:py-28 lg:px-8"
+    >
       <div className="mx-auto max-w-4xl">
         <SectionTitle title={t('experience.title')} subtitle={t('experience.subtitle')} />
 

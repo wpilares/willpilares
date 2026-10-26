@@ -133,6 +133,19 @@
       "linkedin": "LinkedIn"
     }
   },
+  "mascot": {
+    "quips": {
+      "hello": "Hola, soy el compañero de Will. Baja y te muestro todo.",
+      "grabHint": "Psst. Mantenme pulsado para levantarme.",
+      "held": "¡Eh, con cuidado!",
+      "released": "Uf. De vuelta al trabajo.",
+      "mobile": "Oh, modo móvil.",
+      "scrollBack": "Hola de nuevo, has vuelto.",
+      "copied": "¡Copiado! Hablamos pronto.",
+      "trick": "¡Tachán!",
+      "sleepy": "¿Sigues ahí?"
+    }
+  },
   "footer": {
     "madeWith": "Hecho con",
     "rights": "Todos los derechos reservados."
