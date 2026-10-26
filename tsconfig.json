@@ -28,6 +28,8 @@
       "@scenes": ["src/scenes/index.ts"],
       "@scenes/*": ["src/scenes/*"],
       "@styles/*": ["src/styles/*"],
+      "@backdrops": ["src/backdrops/index.ts"],
+      "@backdrops/*": ["src/backdrops/*"],
       "@assets": ["src/assets/index.ts"],
       "@assets/*": ["src/assets/*"],
       "@utils": ["src/utils/index.ts"],
