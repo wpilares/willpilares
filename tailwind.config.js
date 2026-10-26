@@ -22,11 +22,16 @@ export default {
       },
       animation: {
         'fade-up': 'fadeUp 0.4s ease-out',
+        'scroll-nudge': 'scrollNudge 1.6s ease-in-out infinite',
       },
       keyframes: {
         fadeUp: {
           '0%': { transform: 'translateY(8px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        scrollNudge: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(0.35rem)' },
         },
       },
     },
