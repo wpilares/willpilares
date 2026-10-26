@@ -1,5 +1,3 @@
-export { AboutMe } from './aboutMe/AboutMe'
 export { Contact } from './contact/Contact'
 export { Experience } from './experience/Experience'
 export { Projects } from './projects/Projects'
-export { Skills } from './skills/Skills'

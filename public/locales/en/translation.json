@@ -2,30 +2,6 @@
   "header": {
     "getInTouch": "Send a raven"
   },
-  "about": {
-    "statement": "I build the foundations other teams rely on.",
-    "description": "From React interfaces to Python, Node.js and serverless backends on AWS. At Whitelion Technology I lead a squad of developers, own the shared component library and the Keycloak-based authentication platform, and work AI-first with Claude, OpenCode and MCP servers, with code review and automated tests keeping the bar high.",
-    "lines": {
-      "one": "For five years I have shipped <accent>backend and full-stack systems</accent> that stay fast under real traffic.",
-      "two": "Today I lead a squad and <accent>pair daily with AI tools</accent> to move faster without lowering the bar."
-    },
-    "stats": {
-      "years": "Years of experience",
-      "sso": "Apps secured with SSO",
-      "library": "Projects on my UI library",
-      "squad": "Devs in my squad"
-    }
-  },
-  "skills": {
-    "title": "What I work with.",
-    "categories": {
-      "frontend": "Frontend",
-      "backend": "Backend",
-      "cloud": "Cloud & DevOps",
-      "databases": "Databases",
-      "ai": "AI-Assisted Development"
-    }
-  },
   "experience": {
     "title": "Where I've worked.",
     "companies": {
@@ -180,6 +156,29 @@
     },
     "nav": {
       "label": "Journal chapters"
+    },
+    "hunter": {
+      "statement": "I build the foundations other teams rely on.",
+      "description": "From React interfaces to Python, Node.js and serverless backends on AWS. At Whitelion Technology I lead a squad of developers, own the shared component library and the Keycloak-based authentication platform, and work AI-first with Claude, OpenCode and MCP servers, with code review and automated tests keeping the bar high.",
+      "notes": {
+        "one": "For five years I have shipped <accent>backend and full-stack systems</accent> that stay fast under real traffic.",
+        "two": "Today I lead a squad and <accent>pair daily with AI tools</accent> to move faster without lowering the bar."
+      },
+      "stats": {
+        "years": "Years of experience",
+        "sso": "Apps secured with SSO",
+        "library": "Projects on my UI library",
+        "squad": "Devs in my squad"
+      }
+    },
+    "arms": {
+      "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "cloud": "Cloud & DevOps",
+        "databases": "Databases",
+        "ai": "AI-Assisted Development"
+      }
     }
   }
 }
