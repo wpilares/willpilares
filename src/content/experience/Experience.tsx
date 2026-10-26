@@ -17,8 +17,8 @@ const TimelineItem = ({ children, index }: { children: ReactNode; index: number 
   return (
     <li ref={ref} className={`reveal relative pl-8 sm:pl-14 ${isVisible ? 'reveal-visible' : ''}`}>
       <span
-        className={`absolute left-0.5 top-8 z-10 h-5 w-5 rounded-full border-4 border-light-bg-secondary bg-violet-500 dark:border-dark-bg-secondary sm:left-1.5 ${
-          isCurrent ? 'shadow-[0_0_0_4px_rgba(139,92,246,0.25)]' : 'shadow-md shadow-violet-500/30'
+        className={`absolute left-0.5 top-8 z-10 h-5 w-5 rounded-full border-4 border-stone bg-blue sm:left-1.5 ${
+          isCurrent ? 'shadow-[0_0_0_4px_rgba(34,97,233,0.25)]' : 'shadow-md shadow-blue/30'
         }`}
       />
       {children}
@@ -30,15 +30,12 @@ export const Experience = () => {
   const { t } = useTranslation()
 
   return (
-    <section
-      id="experience"
-      className="bg-light-bg-secondary px-4 py-20 dark:bg-dark-bg-secondary sm:px-6 sm:py-28 lg:px-8"
-    >
+    <section id="experience" className="bg-stone px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
       <div className="mx-auto max-w-4xl">
         <SectionTitle title={t('experience.title')} subtitle={t('experience.subtitle')} />
 
         <div className="relative">
-          <div className="absolute bottom-0 left-3 top-2 w-px bg-gradient-to-b from-violet-500 via-violet-500/40 to-transparent sm:left-4" />
+          <div className="absolute bottom-0 left-3 top-2 w-px bg-gradient-to-b from-blue via-blue/40 to-transparent sm:left-4" />
 
           <ol className="space-y-8 sm:space-y-10">
             {companies.map((company, index) => {

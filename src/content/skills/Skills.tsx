@@ -63,11 +63,7 @@ export const Skills = () => {
   const activeCategory = categories[activeTab]
 
   return (
-    <section
-      id="skills"
-      className="bg-light-bg-secondary px-4 py-20 dark:bg-dark-bg-secondary sm:px-6 sm:py-28 lg:px-8"
-      ref={ref}
-    >
+    <section id="skills" className="bg-stone px-4 py-20 sm:px-6 sm:py-28 lg:px-8" ref={ref}>
       <div className="mx-auto max-w-5xl">
         <SectionTitle title={t('skills.title')} subtitle={t('skills.subtitle')} />
 
@@ -81,8 +77,8 @@ export const Skills = () => {
               onClick={() => setActiveTab(index)}
               className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 sm:px-5 ${
                 activeTab === index
-                  ? 'bg-violet-600 text-white shadow-lg shadow-violet-500/25 dark:bg-violet-500'
-                  : 'border border-light-border bg-light-bg-card text-light-text-secondary hover:border-violet-500/50 hover:text-violet-600 dark:border-dark-border dark:bg-dark-bg-card dark:text-dark-text-secondary dark:hover:border-violet-500/50 dark:hover:text-violet-400'
+                  ? 'bg-ink text-paper'
+                  : 'border border-ink/10 bg-stone text-ink/70 hover:border-ink hover:text-ink'
               }`}
             >
               {t(`skills.categories.${cat.key}`)}
@@ -105,9 +101,7 @@ export const Skills = () => {
                   className="h-7 w-7 flex-shrink-0 object-contain"
                   loading="lazy"
                 />
-                <span className="truncate text-sm font-medium text-light-text-primary dark:text-dark-text-primary">
-                  {skill.name}
-                </span>
+                <span className="truncate text-sm font-medium text-ink">{skill.name}</span>
               </div>
             ))}
           </div>

@@ -3,7 +3,7 @@ import { AboutMe, Contact, Experience, Hero, Projects, Skills } from '@content'
 
 export const App = () => {
   return (
-    <div className="min-h-screen bg-light-bg-primary transition-colors duration-300 dark:bg-dark-bg-primary">
+    <div className="min-h-screen bg-paper">
       <Header />
       <main>
         <Hero />
