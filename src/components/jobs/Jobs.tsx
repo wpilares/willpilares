@@ -75,7 +75,10 @@ export const Jobs = ({ data, isCurrent = false }: JobsProps) => {
         </p>
         <div className="flex flex-wrap gap-2">
           {data.stack.map((tech) => (
-            <span key={tech} className="badge">
+            <span
+              key={tech}
+              className="rounded-full border border-ink/10 px-3 py-1 text-xs font-medium text-ink/70"
+            >
               {tech}
             </span>
           ))}

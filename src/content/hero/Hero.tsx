@@ -39,7 +39,7 @@ const HeroStatCard = ({ stat, label, start }: HeroStatCardProps) => {
 
   return (
     <div className="card flex flex-col items-center justify-center px-3 py-5 text-center sm:px-4">
-      <span className="gradient-text text-3xl font-bold tabular-nums sm:text-4xl">
+      <span className="text-blue text-3xl font-bold tabular-nums sm:text-4xl">
         {value}
         {stat.suffix}
       </span>
@@ -97,7 +97,7 @@ export const Hero = () => {
               className={`${revealClass} mt-6 max-w-full break-words text-2xl font-bold leading-tight text-light-text-primary dark:text-dark-text-primary sm:text-3xl lg:text-4xl`}
               style={revealDelay(200)}
             >
-              {t('hero.titleStart')} <span className="gradient-text">{t('hero.highlight')}</span>
+              {t('hero.titleStart')} <span className="text-blue">{t('hero.highlight')}</span>
             </p>
 
             <p
@@ -111,14 +111,14 @@ export const Hero = () => {
               className={`${revealClass} mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start`}
               style={revealDelay(300)}
             >
-              <a href="#contact" className="btn-primary inline-flex items-center gap-2">
+              <a href="#contact" className="btn-primary">
                 {t('hero.ctaContact')}
                 <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="#experience" className="btn-secondary inline-flex items-center">
+              <a href="#experience" className="btn-ghost">
                 {t('hero.ctaExperience')}
               </a>
-              <a href={cvPdf} download className="btn-ghost inline-flex items-center gap-2">
+              <a href={cvPdf} download className="btn-ghost">
                 <Download className="h-4 w-4" />
                 {t('hero.downloadCV')}
               </a>
