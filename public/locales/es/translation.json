@@ -4,8 +4,8 @@
   },
   "hero": {
     "titleStart": "Software que",
-    "highlight": "aguanta en producción",
-    "description": "Software engineer y squad lead. Entrego sistemas full-stack y lidero el equipo que los mantiene en marcha.",
+    "highlight": "rinde en producción",
+    "description": "Software engineer y squad lead. Entrego sistemas full-stack y lidero el equipo que los mantiene funcionando.",
     "downloadCV": "Descargar CV",
     "availability": "Disponible para nuevas oportunidades",
     "name": "Willber Pilares",
@@ -15,10 +15,10 @@
   },
   "about": {
     "statement": "Construyo las bases en las que se apoyan otros equipos.",
-    "description": "Desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. En Whitelion Technology lidero un squad de desarrolladores, soy responsable de la biblioteca de componentes compartida y de la plataforma de autenticación basada en Keycloak, y trabajo AI-first con Claude, OpenCode y servidores MCP, con code review y pruebas automatizadas que mantienen el listón alto.",
+    "description": "Desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. En Whitelion Technology lidero un squad de desarrolladores, soy responsable de la biblioteca de componentes compartida y de la plataforma de autenticación basada en Keycloak, y trabajo con un enfoque AI-first con Claude, OpenCode y servidores MCP, con code review y pruebas automatizadas que mantienen el nivel alto.",
     "lines": {
       "one": "Llevo cinco años entregando <accent>sistemas backend y full-stack</accent> que se mantienen rápidos con tráfico real.",
-      "two": "Hoy lidero un squad y <accent>trabajo a diario con herramientas de IA</accent> para avanzar más rápido sin bajar el listón."
+      "two": "Hoy lidero un squad y <accent>trabajo a diario con herramientas de IA</accent> para avanzar más rápido sin bajar el nivel."
     },
     "stats": {
       "years": "Años de experiencia",
@@ -140,7 +140,7 @@
   "mascot": {
     "quips": {
       "hello": "Hola, soy el compañero de Will. Baja y te muestro todo.",
-      "grabHint": "Psst. Mantén pulsado para levantarme.",
+      "grabHint": "Psst. Mantén presionado para levantarme.",
       "held": "¡Eh, con cuidado!",
       "released": "Uf. De vuelta al trabajo.",
       "mobile": "Uy, modo móvil.",
