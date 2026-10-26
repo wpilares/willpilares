@@ -64,7 +64,7 @@
     input[type="checkbox"],
     input[type="radio"] {
       cursor:
-        url("/cursors/glove.png") 2 2,
+        url("/cursors/glove.png") 12 0,
         pointer;
     }
 
@@ -103,7 +103,7 @@
       input[type="checkbox"],
       input[type="radio"] {
         cursor:
-          image-set(url("/cursors/glove.png") 1x, url("/cursors/glove@2x.png") 2x) 2 2,
+          image-set(url("/cursors/glove.png") 1x, url("/cursors/glove@2x.png") 2x) 12 0,
           pointer;
       }
 

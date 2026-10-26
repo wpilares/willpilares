@@ -70,12 +70,14 @@ describe('cursor art', () => {
     })
   })
 
-  it('keeps pointer hotspots at the top-left tip and grip hotspots near the centre', () => {
+  it('keeps the quill tip top-left, the pointing fingertip on top and grip hotspots near the centre', () => {
     const [quill, glove, open, grip] = cursors
     expect(quill?.hotspot.x).toBeLessThan(6)
     expect(quill?.hotspot.y).toBeLessThan(6)
-    expect(glove?.hotspot.x).toBeLessThan(8)
-    expect(glove?.hotspot.y).toBeLessThan(8)
+    if (glove === undefined) throw new Error('glove missing')
+    const column = glove.rows.map((row) => row[glove.hotspot.x] ?? CLEAR_PIXEL)
+    expect(column.findIndex((character) => character !== CLEAR_PIXEL)).toBe(glove.hotspot.y)
+    expect(glove.hotspot.y).toBeLessThan(3)
     for (const centred of [open, grip]) {
       expect(centred?.hotspot.x).toBeGreaterThan(10)
       expect(centred?.hotspot.x).toBeLessThan(22)
