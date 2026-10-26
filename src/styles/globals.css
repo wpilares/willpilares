@@ -108,7 +108,7 @@
   }
 
   .scroll-arrow {
-    animation: scroll-nudge 1.6s ease-in-out infinite;
+    @apply animate-scroll-nudge;
   }
 
   .btn-primary {
@@ -127,17 +127,6 @@
 
   .reveal-visible {
     @apply translate-y-0 opacity-100;
-  }
-}
-
-@keyframes scroll-nudge {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(0.35rem);
   }
 }
 
