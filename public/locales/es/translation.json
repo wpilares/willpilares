@@ -47,7 +47,6 @@
   },
   "skills": {
     "title": "Habilidades técnicas",
-    "subtitle": "Tecnologías y herramientas que uso para construir soluciones de alta calidad",
     "categories": {
       "frontend": "Frontend",
       "backend": "Backend",
@@ -58,7 +57,6 @@
   },
   "experience": {
     "title": "Experiencia laboral",
-    "subtitle": "Trayectoria profesional entregando soluciones impactantes",
     "companies": {
       "whitelion": {
         "position": "Software Engineer · Squad Lead",
@@ -148,10 +146,9 @@
     "allWork": "Todo el trabajo"
   },
   "contact": {
-    "title": "Hablemos",
-    "subtitle": "Abierto a colaboraciones y nuevas oportunidades",
-    "directMessage": "¿Prefieres enviar un mensaje directo?",
-    "sendEmail": "Enviar correo",
+    "headline": "¿Tienes un proyecto?",
+    "availability": "Estoy aceptando nuevos proyectos.",
+    "copied": "¡Copiado!",
     "links": {
       "email": "Email",
       "github": "GitHub",
@@ -172,7 +169,8 @@
     }
   },
   "footer": {
-    "madeWith": "Hecho con",
-    "rights": "Todos los derechos reservados."
+    "rights": "Todos los derechos reservados.",
+    "doATrick": "Haz un truco",
+    "sayHi": "Saluda"
   }
 }

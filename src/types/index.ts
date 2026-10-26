@@ -8,5 +8,4 @@ export type {
   ProjectStatus,
   TextTone,
 } from './projects.types'
-export type { SectionTitleProps } from './section.types'
 export type { SkillCategory, SkillItem } from './skills.types'
