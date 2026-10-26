@@ -1,0 +1,21 @@
+{
+  "name": "Willber Pilares",
+  "short_name": "Willber",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "theme_color": "#0b0a0f",
+  "background_color": "#0b0a0f",
+  "display": "browser"
+}
