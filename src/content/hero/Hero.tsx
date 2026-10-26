@@ -57,6 +57,8 @@ export const Hero = () => {
     <section
       id="home"
       ref={ref}
+      data-mascot="hero"
+      data-mascot-gesture="wave"
       className="relative flex min-h-screen items-center overflow-hidden px-4 pb-16 pt-28 sm:px-6 lg:px-8"
     >
       <div className="pointer-events-none absolute -right-32 top-24 h-72 w-72 rounded-full bg-blue/10 blur-3xl sm:h-96 sm:w-96" />

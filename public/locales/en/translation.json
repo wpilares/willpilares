@@ -133,6 +133,19 @@
       "linkedin": "LinkedIn"
     }
   },
+  "mascot": {
+    "quips": {
+      "hello": "Hi, I'm Will's sidekick. Scroll down and I'll show you around.",
+      "grabHint": "Psst. Hold me to pick me up.",
+      "held": "Whoa, careful!",
+      "released": "Phew. Back to work.",
+      "mobile": "Ooh, mobile mode.",
+      "scrollBack": "Oh hi, you're back.",
+      "copied": "Copied! Talk soon.",
+      "trick": "Ta-da!",
+      "sleepy": "Still there?"
+    }
+  },
   "footer": {
     "madeWith": "Made with",
     "rights": "All rights reserved."

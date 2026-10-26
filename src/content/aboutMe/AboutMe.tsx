@@ -9,7 +9,13 @@ export const AboutMe = () => {
   const revealClass = `reveal ${isVisible ? 'reveal-visible' : ''}`
 
   return (
-    <section id="about" className="px-4 py-20 sm:px-6 sm:py-28 lg:px-8" ref={ref}>
+    <section
+      id="about"
+      data-mascot="left"
+      data-mascot-gesture="think"
+      className="px-4 py-20 sm:px-6 sm:py-28 lg:px-8"
+      ref={ref}
+    >
       <div className="mx-auto max-w-5xl">
         <SectionTitle title={t('about.title')} />
 

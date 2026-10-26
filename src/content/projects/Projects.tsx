@@ -9,7 +9,14 @@ export const Projects = () => {
   const { t } = useTranslation()
 
   return (
-    <section id="projects" className="px-4 py-20 sm:px-6 sm:py-28 lg:px-8" ref={ref}>
+    <section
+      id="projects"
+      data-mascot="right"
+      data-mascot-gesture="thumbs"
+      data-mascot-outfit="netpulse"
+      className="px-4 py-20 sm:px-6 sm:py-28 lg:px-8"
+      ref={ref}
+    >
       <div className="mx-auto max-w-5xl">
         <SectionTitle title={t('projects.title')} />
 

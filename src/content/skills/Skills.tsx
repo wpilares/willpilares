@@ -63,7 +63,13 @@ export const Skills = () => {
   const activeCategory = categories[activeTab]
 
   return (
-    <section id="skills" className="bg-stone px-4 py-20 sm:px-6 sm:py-28 lg:px-8" ref={ref}>
+    <section
+      id="skills"
+      data-mascot="left"
+      data-mascot-gesture="cheer"
+      className="bg-stone px-4 py-20 sm:px-6 sm:py-28 lg:px-8"
+      ref={ref}
+    >
       <div className="mx-auto max-w-5xl">
         <SectionTitle title={t('skills.title')} subtitle={t('skills.subtitle')} />
 
