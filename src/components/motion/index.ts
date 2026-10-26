@@ -1,5 +1,6 @@
 export type { MaskedTextProps } from './MaskedText'
 export { MaskedText } from './MaskedText'
+export { MotionProvider } from './MotionProvider'
 export type { MotionVars } from './motionVars'
 export { baseDelay, revealedClass, staggerIndex } from './motionVars'
 export { useRevealOnMount } from './useRevealOnMount'

@@ -1,5 +1,6 @@
-@import "@fontsource-variable/space-grotesk";
-@import "@fontsource-variable/funnel-display";
+@import "@fontsource/unifrakturmaguntia";
+@import "@fontsource/im-fell-english";
+@import "@fontsource-variable/eb-garamond";
 
 @tailwind base;
 @tailwind components;
@@ -35,11 +36,15 @@
   a:focus-visible,
   button:focus-visible,
   [tabindex]:focus-visible {
-    @apply outline-none ring-2 ring-blue ring-offset-2 ring-offset-paper;
+    @apply outline-none ring-2 ring-gold ring-offset-2 ring-offset-night;
+  }
+
+  html {
+    scrollbar-color: #2c2833 #0b0a0f;
   }
 
   body {
-    @apply bg-paper font-sans text-ink antialiased;
+    @apply bg-night font-serif text-[1.125rem] leading-relaxed text-parchment antialiased;
   }
 
   body ::-webkit-scrollbar {
@@ -48,19 +53,19 @@
   }
 
   body ::-webkit-scrollbar-track {
-    @apply bg-stone;
+    @apply bg-night;
   }
 
   body ::-webkit-scrollbar-thumb {
-    @apply rounded bg-ink/20;
+    @apply rounded bg-ash;
   }
 
   body ::-webkit-scrollbar-thumb:hover {
-    @apply bg-ink/40;
+    @apply bg-gold/60;
   }
 
   body ::selection {
-    @apply bg-blue/20 text-ink;
+    @apply bg-blood/60 text-parchment;
   }
 }
 
@@ -221,6 +226,115 @@
     @apply inline-flex items-center gap-2 rounded-full border border-ink/20 px-5 py-3 font-medium text-ink transition-colors duration-300;
     @apply hover:border-ink hover:bg-ink hover:text-paper active:scale-95;
   }
+
+  .paper-grain {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.08;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-size: 240px 240px;
+  }
+
+  .vignette {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.65) 100%);
+  }
+
+  .iron-frame {
+    position: relative;
+    border: 2px solid rgb(176 141 87 / 0.6);
+    outline: 1px solid rgb(176 141 87 / 0.35);
+    outline-offset: -8px;
+  }
+
+  .iron-frame::before,
+  .iron-frame::after {
+    @apply bg-gold;
+    content: "";
+    position: absolute;
+    width: 0.625rem;
+    height: 0.625rem;
+    transform: rotate(45deg);
+    pointer-events: none;
+  }
+
+  .iron-frame::before {
+    top: -0.375rem;
+    left: -0.375rem;
+  }
+
+  .iron-frame::after {
+    bottom: -0.375rem;
+    right: -0.375rem;
+  }
+
+  .filigree-rule {
+    position: relative;
+    height: 1px;
+    width: 100%;
+    max-width: 28rem;
+    margin-inline: auto;
+    background: linear-gradient(to right, transparent, #b08d57 20%, #b08d57 80%, transparent);
+  }
+
+  .filigree-rule::before,
+  .filigree-rule::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .filigree-rule::before {
+    @apply bg-gold;
+    width: 0.625rem;
+    height: 0.625rem;
+  }
+
+  .filigree-rule::after {
+    @apply bg-night;
+    width: 0.25rem;
+    height: 0.25rem;
+  }
+
+  .chapter-numeral {
+    @apply font-blackletter text-gold;
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 1;
+  }
+
+  .journal-title {
+    @apply font-blackletter;
+    font-size: clamp(2.5rem, 7vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  .name-title {
+    @apply font-blackletter;
+    font-size: clamp(3.5rem, 13vw, 12rem);
+    line-height: 0.9;
+    text-shadow: 0 0 40px rgba(201, 214, 227, 0.25);
+  }
+
+  .fell-label {
+    @apply font-fell text-sm uppercase tracking-[0.18em] text-parchment-dim;
+  }
+
+  .btn-seal {
+    @apply inline-flex items-center gap-2 rounded-full bg-blood px-5 py-3 font-fell text-sm uppercase tracking-[0.14em] text-parchment shadow-[inset_0_-3px_0_rgba(0,0,0,0.35)] transition-colors duration-300 hover:bg-ember;
+  }
+
+  .btn-ghost-gothic {
+    @apply inline-flex items-center gap-2 rounded-full border border-gold/60 px-5 py-3 font-fell text-sm uppercase tracking-[0.14em] text-parchment transition-colors duration-300 hover:bg-gold/10;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -242,6 +356,8 @@
   #root .stagger-item,
   #root .skeleton-card,
   #root .float-soft,
+  #root .animate-flicker,
+  #root .animate-fog-drift,
   #root .draw-box::before {
     transition: none;
     animation: none;
