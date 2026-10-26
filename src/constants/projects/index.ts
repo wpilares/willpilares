@@ -9,7 +9,29 @@ export const projectData: readonly Project[] = [
     textTone: 'paper',
     outfit: 'netpulse',
     side: 'right',
-    stack: ['Python', 'FastAPI', 'OS-Ken', 'Mininet', 'TimescaleDB', 'React', 'Docker'],
+    stack: [
+      'Python 3.13',
+      'OS-Ken',
+      'Mininet',
+      'FastAPI',
+      'TimescaleDB',
+      'React 19',
+      'WebSockets',
+      'Docker Compose',
+    ],
+    lines: ['one', 'two', 'three', 'four', 'five'],
+    screenshot: {
+      src: '/projects/netpulse-dashboard.jpg',
+      alt: 'NetPulse dashboard with network summary and open alerts',
+      width: 1200,
+      height: 900,
+    },
+    facts: [
+      { value: '5 s', labelKey: 'poll' },
+      { value: '1 poll', labelKey: 'alert' },
+      { value: '4', labelKey: 'releases' },
+    ],
+    version: 'v0.4',
     status: 'inProgress',
     repoUrl: 'https://github.com/wpilares/netpulse',
   },
@@ -22,6 +44,7 @@ export const projectData: readonly Project[] = [
     outfit: 'ecommerce',
     side: 'left',
     stack: ['Next.js', 'Node.js', 'PostgreSQL', 'Stripe'],
+    lines: ['one', 'two', 'three'],
   },
   {
     key: 'scraping',
@@ -32,6 +55,7 @@ export const projectData: readonly Project[] = [
     outfit: 'scraping',
     side: 'right',
     stack: ['Python', 'Scrapy', 'PostgreSQL', 'Docker'],
+    lines: ['one', 'two', 'three'],
   },
   {
     key: 'chatbot',
@@ -42,5 +66,6 @@ export const projectData: readonly Project[] = [
     outfit: 'chatbot',
     side: 'left',
     stack: ['Python', 'FastAPI', 'OpenAI API'],
+    lines: ['one', 'two', 'three'],
   },
 ]

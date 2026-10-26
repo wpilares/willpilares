@@ -85,11 +85,18 @@
     "items": {
       "netpulse": {
         "title": "NetPulse",
-        "description": "Real-time SDN network monitoring platform in active development: a Mininet network controlled by OS-Ken streams OpenFlow telemetry into TimescaleDB, and a FastAPI backend will serve network KPIs, anomaly detection, and live alerts to a React dashboard over WebSockets.",
+        "description": "Real-time SDN network monitoring: a Mininet network under an OS-Ken controller streams port telemetry into TimescaleDB; FastAPI serves KPIs, topology and alerts to a React dashboard over WebSockets, with EWMA anomaly detection, acknowledgeable alerts and scheduled fault injection.",
         "lines": {
-          "one": "This is <accent>NetPulse</accent>, an SDN monitoring platform I'm building right now.",
-          "two": "I own the <accent>controller, the API and the dashboard</accent>, end to end.",
-          "three": "Metrics land in <accent>TimescaleDB</accent> and update live."
+          "one": "This is <accent>NetPulse</accent>, a real-time SDN monitoring platform I'm building.",
+          "two": "A Mininet network under an <accent>OS-Ken controller</accent> streams port stats into TimescaleDB every five seconds.",
+          "three": "The dashboard shows <accent>live KPIs, the topology and per-port throughput</accent> over WebSockets.",
+          "four": "<accent>EWMA baselines</accent> score every port; anomalies open alerts you can acknowledge.",
+          "five": "Fault injection proves it: a downed host raises a <accent>critical drop-rate alert</accent> within one poll."
+        },
+        "facts": {
+          "poll": "poll interval",
+          "alert": "to a critical alert",
+          "releases": "releases shipped"
         }
       },
       "ecommerce": {

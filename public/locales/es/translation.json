@@ -85,11 +85,18 @@
     "items": {
       "netpulse": {
         "title": "NetPulse",
-        "description": "Plataforma de monitoreo de redes SDN en tiempo real, en desarrollo activo: una red Mininet controlada por OS-Ken envía telemetría OpenFlow a TimescaleDB, y un backend en FastAPI expondrá KPIs de red, detección de anomalías y alertas en vivo a un dashboard en React mediante WebSockets.",
+        "description": "Monitoreo de redes SDN en tiempo real: una red Mininet bajo un controlador OS-Ken envía telemetría de puertos a TimescaleDB; FastAPI expone KPIs, topología y alertas a un dashboard en React mediante WebSockets, con detección de anomalías por EWMA, alertas reconocibles e inyección de fallos programada.",
         "lines": {
-          "one": "Este es <accent>NetPulse</accent>, una plataforma de monitoreo SDN que construyo ahora mismo.",
-          "two": "Me encargo del <accent>controlador, la API y el dashboard</accent>, de punta a punta.",
-          "three": "Las métricas llegan a <accent>TimescaleDB</accent> y se actualizan en vivo."
+          "one": "Este es <accent>NetPulse</accent>, una plataforma de monitoreo SDN en tiempo real que estoy construyendo.",
+          "two": "Una red Mininet bajo un <accent>controlador OS-Ken</accent> envía estadísticas de puertos a TimescaleDB cada cinco segundos.",
+          "three": "El dashboard muestra <accent>KPIs en vivo, la topología y el throughput por puerto</accent> mediante WebSockets.",
+          "four": "<accent>Baselines EWMA</accent> puntúan cada puerto; las anomalías abren alertas que puedes reconocer.",
+          "five": "La inyección de fallos lo demuestra: un host caído genera una <accent>alerta crítica de drop rate</accent> en un solo poll."
+        },
+        "facts": {
+          "poll": "intervalo de poll",
+          "alert": "hasta una alerta crítica",
+          "releases": "versiones publicadas"
         }
       },
       "ecommerce": {
