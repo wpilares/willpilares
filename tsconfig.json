@@ -23,6 +23,8 @@
       "@content/*": ["src/content/*"],
       "@hooks": ["src/hooks/index.ts"],
       "@hooks/*": ["src/hooks/*"],
+      "@mascot": ["src/mascot/index.ts"],
+      "@mascot/*": ["src/mascot/*"],
       "@store": ["src/store/index.ts"],
       "@store/*": ["src/store/*"],
       "@styles/*": ["src/styles/*"],
