@@ -5,7 +5,7 @@ export interface HeroStat {
 }
 
 export const heroStats: HeroStat[] = [
-  { key: 'years', value: 5, suffix: '+' },
+  { key: 'years', value: 7, suffix: '+' },
   { key: 'sso', value: 10, suffix: '+' },
   { key: 'library', value: 8, suffix: '+' },
   { key: 'squad', value: 5, suffix: '' },
