@@ -3,50 +3,32 @@
     "getInTouch": "Hablemos"
   },
   "hero": {
-    "titleStart": "Construyendo",
-    "highlight": "software confiable y escalable",
-    "description": "Software Engineer y líder de squad con más de 5 años construyendo sistemas en producción de extremo a extremo para distintas industrias: desde bibliotecas de componentes compartidas y autenticación centralizada hasta modernización de sistemas legacy, flujos serverless en la nube y desarrollo asistido por IA.",
+    "titleStart": "Software que",
+    "highlight": "aguanta en producción",
+    "description": "Software engineer y squad lead. Entrego sistemas full-stack y lidero el equipo que los mantiene en marcha.",
     "downloadCV": "Descargar CV",
     "availability": "Disponible para nuevas oportunidades",
     "name": "Willber Pilares",
     "role": "Software Engineer · Squad Lead",
-    "ctaContact": "Contáctame",
+    "ctaContact": "Hablemos",
     "scrollHint": "Desliza hacia abajo"
   },
   "about": {
-    "statement": "Construyo sistemas que escalan.",
-    "description": "Diseño y entrego sistemas full-stack de extremo a extremo, desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. Como líder de squad, guío a un equipo de desarrolladores en las decisiones técnicas y el code review, y construyo las bases compartidas en las que se apoyan otros equipos: una biblioteca de componentes para toda la empresa, autenticación centralizada con Keycloak y la modernización de servicios legacy. Trabajo con un enfoque AI-first usando Claude, OpenCode, servidores MCP y skills de agentes personalizadas, manteniendo la calidad con code review y pruebas automatizadas.",
+    "statement": "Construyo las bases en las que se apoyan otros equipos.",
+    "description": "Desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. En Whitelion Technology lidero un squad de desarrolladores, soy responsable de la biblioteca de componentes compartida y de la plataforma de autenticación basada en Keycloak, y trabajo AI-first con Claude, OpenCode y servidores MCP, con code review y pruebas automatizadas que mantienen el listón alto.",
     "lines": {
       "one": "Llevo cinco años entregando <accent>sistemas backend y full-stack</accent> que se mantienen rápidos con tráfico real.",
-      "two": "Hoy lidero un squad en Whitelion Technology y <accent>trabajo a diario con herramientas de IA</accent> para avanzar más rápido sin bajar el listón."
+      "two": "Hoy lidero un squad y <accent>trabajo a diario con herramientas de IA</accent> para avanzar más rápido sin bajar el listón."
     },
     "stats": {
       "years": "Años de experiencia",
       "sso": "Apps integradas con SSO",
       "library": "Proyectos con mi biblioteca UI",
       "squad": "Devs en mi squad"
-    },
-    "highlights": {
-      "years": {
-        "title": "+5 años",
-        "description": "Experiencia profesional en desarrollo de software"
-      },
-      "fullstack": {
-        "title": "Ingeniería Full Stack",
-        "description": "React, TypeScript, Node.js, Python, .NET"
-      },
-      "cloud": {
-        "title": "Cloud & DevOps",
-        "description": "AWS, Azure, Docker, pipelines CI/CD"
-      },
-      "database": {
-        "title": "Bases de datos",
-        "description": "PostgreSQL, MongoDB, OracleDB"
-      }
     }
   },
   "skills": {
-    "title": "Habilidades técnicas",
+    "title": "Con qué trabajo.",
     "categories": {
       "frontend": "Frontend",
       "backend": "Backend",
@@ -56,7 +38,7 @@
     }
   },
   "experience": {
-    "title": "Experiencia laboral",
+    "title": "Dónde he trabajado.",
     "companies": {
       "whitelion": {
         "position": "Software Engineer · Squad Lead",
@@ -105,7 +87,7 @@
         "title": "NetPulse",
         "description": "Plataforma de monitoreo de redes SDN en tiempo real, en desarrollo activo: una red Mininet controlada por OS-Ken envía telemetría OpenFlow a TimescaleDB, y un backend en FastAPI expondrá KPIs de red, detección de anomalías y alertas en vivo a un dashboard en React mediante WebSockets.",
         "lines": {
-          "one": "Esto es <accent>NetPulse</accent>, una plataforma de monitoreo SDN que construyo ahora mismo.",
+          "one": "Este es <accent>NetPulse</accent>, una plataforma de monitoreo SDN que construyo ahora mismo.",
           "two": "Me encargo del <accent>controlador, la API y el dashboard</accent>, de punta a punta.",
           "three": "Las métricas llegan a <accent>TimescaleDB</accent> y se actualizan en vivo."
         }
@@ -114,7 +96,7 @@
         "title": "Plataforma E-Commerce",
         "description": "Plataforma de comercio electrónico completa con carrito de compras, pasarela de pagos y panel de administración.",
         "lines": {
-          "one": "Esto es una <accent>plataforma de e-commerce</accent> que construí de punta a punta.",
+          "one": "Esta es una <accent>plataforma de e-commerce</accent> que construí de punta a punta.",
           "two": "Desarrollé el <accent>carrito, el checkout y el panel de administración</accent>.",
           "three": "Los pagos pasan por <accent>Stripe</accent> y los pedidos se mantienen sincronizados."
         }
@@ -123,7 +105,7 @@
         "title": "Herramienta de Web Scraping",
         "description": "Herramienta automatizada de web scraping para recolección y análisis de datos con reportes programados.",
         "lines": {
-          "one": "Esto es una <accent>herramienta de web scraping</accent> para recolectar y analizar datos.",
+          "one": "Esta es una <accent>herramienta de web scraping</accent> para recolectar y analizar datos.",
           "two": "Escribí los <accent>crawlers y el planificador</accent> que los ejecuta.",
           "three": "Genera <accent>reportes programados</accent> sin intervención manual."
         }
@@ -132,7 +114,7 @@
         "title": "Chatbot con IA",
         "description": "Aplicación de chatbot impulsada por IA para servicio al cliente con procesamiento de lenguaje natural.",
         "lines": {
-          "one": "Esto es un <accent>chatbot con IA</accent> para servicio al cliente.",
+          "one": "Este es un <accent>chatbot con IA</accent> para servicio al cliente.",
           "two": "Construí el <accent>flujo de conversación y la capa de NLP</accent>.",
           "three": "Responde en <accent>lenguaje natural</accent>, a cualquier hora."
         }
@@ -143,11 +125,11 @@
     },
     "viewCode": "Ver código",
     "viewProject": "Ver proyecto",
-    "allWork": "Todo el trabajo"
+    "allWork": "Todos los proyectos"
   },
   "contact": {
-    "headline": "¿Tienes un proyecto?",
-    "availability": "Estoy aceptando nuevos proyectos.",
+    "headline": "¿Construimos algo?",
+    "availability": "Abierto a roles senior y problemas difíciles.",
     "copied": "¡Copiado!",
     "links": {
       "email": "Email",
@@ -158,11 +140,11 @@
   "mascot": {
     "quips": {
       "hello": "Hola, soy el compañero de Will. Baja y te muestro todo.",
-      "grabHint": "Psst. Mantenme pulsado para levantarme.",
+      "grabHint": "Psst. Mantén pulsado para levantarme.",
       "held": "¡Eh, con cuidado!",
       "released": "Uf. De vuelta al trabajo.",
-      "mobile": "Oh, modo móvil.",
-      "scrollBack": "Hola de nuevo, has vuelto.",
+      "mobile": "Uy, modo móvil.",
+      "scrollBack": "Ah, volviste.",
       "copied": "¡Copiado! Hablamos pronto.",
       "trick": "¡Tachán!",
       "sleepy": "¿Sigues ahí?"

@@ -3,9 +3,9 @@
     "getInTouch": "Get in touch"
   },
   "hero": {
-    "titleStart": "Building",
-    "highlight": "reliable, scalable software",
-    "description": "Software Engineer and squad lead with 5+ years building production systems end-to-end across industries — from shared component libraries and centralized authentication to legacy modernization, serverless cloud workflows, and AI-assisted development.",
+    "titleStart": "Software that",
+    "highlight": "holds up in production",
+    "description": "Software engineer and squad lead. I ship full-stack systems and lead the team that keeps them running.",
     "downloadCV": "Download CV",
     "availability": "Open to new opportunities",
     "name": "Willber Pilares",
@@ -14,39 +14,21 @@
     "scrollHint": "Scroll down"
   },
   "about": {
-    "statement": "I build systems that scale.",
-    "description": "I design and ship full-stack systems end-to-end, from React interfaces to Python, Node.js, and serverless backends on AWS. As a squad lead, I guide a team of developers through technical decisions and code reviews, and I build the shared foundations other teams rely on: a company-wide component library, centralized authentication with Keycloak, and the modernization of legacy services. I work AI-first with Claude, OpenCode, MCP servers, and custom agent skills, keeping quality high through code review and automated tests.",
+    "statement": "I build the foundations other teams rely on.",
+    "description": "From React interfaces to Python, Node.js and serverless backends on AWS. At Whitelion Technology I lead a squad of developers, own the shared component library and the Keycloak-based authentication platform, and work AI-first with Claude, OpenCode and MCP servers, with code review and automated tests keeping the bar high.",
     "lines": {
       "one": "For five years I have shipped <accent>backend and full-stack systems</accent> that stay fast under real traffic.",
-      "two": "Today I lead a squad at Whitelion Technology and <accent>pair daily with AI tools</accent> to move faster without lowering the bar."
+      "two": "Today I lead a squad and <accent>pair daily with AI tools</accent> to move faster without lowering the bar."
     },
     "stats": {
       "years": "Years of experience",
       "sso": "Apps secured with SSO",
       "library": "Projects on my UI library",
       "squad": "Devs in my squad"
-    },
-    "highlights": {
-      "years": {
-        "title": "5+ Years",
-        "description": "Professional software development experience"
-      },
-      "fullstack": {
-        "title": "Full Stack Engineering",
-        "description": "React, TypeScript, Node.js, Python, .NET"
-      },
-      "cloud": {
-        "title": "Cloud & DevOps",
-        "description": "AWS, Azure, Docker, CI/CD pipelines"
-      },
-      "database": {
-        "title": "Databases",
-        "description": "PostgreSQL, MongoDB, OracleDB"
-      }
     }
   },
   "skills": {
-    "title": "Technical Skills",
+    "title": "What I work with.",
     "categories": {
       "frontend": "Frontend",
       "backend": "Backend",
@@ -56,7 +38,7 @@
     }
   },
   "experience": {
-    "title": "Work Experience",
+    "title": "Where I've worked.",
     "companies": {
       "whitelion": {
         "position": "Software Engineer · Squad Lead",
@@ -146,8 +128,8 @@
     "allWork": "All work"
   },
   "contact": {
-    "headline": "Got a project?",
-    "availability": "I'm taking on new work.",
+    "headline": "Let's build something.",
+    "availability": "Open to senior roles and hard problems.",
     "copied": "Copied!",
     "links": {
       "email": "Email",

@@ -16,7 +16,7 @@ export const projectData: readonly Project[] = [
   {
     key: 'ecommerce',
     year: '2024',
-    featured: true,
+    featured: false,
     tint: 'lilac',
     textTone: 'ink',
     outfit: 'ecommerce',
@@ -26,7 +26,7 @@ export const projectData: readonly Project[] = [
   {
     key: 'scraping',
     year: '2023',
-    featured: true,
+    featured: false,
     tint: 'lemon',
     textTone: 'ink',
     outfit: 'scraping',

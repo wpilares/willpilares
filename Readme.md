@@ -8,7 +8,7 @@ Personal portfolio of a Software Engineer and squad lead with 5+ years building 
 
 ## Overview
 
-A bilingual (English / Spanish) scroll-driven portfolio built with React and TypeScript. It tells the story as an editorial page: a paper-and-ink design system, full-bleed tinted chapters per project, speech bubbles that appear on scroll, and a pixel-art sidekick rendered on a canvas that walks along, reacts to the section in view, changes outfit per chapter, and can be picked up and dragged. Content stays fully separated from components.
+A bilingual (English / Spanish) scroll-driven portfolio built with React and TypeScript. It tells the story as an editorial page: a paper-and-ink design system, a full-bleed tinted chapter per featured project, speech bubbles that appear on scroll, and a pixel-art sidekick rendered on a canvas that walks along, reacts to the section in view, changes outfit per chapter, and can be picked up and dragged. Content stays fully separated from components.
 
 ## Tech stack
 
@@ -83,7 +83,7 @@ src/
 ├── components/        Reusable UI (header, footer, job card, chapter primitives)
 │   └── chapter/       Chapter, DeviceMockup, BubbleLine
 ├── content/           Page sections (hero, about, projects, experience, skills, contact)
-├── constants/         Static data (skills, stats, highlights, projects)
+├── constants/         Static data (skills, stats, projects)
 ├── hooks/             useIntersectionObserver, useCountUp, usePrefersReducedMotion
 ├── i18n/              i18next setup
 ├── mascot/            Pixel-art sidekick engine
