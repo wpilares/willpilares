@@ -324,6 +324,65 @@
     text-shadow: 0 0 40px rgba(201, 214, 227, 0.25);
   }
 
+  .journal-title-sm {
+    @apply font-blackletter;
+    font-size: clamp(2rem, 3.6vw, 3.25rem);
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  .journal-page {
+    @apply relative bg-parchment text-night;
+    box-shadow:
+      inset 0 0 60px rgba(92, 64, 36, 0.35),
+      0 24px 60px rgba(0, 0, 0, 0.55);
+  }
+
+  .journal-page::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .shelf-board {
+    position: relative;
+    border-bottom: 3px solid rgb(92 64 36 / 0.9);
+    box-shadow: 0 6px 10px -6px rgba(0, 0, 0, 0.8);
+  }
+
+  .brass-plaque {
+    @apply inline-flex items-center border border-gold/50 bg-gold/15 px-3 py-1.5 font-fell text-sm uppercase tracking-[0.16em] text-parchment;
+  }
+
+  .engraved-plate {
+    @apply inline-flex items-center gap-2 border border-parchment/20 bg-night/60 px-3 py-1.5 font-fell text-base text-parchment-dim transition-[color,box-shadow,border-color] duration-300;
+  }
+
+  .engraved-plate:hover,
+  .engraved-plate:focus-visible {
+    @apply border-gold/60 text-parchment outline-none;
+    box-shadow: 0 0 24px rgba(242, 196, 107, 0.35);
+  }
+
+  .engraved-plate img {
+    filter: grayscale(1) brightness(1.1);
+    opacity: 0.75;
+    transition:
+      filter 300ms,
+      opacity 300ms;
+  }
+
+  .engraved-plate:hover img,
+  .engraved-plate:focus-visible img {
+    filter: none;
+    opacity: 1;
+  }
+
   .fell-label {
     @apply font-fell text-sm uppercase tracking-[0.18em] text-parchment-dim;
   }

@@ -2,30 +2,6 @@
   "header": {
     "getInTouch": "Envía un cuervo"
   },
-  "about": {
-    "statement": "Construyo las bases en las que se apoyan otros equipos.",
-    "description": "Desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. En Whitelion Technology lidero un squad de desarrolladores, soy responsable de la biblioteca de componentes compartida y de la plataforma de autenticación basada en Keycloak, y trabajo con un enfoque AI-first con Claude, OpenCode y servidores MCP, con code review y pruebas automatizadas que mantienen el nivel alto.",
-    "lines": {
-      "one": "Llevo cinco años entregando <accent>sistemas backend y full-stack</accent> que se mantienen rápidos con tráfico real.",
-      "two": "Hoy lidero un squad y <accent>trabajo a diario con herramientas de IA</accent> para avanzar más rápido sin bajar el nivel."
-    },
-    "stats": {
-      "years": "Años de experiencia",
-      "sso": "Apps integradas con SSO",
-      "library": "Proyectos con mi biblioteca UI",
-      "squad": "Devs en mi squad"
-    }
-  },
-  "skills": {
-    "title": "Con qué trabajo.",
-    "categories": {
-      "frontend": "Frontend",
-      "backend": "Backend",
-      "cloud": "Cloud & DevOps",
-      "databases": "Bases de datos",
-      "ai": "Desarrollo asistido por IA"
-    }
-  },
   "experience": {
     "title": "Dónde he trabajado.",
     "companies": {
@@ -180,6 +156,29 @@
     },
     "nav": {
       "label": "Capítulos del diario"
+    },
+    "hunter": {
+      "statement": "Construyo las bases en las que se apoyan otros equipos.",
+      "description": "Desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. En Whitelion Technology lidero un squad de desarrolladores, soy responsable de la biblioteca de componentes compartida y de la plataforma de autenticación basada en Keycloak, y trabajo con un enfoque AI-first con Claude, OpenCode y servidores MCP, con code review y pruebas automatizadas que mantienen el nivel alto.",
+      "notes": {
+        "one": "Llevo cinco años entregando <accent>sistemas backend y full-stack</accent> que se mantienen rápidos con tráfico real.",
+        "two": "Hoy lidero un squad y <accent>trabajo a diario con herramientas de IA</accent> para avanzar más rápido sin bajar el nivel."
+      },
+      "stats": {
+        "years": "Años de experiencia",
+        "sso": "Apps integradas con SSO",
+        "library": "Proyectos con mi biblioteca UI",
+        "squad": "Devs en mi squad"
+      }
+    },
+    "arms": {
+      "categories": {
+        "frontend": "Frontend",
+        "backend": "Backend",
+        "cloud": "Cloud & DevOps",
+        "databases": "Bases de datos",
+        "ai": "Desarrollo asistido por IA"
+      }
     }
   }
 }

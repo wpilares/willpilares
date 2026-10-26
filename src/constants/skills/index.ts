@@ -29,3 +29,40 @@ export const techIconUrls: Record<string, string> = {
   OpenCode: 'https://cdn.simpleicons.org/opencode/9ca3af',
   MCP: 'https://cdn.simpleicons.org/modelcontextprotocol/9ca3af',
 }
+
+export type SkillCategoryKey = 'frontend' | 'backend' | 'cloud' | 'databases' | 'ai'
+
+export type SkillPlate = {
+  readonly name: string
+  readonly iconUrl: string
+}
+
+export type SkillShelf = {
+  readonly key: SkillCategoryKey
+  readonly skills: readonly SkillPlate[]
+}
+
+const plate = (name: string): SkillPlate => ({ name, iconUrl: techIconUrls[name] ?? '' })
+
+export const skillShelves: readonly SkillShelf[] = [
+  {
+    key: 'frontend',
+    skills: ['React', 'Angular', 'Next.js', 'TypeScript', 'HTML', 'CSS'].map(plate),
+  },
+  {
+    key: 'backend',
+    skills: ['Node.js', 'NestJS', 'Python', '.NET', 'Keycloak', 'TypeORM'].map(plate),
+  },
+  {
+    key: 'cloud',
+    skills: ['AWS', 'Azure', 'Docker', 'Terraform', 'CI/CD'].map(plate),
+  },
+  {
+    key: 'databases',
+    skills: ['PostgreSQL', 'MongoDB', 'OracleDB'].map(plate),
+  },
+  {
+    key: 'ai',
+    skills: ['Claude', 'OpenCode', 'MCP'].map(plate),
+  },
+]
