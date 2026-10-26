@@ -4,6 +4,7 @@ import { Trans } from 'react-i18next'
 export interface BubbleLineProps {
   i18nKey: string
   accentClassName?: string
+  minHeightClassName?: string
 }
 
 const revealClasses = (prefersReducedMotion: boolean, isVisible: boolean) => {
@@ -11,12 +12,16 @@ const revealClasses = (prefersReducedMotion: boolean, isVisible: boolean) => {
   return isVisible ? 'reveal reveal-visible' : 'reveal'
 }
 
-export const BubbleLine = ({ i18nKey, accentClassName = 'text-blue' }: BubbleLineProps) => {
+export const BubbleLine = ({
+  i18nKey,
+  accentClassName = 'text-blue',
+  minHeightClassName = 'min-h-[36svh]',
+}: BubbleLineProps) => {
   const prefersReducedMotion = usePrefersReducedMotion()
   const [ref, isVisible] = useIntersectionObserver<HTMLParagraphElement>({ threshold: 0.4 })
 
   return (
-    <div className="flex min-h-[36svh] items-center">
+    <div className={`flex items-center ${minHeightClassName}`}>
       <p
         ref={ref}
         className={`bubble-line max-w-[26ch] ${revealClasses(prefersReducedMotion, isVisible)}`}

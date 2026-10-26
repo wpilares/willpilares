@@ -10,7 +10,12 @@
     --margin: clamp(1.25rem, 2.8vw, 3rem);
     --gutter: clamp(0.75rem, 1.4vw, 1.5rem);
     --cols: 4;
-    --column: calc((100vw - 2 * var(--margin) - (var(--cols) - 1) * var(--gutter)) / var(--cols));
+    --content-max: 1600px;
+    --inline-inset: max(var(--margin), calc((100vw - var(--content-max)) / 2));
+    --column: calc(
+      (min(100vw, var(--content-max)) - 2 * var(--margin) - (var(--cols) - 1) * var(--gutter)) /
+      var(--cols)
+    );
   }
 
   @media (min-width: 768px) {
@@ -64,7 +69,7 @@
     display: grid;
     grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
     column-gap: var(--gutter);
-    padding-inline: var(--margin);
+    padding-inline: var(--inline-inset);
   }
 
   .bg-grid {

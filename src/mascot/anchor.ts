@@ -13,6 +13,7 @@ export type AnchorInput = {
   readonly spriteWidth: number
   readonly spriteHeight: number
   readonly margin: number
+  readonly inlineInset?: number
 }
 
 export type Anchor = {
@@ -39,9 +40,10 @@ export const resolveAnchor = ({
   spriteWidth,
   spriteHeight,
   margin,
+  inlineInset = margin,
 }: AnchorInput): Anchor => {
   const bottom = viewport.height - margin - spriteHeight
-  const rightEdge = viewport.width - margin - spriteWidth
+  const rightEdge = viewport.width - inlineInset - spriteWidth
   const centre = (viewport.width - spriteWidth) / 2
 
   switch (side) {
@@ -49,7 +51,7 @@ export const resolveAnchor = ({
     case 'outro':
       return { x: clampToCanvas(centre), y: clampToCanvas(bottom), facing: 'right' }
     case 'left':
-      return { x: clampToCanvas(margin), y: clampToCanvas(bottom), facing: 'right' }
+      return { x: clampToCanvas(inlineInset), y: clampToCanvas(bottom), facing: 'right' }
     case 'right':
       return { x: clampToCanvas(rightEdge), y: clampToCanvas(bottom), facing: 'left' }
     case 'badge':

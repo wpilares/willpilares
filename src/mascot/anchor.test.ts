@@ -29,6 +29,38 @@ describe('resolveAnchor', () => {
     expect(resolveAnchor({ ...base, side: 'badge' })).toEqual({ x: 880, y: 24, facing: 'left' })
   })
 
+  it('insets left by inlineInset when it exceeds the margin', () => {
+    expect(resolveAnchor({ ...base, side: 'left', inlineInset: 200 })).toEqual({
+      x: 200,
+      y: 648,
+      facing: 'right',
+    })
+  })
+
+  it('insets right by inlineInset while keeping the vertical margin', () => {
+    expect(resolveAnchor({ ...base, side: 'right', inlineInset: 200 })).toEqual({
+      x: 704,
+      y: 648,
+      facing: 'left',
+    })
+  })
+
+  it('insets badge by inlineInset while keeping the vertical margin', () => {
+    expect(resolveAnchor({ ...base, side: 'badge', inlineInset: 200 })).toEqual({
+      x: 704,
+      y: 24,
+      facing: 'left',
+    })
+  })
+
+  it('keeps hero centred regardless of inlineInset', () => {
+    expect(resolveAnchor({ ...base, side: 'hero', inlineInset: 200 })).toEqual({
+      x: 452,
+      y: 648,
+      facing: 'right',
+    })
+  })
+
   it('rounds to integers', () => {
     const anchor = resolveAnchor({
       ...base,

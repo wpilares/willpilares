@@ -10,6 +10,7 @@ type MascotMetrics = {
 }
 
 const SCALE_BREAKPOINTS = [
+  { query: '(min-width: 1920px)', scale: 5 },
   { query: '(min-width: 1024px)', scale: 4 },
   { query: '(min-width: 480px)', scale: 3 },
 ] as const
