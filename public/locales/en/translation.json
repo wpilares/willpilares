@@ -11,17 +11,21 @@
     "name": "Willber Pilares",
     "role": "Software Engineer · Squad Lead",
     "ctaContact": "Get in touch",
-    "ctaExperience": "View experience",
+    "scrollHint": "Scroll down"
+  },
+  "about": {
+    "statement": "I build systems that scale.",
+    "description": "I design and ship full-stack systems end-to-end, from React interfaces to Python, Node.js, and serverless backends on AWS. As a squad lead, I guide a team of developers through technical decisions and code reviews, and I build the shared foundations other teams rely on: a company-wide component library, centralized authentication with Keycloak, and the modernization of legacy services. I work AI-first with Claude, OpenCode, MCP servers, and custom agent skills, keeping quality high through code review and automated tests.",
+    "lines": {
+      "one": "For five years I have shipped <accent>backend and full-stack systems</accent> that stay fast under real traffic.",
+      "two": "Today I lead a squad at Whitelion Technology and <accent>pair daily with AI tools</accent> to move faster without lowering the bar."
+    },
     "stats": {
       "years": "Years of experience",
       "sso": "Apps secured with SSO",
       "library": "Projects on my UI library",
       "squad": "Devs in my squad"
-    }
-  },
-  "about": {
-    "title": "About Me",
-    "description": "I design and ship full-stack systems end-to-end, from React interfaces to Python, Node.js, and serverless backends on AWS. As a squad lead, I guide a team of developers through technical decisions and code reviews, and I build the shared foundations other teams rely on: a company-wide component library, centralized authentication with Keycloak, and the modernization of legacy services. I work AI-first with Claude, OpenCode, MCP servers, and custom agent skills, keeping quality high through code review and automated tests.",
+    },
     "highlights": {
       "years": {
         "title": "5+ Years",

@@ -1,56 +1,99 @@
-import { SectionTitle } from '@components'
-import { useIntersectionObserver } from '@hooks'
-import { useTranslation } from 'react-i18next'
-import { highlightData, highlightIcons } from '@/constants'
+import { useCountUp, useIntersectionObserver } from '@hooks'
+import { Trans, useTranslation } from 'react-i18next'
+import { type HeroStat, heroStats, highlightData } from '@/constants'
+
+const bubbleComponents = { accent: <span className="text-blue" /> }
+
+interface BubbleLineProps {
+  i18nKey: string
+}
+
+const BubbleLine = ({ i18nKey }: BubbleLineProps) => {
+  const [ref, isVisible] = useIntersectionObserver<HTMLParagraphElement>({ threshold: 0.4 })
+
+  return (
+    <p
+      ref={ref}
+      className={`bubble-line reveal flex min-h-[36svh] items-center ${isVisible ? 'reveal-visible' : ''}`}
+    >
+      <Trans i18nKey={i18nKey} components={bubbleComponents} />
+    </p>
+  )
+}
+
+interface StatFigureProps {
+  stat: HeroStat
+  label: string
+  start: boolean
+}
+
+const StatFigure = ({ stat, label, start }: StatFigureProps) => {
+  const value = useCountUp(stat.value, { start })
+
+  return (
+    <div className="flex flex-col gap-2">
+      <span className="font-display text-5xl font-semibold tabular-nums tracking-tight md:text-6xl">
+        {value}
+        {stat.suffix}
+      </span>
+      <span className="label-mono text-ink/60">{label}</span>
+    </div>
+  )
+}
 
 export const AboutMe = () => {
-  const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 })
+  const [headlineRef, headlineVisible] = useIntersectionObserver({ threshold: 0.2 })
+  const [statsRef, statsVisible] = useIntersectionObserver({ threshold: 0.3 })
   const { t } = useTranslation()
-  const revealClass = `reveal ${isVisible ? 'reveal-visible' : ''}`
 
   return (
     <section
       id="about"
       data-mascot="left"
       data-mascot-gesture="think"
-      className="px-4 py-20 sm:px-6 sm:py-28 lg:px-8"
-      ref={ref}
+      className="bg-paper text-ink bg-grid relative"
     >
-      <div className="mx-auto max-w-5xl">
-        <SectionTitle title={t('about.title')} />
-
-        <div className={`${revealClass} mb-12 text-center`}>
-          <p className="mx-auto max-w-3xl text-lg leading-relaxed text-ink/70">
+      <div className="grid-page gap-y-20 py-[18svh] md:gap-y-28">
+        <div
+          ref={headlineRef}
+          className={`reveal col-span-full md:col-span-11 ${headlineVisible ? 'reveal-visible' : ''}`}
+        >
+          <h2 className="display-headline">{t('about.statement')}</h2>
+          <p className="mt-10 text-lg leading-relaxed text-ink/75 md:columns-2 md:gap-[var(--gutter)] md:text-xl">
             {t('about.description')}
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
-          {highlightData.map((item, index) => {
-            const IconComponent = highlightIcons[item.icon as keyof typeof highlightIcons]
-            return (
-              <div
-                key={item.key}
-                className={revealClass}
-                style={{ transitionDelay: `${200 + index * 100}ms` }}
-              >
-                <div className="card group flex h-full flex-col items-center p-5 text-center sm:p-6">
-                  <div
-                    className={`mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110`}
-                  >
-                    <IconComponent className="h-7 w-7 text-white" />
-                  </div>
-                  <h3 className="mb-1 text-sm font-bold text-ink sm:text-base">
-                    {t(`about.highlights.${item.key}.title`)}
-                  </h3>
-                  <p className="text-xs text-ink/70 sm:text-sm">
-                    {t(`about.highlights.${item.key}.description`)}
-                  </p>
-                </div>
-              </div>
-            )
-          })}
+        <div className="col-span-full flex flex-col md:col-start-6 md:col-end-13">
+          <BubbleLine i18nKey="about.lines.one" />
+          <BubbleLine i18nKey="about.lines.two" />
         </div>
+
+        <div
+          ref={statsRef}
+          className="col-span-full grid grid-cols-2 gap-x-[var(--gutter)] gap-y-10 border-t border-ink/10 pt-10 md:grid-cols-4"
+        >
+          {heroStats.map((stat) => (
+            <StatFigure
+              key={stat.key}
+              stat={stat}
+              label={t(`about.stats.${stat.key}`)}
+              start={statsVisible}
+            />
+          ))}
+        </div>
+
+        <ul className="col-span-full grid gap-x-[var(--gutter)] gap-y-8 md:grid-cols-2">
+          {highlightData.map((item) => (
+            <li key={item.key} className="flex items-start gap-4">
+              <span className="mt-2.5 h-2 w-2 shrink-0 bg-blue" aria-hidden="true" />
+              <div>
+                <p className="font-semibold">{t(`about.highlights.${item.key}.title`)}</p>
+                <p className="text-ink/70">{t(`about.highlights.${item.key}.description`)}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )
