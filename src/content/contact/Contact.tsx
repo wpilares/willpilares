@@ -73,12 +73,8 @@ export const Contact = () => {
                 >
                   <IconComponent className="h-6 w-6 text-white" />
                 </div>
-                <h3 className="mb-1 text-base font-semibold text-light-text-primary dark:text-dark-text-primary">
-                  {link.title}
-                </h3>
-                <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary">
-                  {link.value}
-                </p>
+                <h3 className="mb-1 text-base font-semibold text-ink">{link.title}</h3>
+                <p className="text-sm text-ink/70">{link.value}</p>
               </a>
             )
           })}
@@ -89,9 +85,7 @@ export const Contact = () => {
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}
         >
-          <p className="mb-5 text-light-text-secondary dark:text-dark-text-secondary">
-            {t('contact.directMessage')}
-          </p>
+          <p className="mb-5 text-ink/70">{t('contact.directMessage')}</p>
           <a href="mailto:wgpilaresc@gmail.com" className="btn-primary">
             <Send className="h-5 w-5" />
             {t('contact.sendEmail')}

@@ -14,7 +14,7 @@ export const AboutMe = () => {
         <SectionTitle title={t('about.title')} />
 
         <div className={`${revealClass} mb-12 text-center`}>
-          <p className="mx-auto max-w-3xl text-lg leading-relaxed text-light-text-secondary dark:text-dark-text-secondary">
+          <p className="mx-auto max-w-3xl text-lg leading-relaxed text-ink/70">
             {t('about.description')}
           </p>
         </div>
@@ -34,10 +34,10 @@ export const AboutMe = () => {
                   >
                     <IconComponent className="h-7 w-7 text-white" />
                   </div>
-                  <h3 className="mb-1 text-sm font-bold text-light-text-primary dark:text-dark-text-primary sm:text-base">
+                  <h3 className="mb-1 text-sm font-bold text-ink sm:text-base">
                     {t(`about.highlights.${item.key}.title`)}
                   </h3>
-                  <p className="text-xs text-light-text-secondary dark:text-dark-text-secondary sm:text-sm">
+                  <p className="text-xs text-ink/70 sm:text-sm">
                     {t(`about.highlights.${item.key}.description`)}
                   </p>
                 </div>

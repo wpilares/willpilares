@@ -22,7 +22,7 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 )
 
 const socialLinkClass =
-  'rounded-full border border-light-border bg-light-bg-tertiary p-2.5 text-light-text-secondary transition-all duration-300 hover:-translate-y-0.5 hover:border-violet-500/50 hover:text-violet-600 dark:border-dark-border dark:bg-dark-bg-tertiary dark:text-dark-text-secondary dark:hover:border-violet-500/50 dark:hover:text-violet-400'
+  'rounded-full border border-ink/10 bg-stone p-2.5 text-ink/70 transition-all duration-300 hover:-translate-y-0.5 hover:border-ink hover:text-ink'
 
 const revealDelay = (milliseconds: number): CSSProperties => ({
   transitionDelay: `${milliseconds}ms`,
@@ -43,9 +43,7 @@ const HeroStatCard = ({ stat, label, start }: HeroStatCardProps) => {
         {value}
         {stat.suffix}
       </span>
-      <span className="mt-1 text-xs font-medium leading-snug text-light-text-secondary dark:text-dark-text-secondary sm:text-sm">
-        {label}
-      </span>
+      <span className="mt-1 text-xs font-medium leading-snug text-ink/70 sm:text-sm">{label}</span>
     </div>
   )
 }
@@ -61,8 +59,8 @@ export const Hero = () => {
       ref={ref}
       className="relative flex min-h-screen items-center overflow-hidden px-4 pb-16 pt-28 sm:px-6 lg:px-8"
     >
-      <div className="pointer-events-none absolute -right-32 top-24 h-72 w-72 rounded-full bg-violet-500/10 blur-3xl sm:h-96 sm:w-96" />
-      <div className="pointer-events-none absolute -left-32 top-1/3 h-72 w-72 rounded-full bg-purple-600/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-32 top-24 h-72 w-72 rounded-full bg-blue/10 blur-3xl sm:h-96 sm:w-96" />
+      <div className="pointer-events-none absolute -left-32 top-1/3 h-72 w-72 rounded-full bg-tint-lilac/30 blur-3xl" />
 
       <div className="relative mx-auto w-full max-w-6xl">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-16">
@@ -74,34 +72,32 @@ export const Hero = () => {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
               </span>
-              <span className="text-sm font-medium text-emerald-700 dark:text-emerald-400">
-                {t('hero.availability')}
-              </span>
+              <span className="text-sm font-medium text-emerald-700">{t('hero.availability')}</span>
             </div>
 
             <h1
-              className={`${revealClass} text-4xl font-bold tracking-tight text-light-text-primary dark:text-dark-text-primary sm:text-5xl lg:text-6xl`}
+              className={`${revealClass} text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl`}
               style={revealDelay(100)}
             >
               {t('hero.name')}
             </h1>
 
             <p
-              className={`${revealClass} mt-3 text-base font-semibold text-violet-600 dark:text-violet-400 sm:text-lg`}
+              className={`${revealClass} mt-3 text-base font-semibold text-blue sm:text-lg`}
               style={revealDelay(150)}
             >
               {t('hero.role')}
             </p>
 
             <p
-              className={`${revealClass} mt-6 max-w-full break-words text-2xl font-bold leading-tight text-light-text-primary dark:text-dark-text-primary sm:text-3xl lg:text-4xl`}
+              className={`${revealClass} mt-6 max-w-full break-words text-2xl font-bold leading-tight text-ink sm:text-3xl lg:text-4xl`}
               style={revealDelay(200)}
             >
               {t('hero.titleStart')} <span className="text-blue">{t('hero.highlight')}</span>
             </p>
 
             <p
-              className={`${revealClass} mt-5 max-w-xl text-base leading-relaxed text-light-text-secondary dark:text-dark-text-secondary sm:text-lg`}
+              className={`${revealClass} mt-5 max-w-xl text-base leading-relaxed text-ink/70 sm:text-lg`}
               style={revealDelay(250)}
             >
               {t('hero.description')}
@@ -154,8 +150,8 @@ export const Hero = () => {
             style={revealDelay(150)}
           >
             <div className="relative">
-              <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-violet-500/40 to-purple-700/40 blur-2xl" />
-              <div className="relative h-40 w-40 overflow-hidden rounded-full border-4 border-violet-500/40 shadow-2xl shadow-violet-500/20 sm:h-52 sm:w-52 lg:h-80 lg:w-80">
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-blue/40 to-tint-lilac/40 blur-2xl" />
+              <div className="relative h-40 w-40 overflow-hidden rounded-full border-4 border-blue/40 shadow-2xl shadow-blue/20 sm:h-52 sm:w-52 lg:h-80 lg:w-80">
                 <img
                   src={profilePhoto}
                   alt="Willber Pilares"

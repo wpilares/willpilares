@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang='en' class='dark'>
+<html lang='en'>
   <head>
     <meta charset='UTF-8' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
@@ -21,35 +21,6 @@
     />
     <meta property='og:type' content='website' />
     <title>Willber Pilares - Software Engineer</title>
-
-    <!-- Theme detection script for Zustand store -->
-    <script>
-      ;(() => {
-        // Check for Zustand persisted theme
-        const zustandStorage = localStorage.getItem('theme-storage')
-        let theme = 'dark'
-
-        if (zustandStorage) {
-          try {
-            const parsed = JSON.parse(zustandStorage)
-            theme = parsed.state?.theme || 'dark'
-          } catch (_e) {
-            // Fallback to system preference
-            theme = window.matchMedia('(prefers-color-scheme: dark)').matches
-              ? 'dark'
-              : 'light'
-          }
-        } else {
-          // No stored theme, use system preference
-          theme = window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : 'light'
-        }
-
-        document.documentElement.classList.remove('dark', 'light')
-        document.documentElement.classList.add(theme)
-      })()
-    </script>
   </head>
   <body>
     <div id='root'></div>

@@ -34,16 +34,16 @@ export const Projects = () => {
 
                 <div className="p-5 sm:p-6">
                   <div className="mb-2 flex items-center justify-between gap-3">
-                    <h3 className="text-lg font-bold text-light-text-primary dark:text-dark-text-primary">
+                    <h3 className="text-lg font-bold text-ink">
                       {t(`projects.items.${project.key}.title`)}
                     </h3>
                     {project.status && (
-                      <span className="flex-shrink-0 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600 dark:text-amber-400">
+                      <span className="flex-shrink-0 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-xs font-medium text-amber-600">
                         {t(`projects.status.${project.status}`)}
                       </span>
                     )}
                   </div>
-                  <p className="mb-4 text-sm leading-relaxed text-light-text-secondary dark:text-dark-text-secondary">
+                  <p className="mb-4 text-sm leading-relaxed text-ink/70">
                     {t(`projects.items.${project.key}.description`)}
                   </p>
                   {project.stack && (
@@ -63,7 +63,7 @@ export const Projects = () => {
                       href={project.repoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-medium text-violet-600 transition-colors hover:text-violet-500 dark:text-violet-400 dark:hover:text-violet-300"
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-blue transition-colors hover:text-blue/80"
                     >
                       <GitBranch className="h-4 w-4" />
                       {t('projects.viewCode')}

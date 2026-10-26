@@ -1,5 +1,4 @@
 export { highlightData, highlightIcons } from './highlights'
-export { navLinks } from './nav'
 export { projectData, projectIcons } from './projects'
 export type { HeroStat } from './stats'
 export { heroStats } from './stats'

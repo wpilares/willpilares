@@ -22,18 +22,16 @@ export const Footer = () => {
   const { t } = useTranslation()
 
   return (
-    <footer className="border-t border-light-border bg-light-bg-secondary px-4 py-8 dark:border-dark-border dark:bg-dark-bg-secondary sm:px-6 lg:px-8">
+    <footer className="border-t border-ink/10 bg-stone px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 sm:flex-row">
         <div className="flex items-center gap-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-purple-700 text-white">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-ink text-paper">
             <Code2 className="h-4 w-4" strokeWidth={2.5} />
           </div>
-          <span className="text-sm text-light-text-secondary dark:text-dark-text-secondary">
-            Willber Pilares
-          </span>
+          <span className="text-sm text-ink/70">Willber Pilares</span>
         </div>
 
-        <p className="flex items-center gap-1.5 text-sm text-light-text-muted dark:text-dark-text-muted">
+        <p className="flex items-center gap-1.5 text-sm text-ink/50">
           © {currentYear} {t('footer.madeWith')}
           <Heart className="h-3.5 w-3.5 fill-red-500 text-red-500" />
           {t('footer.rights')}
@@ -44,7 +42,7 @@ export const Footer = () => {
             href="https://github.com/wpilares"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-light-text-secondary transition-colors duration-300 hover:text-violet-600 dark:text-dark-text-secondary dark:hover:text-violet-400"
+            className="text-ink/70 transition-colors duration-300 hover:text-blue"
             aria-label="GitHub"
           >
             <GithubIcon className="h-5 w-5" />
@@ -53,7 +51,7 @@ export const Footer = () => {
             href="https://linkedin.com/in/wpilaresc"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-light-text-secondary transition-colors duration-300 hover:text-violet-600 dark:text-dark-text-secondary dark:hover:text-violet-400"
+            className="text-ink/70 transition-colors duration-300 hover:text-blue"
             aria-label="LinkedIn"
           >
             <LinkedinIcon className="h-5 w-5" />
