@@ -1,7 +1,7 @@
 import { BubbleLine } from '@components'
 import { useCountUp, useIntersectionObserver } from '@hooks'
 import { useTranslation } from 'react-i18next'
-import { type HeroStat, heroStats, highlightData } from '@/constants'
+import { type HeroStat, heroStats } from '@/constants'
 
 interface StatFigureProps {
   stat: HeroStat
@@ -64,18 +64,6 @@ export const AboutMe = () => {
             />
           ))}
         </div>
-
-        <ul className="col-span-full grid gap-x-[var(--gutter)] gap-y-8 md:grid-cols-2">
-          {highlightData.map((item) => (
-            <li key={item.key} className="flex items-start gap-4">
-              <span className="mt-2.5 h-2 w-2 shrink-0 bg-blue" aria-hidden="true" />
-              <div>
-                <p className="font-semibold">{t(`about.highlights.${item.key}.title`)}</p>
-                <p className="text-ink/70">{t(`about.highlights.${item.key}.description`)}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   )
