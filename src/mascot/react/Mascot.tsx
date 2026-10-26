@@ -4,39 +4,64 @@ import { SPRITE_HEIGHT, SPRITE_WIDTH } from '../sprite'
 import { QuipBubble } from './QuipBubble'
 import { useMascot } from './useMascot'
 
-const DESKTOP_QUERY = '(min-width: 768px)'
-const DESKTOP_SCALE = 4
-const MOBILE_SCALE = 3
-
-const readScale = (): number | null => {
-  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return null
-  return window.matchMedia(DESKTOP_QUERY).matches ? DESKTOP_SCALE : MOBILE_SCALE
+type MascotMetrics = {
+  readonly scale: number
+  readonly margin: number
 }
 
-const useMascotScale = (): number | null => {
-  const [scale, setScale] = useState(readScale)
+const SCALE_BREAKPOINTS = [
+  { query: '(min-width: 1024px)', scale: 4 },
+  { query: '(min-width: 480px)', scale: 3 },
+] as const
+const PHONE_SCALE = 2
+const DESKTOP_SCALE = 4
+const WIDE_MARGIN_QUERY = '(min-width: 768px)'
+const WIDE_MARGIN = 24
+const NARROW_MARGIN = 16
+
+const readMetrics = (): MascotMetrics | null => {
+  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return null
+  const scale =
+    SCALE_BREAKPOINTS.find(({ query }) => window.matchMedia(query).matches)?.scale ?? PHONE_SCALE
+  const margin = window.matchMedia(WIDE_MARGIN_QUERY).matches ? WIDE_MARGIN : NARROW_MARGIN
+  return { scale, margin }
+}
+
+const sameMetrics = (left: MascotMetrics, right: MascotMetrics) =>
+  left.scale === right.scale && left.margin === right.margin
+
+const useMascotMetrics = (): MascotMetrics | null => {
+  const [metrics, setMetrics] = useState(readMetrics)
+  const available = metrics !== null
 
   useEffect(() => {
-    if (scale === null) return
-    const handleResize = () => setScale(readScale())
+    if (!available) return
+    const handleResize = () =>
+      setMetrics((previous) => {
+        const next = readMetrics()
+        if (previous === null || next === null) return next
+        return sameMetrics(previous, next) ? previous : next
+      })
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [scale])
+  }, [available])
 
-  return scale
+  return metrics
 }
 
 export const Mascot = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const reducedMotion = usePrefersReducedMotion()
-  const scale = useMascotScale()
+  const metrics = useMascotMetrics()
+  const scale = metrics?.scale ?? DESKTOP_SCALE
   const { position, held, quipKey } = useMascot({
     canvasRef,
     reducedMotion,
-    scale: scale ?? DESKTOP_SCALE,
+    scale,
+    margin: metrics?.margin ?? WIDE_MARGIN,
   })
 
-  if (scale === null) return null
+  if (metrics === null) return null
 
   const width = SPRITE_WIDTH * scale
   const height = SPRITE_HEIGHT * scale

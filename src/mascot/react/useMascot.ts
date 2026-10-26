@@ -26,6 +26,7 @@ export type UseMascotOptions = {
   readonly canvasRef: RefObject<HTMLCanvasElement>
   readonly reducedMotion: boolean
   readonly scale: number
+  readonly margin: number
 }
 
 export type UseMascotResult = {
@@ -64,14 +65,16 @@ type Stage = {
   readonly canvas: HTMLCanvasElement
   readonly renderer: Renderer | null
   readonly scale: number
+  readonly margin: number
   readonly reducedMotion: boolean
   readonly world: World
   readonly outputs: Outputs
   machine: GestureMachine
 }
 
-const WALK_SPEED = 3
-const ANCHOR_MARGIN = 24
+const MIN_WALK_SPEED = 4
+const MAX_WALK_SPEED = 14
+const WALK_SPEED_DIVISOR = 24
 const HOLD_MS = 250
 const IDLE_TIMEOUT_MS = 20_000
 const QUIP_DURATION_MS = 3200
@@ -88,9 +91,29 @@ const readViewport = (): Viewport => ({ width: window.innerWidth, height: window
 const isCoarsePointer = () =>
   typeof window.matchMedia === 'function' && window.matchMedia('(pointer: coarse)').matches
 
-const createWorld = (): World => ({
-  position: ORIGIN,
-  target: ORIGIN,
+export const walkSpeed = (distance: number): number =>
+  Math.min(MAX_WALK_SPEED, Math.max(MIN_WALK_SPEED, distance / WALK_SPEED_DIVISOR))
+
+const remainingDistance = (from: Point, to: Point): number =>
+  Math.max(Math.abs(to.x - from.x), Math.abs(to.y - from.y))
+
+const resolveSideAnchor = (side: MascotSide, scale: number, margin: number) =>
+  resolveAnchor({
+    side,
+    viewport: readViewport(),
+    spriteWidth: SPRITE_WIDTH * scale,
+    spriteHeight: SPRITE_HEIGHT * scale,
+    margin,
+  })
+
+const resolveHeroPosition = (scale: number, margin: number): Point => {
+  const anchor = resolveSideAnchor('hero', scale, margin)
+  return { x: anchor.x, y: anchor.y }
+}
+
+const createWorld = (initialPosition: Point): World => ({
+  position: initialPosition,
+  target: initialPosition,
   anchorFacing: 'right',
   facing: 'right',
   sectionGesture: 'idle',
@@ -161,16 +184,18 @@ const desiredGesture = (world: World, now: number): GestureName => {
 const createStage = (
   canvas: HTMLCanvasElement,
   scale: number,
+  margin: number,
   reducedMotion: boolean,
   outputs: Outputs
 ) => {
   const gestureSets = createGestureSets()
   const decode = createFrameDecoder()
-  const world = createWorld()
+  const world = createWorld(resolveHeroPosition(scale, margin))
   const stage: Stage = {
     canvas,
     renderer: tryCreateRenderer(canvas, scale),
     scale,
+    margin,
     reducedMotion,
     world,
     outputs,
@@ -212,13 +237,7 @@ const createStage = (
   }
 
   const retarget = (side: MascotSide) => {
-    const anchor = resolveAnchor({
-      side,
-      viewport: readViewport(),
-      spriteWidth: SPRITE_WIDTH * scale,
-      spriteHeight: SPRITE_HEIGHT * scale,
-      margin: ANCHOR_MARGIN,
-    })
+    const anchor = resolveSideAnchor(side, scale, margin)
     world.target = { x: anchor.x, y: anchor.y }
     world.anchorFacing = anchor.facing
     if (reducedMotion) {
@@ -248,7 +267,11 @@ const createStage = (
         )
       )
     } else {
-      const step = stepTowards(world.position, world.target, WALK_SPEED)
+      const step = stepTowards(
+        world.position,
+        world.target,
+        walkSpeed(remainingDistance(world.position, world.target))
+      )
       moveTo(step.position)
       face(step.arrived ? world.anchorFacing : (step.facing ?? world.facing))
     }
@@ -446,8 +469,9 @@ export const useMascot = ({
   canvasRef,
   reducedMotion,
   scale,
+  margin,
 }: UseMascotOptions): UseMascotResult => {
-  const [position, setPosition] = useState<Point>(ORIGIN)
+  const [position, setPosition] = useState<Point>(() => resolveHeroPosition(scale, margin))
   const [facing, setFacing] = useState<MascotFacing>('right')
   const [held, setHeld] = useState(false)
   const [quipKey, setQuipKey] = useState<QuipKey | null>(null)
@@ -472,12 +496,13 @@ export const useMascot = ({
   useEffect(() => {
     const canvas = canvasRef.current
     if (canvas === null) return
-    const live = createStage(canvas, scale, reducedMotion, {
+    const live = createStage(canvas, scale, margin, reducedMotion, {
       setPosition,
       setFacing,
       setHeld,
       showQuip,
     })
+    setPosition(live.stage.world.position)
     live.drawStill()
     const detach = [
       attachSections(live),
@@ -491,7 +516,7 @@ export const useMascot = ({
     return () => {
       for (const cleanup of detach) cleanup()
     }
-  }, [canvasRef, reducedMotion, scale, showQuip])
+  }, [canvasRef, reducedMotion, scale, margin, showQuip])
 
   return { position, facing, held, quipKey, dismissQuip }
 }

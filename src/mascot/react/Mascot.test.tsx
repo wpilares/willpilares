@@ -77,18 +77,41 @@ describe('Mascot', () => {
     expect(canvas).toHaveAttribute('aria-hidden', 'true')
     expect(canvas?.style.cursor).toBe('grab')
     expect(canvas?.style.imageRendering).toBe('pixelated')
-    expect(canvas?.width).toBe(24 * 3)
-    expect(canvas?.height).toBe(32 * 3)
+    expect(canvas?.width).toBe(24 * 2)
+    expect(canvas?.height).toBe(32 * 2)
     expect(observe).not.toHaveBeenCalled()
     expect(window.requestAnimationFrame).toHaveBeenCalled()
   })
 
-  it('uses the desktop scale above 768 px', () => {
-    mockMatchMedia((query) => query === '(min-width: 768px)')
+  it('uses scale 3 from 480 px', () => {
+    mockMatchMedia((query) => query === '(min-width: 480px)')
+
+    const { container } = render(<Mascot />)
+
+    expect(queryCanvas(container)?.width).toBe(24 * 3)
+  })
+
+  it('uses scale 4 from 1024 px', () => {
+    mockMatchMedia((query) => query === '(min-width: 1024px)' || query === '(min-width: 480px)')
 
     const { container } = render(<Mascot />)
 
     expect(queryCanvas(container)?.width).toBe(24 * 4)
+  })
+
+  it('places the canvas at the hero anchor before any section observer fires', () => {
+    mockMatchMedia(() => false)
+    const spriteWidth = 24 * 2
+    const spriteHeight = 32 * 2
+    const margin = 16
+    const expectedX = Math.round((window.innerWidth - spriteWidth) / 2)
+    const expectedY = window.innerHeight - margin - spriteHeight
+
+    const { container } = render(<Mascot />)
+
+    expect(queryCanvas(container)?.style.transform).toBe(
+      `translate3d(${expectedX}px, ${expectedY}px, 0)`
+    )
   })
 
   it('observes every section with a data-mascot attribute', () => {

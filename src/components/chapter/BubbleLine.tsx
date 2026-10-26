@@ -16,11 +16,13 @@ export const BubbleLine = ({ i18nKey, accentClassName = 'text-blue' }: BubbleLin
   const [ref, isVisible] = useIntersectionObserver<HTMLParagraphElement>({ threshold: 0.4 })
 
   return (
-    <p
-      ref={ref}
-      className={`bubble-line flex min-h-[36svh] items-center ${revealClasses(prefersReducedMotion, isVisible)}`}
-    >
-      <Trans i18nKey={i18nKey} components={{ accent: <span className={accentClassName} /> }} />
-    </p>
+    <div className="flex min-h-[36svh] items-center">
+      <p
+        ref={ref}
+        className={`bubble-line max-w-[26ch] ${revealClasses(prefersReducedMotion, isVisible)}`}
+      >
+        <Trans i18nKey={i18nKey} components={{ accent: <span className={accentClassName} /> }} />
+      </p>
+    </div>
   )
 }
