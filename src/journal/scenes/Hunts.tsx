@@ -263,12 +263,8 @@ const HangingHunt = ({ record, stage }: { record: HuntRecord; stage: StageSize }
       <div
         ref={gate.ref}
         aria-hidden={gate.hidden ? true : undefined}
-        className="absolute flex w-[25rem] -translate-x-1/2 justify-center overflow-y-auto p-1"
-        style={{
-          left: plaqueTop.x,
-          top: plaqueTop.y,
-          maxHeight: `calc(${Math.max(0, stage.height - plaqueTop.y)}px - var(--cat-reserve))`,
-        }}
+        className="absolute flex w-[25rem] -translate-x-1/2 justify-center p-3"
+        style={{ left: plaqueTop.x, top: plaqueTop.y }}
       >
         <Plaque record={record} density="pinned" />
       </div>
