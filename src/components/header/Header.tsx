@@ -15,17 +15,14 @@ export const Header = () => {
   const activeLanguage = resolveLanguage(i18n.language)
 
   return (
-    <header className="absolute left-0 right-0 top-0 z-50 py-5 text-paper">
+    <header className="absolute left-0 right-0 top-0 z-50 py-5 text-parchment">
       <div className="flex items-center justify-between gap-2 px-[var(--inline-inset)] md:gap-3">
-        <a
-          href="#home"
-          className="whitespace-nowrap font-display text-base font-semibold tracking-[-0.02em] md:text-lg"
-        >
+        <a href="#home" className="whitespace-nowrap font-blackletter text-2xl text-parchment">
           Willber Pilares
         </a>
 
         <nav aria-label="Site actions" className="flex items-center gap-2 md:gap-3">
-          <fieldset className="flex items-center rounded-full border border-paper/40 p-1 text-sm font-medium">
+          <fieldset className="flex items-center rounded-full border border-gold/60 p-1 font-fell text-sm tracking-[0.14em]">
             <legend className="sr-only">Language</legend>
             {languages.map((language) => {
               const isActive = language.code === activeLanguage
@@ -37,7 +34,7 @@ export const Header = () => {
                   aria-pressed={isActive}
                   onClick={() => i18n.changeLanguage(language.code)}
                   className={`rounded-full px-3 py-1.5 transition-colors duration-300 ${
-                    isActive ? 'bg-paper text-ink' : 'text-paper/80 hover:text-paper'
+                    isActive ? 'bg-gold text-night' : 'text-parchment-dim hover:text-parchment'
                   }`}
                 >
                   {language.label}
@@ -46,10 +43,7 @@ export const Header = () => {
             })}
           </fieldset>
 
-          <a
-            href="#contact"
-            className="inline-flex items-center whitespace-nowrap rounded-full bg-paper px-4 py-2 text-sm font-medium text-ink transition-colors duration-300 hover:bg-ink hover:text-paper active:scale-95 md:px-5 md:py-3 md:text-base"
-          >
+          <a href="#contact" className="btn-seal whitespace-nowrap">
             {t('header.getInTouch')}
           </a>
         </nav>

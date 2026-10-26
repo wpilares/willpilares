@@ -1,3 +1,4 @@
+import { MotionProvider } from '@components'
 import { lazy, StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import '@styles/globals.css'
@@ -18,7 +19,11 @@ const renderRoot = () => {
       </Suspense>
     )
   }
-  return <App />
+  return (
+    <MotionProvider>
+      <App />
+    </MotionProvider>
+  )
 }
 
 if (rootElement) {
