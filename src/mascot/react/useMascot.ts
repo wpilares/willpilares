@@ -40,6 +40,8 @@ export type UseMascotResult = {
 
 type GestureOverride = { readonly name: GestureName; readonly until: number }
 
+type Travel = { readonly destination: Element; readonly until: number }
+
 type World = {
   position: Point
   target: Point
@@ -53,6 +55,7 @@ type World = {
   sleeping: boolean
   override: GestureOverride | null
   tapped: boolean
+  travel: Travel | null
 }
 
 type Outputs = {
@@ -80,6 +83,7 @@ const HOLD_MS = 250
 const IDLE_TIMEOUT_MS = 20_000
 const QUIP_DURATION_MS = 3200
 const OVERRIDE_DURATION_MS = 1600
+const TRAVEL_TIMEOUT_MS = 4000
 const CONTENT_MAX_WIDTH = 1600
 const SECTION_THRESHOLDS = [0, 0.25, 0.5, 0.75, 1]
 const ACTIVITY_EVENTS = ['scroll', 'pointermove', 'pointerdown', 'keydown'] as const
@@ -132,6 +136,7 @@ const createWorld = (initialPosition: Point): World => ({
   sleeping: false,
   override: null,
   tapped: false,
+  travel: null,
 })
 
 const createGestureSets = () => {
@@ -266,6 +271,32 @@ const createStage = (
     world.override = { name, until: now + OVERRIDE_DURATION_MS }
   }
 
+  const follow = (element: Element) => {
+    const target = readSectionTarget(element)
+    world.sectionGesture = target.gesture
+    setOutfit(target.outfit)
+    retarget(target.side)
+  }
+
+  const travelTo = (anchor: string, now: number) => {
+    const destination = document.getElementById(anchor)
+    if (destination === null) return
+    const previousTarget = world.target
+    world.travel = { destination, until: now + TRAVEL_TIMEOUT_MS }
+    follow(destination)
+    if (samePoint(previousTarget, world.target)) playOverride('walk', now)
+  }
+
+  const isTravellingPast = (element: Element, now: number): boolean => {
+    const { travel } = world
+    if (travel === null) return false
+    if (travel.destination === element || travel.until <= now) {
+      world.travel = null
+      return travel.destination === element
+    }
+    return true
+  }
+
   const tick = (now: number, deltaMs: number) => {
     if (world.held) {
       moveTo(
@@ -288,7 +319,20 @@ const createStage = (
     draw(stage.machine.current().frame)
   }
 
-  return { stage, drawStill, setOutfit, retarget, setHeld, playOverride, tick, face, moveTo }
+  return {
+    stage,
+    drawStill,
+    setOutfit,
+    retarget,
+    setHeld,
+    playOverride,
+    follow,
+    travelTo,
+    isTravellingPast,
+    tick,
+    face,
+    moveTo,
+  }
 }
 
 type Live = ReturnType<typeof createStage>
@@ -306,7 +350,7 @@ const attachLoop = ({ stage, tick }: Live): (() => void) => {
   return () => window.cancelAnimationFrame(handle)
 }
 
-const attachSections = ({ stage, setOutfit, retarget }: Live): (() => void) => {
+const attachSections = ({ retarget, follow, isTravellingPast }: Live): (() => void) => {
   if (typeof IntersectionObserver === 'undefined') return () => {}
   const entries = new Map<Element, SectionEntry>()
   let active: Element | null = null
@@ -315,10 +359,8 @@ const attachSections = ({ stage, setOutfit, retarget }: Live): (() => void) => {
     const next = pickActiveSection([...entries.values()], active)
     if (next === null || next === active) return
     active = next
-    const target = readSectionTarget(next)
-    stage.world.sectionGesture = target.gesture
-    setOutfit(target.outfit)
-    retarget(target.side)
+    if (isTravellingPast(next, performance.now())) return
+    follow(next)
   }
 
   const observer = new IntersectionObserver(
@@ -414,7 +456,7 @@ const attachPointer = ({ stage, setHeld }: Live): (() => void) => {
   }
 }
 
-const attachBus = ({ stage, playOverride }: Live): (() => void) =>
+const attachBus = ({ stage, playOverride, travelTo }: Live): (() => void) =>
   mascotBus.subscribe((event) => {
     switch (event.type) {
       case 'quip':
@@ -426,6 +468,9 @@ const attachBus = ({ stage, playOverride }: Live): (() => void) =>
       case 'trick':
         playOverride(randomTrickGesture(Math.random), performance.now())
         stage.outputs.showQuip('trick')
+        return
+      case 'travel':
+        travelTo(event.anchor, performance.now())
         return
     }
   })

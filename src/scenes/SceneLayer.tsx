@@ -1,8 +1,9 @@
 import { useSpring, useTransform } from 'motion/react'
 import * as m from 'motion/react-m'
 import type { ReactNode } from 'react'
-import { parallaxOffset } from './progress'
-import { useSceneProgress } from './SceneContext'
+import { descentOffset, parallaxOffset } from './progress'
+import { useSceneCamera } from './SceneCamera'
+import { useSceneStage } from './SceneContext'
 
 type SceneLayerProps = {
   depth: number
@@ -21,8 +22,13 @@ export const SceneLayer = ({
   children,
   className,
 }: SceneLayerProps) => {
-  const progress = useSceneProgress()
-  const offset = useTransform(progress, (value) => parallaxOffset(value, depth, travel))
+  const { progress, isStatic } = useSceneStage()
+  const camera = useSceneCamera()
+  const offset = useTransform(progress, (value) => {
+    const parallax = parallaxOffset(value, depth, travel)
+    if (camera === null || isStatic || axis === 'x') return parallax
+    return parallax + descentOffset(value, depth, camera)
+  })
   const smoothOffset = useSpring(offset, layerSpring)
 
   return (

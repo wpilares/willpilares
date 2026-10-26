@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { activeSceneIndex, fogOpacity, parallaxOffset, segment } from './progress'
+import { activeSceneIndex, descentOffset, fogOpacity, parallaxOffset, segment } from './progress'
 
 describe('segment', () => {
   it('maps progress inside the window to 0..1', () => {
@@ -78,5 +78,24 @@ describe('activeSceneIndex', () => {
   it('falls back to the last completed scene', () => {
     expect(activeSceneIndex([1, 1, 0])).toBe(1)
     expect(activeSceneIndex([1, 1, 1])).toBe(2)
+  })
+})
+
+describe('descentOffset', () => {
+  const camera = { start: 0.5, end: 1, distance: 100, minDepth: 0.4 }
+
+  it('holds still before the descent starts', () => {
+    expect(descentOffset(0, 0.8, camera)).toBe(0)
+    expect(descentOffset(0.5, 0.8, camera)).toBe(0)
+  })
+
+  it('lifts deep layers up as the camera descends', () => {
+    expect(descentOffset(0.75, 0.8, camera)).toBe(-40)
+    expect(descentOffset(1, 0.4, camera)).toBe(-40)
+    expect(descentOffset(1, 0.8, camera)).toBe(-80)
+  })
+
+  it('leaves layers shallower than the threshold untouched', () => {
+    expect(descentOffset(1, 0.15, camera)).toBe(0)
   })
 })
