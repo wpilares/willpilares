@@ -38,17 +38,17 @@ export const AboutMe = () => {
       <div className="grid-page gap-y-20 py-[18svh] md:gap-y-28">
         <div
           ref={headlineRef}
-          className={`reveal col-span-full md:col-span-11 ${headlineVisible ? 'reveal-visible' : ''}`}
+          className={`reveal col-span-full grid grid-cols-subgrid gap-y-10 ${headlineVisible ? 'reveal-visible' : ''}`}
         >
-          <h2 className="display-headline">{t('about.statement')}</h2>
-          <p className="mt-10 text-lg leading-relaxed text-ink/75 md:columns-2 md:gap-[var(--gutter)] md:text-xl">
+          <h2 className="display-headline col-span-full md:col-span-11">{t('about.statement')}</h2>
+          <p className="col-span-full max-w-[60ch] text-lg leading-relaxed text-ink/80 md:col-span-8 md:text-xl">
             {t('about.description')}
           </p>
         </div>
 
-        <div className="col-span-full flex flex-col md:col-start-6 md:col-end-13">
-          <BubbleLine i18nKey="about.lines.one" />
-          <BubbleLine i18nKey="about.lines.two" />
+        <div className="col-span-full flex flex-col md:col-start-3 md:col-span-7">
+          <BubbleLine i18nKey="about.lines.one" minHeightClassName="min-h-[28svh]" />
+          <BubbleLine i18nKey="about.lines.two" minHeightClassName="min-h-[28svh]" />
         </div>
 
         <div

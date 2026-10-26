@@ -16,7 +16,7 @@ export const Header = () => {
 
   return (
     <header className="absolute left-0 right-0 top-0 z-50 py-5 text-paper">
-      <div className="flex items-center justify-between gap-2 px-[var(--margin)] md:gap-3">
+      <div className="flex items-center justify-between gap-2 px-[var(--inline-inset)] md:gap-3">
         <a
           href="#home"
           className="whitespace-nowrap font-display text-base font-semibold tracking-[-0.02em] md:text-lg"

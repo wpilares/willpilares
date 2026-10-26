@@ -79,6 +79,7 @@ const HOLD_MS = 250
 const IDLE_TIMEOUT_MS = 20_000
 const QUIP_DURATION_MS = 3200
 const OVERRIDE_DURATION_MS = 1600
+const CONTENT_MAX_WIDTH = 1600
 const SECTION_THRESHOLDS = [0, 0.25, 0.5, 0.75, 1]
 const ACTIVITY_EVENTS = ['scroll', 'pointermove', 'pointerdown', 'keydown'] as const
 
@@ -97,14 +98,20 @@ export const walkSpeed = (distance: number): number =>
 const remainingDistance = (from: Point, to: Point): number =>
   Math.max(Math.abs(to.x - from.x), Math.abs(to.y - from.y))
 
-const resolveSideAnchor = (side: MascotSide, scale: number, margin: number) =>
-  resolveAnchor({
+const resolveInlineInset = (viewport: Viewport, margin: number): number =>
+  Math.max(margin, (viewport.width - CONTENT_MAX_WIDTH) / 2 + margin)
+
+const resolveSideAnchor = (side: MascotSide, scale: number, margin: number) => {
+  const viewport = readViewport()
+  return resolveAnchor({
     side,
-    viewport: readViewport(),
+    viewport,
     spriteWidth: SPRITE_WIDTH * scale,
     spriteHeight: SPRITE_HEIGHT * scale,
     margin,
+    inlineInset: resolveInlineInset(viewport, margin),
   })
+}
 
 const resolveHeroPosition = (scale: number, margin: number): Point => {
   const anchor = resolveSideAnchor('hero', scale, margin)
