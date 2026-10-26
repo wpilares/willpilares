@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/react'
+import { act, fireEvent, render } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { lanternPoint } from '../lantern'
 import { SPRITE_HEIGHT } from '../sprite'
@@ -45,6 +45,7 @@ beforeEach(() => {
 })
 
 afterEach(() => {
+  vi.useRealTimers()
   vi.unstubAllGlobals()
   vi.restoreAllMocks()
   Object.defineProperty(window, 'matchMedia', {
@@ -77,12 +78,34 @@ describe('Mascot', () => {
 
     expect(canvas).not.toBeNull()
     expect(canvas).toHaveAttribute('aria-hidden', 'true')
-    expect(canvas?.style.cursor).toBe('grab')
+    expect(canvas).toHaveAttribute('data-cursor', 'glove-open')
+    expect(canvas?.style.cursor).toBe('')
     expect(canvas?.style.imageRendering).toBe('pixelated')
     expect(canvas?.width).toBe(32 * 2)
     expect(canvas?.height).toBe(32 * 2)
     expect(observe).not.toHaveBeenCalled()
     expect(window.requestAnimationFrame).toHaveBeenCalled()
+  })
+
+  it('swaps the open glove cursor for the gripping glove while the cat is held', () => {
+    vi.useFakeTimers()
+    mockMatchMedia(() => false)
+
+    const { container } = render(<Mascot />)
+    const canvas = queryCanvas(container)
+    if (canvas === null) throw new Error('canvas missing')
+
+    expect(canvas).toHaveAttribute('data-cursor', 'glove-open')
+    const pressed = new PointerEvent('pointerdown', { clientX: 10, clientY: 10, pointerId: 1 })
+    fireEvent(canvas, pressed)
+    vi.spyOn(performance, 'now').mockReturnValue(pressed.timeStamp + 300)
+    act(() => {
+      vi.advanceTimersByTime(100)
+    })
+    expect(canvas).toHaveAttribute('data-cursor', 'glove-grip')
+
+    fireEvent.pointerUp(canvas, { clientX: 10, clientY: 10, pointerId: 1 })
+    expect(canvas).toHaveAttribute('data-cursor', 'glove-open')
   })
 
   it('does not render the lantern glow when the renderer is unavailable', () => {
@@ -188,8 +211,8 @@ describe('Mascot', () => {
     fireEvent.pointerDown(canvas, { clientX: 10, clientY: 10, pointerId: 1 })
     fireEvent.pointerMove(canvas, { clientX: 12, clientY: 12, pointerId: 1 })
 
-    expect(canvas.style.cursor).not.toBe('grab')
-    expect(canvas.style.cursor).not.toBe('grabbing')
+    expect(canvas).not.toHaveAttribute('data-cursor')
+    expect(canvas.style.cursor).toBe('')
     expect(canvas.style.pointerEvents).toBe('none')
     expect(window.requestAnimationFrame).not.toHaveBeenCalled()
   })

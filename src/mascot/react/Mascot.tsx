@@ -90,7 +90,7 @@ export const Mascot = () => {
 
   const width = SPRITE_WIDTH * scale
   const height = SPRITE_HEIGHT * scale
-  const cursor = reducedMotion ? 'default' : held ? 'grabbing' : 'grab'
+  const cursor = reducedMotion ? undefined : held ? 'glove-grip' : 'glove-open'
   const lantern = lanternPoint(position, facing, scale)
 
   return (
@@ -104,6 +104,7 @@ export const Mascot = () => {
       <canvas
         ref={canvasRef}
         aria-hidden="true"
+        data-cursor={cursor}
         tabIndex={-1}
         width={width}
         height={height}
@@ -114,7 +115,6 @@ export const Mascot = () => {
           transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
           pointerEvents: reducedMotion ? 'none' : 'auto',
           touchAction: 'none',
-          cursor,
           imageRendering: 'pixelated',
         }}
       />
