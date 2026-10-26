@@ -66,7 +66,8 @@
       "tagline": "Since 2019 I have been hunting what breaks in production.",
       "ctaContact": "Send a raven",
       "ctaCv": "Download the scroll",
-      "availability": "Open to senior roles"
+      "availability": "Open to senior roles",
+      "role": "Software Engineer · Squad Lead"
     },
     "chapters": {
       "hunter": {
@@ -86,7 +87,8 @@
       }
     },
     "nav": {
-      "label": "Journal chapters"
+      "label": "Journal chapters",
+      "skip": "Skip to chapters"
     },
     "hunter": {
       "statement": "I build the foundations other teams rely on.",
@@ -113,7 +115,8 @@
     },
     "hunts": {
       "current": "Current",
-      "readMore": "Read the full record"
+      "readMore": "Read the full record",
+      "closeRecord": "Close the record"
     },
     "lab": {
       "name": "NetPulse",

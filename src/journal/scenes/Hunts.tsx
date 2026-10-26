@@ -13,14 +13,16 @@ import {
   SceneReveal,
   SceneWindow,
   sceneById,
+  useRevealGate,
   useSceneStage,
 } from '@scenes'
 import { splitMetrics } from '@utils'
-import { useRef } from 'react'
+import { useMotionValueEvent } from 'motion/react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { CompanyData, ExperienceData } from '@/types'
 import data from '../../../data.json'
-import { galleryPanProgress } from './galleryPan'
+import { galleryPanProgress, visibleShare } from './galleryPan'
 
 const huntsMeta = sceneById('hunts')
 
@@ -30,9 +32,6 @@ const CANVAS_HALF_WIDTH = 31
 const CANVAS_TOP = 47
 const CANVAS_HEIGHT = 54
 const FRAME_BOTTOM = 112
-const PLAQUE_BOTTOM_GAP = 16
-const PINNED_BULLETS = 1
-const STATIC_BULLETS = 2
 
 type HuntRecord = {
   readonly company: CompanyData
@@ -132,46 +131,108 @@ const Portrait = ({ record }: { record: HuntRecord }) => (
   </div>
 )
 
+type PlaqueDensity = 'pinned' | 'static'
+
 type PlaqueProps = {
   readonly record: HuntRecord
-  readonly visibleBullets: number
+  readonly density: PlaqueDensity
 }
 
-const Plaque = ({ record, visibleBullets }: PlaqueProps) => {
+const plaqueStyles: Readonly<
+  Record<PlaqueDensity, { bullets: number; frame: string; title: string }>
+> = {
+  pinned: { bullets: 0, frame: 'px-4 py-3', title: 'text-2xl' },
+  static: { bullets: 2, frame: 'px-5 py-4', title: 'text-3xl' },
+}
+
+const BulletList = ({ items }: { items: readonly string[] }) => (
+  <ul className="mt-3 flex flex-col gap-2 text-lg leading-snug">
+    {items.map((description) => (
+      <li key={description}>
+        <HighlightedText text={description} />
+      </li>
+    ))}
+  </ul>
+)
+
+const RecordDialog = ({ record }: { record: HuntRecord }) => {
   const { t } = useTranslation()
   const { period, position, descriptions } = useHuntCopy(record.company)
-  const shown = descriptions.slice(0, visibleBullets)
-  const hidden = descriptions.slice(visibleBullets)
+  const dialogRef = useRef<HTMLDialogElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const titleId = `hunt-record-${record.company.key}`
+
+  const open = () => dialogRef.current?.showModal()
+  const close = () => dialogRef.current?.close()
+  const restoreFocus = () => triggerRef.current?.focus()
+
   return (
-    <article className="iron-frame w-full max-w-[24rem] border border-gold/50 bg-night/85 px-5 py-4 text-parchment">
+    <>
+      <button
+        ref={triggerRef}
+        type="button"
+        onClick={open}
+        className="mt-3 font-fell text-base text-gold underline decoration-gold/40 underline-offset-4 hover:text-parchment"
+      >
+        {t('journal.hunts.readMore')}
+      </button>
+      <dialog
+        ref={dialogRef}
+        aria-labelledby={titleId}
+        onClose={restoreFocus}
+        className="iron-frame fixed inset-0 m-auto h-fit max-h-[80svh] w-[min(92vw,40rem)] overflow-y-auto bg-parchment px-7 py-6 text-night backdrop:bg-night/80"
+      >
+        <p className="font-fell text-base tracking-[0.06em] text-night/70">{period}</p>
+        <h3 id={titleId} className="mt-1 font-serif text-3xl font-semibold tracking-[0.02em]">
+          {record.company.company}
+        </h3>
+        <p className="mt-2 font-fell text-lg text-blood">{position}</p>
+        <BulletList items={descriptions} />
+        <button type="button" onClick={close} className="btn-seal mt-6">
+          {t('journal.hunts.closeRecord')}
+        </button>
+      </dialog>
+    </>
+  )
+}
+
+const Plaque = ({ record, density }: PlaqueProps) => {
+  const { period, position, descriptions } = useHuntCopy(record.company)
+  const { bullets: visibleBullets, frame, title } = plaqueStyles[density]
+  return (
+    <article
+      className={`iron-frame w-full max-w-[24rem] border border-gold/50 bg-night/85 text-parchment ${frame}`}
+    >
       <p className="font-fell text-base tracking-[0.06em] text-parchment-dim">{period}</p>
-      <h3 className="mt-1 font-serif text-3xl font-semibold tracking-[0.02em] text-parchment">
+      <h3 className={`mt-1 font-serif font-semibold tracking-[0.02em] text-parchment ${title}`}>
         {record.company.company}
       </h3>
       <p className="mt-2 font-fell text-lg text-gold">{position}</p>
-      <ul className="mt-3 flex flex-col gap-2 text-lg leading-snug">
-        {shown.map((description) => (
-          <li key={description}>
-            <HighlightedText text={description} />
-          </li>
-        ))}
-      </ul>
-      {hidden.length > 0 && (
-        <details className="group mt-3">
-          <summary className="cursor-pointer font-fell text-base text-gold underline decoration-gold/40 underline-offset-4 hover:text-parchment">
-            {t('journal.hunts.readMore')}
-          </summary>
-          <ul className="mt-2 flex flex-col gap-2 text-lg leading-snug">
-            {hidden.map((description) => (
-              <li key={description}>
-                <HighlightedText text={description} />
-              </li>
-            ))}
-          </ul>
-        </details>
-      )}
+      {visibleBullets > 0 && <BulletList items={descriptions.slice(0, visibleBullets)} />}
+      {descriptions.length > visibleBullets && <RecordDialog record={record} />}
     </article>
   )
+}
+
+const usePlaqueGate = (stage: StageSize) => {
+  const { progress } = useSceneStage()
+  const gate = useRevealGate(1, false)
+  const { ref, update } = gate
+
+  const measure = useCallback(() => {
+    window.requestAnimationFrame(() => {
+      const element = ref.current
+      if (element !== null) update(visibleShare(element.getBoundingClientRect(), window.innerWidth))
+    })
+  }, [ref, update])
+
+  useMotionValueEvent(progress, 'change', measure)
+
+  useEffect(() => {
+    if (stage.width > 0) measure()
+  }, [stage.width, measure])
+
+  return gate
 }
 
 const HangingHunt = ({ record, stage }: { record: HuntRecord; stage: StageSize }) => {
@@ -190,6 +251,7 @@ const HangingHunt = ({ record, stage }: { record: HuntRecord; stage: StageSize }
     stage,
     PANORAMA_WIDTH
   )
+  const gate = usePlaqueGate(stage)
   return (
     <li>
       <div
@@ -199,14 +261,16 @@ const HangingHunt = ({ record, stage }: { record: HuntRecord; stage: StageSize }
         <Portrait record={record} />
       </div>
       <div
-        className="absolute flex w-[25rem] -translate-x-1/2 justify-center overflow-y-auto p-2"
+        ref={gate.ref}
+        aria-hidden={gate.hidden ? true : undefined}
+        className="absolute flex w-[25rem] -translate-x-1/2 justify-center overflow-y-auto p-1"
         style={{
           left: plaqueTop.x,
           top: plaqueTop.y,
-          maxHeight: Math.max(0, stage.height - plaqueTop.y - PLAQUE_BOTTOM_GAP),
+          maxHeight: `calc(${Math.max(0, stage.height - plaqueTop.y)}px - var(--cat-reserve))`,
         }}
       >
-        <Plaque record={record} visibleBullets={PINNED_BULLETS} />
+        <Plaque record={record} density="pinned" />
       </div>
     </li>
   )
@@ -256,7 +320,7 @@ const StaticHunts = () => (
             <div className="aspect-[31/27] w-full max-w-[18rem] border-[6px] border-gold shadow-[0_0_0_2px_#0b0a0f,0_0_0_4px_rgba(176,141,87,0.5),0_18px_40px_rgba(0,0,0,0.6)]">
               <Portrait record={record} />
             </div>
-            <Plaque record={record} visibleBullets={STATIC_BULLETS} />
+            <Plaque record={record} density="static" />
           </li>
         ))}
       </ol>

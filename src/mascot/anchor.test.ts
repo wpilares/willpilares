@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest'
-import { type AnchorInput, parseMascotSide, resolveAnchor } from './anchor'
+import {
+  type AnchorInput,
+  catReserve,
+  DOCK_ROW_HEIGHT,
+  parseMascotSide,
+  resolveAnchor,
+  resolveDockAnchor,
+} from './anchor'
 
 const base: Omit<AnchorInput, 'side'> = {
   viewport: { width: 1000, height: 800 },
@@ -89,5 +96,34 @@ describe('parseMascotSide', () => {
     expect(parseMascotSide('')).toBe('left')
     expect(parseMascotSide(null)).toBe('left')
     expect(parseMascotSide(undefined)).toBe('left')
+  })
+})
+
+describe('resolveDockAnchor', () => {
+  it('sits at the left margin of the dock row facing right', () => {
+    expect(
+      resolveDockAnchor({ viewport: { width: 375, height: 812 }, spriteHeight: 64, margin: 16 })
+    ).toEqual({ x: 16, y: 812 - DOCK_ROW_HEIGHT, facing: 'right' })
+  })
+
+  it('follows the measured dock top above a safe-area inset', () => {
+    expect(
+      resolveDockAnchor({
+        viewport: { width: 375, height: 812 },
+        spriteHeight: 64,
+        margin: 16,
+        dockTop: 714,
+      })
+    ).toEqual({ x: 16, y: 714, facing: 'right' })
+  })
+})
+
+describe('catReserve', () => {
+  it('reserves the dock row when docked', () => {
+    expect(catReserve({ spriteHeight: 64, margin: 16, docked: true })).toBe(DOCK_ROW_HEIGHT)
+  })
+
+  it('reserves the sprite, its margin and a 16 px gap otherwise', () => {
+    expect(catReserve({ spriteHeight: 128, margin: 24, docked: false })).toBe(168)
   })
 })

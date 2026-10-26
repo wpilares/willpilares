@@ -11,6 +11,7 @@ import {
   MoonProgress,
   Prologue,
   Raven,
+  SkipToChapters,
 } from '@journal'
 import { Mascot } from '@mascot/react'
 import { SceneProvider } from '@scenes'
@@ -18,11 +19,13 @@ import { SceneProvider } from '@scenes'
 export const App = () => {
   return (
     <SceneProvider>
-      <div className="min-h-screen bg-night">
+      <div className="min-h-screen bg-night max-md:pb-[var(--dock-height)]">
         <div aria-hidden className="paper-grain" />
         <div aria-hidden className="vignette" />
+        <SkipToChapters />
         <div className="relative z-10">
           <Header />
+          <ChapterRail />
           <main>
             <Prologue />
             <City />
@@ -35,7 +38,6 @@ export const App = () => {
           </main>
           <Epilogue />
         </div>
-        <ChapterRail />
         <MoonProgress />
         <Mascot />
       </div>

@@ -1,5 +1,19 @@
-export type { Anchor, AnchorInput, MascotFacing, MascotSide, Viewport } from './anchor'
-export { parseMascotSide, resolveAnchor } from './anchor'
+export type {
+  Anchor,
+  AnchorInput,
+  CatReserveInput,
+  DockAnchorInput,
+  MascotFacing,
+  MascotSide,
+  Viewport,
+} from './anchor'
+export {
+  catReserve,
+  DOCK_ROW_HEIGHT,
+  parseMascotSide,
+  resolveAnchor,
+  resolveDockAnchor,
+} from './anchor'
 export * from './art'
 export * from './behavior'
 export type {

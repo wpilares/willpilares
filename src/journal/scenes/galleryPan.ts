@@ -32,3 +32,15 @@ export const frameCentredProgress = (centre: number, stage: StageSize): number |
   const point = backdropRectToStage({ x: centre, y: 0, width: 0, height: 0 }, stage, PANORAMA_WIDTH)
   return centredProgress(point.x, stage.width, panoramaOverflow(stage.width, stage.height))
 }
+
+export type HorizontalSpan = {
+  readonly left: number
+  readonly right: number
+}
+
+export const visibleShare = ({ left, right }: HorizontalSpan, stageWidth: number): number => {
+  const width = right - left
+  if (width <= 0) return 0
+  const shown = Math.min(right, stageWidth) - Math.max(left, 0)
+  return Math.max(0, shown) / width
+}

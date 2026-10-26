@@ -5,6 +5,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { ChapterRail } from './navigation/ChapterRail'
 import { MoonProgress } from './navigation/MoonProgress'
+import { SkipToChapters } from './navigation/SkipToChapters'
 import { City } from './scenes/City'
 import { Prologue } from './scenes/Prologue'
 
@@ -31,6 +32,7 @@ const renderJournal = () =>
   render(
     <MotionProvider>
       <SceneProvider>
+        <SkipToChapters />
         <Prologue />
         <City />
         <ChapterRail />
@@ -45,7 +47,7 @@ afterEach(() => {
 
 describe('journal opening', () => {
   it('puts the name in the city heading with its calls to action', () => {
-    mockMatchMedia([])
+    mockMatchMedia(['(prefers-reduced-motion: reduce)'])
     renderJournal()
 
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Willber Pilares')
@@ -104,11 +106,40 @@ describe('chapter rail', () => {
   })
 })
 
+describe('skip to chapters', () => {
+  it('is the first focusable element of the journal', () => {
+    mockMatchMedia([])
+    const { container } = renderJournal()
+
+    expect(container.querySelector('a[href], button')).toHaveTextContent('journal.nav.skip')
+  })
+
+  it('reveals the hidden rail and focuses its first chapter', () => {
+    mockMatchMedia([])
+    renderJournal()
+    const rail = screen.getByRole('navigation', { name: 'journal.nav.label', hidden: true })
+
+    fireEvent.click(screen.getByRole('link', { name: 'journal.nav.skip' }))
+
+    expect(rail).toHaveAttribute('data-visible', 'true')
+    expect(document.activeElement).toBe(rail.querySelector('a[href="#about"]'))
+  })
+})
+
 describe('moon progress', () => {
   it('starts as a thin crescent', () => {
     mockMatchMedia([])
     const { container } = renderJournal()
 
     expect(container.querySelector('[data-moon-progress]')).toHaveAttribute('data-phase', '0.1')
+  })
+})
+
+describe('city heading before it is revealed', () => {
+  it('keeps the unrevealed name out of the accessibility tree', () => {
+    mockMatchMedia([])
+    renderJournal()
+
+    expect(screen.queryByRole('heading', { level: 1 })).toBeNull()
   })
 })

@@ -119,7 +119,11 @@ data.json              Companies: key, name, logo, stack
 - **Hunts yet to come:** edit the volumes under `journal.archive.volumes.*` and their list in `src/journal/scenes/Archive.tsx`.
 - **Mascot quips:** edit `mascot.quips.*` in both locale files; the keys are typed in `src/mascot/behavior/bus.ts`.
 - **Hunter stats:** edit `src/constants/stats/index.ts` and `journal.hunter.stats.*`.
-- **Skills:** add the icon and the entry to its shelf in `src/constants/skills/index.ts`, with the shelf label under `journal.arms.categories.*`.
+- **Skills:** save the icon as `public/icons/<slug>.svg`, then add the name, its slug and the shelf entry in `src/constants/skills/index.ts`, with the shelf label under `journal.arms.categories.*`.
+
+## Icons
+
+Skill icons are vendored in `public/icons/` from [devicon](https://github.com/devicons/devicon) (MIT) and [Simple Icons](https://github.com/simple-icons/simple-icons) (CC0 1.0).
 
 ## License
 
