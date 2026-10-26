@@ -1,12 +1,8 @@
-import type { OutfitName } from '@mascot'
-
 export type ProjectStatus = 'inProgress'
 
-export type ChapterTint = 'navy' | 'lilac' | 'lemon' | 'moss'
+export type ProjectLineKey = 'one' | 'two' | 'three' | 'four' | 'five'
 
-export type TextTone = 'paper' | 'ink'
-
-export type ChapterSide = 'left' | 'right'
+export type ProjectFactKey = 'poll' | 'alert' | 'releases'
 
 export interface ProjectScreenshot {
   readonly src: string
@@ -17,23 +13,18 @@ export interface ProjectScreenshot {
 
 export interface ProjectFact {
   readonly value: string
-  readonly labelKey: string
+  readonly labelKey: ProjectFactKey
+  readonly reading: number
+  readonly dialMax: number
 }
 
 export interface Project {
-  key: string
-  year: string
-  featured: boolean
-  tint: ChapterTint
-  textTone: TextTone
-  outfit: OutfitName
-  side: ChapterSide
-  stack: readonly string[]
-  lines: readonly string[]
-  screenshot?: ProjectScreenshot
-  facts?: ReadonlyArray<ProjectFact>
-  version?: string
-  status?: ProjectStatus
-  repoUrl?: string
-  liveUrl?: string
+  readonly key: string
+  readonly stack: readonly string[]
+  readonly lines: readonly ProjectLineKey[]
+  readonly screenshot: ProjectScreenshot
+  readonly facts: readonly ProjectFact[]
+  readonly version: string
+  readonly status: ProjectStatus
+  readonly repoUrl: string
 }

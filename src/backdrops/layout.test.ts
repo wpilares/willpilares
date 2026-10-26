@@ -1,5 +1,16 @@
 import { describe, expect, it } from 'vitest'
-import { isPanoramaLayer, layerWidth, panoramaOverflow } from './layout'
+import { GALLERY_FRAME_CENTRES, LAB_MIRROR } from './generators'
+import {
+  BACKDROP_VERTICAL_TRAVEL,
+  backdropRectToStage,
+  backdropScale,
+  galleryFrameCentres,
+  isPanoramaLayer,
+  labMirrorRect,
+  layerBleed,
+  layerWidth,
+  panoramaOverflow,
+} from './layout'
 
 describe('backdrop layout', () => {
   it('marks only the gallery mid and near layers as panoramas', () => {
@@ -14,5 +25,53 @@ describe('backdrop layout', () => {
   it('measures how far a panorama overflows its container', () => {
     expect(panoramaOverflow(1280, 720)).toBe(2560)
     expect(panoramaOverflow(4000, 180)).toBe(0)
+  })
+
+  it('bleeds each vertical layer by half its parallax travel', () => {
+    expect(BACKDROP_VERTICAL_TRAVEL).toBe(120)
+    expect(layerBleed(0.15)).toBe(9)
+    expect(layerBleed(0.4)).toBe(24)
+    expect(layerBleed(0.8)).toBe(48)
+  })
+
+  it('scales a backdrop to cover the stage including its bleed', () => {
+    expect(backdropScale({ width: 1440, height: 900 }, 960)).toBe(5)
+    expect(backdropScale({ width: 4000, height: 180 }, 960)).toBeCloseTo(4000 / 960)
+    expect(backdropScale({ width: 1440, height: 900 }, 320, 24)).toBeCloseTo(948 / 180)
+  })
+
+  it('converts a gallery frame centre into unpanned stage pixels', () => {
+    const stage = { width: 1440, height: 900 }
+    expect(backdropRectToStage({ x: 480, y: 74, width: 0, height: 0 }, stage, 960)).toEqual({
+      x: 720,
+      y: 370,
+      width: 0,
+      height: 0,
+    })
+    expect(backdropRectToStage({ x: 80, y: 47, width: 62, height: 54 }, stage, 960)).toEqual({
+      x: -1280,
+      y: 235,
+      width: 310,
+      height: 270,
+    })
+  })
+
+  it('converts the lab mirror into stage pixels on a bled layer', () => {
+    const scale = 948 / 180
+    const rect = backdropRectToStage(
+      { x: 56, y: 36, width: 108, height: 84 },
+      { width: 1440, height: 900 },
+      320,
+      24
+    )
+    expect(rect.x).toBeCloseTo((1440 - 320 * scale) / 2 + 56 * scale)
+    expect(rect.y).toBeCloseTo((900 - 180 * scale) / 2 + 36 * scale)
+    expect(rect.width).toBeCloseTo(108 * scale)
+    expect(rect.height).toBeCloseTo(84 * scale)
+  })
+
+  it('keeps the overlay geometry in step with the painted frames and mirror', () => {
+    expect(galleryFrameCentres).toEqual([...GALLERY_FRAME_CENTRES])
+    expect(labMirrorRect).toEqual(LAB_MIRROR)
   })
 })

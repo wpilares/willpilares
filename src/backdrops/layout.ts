@@ -34,3 +34,41 @@ export const layerWidth = (id: BackdropId, layer: BackdropLayerName): number =>
 
 export const panoramaOverflow = (containerWidth: number, containerHeight: number): number =>
   Math.max(0, Math.round((containerHeight * PANORAMA_WIDTH) / BACKDROP_HEIGHT - containerWidth))
+
+export const BACKDROP_VERTICAL_TRAVEL = 120
+
+export const layerBleed = (depth: number): number =>
+  Math.ceil((BACKDROP_VERTICAL_TRAVEL * depth) / 2)
+
+export type StageSize = { readonly width: number; readonly height: number }
+
+export type StageRect = {
+  readonly x: number
+  readonly y: number
+  readonly width: number
+  readonly height: number
+}
+
+export const backdropScale = (stage: StageSize, sourceWidth: number, bleed = 0): number =>
+  Math.max(stage.width / sourceWidth, (stage.height + 2 * bleed) / BACKDROP_HEIGHT)
+
+export const backdropRectToStage = (
+  rect: StageRect,
+  stage: StageSize,
+  sourceWidth: number,
+  bleed = 0
+): StageRect => {
+  const scale = backdropScale(stage, sourceWidth, bleed)
+  const originX = (stage.width - sourceWidth * scale) / 2
+  const originY = (stage.height - BACKDROP_HEIGHT * scale) / 2
+  return {
+    x: originX + rect.x * scale,
+    y: originY + rect.y * scale,
+    width: rect.width * scale,
+    height: rect.height * scale,
+  }
+}
+
+export const galleryFrameCentres: readonly number[] = [80, 280, 480, 680, 880]
+
+export const labMirrorRect: StageRect = { x: 56, y: 36, width: 108, height: 84 }

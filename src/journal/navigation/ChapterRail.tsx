@@ -39,7 +39,7 @@ export const ChapterRail = () => {
                 href={`#${chapter.anchor}`}
                 aria-current={isActive ? 'true' : undefined}
                 onClick={() => mascotBus.emit(travelEvent(chapter.anchor))}
-                className={`group relative flex h-10 w-10 items-center justify-center font-blackletter text-xl transition-colors duration-300 hover:text-parchment ${
+                className={`group relative flex h-10 w-10 items-center justify-center font-fell text-lg tracking-[0.04em] transition-colors duration-300 hover:text-parchment ${
                   isActive ? 'text-gold' : 'text-parchment-dim'
                 }`}
               >

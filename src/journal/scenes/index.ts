@@ -1,4 +1,6 @@
 export { Arms } from './Arms'
 export { City } from './City'
 export { Hunter } from './Hunter'
+export { Hunts } from './Hunts'
+export { Lab } from './Lab'
 export { Prologue } from './Prologue'
