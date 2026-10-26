@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { lanternPoint } from '../lantern'
-import { SPRITE_HEIGHT, SPRITE_WIDTH } from '../sprite'
+import { SPRITE_HEIGHT } from '../sprite'
 import { Mascot } from './Mascot'
 
 vi.mock('react-i18next', () => ({
@@ -106,11 +106,7 @@ describe('Mascot', () => {
       () => context as unknown as CanvasRenderingContext2D
     )
     const scale = 2
-    const margin = 16
-    const position = {
-      x: Math.round((window.innerWidth - SPRITE_WIDTH * scale) / 2),
-      y: window.innerHeight - margin - SPRITE_HEIGHT * scale,
-    }
+    const position = { x: 16, y: window.innerHeight - SPRITE_HEIGHT * scale }
     const expected = lanternPoint(position, 'right', scale)
 
     const { container } = render(<Mascot />)
@@ -121,8 +117,16 @@ describe('Mascot', () => {
     expect(glow?.style.getPropertyValue('--ly')).toBe(`${expected.y}px`)
   })
 
-  it('uses scale 3 from 480 px', () => {
+  it('keeps scale 2 below 768 px', () => {
     mockMatchMedia((query) => query === '(min-width: 480px)')
+
+    const { container } = render(<Mascot />)
+
+    expect(queryCanvas(container)?.width).toBe(32 * 2)
+  })
+
+  it('uses scale 3 from 768 px', () => {
+    mockMatchMedia((query) => query === '(min-width: 768px)' || query === '(min-width: 480px)')
 
     const { container } = render(<Mascot />)
 
@@ -130,7 +134,9 @@ describe('Mascot', () => {
   })
 
   it('uses scale 4 from 1024 px', () => {
-    mockMatchMedia((query) => query === '(min-width: 1024px)' || query === '(min-width: 480px)')
+    mockMatchMedia((query) =>
+      ['(min-width: 1024px)', '(min-width: 768px)', '(min-width: 480px)'].includes(query)
+    )
 
     const { container } = render(<Mascot />)
 
@@ -138,10 +144,10 @@ describe('Mascot', () => {
   })
 
   it('places the canvas at the hero anchor before any section observer fires', () => {
-    mockMatchMedia(() => false)
-    const spriteWidth = 32 * 2
-    const spriteHeight = 32 * 2
-    const margin = 16
+    mockMatchMedia((query) => query === '(min-width: 768px)')
+    const spriteWidth = 32 * 3
+    const spriteHeight = 32 * 3
+    const margin = 24
     const expectedX = Math.round((window.innerWidth - spriteWidth) / 2)
     const expectedY = window.innerHeight - margin - spriteHeight
 
@@ -195,5 +201,44 @@ describe('Mascot', () => {
     unmount()
 
     expect(disconnect).toHaveBeenCalled()
+  })
+
+  it('docks the cat at the left of the bottom dock below 768 px', () => {
+    mockMatchMedia(() => false)
+
+    const { container } = render(<Mascot />)
+
+    expect(queryCanvas(container)?.style.transform).toBe(
+      `translate3d(16px, ${window.innerHeight - 64}px, 0)`
+    )
+  })
+
+  it('reserves the dock height for the cat below 768 px', () => {
+    mockMatchMedia(() => false)
+
+    render(<Mascot />)
+
+    expect(document.documentElement.style.getPropertyValue('--cat-reserve')).toBe('64px')
+  })
+
+  it('reserves the sprite height, its margin and a gap above the cat on desktop', () => {
+    mockMatchMedia((query) =>
+      ['(min-width: 1024px)', '(min-width: 768px)', '(min-width: 480px)'].includes(query)
+    )
+
+    render(<Mascot />)
+
+    expect(document.documentElement.style.getPropertyValue('--cat-reserve')).toBe(
+      `${32 * 4 + 24 + 16}px`
+    )
+  })
+
+  it('clears the cat reserve on unmount', () => {
+    mockMatchMedia(() => false)
+
+    const { unmount } = render(<Mascot />)
+    unmount()
+
+    expect(document.documentElement.style.getPropertyValue('--cat-reserve')).toBe('')
   })
 })

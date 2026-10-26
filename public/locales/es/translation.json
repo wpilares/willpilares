@@ -66,7 +66,8 @@
       "tagline": "Desde 2019 persigo lo que se rompe en producción.",
       "ctaContact": "Envía un cuervo",
       "ctaCv": "Descargar el pergamino",
-      "availability": "Disponible para roles senior"
+      "availability": "Disponible para roles senior",
+      "role": "Software Engineer · Squad Lead"
     },
     "chapters": {
       "hunter": {
@@ -86,7 +87,8 @@
       }
     },
     "nav": {
-      "label": "Capítulos del diario"
+      "label": "Capítulos del diario",
+      "skip": "Saltar a los capítulos"
     },
     "hunter": {
       "statement": "Construyo las bases en las que se apoyan otros equipos.",
@@ -113,7 +115,8 @@
     },
     "hunts": {
       "current": "Actual",
-      "readMore": "Leer el registro completo"
+      "readMore": "Leer el registro completo",
+      "closeRecord": "Cerrar el registro"
     },
     "lab": {
       "name": "NetPulse",

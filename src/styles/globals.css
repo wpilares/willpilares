@@ -13,6 +13,8 @@
     --cols: 4;
     --content-max: 1600px;
     --inline-inset: max(var(--margin), calc((100vw - var(--content-max)) / 2));
+    --cat-reserve: 168px;
+    --dock-height: calc(4rem + env(safe-area-inset-bottom));
   }
 
   @media (min-width: 768px) {

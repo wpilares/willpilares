@@ -58,3 +58,34 @@ export const resolveAnchor = ({
       return { x: clampToCanvas(rightEdge), y: clampToCanvas(margin), facing: 'left' }
   }
 }
+
+export const DOCK_ROW_HEIGHT = 64
+
+const CAT_RESERVE_GAP = 16
+
+export type DockAnchorInput = {
+  readonly viewport: Viewport
+  readonly spriteHeight: number
+  readonly margin: number
+  readonly dockTop?: number
+}
+
+export const resolveDockAnchor = ({
+  viewport,
+  spriteHeight,
+  margin,
+  dockTop = viewport.height - DOCK_ROW_HEIGHT,
+}: DockAnchorInput): Anchor => ({
+  x: clampToCanvas(margin),
+  y: clampToCanvas(dockTop + (DOCK_ROW_HEIGHT - spriteHeight) / 2),
+  facing: 'right',
+})
+
+export type CatReserveInput = {
+  readonly spriteHeight: number
+  readonly margin: number
+  readonly docked: boolean
+}
+
+export const catReserve = ({ spriteHeight, margin, docked }: CatReserveInput): number =>
+  docked ? DOCK_ROW_HEIGHT : spriteHeight + margin + CAT_RESERVE_GAP

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import i18n from './index'
+import i18n, { documentLanguage } from './index'
 
 describe('i18n configuration', () => {
   it('does not force a language, so the detector can run', () => {
@@ -22,5 +22,19 @@ describe('i18n configuration', () => {
   it('checks the browser language before the html tag', () => {
     const detection = i18n.options.detection as { order: string[] }
     expect(detection.order).toEqual(['localStorage', 'navigator', 'htmlTag'])
+  })
+
+  it('mirrors every language change on the html element', () => {
+    i18n.emit('languageChanged', 'es-PE')
+    expect(document.documentElement.lang).toBe('es')
+
+    i18n.emit('languageChanged', 'en')
+    expect(document.documentElement.lang).toBe('en')
+  })
+
+  it('starts the html element on the detected language', () => {
+    expect(document.documentElement.lang).toBe(
+      documentLanguage(i18n.resolvedLanguage ?? i18n.language)
+    )
   })
 })

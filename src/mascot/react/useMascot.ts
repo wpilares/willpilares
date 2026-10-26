@@ -1,5 +1,11 @@
 import { type RefObject, useCallback, useEffect, useRef, useState } from 'react'
-import { type MascotFacing, type MascotSide, resolveAnchor, type Viewport } from '../anchor'
+import {
+  type MascotFacing,
+  type MascotSide,
+  resolveAnchor,
+  resolveDockAnchor,
+  type Viewport,
+} from '../anchor'
 import { applyOutfit, createMascotGestures, DEFAULT_OUTFIT, type OutfitName, outfits } from '../art'
 import { mascotBus, type QuipKey } from '../behavior/bus'
 import { createHoldDetector } from '../behavior/hold'
@@ -27,6 +33,7 @@ export type UseMascotOptions = {
   readonly reducedMotion: boolean
   readonly scale: number
   readonly margin: number
+  readonly docked?: boolean
 }
 
 export type UseMascotResult = {
@@ -70,6 +77,7 @@ type Stage = {
   readonly renderer: Renderer | null
   readonly scale: number
   readonly margin: number
+  readonly docked: boolean
   readonly reducedMotion: boolean
   readonly world: World
   readonly outputs: Outputs
@@ -106,8 +114,23 @@ const remainingDistance = (from: Point, to: Point): number =>
 const resolveInlineInset = (viewport: Viewport, margin: number): number =>
   Math.max(margin, (viewport.width - CONTENT_MAX_WIDTH) / 2 + margin)
 
-const resolveSideAnchor = (side: MascotSide, scale: number, margin: number) => {
+const readDockTop = (): number | undefined => {
+  const dock = document.querySelector('[data-chapter-rail]')
+  if (dock === null) return undefined
+  const rect = dock.getBoundingClientRect()
+  return rect.height > 0 ? rect.top : undefined
+}
+
+const resolveSideAnchor = (side: MascotSide, scale: number, margin: number, docked: boolean) => {
   const viewport = readViewport()
+  if (docked) {
+    return resolveDockAnchor({
+      viewport,
+      spriteHeight: SPRITE_HEIGHT * scale,
+      margin,
+      dockTop: readDockTop(),
+    })
+  }
   return resolveAnchor({
     side,
     viewport,
@@ -118,8 +141,8 @@ const resolveSideAnchor = (side: MascotSide, scale: number, margin: number) => {
   })
 }
 
-const resolveHeroPosition = (scale: number, margin: number): Point => {
-  const anchor = resolveSideAnchor('hero', scale, margin)
+const resolveHeroPosition = (scale: number, margin: number, docked: boolean): Point => {
+  const anchor = resolveSideAnchor('hero', scale, margin, docked)
   return { x: anchor.x, y: anchor.y }
 }
 
@@ -198,17 +221,19 @@ const createStage = (
   canvas: HTMLCanvasElement,
   scale: number,
   margin: number,
+  docked: boolean,
   reducedMotion: boolean,
   outputs: Outputs
 ) => {
   const gestureSets = createGestureSets()
   const decode = createFrameDecoder()
-  const world = createWorld(resolveHeroPosition(scale, margin))
+  const world = createWorld(resolveHeroPosition(scale, margin, docked))
   const stage: Stage = {
     canvas,
     renderer: tryCreateRenderer(canvas, scale),
     scale,
     margin,
+    docked,
     reducedMotion,
     world,
     outputs,
@@ -250,7 +275,7 @@ const createStage = (
   }
 
   const retarget = (side: MascotSide) => {
-    const anchor = resolveSideAnchor(side, scale, margin)
+    const anchor = resolveSideAnchor(side, scale, margin, docked)
     world.target = { x: anchor.x, y: anchor.y }
     world.anchorFacing = anchor.facing
     if (reducedMotion) {
@@ -523,8 +548,9 @@ export const useMascot = ({
   reducedMotion,
   scale,
   margin,
+  docked = false,
 }: UseMascotOptions): UseMascotResult => {
-  const [position, setPosition] = useState<Point>(() => resolveHeroPosition(scale, margin))
+  const [position, setPosition] = useState<Point>(() => resolveHeroPosition(scale, margin, docked))
   const [facing, setFacing] = useState<MascotFacing>('right')
   const [held, setHeld] = useState(false)
   const [lit, setLit] = useState(false)
@@ -550,7 +576,7 @@ export const useMascot = ({
   useEffect(() => {
     const canvas = canvasRef.current
     if (canvas === null) return
-    const live = createStage(canvas, scale, margin, reducedMotion, {
+    const live = createStage(canvas, scale, margin, docked, reducedMotion, {
       setPosition,
       setFacing,
       setHeld,
@@ -572,7 +598,7 @@ export const useMascot = ({
       for (const cleanup of detach) cleanup()
       setLit(false)
     }
-  }, [canvasRef, reducedMotion, scale, margin, showQuip])
+  }, [canvasRef, reducedMotion, scale, margin, docked, showQuip])
 
   return { position, facing, held, lit, quipKey, dismissQuip }
 }

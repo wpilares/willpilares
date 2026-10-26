@@ -162,11 +162,18 @@ describe('Archive', () => {
     expect(screen.getByText('journal.archive.volumes.mcp.note')).toBeInTheDocument()
   })
 
-  it('keeps every volume reachable as a shelved book when pinned', () => {
+  it('shelves every volume as a book when pinned', () => {
     mockMatchMedia([])
     renderScene(<Archive />)
 
-    expect(screen.getAllByRole('button')).toHaveLength(3)
+    expect(screen.getAllByRole('button', { hidden: true })).toHaveLength(3)
+  })
+
+  it('keeps unrevealed books out of the accessibility tree when pinned', () => {
+    mockMatchMedia([])
+    renderScene(<Archive />)
+
+    expect(screen.queryAllByRole('button')).toHaveLength(0)
   })
 })
 

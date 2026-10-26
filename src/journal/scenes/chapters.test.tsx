@@ -87,8 +87,8 @@ describe('hunter and arms chapters', () => {
     const events: MascotEvent[] = []
     const unsubscribe = mascotBus.subscribe((event) => events.push(event))
     renderChapters()
-    fireEvent.pointerEnter(screen.getByRole('button', { name: 'React' }))
-    fireEvent.focus(screen.getByRole('button', { name: 'Docker' }))
+    fireEvent.pointerEnter(screen.getByRole('button', { name: 'React', hidden: true }))
+    fireEvent.focus(screen.getByRole('button', { name: 'Docker', hidden: true }))
     unsubscribe()
     expect(events).toEqual([{ type: 'gesture', name: 'stretch' }])
   })

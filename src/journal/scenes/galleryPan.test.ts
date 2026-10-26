@@ -7,6 +7,7 @@ import {
   GALLERY_PAN_START,
   galleryPanProgress,
   panShift,
+  visibleShare,
 } from './galleryPan'
 
 describe('gallery pan mapping', () => {
@@ -62,5 +63,23 @@ describe('gallery pan mapping', () => {
 
   it('centres the middle of the panorama halfway through the pan', () => {
     expect(frameCentredProgress(480, { width: 1440, height: 900 })).toBeCloseTo(0.5)
+  })
+})
+
+describe('visible share of a plaque on the stage', () => {
+  it('is whole when the plaque sits inside the viewport', () => {
+    expect(visibleShare({ left: 100, right: 500 }, 1440)).toBe(1)
+  })
+
+  it('is the clipped fraction when the plaque straddles an edge', () => {
+    expect(visibleShare({ left: 1240, right: 1640 }, 1440)).toBe(0.5)
+  })
+
+  it('is zero when the plaque has panned off the stage', () => {
+    expect(visibleShare({ left: -900, right: -500 }, 1440)).toBe(0)
+  })
+
+  it('is zero for an unmeasured plaque', () => {
+    expect(visibleShare({ left: 0, right: 0 }, 1440)).toBe(0)
   })
 })

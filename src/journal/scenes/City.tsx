@@ -16,8 +16,6 @@ import { OWNER_FIRST_NAME, OWNER_LAST_NAME } from '../identity'
 
 const cityMeta = sceneById('city')
 
-const CITY_ROLE = 'Software Engineer · Squad Lead'
-
 const EntrySeam = () => {
   const progress = useSceneProgress()
   const opacity = useTransform(progress, (value) => 1 - segment(value, 0, 0.12))
@@ -34,7 +32,7 @@ const CityContent = () => {
   const { t } = useTranslation()
 
   return (
-    <div className="grid-page absolute inset-x-0 bottom-0 pb-[14svh] md:pb-[10svh]">
+    <div className="grid-page absolute inset-x-0 bottom-0 pb-[max(14svh,var(--cat-reserve))] md:pb-[max(10svh,var(--cat-reserve))]">
       <SceneReveal
         start={0}
         end={0.15}
@@ -42,7 +40,7 @@ const CityContent = () => {
         exitEnd={0.95}
         className="col-span-full flex flex-col items-start gap-6 md:col-span-9"
       >
-        <p className="fell-label text-parchment">{CITY_ROLE}</p>
+        <p className="fell-label text-parchment">{t('journal.city.role')}</p>
         <h1 className="name-title text-parchment">
           <span className="block md:inline">{OWNER_FIRST_NAME}</span>{' '}
           <span className="block md:inline">{OWNER_LAST_NAME}</span>

@@ -94,7 +94,7 @@ const PinnedArms = () => {
         aria-hidden="true"
         className="pointer-events-none absolute inset-y-0 left-0 w-3/4 bg-gradient-to-r from-night/80 via-night/55 to-transparent"
       />
-      <div className="absolute inset-x-0 top-[10svh] bottom-[8svh] flex w-[min(74vw,64rem)] flex-col gap-6 px-[var(--margin)]">
+      <div className="absolute inset-x-0 top-[10svh] bottom-[max(8svh,var(--cat-reserve))] flex w-[min(74vw,64rem)] flex-col gap-6 px-[var(--margin)]">
         <SceneReveal start={0} end={0.1} exitStart={0.86} exitEnd={0.95}>
           <ArmsHeading />
         </SceneReveal>

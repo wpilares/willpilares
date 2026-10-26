@@ -140,7 +140,7 @@ const PinnedArchive = () => (
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_48%_70%_at_50%_55%,rgba(11,10,15,0.82),rgba(11,10,15,0.45)_70%,transparent)]"
     />
-    <div className="absolute inset-x-0 top-[9svh] bottom-[5svh] flex flex-col items-center gap-8 px-[var(--margin)]">
+    <div className="absolute inset-x-0 top-[9svh] bottom-[max(5svh,var(--cat-reserve))] flex flex-col items-center gap-8 px-[var(--margin)]">
       <SceneReveal start={0} end={0.1}>
         <ArchiveHeading />
       </SceneReveal>

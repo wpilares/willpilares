@@ -118,7 +118,7 @@ const PinnedHunter = () => {
         aria-hidden="true"
         className="pointer-events-none absolute inset-y-0 left-0 w-3/5 bg-gradient-to-r from-night/70 to-transparent"
       />
-      <div className="absolute inset-x-0 top-[12svh] bottom-[16svh] px-[var(--margin)]">
+      <div className="absolute inset-x-0 top-[12svh] bottom-[max(16svh,var(--cat-reserve))] px-[var(--margin)]">
         <SceneReveal
           start={0.05}
           end={0.25}

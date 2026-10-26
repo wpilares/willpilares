@@ -24,4 +24,15 @@ i18n
     },
   })
 
+export const documentLanguage = (language: string | undefined): string =>
+  language?.startsWith('es') ? 'es' : 'en'
+
+const syncDocumentLanguage = (language: string | undefined) => {
+  if (typeof document === 'undefined') return
+  document.documentElement.lang = documentLanguage(language)
+}
+
+i18n.on('languageChanged', syncDocumentLanguage)
+syncDocumentLanguage(i18n.resolvedLanguage ?? i18n.language)
+
 export default i18n

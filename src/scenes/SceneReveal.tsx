@@ -1,8 +1,9 @@
-import { useTransform } from 'motion/react'
+import { useMotionValueEvent, useTransform } from 'motion/react'
 import * as m from 'motion/react-m'
 import type { ReactNode } from 'react'
 import { segment } from './progress'
 import { useSceneStage } from './SceneContext'
+import { useRevealGate } from './useRevealGate'
 
 type SceneRevealProps = {
   start: number
@@ -26,15 +27,24 @@ export const SceneReveal = ({
   const { progress, isStatic } = useSceneStage()
   const hasExit = !isStatic && exitStart !== undefined && exitEnd !== undefined
 
-  const opacity = useTransform(progress, (value) => {
+  const revealOpacity = (value: number) => {
     const entered = segment(value, start, end)
     if (!hasExit) return entered
     return entered * (1 - segment(value, exitStart, exitEnd))
-  })
+  }
+  const opacity = useTransform(progress, revealOpacity)
   const y = useTransform(progress, (value) => (1 - segment(value, start, end)) * liftDistance)
+  const gate = useRevealGate(revealOpacity(progress.get()), isStatic)
+
+  useMotionValueEvent(progress, 'change', (value) => gate.update(revealOpacity(value)))
 
   return (
-    <m.div className={className} style={{ opacity, y }}>
+    <m.div
+      ref={gate.ref}
+      className={className}
+      style={{ opacity, y }}
+      aria-hidden={gate.hidden ? true : undefined}
+    >
       {children}
     </m.div>
   )
