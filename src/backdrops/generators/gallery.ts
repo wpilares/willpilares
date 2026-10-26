@@ -1,12 +1,11 @@
-import { PANORAMA_WIDTH } from '../layout'
+import { galleryFrameCentres, PANORAMA_WIDTH } from '../layout'
 import { createPixelBuffer, type PixelBuffer } from '../painter'
 import type { Rng } from '../prng'
 import { candle, ditherFill, glow, HEIGHT, verticalGradient, WIDTH } from './shared'
 import type { BackdropLayers } from './types'
 
-export const GALLERY_WIDTH = PANORAMA_WIDTH
-export const GALLERY_FRAME_CENTRES = [80, 280, 480, 680, 880] as const
-const CANDELABRA_X = [180, 380, 580, 780] as const
+const GALLERY_WIDTH = PANORAMA_WIDTH
+const CANDELABRA_X = [160, 320, 480, 640, 800] as const
 const CORNICE_Y = 22
 const DADO_Y = 118
 const FLOOR_Y = 152
@@ -147,7 +146,7 @@ const paintMid = (rng: Rng): PixelBuffer => {
   cornice(mid)
   wainscot(mid)
   floorboards(mid, rng)
-  for (const centre of GALLERY_FRAME_CENTRES) frame(mid, centre)
+  for (const centre of galleryFrameCentres) frame(mid, centre)
   for (const x of CANDELABRA_X) candelabra(mid, x)
   return mid
 }

@@ -1,5 +1,5 @@
 import { BACKDROP_WIDTH, Backdrop, backdropDepths } from '@backdrops'
-import { backdropRectToStage, layerBleed, type StageRect } from '@backdrops/layout'
+import { backdropRectToStage, belfryMoon, layerBleed } from '@backdrops/layout'
 import { mascotBus } from '@mascot'
 import { FogVeil, Scene, SceneReveal, SceneWindow, sceneById, useSceneStage } from '@scenes'
 import { animate } from 'motion/mini'
@@ -12,7 +12,6 @@ const ravenMeta = sceneById('raven')
 const email = 'wgpilaresc@gmail.com'
 const COPIED_FEEDBACK_MS = 2000
 const FLIGHT_SECONDS = 1.2
-const BELFRY_MOON: StageRect = { x: 160, y: 38, width: 0, height: 0 }
 
 type SealLink = ContactLink & { readonly initial: string }
 
@@ -205,7 +204,7 @@ const RavenStage = () => {
     const startY = buttonBox.top - stageBox.top
     const bleed = isStatic ? 0 : layerBleed(backdropDepths.far)
     const moon = backdropRectToStage(
-      BELFRY_MOON,
+      { x: belfryMoon.x, y: belfryMoon.y, width: 0, height: 0 },
       { width: stageBox.width, height: stageBox.height },
       BACKDROP_WIDTH,
       bleed

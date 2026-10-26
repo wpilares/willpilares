@@ -1,3 +1,4 @@
+import { belfryMoon } from '../layout'
 import { bayerHit, createPixelBuffer, type PixelBuffer } from '../painter'
 import type { Rng } from '../prng'
 import { cathedral, skyline } from './city'
@@ -11,7 +12,7 @@ const paintFar = (rng: Rng): PixelBuffer => {
   const far = createPixelBuffer(WIDTH, HEIGHT)
   verticalGradient(far, 0, 0, WIDTH, HORIZON_Y, ['void', 'night', 'stone', 'ash'])
   stars(far, rng, 60, 90, ['slate', 'mist', 'mist', 'moonGlow', 'parchment'])
-  moon(far, rng, 160, 38, 26)
+  moon(far, rng, belfryMoon.x, belfryMoon.y, belfryMoon.radius)
   skyline(far, rng, {
     x: 0,
     width: WIDTH,

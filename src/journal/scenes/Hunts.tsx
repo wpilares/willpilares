@@ -145,7 +145,9 @@ const Plaque = ({ record, visibleBullets }: PlaqueProps) => {
   return (
     <article className="iron-frame w-full max-w-[24rem] border border-gold/50 bg-night/85 px-5 py-4 text-parchment">
       <p className="font-fell text-base tracking-[0.06em] text-parchment-dim">{period}</p>
-      <h3 className="journal-title-sm mt-1 text-parchment">{record.company.company}</h3>
+      <h3 className="mt-1 font-serif text-3xl font-semibold tracking-[0.02em] text-parchment">
+        {record.company.company}
+      </h3>
       <p className="mt-2 font-fell text-lg text-gold">{position}</p>
       <ul className="mt-3 flex flex-col gap-2 text-lg leading-snug">
         {shown.map((description) => (

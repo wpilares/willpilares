@@ -8,4 +8,3 @@ export type {
   ProjectScreenshot,
   ProjectStatus,
 } from './projects.types'
-export type { SkillCategory, SkillItem } from './skills.types'

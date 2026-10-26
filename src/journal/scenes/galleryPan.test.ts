@@ -1,6 +1,8 @@
+import { galleryFrameCentres } from '@backdrops/layout'
 import { describe, expect, it } from 'vitest'
 import {
   centredProgress,
+  frameCentredProgress,
   GALLERY_PAN_END,
   GALLERY_PAN_START,
   galleryPanProgress,
@@ -35,5 +37,30 @@ describe('gallery pan mapping', () => {
     expect(centredProgress(-1280, 1440, 3360)).toBeNull()
     expect(centredProgress(2720, 1440, 3360)).toBeNull()
     expect(centredProgress(720, 1440, 0)).toBeNull()
+  })
+
+  describe.each([
+    { width: 1440, height: 900 },
+    { width: 1280, height: 800 },
+    { width: 1920, height: 1080 },
+    { width: 1600, height: 900 },
+  ])('at $width x $height', (stage) => {
+    it('brings every company frame to the screen centre during the pan', () => {
+      const moments = galleryFrameCentres.map((centre) => frameCentredProgress(centre, stage))
+      for (const moment of moments) {
+        expect(moment).not.toBeNull()
+        expect(moment ?? 0).toBeGreaterThanOrEqual(GALLERY_PAN_START)
+        expect(moment ?? 1).toBeLessThanOrEqual(GALLERY_PAN_END)
+      }
+      expect(moments).toEqual([...moments].sort((a, b) => (a ?? 0) - (b ?? 0)))
+    })
+  })
+
+  it('hangs one frame per company', () => {
+    expect(galleryFrameCentres).toHaveLength(4)
+  })
+
+  it('centres the middle of the panorama halfway through the pan', () => {
+    expect(frameCentredProgress(480, { width: 1440, height: 900 })).toBeCloseTo(0.5)
   })
 })

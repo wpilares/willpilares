@@ -11,8 +11,6 @@ import { generateStreet } from './street'
 import type { BackdropGenerator, BackdropLayers } from './types'
 
 export type { BackdropId } from '../layout'
-export { GALLERY_FRAME_CENTRES, GALLERY_WIDTH } from './gallery'
-export { LAB_MIRROR } from './lab'
 export type { BackdropGenerator, BackdropLayers } from './types'
 
 type BackdropSpec = { readonly seed: number; readonly generate: BackdropGenerator }
