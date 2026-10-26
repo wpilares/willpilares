@@ -1,4 +1,5 @@
 export { Backdrop } from './Backdrop'
+export { CandleFlame } from './CandleFlame'
 export type { BackdropGenerator, BackdropLayers } from './generators/types'
 export type { BackdropId, BackdropLayerName } from './layout'
 export {

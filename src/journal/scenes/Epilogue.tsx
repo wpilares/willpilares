@@ -1,4 +1,4 @@
-import { Backdrop } from '@backdrops'
+import { Backdrop, CandleFlame } from '@backdrops'
 import { mascotBus } from '@mascot'
 import { Scene, sceneById } from '@scenes'
 import { useTranslation } from 'react-i18next'
@@ -43,6 +43,7 @@ const EpilogueText = () => {
 const EpilogueStage = () => (
   <div className="absolute inset-0">
     <Backdrop id="prologue" />
+    <CandleFlame />
     <div
       aria-hidden="true"
       className="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-night via-night/70 to-transparent"

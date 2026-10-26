@@ -1,4 +1,4 @@
-import { Backdrop } from '@backdrops'
+import { Backdrop, CandleFlame } from '@backdrops'
 import { Scene, sceneById, segment, useSceneStage } from '@scenes'
 import { useTransform } from 'motion/react'
 import * as m from 'motion/react-m'
@@ -31,6 +31,7 @@ const PrologueStage = () => {
   return (
     <>
       <Backdrop id="prologue" />
+      <CandleFlame />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-b from-transparent to-night"

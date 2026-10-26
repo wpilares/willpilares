@@ -74,3 +74,19 @@ export const galleryFrameCentres: readonly number[] = [240, 400, 560, 720]
 export const labMirrorRect: StageRect = { x: 56, y: 36, width: 108, height: 84 }
 
 export const belfryMoon = { x: 160, y: 38, radius: 26 } as const
+
+export const PROLOGUE_CANDLE_X = 160
+export const PROLOGUE_WAX_TOP = 106
+export const PROLOGUE_WICK_TOP = PROLOGUE_WAX_TOP - 3
+
+export const CANDLE_FLAME_FRAME_COUNT = 8
+export const CANDLE_FLAME_WIDTH = 15
+export const CANDLE_FLAME_HEIGHT = 24
+export const CANDLE_FLAME_WICK_COLUMN = 7
+
+export const prologueFlameRect: StageRect = {
+  x: PROLOGUE_CANDLE_X - CANDLE_FLAME_WICK_COLUMN,
+  y: PROLOGUE_WICK_TOP - CANDLE_FLAME_HEIGHT,
+  width: CANDLE_FLAME_WIDTH,
+  height: CANDLE_FLAME_HEIGHT,
+}

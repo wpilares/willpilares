@@ -3,10 +3,14 @@ import {
   BACKDROP_VERTICAL_TRAVEL,
   backdropRectToStage,
   backdropScale,
+  CANDLE_FLAME_WICK_COLUMN,
   isPanoramaLayer,
   layerBleed,
   layerWidth,
+  PROLOGUE_CANDLE_X,
+  PROLOGUE_WICK_TOP,
   panoramaOverflow,
+  prologueFlameRect,
 } from './layout'
 
 describe('backdrop layout', () => {
@@ -65,5 +69,10 @@ describe('backdrop layout', () => {
     expect(rect.y).toBeCloseTo((900 - 180 * scale) / 2 + 36 * scale)
     expect(rect.width).toBeCloseTo(108 * scale)
     expect(rect.height).toBeCloseTo(84 * scale)
+  })
+
+  it('rests the prologue flame base directly on top of the wick', () => {
+    expect(prologueFlameRect.y + prologueFlameRect.height).toBe(PROLOGUE_WICK_TOP)
+    expect(prologueFlameRect.x + CANDLE_FLAME_WICK_COLUMN).toBe(PROLOGUE_CANDLE_X)
   })
 })
