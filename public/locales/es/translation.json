@@ -102,29 +102,50 @@
     "current": "Actual"
   },
   "projects": {
-    "title": "Proyectos destacados",
     "items": {
       "netpulse": {
         "title": "NetPulse",
-        "description": "Plataforma de monitoreo de redes SDN en tiempo real, en desarrollo activo: una red Mininet controlada por OS-Ken envía telemetría OpenFlow a TimescaleDB, y un backend en FastAPI expondrá KPIs de red, detección de anomalías y alertas en vivo a un dashboard en React mediante WebSockets."
+        "description": "Plataforma de monitoreo de redes SDN en tiempo real, en desarrollo activo: una red Mininet controlada por OS-Ken envía telemetría OpenFlow a TimescaleDB, y un backend en FastAPI expondrá KPIs de red, detección de anomalías y alertas en vivo a un dashboard en React mediante WebSockets.",
+        "lines": {
+          "one": "Esto es <accent>NetPulse</accent>, una plataforma de monitoreo SDN que construyo ahora mismo.",
+          "two": "Me encargo del <accent>controlador, la API y el dashboard</accent>, de punta a punta.",
+          "three": "Las métricas llegan a <accent>TimescaleDB</accent> y se actualizan en vivo."
+        }
       },
       "ecommerce": {
         "title": "Plataforma E-Commerce",
-        "description": "Plataforma de comercio electrónico completa con carrito de compras, pasarela de pagos y panel de administración."
+        "description": "Plataforma de comercio electrónico completa con carrito de compras, pasarela de pagos y panel de administración.",
+        "lines": {
+          "one": "Esto es una <accent>plataforma de e-commerce</accent> que construí de punta a punta.",
+          "two": "Desarrollé el <accent>carrito, el checkout y el panel de administración</accent>.",
+          "three": "Los pagos pasan por <accent>Stripe</accent> y los pedidos se mantienen sincronizados."
+        }
       },
       "scraping": {
         "title": "Herramienta de Web Scraping",
-        "description": "Herramienta automatizada de web scraping para recolección y análisis de datos con reportes programados."
+        "description": "Herramienta automatizada de web scraping para recolección y análisis de datos con reportes programados.",
+        "lines": {
+          "one": "Esto es una <accent>herramienta de web scraping</accent> para recolectar y analizar datos.",
+          "two": "Escribí los <accent>crawlers y el planificador</accent> que los ejecuta.",
+          "three": "Genera <accent>reportes programados</accent> sin intervención manual."
+        }
       },
       "chatbot": {
         "title": "Chatbot con IA",
-        "description": "Aplicación de chatbot impulsada por IA para servicio al cliente con procesamiento de lenguaje natural."
+        "description": "Aplicación de chatbot impulsada por IA para servicio al cliente con procesamiento de lenguaje natural.",
+        "lines": {
+          "one": "Esto es un <accent>chatbot con IA</accent> para servicio al cliente.",
+          "two": "Construí el <accent>flujo de conversación y la capa de NLP</accent>.",
+          "three": "Responde en <accent>lenguaje natural</accent>, a cualquier hora."
+        }
       }
     },
     "status": {
       "inProgress": "En desarrollo"
     },
-    "viewCode": "Ver código"
+    "viewCode": "Ver código",
+    "viewProject": "Ver proyecto",
+    "allWork": "Todo el trabajo"
   },
   "contact": {
     "title": "Hablemos",

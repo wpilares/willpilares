@@ -1,3 +1,4 @@
+export { BubbleLine, Chapter, DeviceMockup } from './chapter'
 export { Footer } from './footer/Footer'
 export { Header } from './header/Header'
 export { Jobs } from './jobs/Jobs'

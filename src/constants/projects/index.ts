@@ -1,35 +1,46 @@
-import { Bot, Globe, RadioTower, ShoppingCart } from 'lucide-react'
 import type { Project } from '@/types'
 
-export const projectIcons = {
-  ShoppingCart,
-  Globe,
-  Bot,
-  RadioTower,
-}
-
-export const projectData: Project[] = [
+export const projectData: readonly Project[] = [
   {
     key: 'netpulse',
-    icon: 'RadioTower',
-    gradient: 'from-violet-600 to-indigo-700',
-    status: 'inProgress',
+    year: '2026',
+    featured: true,
+    tint: 'navy',
+    textTone: 'paper',
+    outfit: 'netpulse',
+    side: 'right',
     stack: ['Python', 'FastAPI', 'OS-Ken', 'Mininet', 'TimescaleDB', 'React', 'Docker'],
+    status: 'inProgress',
     repoUrl: 'https://github.com/wpilares/netpulse',
   },
   {
     key: 'ecommerce',
-    icon: 'ShoppingCart',
-    gradient: 'from-blue-500 to-indigo-600',
+    year: '2024',
+    featured: true,
+    tint: 'lilac',
+    textTone: 'ink',
+    outfit: 'ecommerce',
+    side: 'left',
+    stack: ['Next.js', 'Node.js', 'PostgreSQL', 'Stripe'],
   },
   {
     key: 'scraping',
-    icon: 'Globe',
-    gradient: 'from-emerald-500 to-teal-600',
+    year: '2023',
+    featured: true,
+    tint: 'lemon',
+    textTone: 'ink',
+    outfit: 'scraping',
+    side: 'right',
+    stack: ['Python', 'Scrapy', 'PostgreSQL', 'Docker'],
   },
   {
     key: 'chatbot',
-    icon: 'Bot',
-    gradient: 'from-purple-500 to-pink-600',
+    year: '2023',
+    featured: false,
+    tint: 'moss',
+    textTone: 'paper',
+    outfit: 'chatbot',
+    side: 'left',
+    stack: ['Python', 'FastAPI', 'OpenAI API'],
   },
 ]

@@ -102,29 +102,50 @@
     "current": "Current"
   },
   "projects": {
-    "title": "Featured Projects",
     "items": {
       "netpulse": {
         "title": "NetPulse",
-        "description": "Real-time SDN network monitoring platform in active development: a Mininet network controlled by OS-Ken streams OpenFlow telemetry into TimescaleDB, and a FastAPI backend will serve network KPIs, anomaly detection, and live alerts to a React dashboard over WebSockets."
+        "description": "Real-time SDN network monitoring platform in active development: a Mininet network controlled by OS-Ken streams OpenFlow telemetry into TimescaleDB, and a FastAPI backend will serve network KPIs, anomaly detection, and live alerts to a React dashboard over WebSockets.",
+        "lines": {
+          "one": "This is <accent>NetPulse</accent>, an SDN monitoring platform I'm building right now.",
+          "two": "I own the <accent>controller, the API and the dashboard</accent>, end to end.",
+          "three": "Metrics land in <accent>TimescaleDB</accent> and update live."
+        }
       },
       "ecommerce": {
         "title": "E-Commerce Platform",
-        "description": "Complete e-commerce platform with shopping cart, payment gateway, and admin panel."
+        "description": "Complete e-commerce platform with shopping cart, payment gateway, and admin panel.",
+        "lines": {
+          "one": "This is an <accent>e-commerce platform</accent> I built end to end.",
+          "two": "I shipped the <accent>cart, checkout and admin panel</accent> myself.",
+          "three": "Payments run through <accent>Stripe</accent> and orders stay in sync."
+        }
       },
       "scraping": {
         "title": "Web Scraping Tool",
-        "description": "Automated web scraping tool for data collection and analysis with scheduled reports."
+        "description": "Automated web scraping tool for data collection and analysis with scheduled reports.",
+        "lines": {
+          "one": "This is a <accent>web scraping tool</accent> for data collection and analysis.",
+          "two": "I wrote the <accent>crawlers and the scheduler</accent> that runs them.",
+          "three": "It ships <accent>scheduled reports</accent> without anyone touching it."
+        }
       },
       "chatbot": {
         "title": "AI Chatbot App",
-        "description": "AI-powered chatbot application for customer service with natural language processing."
+        "description": "AI-powered chatbot application for customer service with natural language processing.",
+        "lines": {
+          "one": "This is an <accent>AI chatbot</accent> for customer service.",
+          "two": "I built the <accent>conversation flow and the NLP layer</accent>.",
+          "three": "It answers in <accent>natural language</accent>, around the clock."
+        }
       }
     },
     "status": {
       "inProgress": "In progress"
     },
-    "viewCode": "View code"
+    "viewCode": "View code",
+    "viewProject": "View project",
+    "allWork": "All work"
   },
   "contact": {
     "title": "Let's Talk",
