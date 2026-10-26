@@ -1,6 +1,6 @@
 {
   "header": {
-    "getInTouch": "Envía un cuervo"
+    "getInTouch": "Manda un cuervo"
   },
   "experience": {
     "companies": {
@@ -64,7 +64,7 @@
     },
     "city": {
       "tagline": "Desde 2019 persigo lo que se rompe en producción.",
-      "ctaContact": "Envía un cuervo",
+      "ctaContact": "Manda un cuervo",
       "ctaCv": "Descargar el pergamino",
       "availability": "Disponible para roles senior",
       "role": "Software Engineer · Squad Lead"
@@ -77,13 +77,13 @@
         "title": "Armas y oficios"
       },
       "hunts": {
-        "title": "Cacerías pasadas"
+        "title": "Trayectoria"
       },
       "lab": {
-        "title": "La cacería actual"
+        "title": "Proyecto actual"
       },
       "raven": {
-        "title": "Envía un cuervo"
+        "title": "Manda un cuervo"
       }
     },
     "nav": {
@@ -142,7 +142,7 @@
     },
     "archive": {
       "label": "Del archivo",
-      "title": "Cacerías por venir",
+      "title": "Proyectos por venir",
       "comingSoon": "Próximamente",
       "volumes": {
         "designSystem": {

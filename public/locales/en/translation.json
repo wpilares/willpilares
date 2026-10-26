@@ -77,10 +77,10 @@
         "title": "Arms and crafts"
       },
       "hunts": {
-        "title": "Past hunts"
+        "title": "Career"
       },
       "lab": {
-        "title": "The current hunt"
+        "title": "Current project"
       },
       "raven": {
         "title": "Send a raven"
@@ -142,7 +142,7 @@
     },
     "archive": {
       "label": "From the archive",
-      "title": "Hunts yet to come",
+      "title": "Projects yet to come",
       "comingSoon": "Coming soon",
       "volumes": {
         "designSystem": {

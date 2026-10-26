@@ -8,7 +8,7 @@ Personal portfolio of a Software Engineer and squad lead with 7+ years building 
 
 ## Overview
 
-A bilingual (English / Spanish) portfolio told as a gothic Victorian hunter's journal. Scrolling turns the pages of nine scenes: an ink prologue, the city under the moon, the hunter's study, the armory of skills, a gallery of past hunts, the inventor's lab for NetPulse, an archive of hunts to come, a belfry to send a raven, and a candlelit epilogue. Every backdrop is procedural pixel art generated from a seed and painted to a canvas, and an orange-and-white cat companion with a cape, hat and lantern walks along, reacts to the scene in view, changes outfit per chapter, and can be picked up and dragged.
+A bilingual (English / Spanish) portfolio told as a gothic Victorian hunter's journal. Scrolling turns the pages of nine scenes: an ink prologue, the city under the moon, the hunter's study, the armory of skills, a gallery of the career so far, the inventor's lab for NetPulse, an archive of projects to come, a belfry to send a raven, and a candlelit epilogue. Every backdrop is procedural pixel art generated from a seed and painted to a canvas, and an orange-and-white cat companion with a cape, hat and lantern walks along, reacts to the scene in view, changes outfit per chapter, and can be picked up and dragged.
 
 The aesthetic is inspired by gothic Victorian fiction and games of that mood; it uses no game assets, and every sprite, backdrop and ornament is original and authored in code.
 
@@ -116,8 +116,8 @@ data.json              Companies: key, name, logo, stack
 
 - **Journal copy:** every visible line lives under `journal.*` in `public/locales/en/translation.json` and `public/locales/es/translation.json`; chapter titles are `journal.chapters.<id>.title`. Keep both files in step.
 - **New job:** add an entry to `data.json` and its `position`, `period` and `descriptions` under `experience.companies.<key>` in both locale files. The gallery hangs one portrait per frame centre in `src/backdrops/layout.ts`; add a centre there when adding a fifth company.
-- **Current hunt (NetPulse):** edit `src/constants/projects/index.ts` for stack, facts and screenshot, and `journal.lab.*` for its copy.
-- **Hunts yet to come:** edit the volumes under `journal.archive.volumes.*` and their list in `src/journal/scenes/Archive.tsx`.
+- **Current project (NetPulse):** edit `src/constants/projects/index.ts` for stack, facts and screenshot, and `journal.lab.*` for its copy.
+- **Projects yet to come:** edit the volumes under `journal.archive.volumes.*` and their list in `src/journal/scenes/Archive.tsx`.
 - **Mascot quips:** edit `mascot.quips.*` in both locale files; the keys are typed in `src/mascot/behavior/bus.ts`.
 - **Hunter stats:** edit `src/constants/stats/index.ts` and `journal.hunter.stats.*`.
 - **Skills:** save the icon as `public/icons/<slug>.svg`, then add the name, its slug and the shelf entry in `src/constants/skills/index.ts`, with the shelf label under `journal.arms.categories.*`.
