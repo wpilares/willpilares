@@ -1,5 +1,7 @@
+import { useIntersectionObserver, usePrefersReducedMotion } from '@hooks'
 import { useTranslation } from 'react-i18next'
 import type { ChapterSide, ChapterTint, Project, TextTone } from '@/types'
+import { revealedClass, staggerIndex } from '../motion'
 import { BubbleLine } from './BubbleLine'
 import { DeviceMockup } from './DeviceMockup'
 
@@ -43,9 +45,13 @@ const lineKeys = ['one', 'two', 'three'] as const
 
 export const Chapter = ({ project }: ChapterProps) => {
   const { t } = useTranslation()
+  const prefersReducedMotion = usePrefersReducedMotion()
+  const [footerRef, footerVisible] = useIntersectionObserver({ threshold: 0.3 })
   const title = t(`projects.items.${project.key}.title`)
   const linkUrl = project.repoUrl ?? project.liveUrl
   const linkLabel = project.repoUrl ? t('projects.viewCode') : t('projects.viewProject')
+  const footerRevealed = revealedClass(footerVisible)
+  const floatClass = prefersReducedMotion ? '' : 'float-soft'
 
   return (
     <section
@@ -56,7 +62,7 @@ export const Chapter = ({ project }: ChapterProps) => {
     >
       <div className="grid-page gap-y-16 py-[14svh]">
         <div className={`col-span-full md:row-start-1 ${mockupColumns[project.side]}`}>
-          <div className="md:sticky md:top-[12svh]">
+          <div className={`${floatClass} md:sticky md:top-[12svh]`}>
             <DeviceMockup title={title} accentLabel={project.stack[0] ?? title} />
           </div>
         </div>
@@ -71,12 +77,18 @@ export const Chapter = ({ project }: ChapterProps) => {
           ))}
         </div>
 
-        <div className="col-span-full flex flex-wrap items-center gap-x-8 gap-y-5 border-t border-current/20 pt-8">
-          <ul className="label-mono flex flex-wrap items-center gap-x-3 gap-y-2 opacity-80">
-            {project.stack.map((tech) => (
+        <div
+          ref={footerRef}
+          className={`${footerRevealed} col-span-full flex flex-wrap items-center gap-x-8 gap-y-5 border-t border-current/20 pt-8`}
+        >
+          <ul
+            className={`${footerRevealed} label-mono flex flex-wrap items-center gap-x-3 gap-y-2 opacity-80`}
+          >
+            {project.stack.map((tech, index) => (
               <li
                 key={tech}
-                className="flex items-center gap-3 before:content-['·'] first:before:hidden"
+                className="stagger-item flex items-center gap-3 before:content-['·'] first:before:hidden"
+                style={staggerIndex(index)}
               >
                 {tech}
               </li>
@@ -84,7 +96,10 @@ export const Chapter = ({ project }: ChapterProps) => {
           </ul>
 
           {project.status && (
-            <span className="label-mono rounded-full border border-current px-3 py-1">
+            <span
+              className="stagger-item label-mono rounded-full border border-current px-3 py-1"
+              style={staggerIndex(project.stack.length)}
+            >
               {t(`projects.status.${project.status}`)}
             </span>
           )}
@@ -94,7 +109,8 @@ export const Chapter = ({ project }: ChapterProps) => {
               href={linkUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${linkClass[project.textTone]} ml-auto`}
+              className={`stagger-item ${linkClass[project.textTone]} ml-auto`}
+              style={staggerIndex(project.stack.length + 1)}
             >
               {linkLabel}
             </a>

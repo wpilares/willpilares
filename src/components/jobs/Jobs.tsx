@@ -1,6 +1,11 @@
 import { splitMetrics } from '@utils'
 import { useTranslation } from 'react-i18next'
 import type { JobsProps } from '@/types'
+import { staggerIndex } from '../motion'
+
+interface JobsRowProps extends JobsProps {
+  index: number
+}
 
 const HighlightedText = ({ text }: { text: string }) => (
   <>
@@ -16,11 +21,14 @@ const HighlightedText = ({ text }: { text: string }) => (
   </>
 )
 
-export const Jobs = ({ data, isCurrent = false }: JobsProps) => {
+export const Jobs = ({ data, index, isCurrent = false }: JobsRowProps) => {
   const { t } = useTranslation()
 
   return (
-    <li className="border-t border-ink/10">
+    <li
+      className="stagger-item group border-t border-ink/10 hover:border-blue"
+      style={staggerIndex(index)}
+    >
       <article className="grid gap-x-[var(--gutter)] gap-y-5 py-9 md:grid-cols-12 md:py-12">
         <div className="flex flex-wrap items-center gap-3 md:col-span-3 md:flex-col md:items-start">
           <span className="label-mono text-ink/60">{data.period}</span>
@@ -40,7 +48,9 @@ export const Jobs = ({ data, isCurrent = false }: JobsProps) => {
             className="h-10 w-10 flex-shrink-0 object-contain"
             loading="lazy"
           />
-          <h3 className="font-display text-2xl font-semibold tracking-tight">{data.company}</h3>
+          <h3 className="font-display text-2xl font-semibold tracking-tight transition-transform duration-500 group-hover:translate-x-2">
+            {data.company}
+          </h3>
         </div>
 
         <div className="md:col-span-7">

@@ -88,8 +88,8 @@ describe('BubbleLine', () => {
     const { container } = render(<BubbleLine i18nKey="about.lines.one" />)
 
     const line = container.querySelector('p')
-    expect(line).toHaveClass('reveal')
-    expect(line).not.toHaveClass('reveal-visible')
+    expect(line).toHaveClass('pop')
+    expect(line).not.toHaveClass('is-revealed')
   })
 
   it('renders visible immediately under reduced motion', () => {
@@ -97,7 +97,7 @@ describe('BubbleLine', () => {
     const { container } = render(<BubbleLine i18nKey="about.lines.one" />)
 
     const line = container.querySelector('p')
-    expect(line).not.toHaveClass('reveal')
+    expect(line).not.toHaveClass('pop')
     expect(line).toHaveClass('bubble-line')
   })
 })
