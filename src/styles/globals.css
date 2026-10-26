@@ -97,6 +97,20 @@
     line-height: 1.1;
   }
 
+  .label-mono {
+    @apply font-mono text-sm uppercase tracking-wide;
+  }
+
+  .highlight-box {
+    @apply inline-block bg-paper text-ink;
+    padding: 0.1em 0.2em;
+    transform: rotate(-1deg);
+  }
+
+  .scroll-arrow {
+    animation: scroll-nudge 1.6s ease-in-out infinite;
+  }
+
   .btn-primary {
     @apply inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 font-medium text-paper transition-colors duration-300;
     @apply hover:bg-blue active:scale-95;
@@ -124,6 +138,17 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@keyframes scroll-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(0.35rem);
   }
 }
 

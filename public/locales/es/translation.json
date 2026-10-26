@@ -11,17 +11,21 @@
     "name": "Willber Pilares",
     "role": "Software Engineer · Squad Lead",
     "ctaContact": "Contáctame",
-    "ctaExperience": "Ver experiencia",
+    "scrollHint": "Desliza hacia abajo"
+  },
+  "about": {
+    "statement": "Construyo sistemas que escalan.",
+    "description": "Diseño y entrego sistemas full-stack de extremo a extremo, desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. Como líder de squad, guío a un equipo de desarrolladores en las decisiones técnicas y el code review, y construyo las bases compartidas en las que se apoyan otros equipos: una biblioteca de componentes para toda la empresa, autenticación centralizada con Keycloak y la modernización de servicios legacy. Trabajo con un enfoque AI-first usando Claude, OpenCode, servidores MCP y skills de agentes personalizadas, manteniendo la calidad con code review y pruebas automatizadas.",
+    "lines": {
+      "one": "Llevo cinco años entregando <accent>sistemas backend y full-stack</accent> que se mantienen rápidos con tráfico real.",
+      "two": "Hoy lidero un squad en Whitelion Technology y <accent>trabajo a diario con herramientas de IA</accent> para avanzar más rápido sin bajar el listón."
+    },
     "stats": {
       "years": "Años de experiencia",
       "sso": "Apps integradas con SSO",
       "library": "Proyectos con mi biblioteca UI",
       "squad": "Devs en mi squad"
-    }
-  },
-  "about": {
-    "title": "Sobre mí",
-    "description": "Diseño y entrego sistemas full-stack de extremo a extremo, desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. Como líder de squad, guío a un equipo de desarrolladores en las decisiones técnicas y el code review, y construyo las bases compartidas en las que se apoyan otros equipos: una biblioteca de componentes para toda la empresa, autenticación centralizada con Keycloak y la modernización de servicios legacy. Trabajo con un enfoque AI-first usando Claude, OpenCode, servidores MCP y skills de agentes personalizadas, manteniendo la calidad con code review y pruebas automatizadas.",
+    },
     "highlights": {
       "years": {
         "title": "+5 años",
