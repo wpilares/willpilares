@@ -1,4 +1,3 @@
-export { Footer } from './footer/Footer'
 export { Header } from './header/Header'
 export type { MaskedTextProps, MotionVars } from './motion'
 export {

@@ -44,16 +44,6 @@
       }
     }
   },
-  "contact": {
-    "headline": "Let's build something.",
-    "availability": "Open to senior roles and hard problems.",
-    "copied": "Copied!",
-    "links": {
-      "email": "Email",
-      "github": "GitHub",
-      "linkedin": "LinkedIn"
-    }
-  },
   "mascot": {
     "quips": {
       "hello": "Meow. I'm Will's familiar. Scroll and I'll light the way.",
@@ -64,13 +54,9 @@
       "scrollBack": "Back again? Purr.",
       "copied": "The raven has flown.",
       "trick": "Behold.",
-      "sleepy": "Still there? I'll nap."
+      "sleepy": "Still there? I'll nap.",
+      "purr": "Prrrr."
     }
-  },
-  "footer": {
-    "rights": "All rights reserved.",
-    "doATrick": "Do a trick",
-    "sayHi": "Say hi"
   },
   "journal": {
     "prologue": {
@@ -150,6 +136,40 @@
         "inProgress": "In progress"
       },
       "viewCode": "View the code"
+    },
+    "archive": {
+      "label": "From the archive",
+      "title": "Hunts yet to come",
+      "comingSoon": "Coming soon",
+      "volumes": {
+        "designSystem": {
+          "title": "A design system",
+          "note": "Tokens, components and docs shared across products."
+        },
+        "mcp": {
+          "title": "An MCP server with custom skills",
+          "note": "Tools that let AI agents work inside real codebases."
+        },
+        "identity": {
+          "title": "A multi-tenant identity platform",
+          "note": "Keycloak-based SSO and access control for many tenants."
+        }
+      }
+    },
+    "raven": {
+      "headline": "Shall we build something?",
+      "availability": "Open to senior roles and hard problems.",
+      "copied": "The raven has flown",
+      "links": {
+        "email": "Email",
+        "github": "GitHub",
+        "linkedin": "LinkedIn"
+      }
+    },
+    "epilogue": {
+      "end": "End of the journal",
+      "trick": "Do a trick",
+      "pet": "Pet the cat"
     }
   }
 }

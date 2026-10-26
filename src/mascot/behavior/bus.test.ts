@@ -51,6 +51,17 @@ describe('createMascotBus', () => {
     expect(listener).toHaveBeenCalledWith({ type: 'travel', anchor: 'skills' })
   })
 
+  it('carries the purr quip for petting the cat', () => {
+    const bus = createMascotBus()
+    const listener = vi.fn()
+    bus.subscribe(listener)
+    const event: MascotEvent = { type: 'quip', key: 'purr' }
+
+    bus.emit(event)
+
+    expect(listener).toHaveBeenCalledWith({ type: 'quip', key: 'purr' })
+  })
+
   it('exposes a shared singleton bus', () => {
     const listener = vi.fn()
     const unsubscribe = mascotBus.subscribe(listener)

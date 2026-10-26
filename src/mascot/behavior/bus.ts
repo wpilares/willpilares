@@ -10,6 +10,7 @@ export type QuipKey =
   | 'copied'
   | 'trick'
   | 'sleepy'
+  | 'purr'
 
 export type MascotEvent =
   | { type: 'quip'; key: QuipKey }
