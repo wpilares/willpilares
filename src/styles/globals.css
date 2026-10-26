@@ -121,23 +121,12 @@
     @apply hover:border-ink hover:bg-ink hover:text-paper active:scale-95;
   }
 
-  .card {
-    @apply rounded-2xl border border-ink/10 bg-stone transition-all duration-300;
-    @apply hover:-translate-y-0.5 hover:border-ink/30;
-  }
-
   .reveal {
     @apply translate-y-6 opacity-0 transition-all duration-700 ease-out;
   }
 
   .reveal-visible {
     @apply translate-y-0 opacity-100;
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
   }
 }
 

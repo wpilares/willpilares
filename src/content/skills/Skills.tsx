@@ -1,6 +1,3 @@
-import { SectionTitle } from '@components'
-import { useIntersectionObserver } from '@hooks'
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { techIconUrls } from '@/constants/skills'
 
@@ -56,63 +53,45 @@ const categories = [
 ]
 
 export const Skills = () => {
-  const [ref, isVisible] = useIntersectionObserver({ threshold: 0.05 })
-  const [activeTab, setActiveTab] = useState(0)
   const { t } = useTranslation()
-  const revealClass = `reveal ${isVisible ? 'reveal-visible' : ''}`
-  const activeCategory = categories[activeTab]
 
   return (
     <section
       id="skills"
       data-mascot="left"
       data-mascot-gesture="cheer"
-      className="bg-stone px-4 py-20 sm:px-6 sm:py-28 lg:px-8"
-      ref={ref}
+      className="bg-paper text-ink bg-grid grid-page py-[16svh]"
     >
-      <div className="mx-auto max-w-5xl">
-        <SectionTitle title={t('skills.title')} subtitle={t('skills.subtitle')} />
+      <h2 className="display-headline col-span-full">{t('skills.title')}</h2>
 
-        <fieldset className={`${revealClass} mb-8 flex flex-wrap justify-center gap-2 sm:gap-3`}>
-          <legend className="sr-only">{t('skills.title')}</legend>
-          {categories.map((cat, index) => (
-            <button
-              key={cat.key}
-              type="button"
-              aria-pressed={activeTab === index}
-              onClick={() => setActiveTab(index)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 sm:px-5 ${
-                activeTab === index
-                  ? 'bg-ink text-paper'
-                  : 'border border-ink/10 bg-stone text-ink/70 hover:border-ink hover:text-ink'
-              }`}
-            >
-              {t(`skills.categories.${cat.key}`)}
-            </button>
-          ))}
-        </fieldset>
-
-        <div className={revealClass} style={{ transitionDelay: '150ms' }}>
-          <div
-            key={activeCategory.key}
-            className="grid animate-fade-up grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4"
+      <ul className="col-span-full mt-16 border-b border-ink/10 md:mt-24">
+        {categories.map((category) => (
+          <li
+            key={category.key}
+            className="grid gap-x-[var(--gutter)] gap-y-4 border-t border-ink/10 py-7 md:grid-cols-12 md:py-9"
           >
-            {activeCategory.skills.map((skill) => (
-              <div key={skill.name} className="card flex items-center gap-3 p-4">
-                <img
-                  src={skill.iconUrl}
-                  alt=""
-                  width={28}
-                  height={28}
-                  className="h-7 w-7 flex-shrink-0 object-contain"
-                  loading="lazy"
-                />
-                <span className="truncate text-sm font-medium text-ink">{skill.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+            <h3 className="font-display text-xl font-semibold tracking-tight md:col-span-3 md:text-2xl">
+              {t(`skills.categories.${category.key}`)}
+            </h3>
+
+            <ul className="flex flex-wrap gap-x-8 gap-y-4 md:col-span-9">
+              {category.skills.map((skill) => (
+                <li key={skill.name} className="flex items-center gap-3 text-base">
+                  <img
+                    src={skill.iconUrl}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="h-5 w-5 flex-shrink-0 object-contain"
+                    loading="lazy"
+                  />
+                  <span>{skill.name}</span>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }
