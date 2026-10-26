@@ -68,7 +68,6 @@
   }
 
   .bg-grid {
-    pointer-events: none;
     background-image:
       linear-gradient(
         to right,
