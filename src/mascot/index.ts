@@ -1,5 +1,6 @@
 export type { Anchor, AnchorInput, MascotFacing, MascotSide, Viewport } from './anchor'
 export { parseMascotSide, resolveAnchor } from './anchor'
+export * from './art'
 export type {
   GestureCompleteListener,
   GestureDefinition,
