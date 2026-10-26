@@ -7,12 +7,17 @@ import { App } from './App'
 
 const rootElement = document.getElementById('root')
 
+const loadPreview = (preview: string | null) => {
+  if (preview === 'mascot') return lazy(() => import('./mascot/preview'))
+  if (preview === 'backdrops') return lazy(() => import('./backdrops/preview'))
+  return null
+}
+
 const renderRoot = () => {
-  if (
-    import.meta.env.DEV &&
-    new URLSearchParams(window.location.search).get('preview') === 'mascot'
-  ) {
-    const PreviewSheet = lazy(() => import('./mascot/preview'))
+  const PreviewSheet = import.meta.env.DEV
+    ? loadPreview(new URLSearchParams(window.location.search).get('preview'))
+    : null
+  if (PreviewSheet) {
     return (
       <Suspense fallback={null}>
         <PreviewSheet />

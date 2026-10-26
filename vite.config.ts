@@ -13,6 +13,7 @@ export default defineConfig({
       '@mascot': path.resolve(__dirname, './src/mascot'),
       '@scenes': path.resolve(__dirname, './src/scenes'),
       '@styles': path.resolve(__dirname, './src/styles'),
+      '@backdrops': path.resolve(__dirname, './src/backdrops'),
       '@assets': path.resolve(__dirname, './src/assets'),
       '@utils': path.resolve(__dirname, './src/utils'),
     },
