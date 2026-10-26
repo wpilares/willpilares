@@ -92,10 +92,7 @@ export const Contact = () => {
           <p className="mb-5 text-light-text-secondary dark:text-dark-text-secondary">
             {t('contact.directMessage')}
           </p>
-          <a
-            href="mailto:wgpilaresc@gmail.com"
-            className="btn-primary inline-flex items-center gap-2"
-          >
+          <a href="mailto:wgpilaresc@gmail.com" className="btn-primary">
             <Send className="h-5 w-5" />
             {t('contact.sendEmail')}
           </a>

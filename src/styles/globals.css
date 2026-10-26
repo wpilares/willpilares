@@ -1,12 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/funnel-display";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  * {
-    @apply transition-colors duration-300;
+  :root {
+    --margin: clamp(1.25rem, 2.8vw, 3rem);
+    --gutter: clamp(0.75rem, 1.4vw, 1.5rem);
+    --cols: 4;
+    --column: calc((100vw - 2 * var(--margin) - (var(--cols) - 1) * var(--gutter)) / var(--cols));
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --cols: 12;
+    }
   }
 
   html {
@@ -20,89 +30,87 @@
   a:focus-visible,
   button:focus-visible,
   [tabindex]:focus-visible {
-    @apply outline-none ring-2 ring-violet-500 ring-offset-2 ring-offset-white;
-  }
-
-  html.dark a:focus-visible,
-  html.dark button:focus-visible,
-  html.dark [tabindex]:focus-visible {
-    @apply ring-violet-400 ring-offset-[#0a0a0a];
+    @apply outline-none ring-2 ring-blue ring-offset-2 ring-offset-paper;
   }
 
   body {
-    @apply font-poppins antialiased;
+    @apply bg-paper font-sans text-ink antialiased;
   }
 
-  /* Light mode (default) */
-  html body {
-    @apply bg-white text-[#18181b];
-  }
-
-  /* Dark mode */
-  html.dark body {
-    @apply bg-[#0a0a0a] text-[#f5f5f5];
-  }
-
-  /* Custom scrollbar - Light mode (default) */
   body ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
 
   body ::-webkit-scrollbar-track {
-    @apply bg-[#f8f5ff];
+    @apply bg-stone;
   }
 
   body ::-webkit-scrollbar-thumb {
-    @apply rounded bg-[#e4e4e7];
+    @apply rounded bg-ink/20;
   }
 
   body ::-webkit-scrollbar-thumb:hover {
-    @apply bg-violet-600;
+    @apply bg-ink/40;
   }
 
-  /* Custom scrollbar - Dark mode */
-  html.dark body ::-webkit-scrollbar-track {
-    @apply bg-[#0d0b14];
-  }
-
-  html.dark body ::-webkit-scrollbar-thumb {
-    @apply rounded bg-[#27272a];
-  }
-
-  html.dark body ::-webkit-scrollbar-thumb:hover {
-    @apply bg-violet-500;
-  }
-
-  /* Selection styling - Light mode (default) */
   body ::selection {
-    @apply bg-violet-600/30 text-[#18181b];
-  }
-
-  /* Selection styling - Dark mode */
-  html.dark body ::selection {
-    @apply bg-violet-500/30 text-white;
+    @apply bg-blue/20 text-ink;
   }
 }
 
 @layer components {
-  /* Glass effect */
-  .glass {
-    @apply border-b border-gray-200 bg-white/80 backdrop-blur-xl;
+  .grid-page {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+    column-gap: var(--gutter);
+    padding-inline: var(--margin);
   }
 
-  html.dark .glass {
-    @apply border-b border-white/10 bg-black/70;
+  .bg-grid {
+    pointer-events: none;
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in srgb, currentColor 6%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, currentColor 6%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: calc(var(--column) + var(--gutter)) calc(var(--column) + var(--gutter));
+    background-position: var(--margin) 0;
   }
 
-  /* Card */
+  .display-headline {
+    @apply font-display font-semibold;
+    font-size: clamp(2.5rem, 8vw, 8rem);
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+  }
+
+  .bubble-line {
+    @apply font-display font-semibold;
+    font-size: clamp(1.125rem, 2vw, 2.125rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 font-medium text-paper transition-colors duration-300;
+    @apply hover:bg-blue active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-full border border-ink/20 px-5 py-3 font-medium text-ink transition-colors duration-300;
+    @apply hover:border-ink hover:bg-ink hover:text-paper active:scale-95;
+  }
+
   .card {
-    @apply rounded-2xl border border-[#e4e4e7] bg-[#f9fafb] transition-all duration-300;
-    @apply hover:-translate-y-0.5 hover:border-violet-500/50 hover:shadow-xl hover:shadow-violet-500/10;
-  }
-
-  html.dark .card {
-    @apply border-[#27272a] bg-[#111111] hover:border-violet-500/50 hover:shadow-violet-500/5;
+    @apply rounded-2xl border border-ink/10 bg-stone transition-all duration-300;
+    @apply hover:-translate-y-0.5 hover:border-ink/30;
   }
 
   .reveal {
@@ -111,60 +119,6 @@
 
   .reveal-visible {
     @apply translate-y-0 opacity-100;
-  }
-
-  .btn-ghost {
-    @apply px-5 py-3 rounded-full font-medium transition-all duration-300 active:scale-95;
-    @apply text-[#52525b] hover:bg-violet-600/10 hover:text-violet-600;
-  }
-
-  html.dark .btn-ghost {
-    @apply text-[#a1a1aa] hover:bg-violet-500/10 hover:text-violet-400;
-  }
-
-  /* Primary Button */
-  .btn-primary {
-    @apply px-6 py-3 rounded-full font-medium transition-all duration-300 active:scale-95;
-    @apply bg-violet-600 text-white hover:bg-violet-500 hover:shadow-lg hover:shadow-violet-600/25;
-  }
-
-  html.dark .btn-primary {
-    @apply bg-violet-500 text-white hover:bg-violet-400 hover:shadow-lg hover:shadow-violet-500/25;
-  }
-
-  /* Secondary Button */
-  .btn-secondary {
-    @apply px-6 py-3 rounded-full font-medium bg-transparent border-2 transition-all duration-300 active:scale-95;
-    @apply border-[#e4e4e7] text-[#18181b] hover:border-violet-600 hover:text-violet-600;
-  }
-
-  html.dark .btn-secondary {
-    @apply border-[#27272a] text-white hover:border-violet-500 hover:text-violet-400;
-  }
-
-  /* Section Title */
-  .section-title {
-    @apply text-4xl md:text-5xl font-bold mb-12;
-    @apply text-[#18181b];
-  }
-
-  html.dark .section-title {
-    @apply text-white;
-  }
-
-  /* Gradient Text */
-  .gradient-text {
-    @apply bg-gradient-to-r from-violet-400 to-purple-600 bg-clip-text text-transparent;
-  }
-
-  /* Badge */
-  .badge {
-    @apply px-3 py-1 rounded-full text-xs font-medium;
-    @apply bg-violet-600/10 text-violet-600 border border-violet-600/20;
-  }
-
-  html.dark .badge {
-    @apply bg-violet-500/10 text-violet-400 border border-violet-500/20;
   }
 }
 
