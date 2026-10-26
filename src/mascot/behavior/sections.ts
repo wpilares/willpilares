@@ -1,5 +1,5 @@
 import { type MascotSide, parseMascotSide } from '../anchor'
-import { OUTFIT_NAMES, type OutfitName } from '../art/outfits'
+import { DEFAULT_OUTFIT, OUTFIT_NAMES, type OutfitName } from '../art/outfits'
 import { GESTURE_NAMES, type GestureName } from '../gestures'
 
 export type SectionTarget = {
@@ -16,7 +16,7 @@ export type SectionEntry = {
 }
 
 const FALLBACK_GESTURE: GestureName = 'idle'
-const FALLBACK_OUTFIT: OutfitName = 'default'
+const FALLBACK_OUTFIT: OutfitName = DEFAULT_OUTFIT
 
 const isGestureName = (value: string): value is GestureName =>
   GESTURE_NAMES.some((name) => name === value)

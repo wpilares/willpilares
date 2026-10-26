@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
+import { lanternPoint } from '../lantern'
 import { SPRITE_HEIGHT, SPRITE_WIDTH } from '../sprite'
+import { LanternGlow } from './LanternGlow'
 import { QuipBubble } from './QuipBubble'
 import { useMascot } from './useMascot'
 
@@ -55,7 +57,7 @@ export const Mascot = () => {
   const reducedMotion = usePrefersReducedMotion()
   const metrics = useMascotMetrics()
   const scale = metrics?.scale ?? DESKTOP_SCALE
-  const { position, held, quipKey } = useMascot({
+  const { position, facing, held, lit, quipKey } = useMascot({
     canvasRef,
     reducedMotion,
     scale,
@@ -67,6 +69,7 @@ export const Mascot = () => {
   const width = SPRITE_WIDTH * scale
   const height = SPRITE_HEIGHT * scale
   const cursor = reducedMotion ? 'default' : held ? 'grabbing' : 'grab'
+  const lantern = lanternPoint(position, facing, scale)
 
   return (
     <div
@@ -74,6 +77,7 @@ export const Mascot = () => {
       className="pointer-events-none fixed inset-0"
       style={{ zIndex: 40, position: 'fixed', inset: 0 }}
     >
+      {lit && <LanternGlow x={lantern.x} y={lantern.y} />}
       <QuipBubble quipKey={quipKey} x={position.x} y={position.y} width={width} />
       <canvas
         ref={canvasRef}

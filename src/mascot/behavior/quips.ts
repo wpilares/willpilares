@@ -9,7 +9,7 @@ export type ScrollQuipInput = {
   readonly shownKeys: ReadonlySet<QuipKey>
 }
 
-export const TRICK_GESTURES: readonly GestureName[] = ['wave', 'cheer', 'thumbs', 'think', 'sulk']
+export const TRICK_GESTURES: readonly GestureName[] = ['wave', 'cheer', 'lick', 'stretch', 'purr']
 
 export const pickScrollQuip = ({
   direction,

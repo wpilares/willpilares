@@ -82,7 +82,7 @@ export const Chapter = ({ project }: ChapterProps) => {
   return (
     <section
       data-mascot={project.side}
-      data-mascot-gesture="thumbs"
+      data-mascot-gesture="purr"
       data-mascot-outfit={project.outfit}
       className={`bg-grid relative min-h-[120svh] ${tintClass[project.tint]} ${toneClass[project.textTone]}`}
     >

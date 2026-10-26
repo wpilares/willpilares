@@ -1,6 +1,6 @@
 import { type RefObject, useCallback, useEffect, useRef, useState } from 'react'
 import { type MascotFacing, type MascotSide, resolveAnchor, type Viewport } from '../anchor'
-import { applyOutfit, createMascotGestures, type OutfitName, outfits } from '../art'
+import { applyOutfit, createMascotGestures, DEFAULT_OUTFIT, type OutfitName, outfits } from '../art'
 import { mascotBus, type QuipKey } from '../behavior/bus'
 import { createHoldDetector } from '../behavior/hold'
 import { type Point, stepTowards } from '../behavior/motion'
@@ -33,6 +33,7 @@ export type UseMascotResult = {
   readonly position: Point
   readonly facing: MascotFacing
   readonly held: boolean
+  readonly lit: boolean
   readonly quipKey: QuipKey | null
   readonly dismissQuip: () => void
 }
@@ -124,7 +125,7 @@ const createWorld = (initialPosition: Point): World => ({
   anchorFacing: 'right',
   facing: 'right',
   sectionGesture: 'idle',
-  outfit: 'default',
+  outfit: DEFAULT_OUTFIT,
   held: false,
   dragOffset: ORIGIN,
   pointer: ORIGIN,
@@ -206,7 +207,7 @@ const createStage = (
     reducedMotion,
     world,
     outputs,
-    machine: createGestureMachine(gestureSets('default')),
+    machine: createGestureMachine(gestureSets(DEFAULT_OUTFIT)),
   }
 
   const draw = (frame: SpriteFrame) => {
@@ -481,6 +482,7 @@ export const useMascot = ({
   const [position, setPosition] = useState<Point>(() => resolveHeroPosition(scale, margin))
   const [facing, setFacing] = useState<MascotFacing>('right')
   const [held, setHeld] = useState(false)
+  const [lit, setLit] = useState(false)
   const [quipKey, setQuipKey] = useState<QuipKey | null>(null)
   const quipTimer = useRef(0)
 
@@ -510,6 +512,7 @@ export const useMascot = ({
       showQuip,
     })
     setPosition(live.stage.world.position)
+    setLit(live.stage.renderer !== null)
     live.drawStill()
     const detach = [
       attachSections(live),
@@ -522,8 +525,9 @@ export const useMascot = ({
     showQuip('hello')
     return () => {
       for (const cleanup of detach) cleanup()
+      setLit(false)
     }
   }, [canvasRef, reducedMotion, scale, margin, showQuip])
 
-  return { position, facing, held, quipKey, dismissQuip }
+  return { position, facing, held, lit, quipKey, dismissQuip }
 }

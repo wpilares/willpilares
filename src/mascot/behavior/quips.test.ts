@@ -41,18 +41,18 @@ describe('pickScrollQuip', () => {
 })
 
 describe('randomTrickGesture', () => {
-  it('offers wave, cheer, thumbs, think and sulk', () => {
-    expect([...TRICK_GESTURES]).toEqual(['wave', 'cheer', 'thumbs', 'think', 'sulk'])
+  it('offers wave, cheer, lick, stretch and purr', () => {
+    expect([...TRICK_GESTURES]).toEqual(['wave', 'cheer', 'lick', 'stretch', 'purr'])
   })
 
   it('maps the random number onto the trick list', () => {
     expect(randomTrickGesture(() => 0)).toBe('wave')
-    expect(randomTrickGesture(() => 0.5)).toBe('thumbs')
-    expect(randomTrickGesture(() => 0.999)).toBe('sulk')
+    expect(randomTrickGesture(() => 0.5)).toBe('lick')
+    expect(randomTrickGesture(() => 0.999)).toBe('purr')
   })
 
   it('clamps out-of-range random values into the list', () => {
-    expect(randomTrickGesture(() => 1)).toBe('sulk')
+    expect(randomTrickGesture(() => 1)).toBe('purr')
     expect(randomTrickGesture(() => -1)).toBe('wave')
   })
 })

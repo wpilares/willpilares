@@ -39,7 +39,7 @@ export const AboutMe = () => {
     <section
       id="about"
       data-mascot="left"
-      data-mascot-gesture="think"
+      data-mascot-gesture="sit"
       className="bg-paper text-ink bg-grid relative"
     >
       <div className="grid-page gap-y-20 py-[18svh] md:gap-y-28">

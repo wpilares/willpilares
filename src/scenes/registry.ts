@@ -1,3 +1,5 @@
+import type { GestureName, OutfitName } from '@mascot'
+
 export type SceneId =
   | 'prologue'
   | 'city'
@@ -20,8 +22,8 @@ export type SceneMeta = {
   titleKey?: string
   lengthVh: number
   mascotSide: SceneMascotSide
-  mascotGesture: string
-  mascotOutfit: string
+  mascotGesture: GestureName
+  mascotOutfit: OutfitName
 }
 
 export type ChapterMeta = {
@@ -39,16 +41,16 @@ export const scenes: readonly SceneMeta[] = [
     anchor: 'prologue',
     lengthVh: 100,
     mascotSide: 'hero',
-    mascotGesture: 'idle',
-    mascotOutfit: 'default',
+    mascotGesture: 'sit',
+    mascotOutfit: 'hunter',
   },
   {
     id: 'city',
     anchor: 'home',
     lengthVh: 200,
     mascotSide: 'hero',
-    mascotGesture: 'wave',
-    mascotOutfit: 'default',
+    mascotGesture: 'sit',
+    mascotOutfit: 'hunter',
   },
   {
     id: 'hunter',
@@ -57,8 +59,8 @@ export const scenes: readonly SceneMeta[] = [
     titleKey: titleKeyFor('hunter'),
     lengthVh: 220,
     mascotSide: 'left',
-    mascotGesture: 'think',
-    mascotOutfit: 'default',
+    mascotGesture: 'lick',
+    mascotOutfit: 'hunter',
   },
   {
     id: 'arms',
@@ -67,8 +69,8 @@ export const scenes: readonly SceneMeta[] = [
     titleKey: titleKeyFor('arms'),
     lengthVh: 220,
     mascotSide: 'right',
-    mascotGesture: 'thumbs',
-    mascotOutfit: 'default',
+    mascotGesture: 'stretch',
+    mascotOutfit: 'hunter',
   },
   {
     id: 'hunts',
@@ -77,8 +79,8 @@ export const scenes: readonly SceneMeta[] = [
     titleKey: titleKeyFor('hunts'),
     lengthVh: 400,
     mascotSide: 'left',
-    mascotGesture: 'cheer',
-    mascotOutfit: 'default',
+    mascotGesture: 'idle',
+    mascotOutfit: 'hunter',
   },
   {
     id: 'lab',
@@ -87,16 +89,16 @@ export const scenes: readonly SceneMeta[] = [
     titleKey: titleKeyFor('lab'),
     lengthVh: 260,
     mascotSide: 'right',
-    mascotGesture: 'think',
-    mascotOutfit: 'default',
+    mascotGesture: 'purr',
+    mascotOutfit: 'inventor',
   },
   {
     id: 'archive',
     anchor: 'archive',
     lengthVh: 160,
     mascotSide: 'badge',
-    mascotGesture: 'idle',
-    mascotOutfit: 'default',
+    mascotGesture: 'sit',
+    mascotOutfit: 'scholar',
   },
   {
     id: 'raven',
@@ -106,15 +108,15 @@ export const scenes: readonly SceneMeta[] = [
     lengthVh: 200,
     mascotSide: 'left',
     mascotGesture: 'wave',
-    mascotOutfit: 'default',
+    mascotOutfit: 'hunter',
   },
   {
     id: 'epilogue',
     anchor: 'epilogue',
     lengthVh: 100,
     mascotSide: 'outro',
-    mascotGesture: 'cheer',
-    mascotOutfit: 'default',
+    mascotGesture: 'sleep',
+    mascotOutfit: 'hunter',
   },
 ]
 

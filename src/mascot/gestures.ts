@@ -1,16 +1,28 @@
 import type { SpriteFrame } from './sprite'
 
-export type GestureName = 'idle' | 'wave' | 'walk' | 'think' | 'thumbs' | 'cheer' | 'sulk' | 'sleep'
+export type GestureName =
+  | 'idle'
+  | 'walk'
+  | 'sit'
+  | 'lick'
+  | 'stretch'
+  | 'cheer'
+  | 'sulk'
+  | 'sleep'
+  | 'wave'
+  | 'purr'
 
 export const GESTURE_NAMES: readonly GestureName[] = [
   'idle',
-  'wave',
   'walk',
-  'think',
-  'thumbs',
+  'sit',
+  'lick',
+  'stretch',
   'cheer',
   'sulk',
   'sleep',
+  'wave',
+  'purr',
 ]
 
 export type GestureDefinition = {

@@ -11,25 +11,25 @@ describe('readSectionTarget', () => {
   it('reads side, gesture and outfit from the data attributes', () => {
     const element = createSection({
       'data-mascot': 'right',
-      'data-mascot-gesture': 'thumbs',
-      'data-mascot-outfit': 'netpulse',
+      'data-mascot-gesture': 'purr',
+      'data-mascot-outfit': 'inventor',
     })
 
     expect(readSectionTarget(element)).toEqual({
       side: 'right',
-      gesture: 'thumbs',
-      outfit: 'netpulse',
+      gesture: 'purr',
+      outfit: 'inventor',
       element,
     })
   })
 
-  it('falls back to idle and default when gesture and outfit are missing', () => {
+  it('falls back to idle and hunter when gesture and outfit are missing', () => {
     const element = createSection({ 'data-mascot': 'badge' })
 
     expect(readSectionTarget(element)).toMatchObject({
       side: 'badge',
       gesture: 'idle',
-      outfit: 'default',
+      outfit: 'hunter',
     })
   })
 
@@ -43,7 +43,7 @@ describe('readSectionTarget', () => {
     expect(readSectionTarget(element)).toMatchObject({
       side: 'left',
       gesture: 'idle',
-      outfit: 'default',
+      outfit: 'hunter',
     })
   })
 })
