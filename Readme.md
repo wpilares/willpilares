@@ -8,7 +8,7 @@ Personal portfolio of a Software Engineer and squad lead with 5+ years building 
 
 ## Overview
 
-A bilingual (English / Spanish) portfolio told as a gothic Victorian hunter's journal. Scrolling turns the pages of nine scenes: an ink prologue, the city under the moon, the hunter's study, the armory of skills, a gallery of past hunts, the inventor's lab for NetPulse, an archive of hunts to come, a belfry to send a raven, and a candlelit epilogue. Every backdrop is procedural pixel art generated from a seed and painted to a canvas, and an orange-and-white cat familiar with a cape, hat and lantern walks along, reacts to the scene in view, changes outfit per chapter, and can be picked up and dragged.
+A bilingual (English / Spanish) portfolio told as a gothic Victorian hunter's journal. Scrolling turns the pages of nine scenes: an ink prologue, the city under the moon, the hunter's study, the armory of skills, a gallery of past hunts, the inventor's lab for NetPulse, an archive of hunts to come, a belfry to send a raven, and a candlelit epilogue. Every backdrop is procedural pixel art generated from a seed and painted to a canvas, and an orange-and-white cat companion with a cape, hat and lantern walks along, reacts to the scene in view, changes outfit per chapter, and can be picked up and dragged.
 
 The aesthetic is inspired by gothic Victorian fiction and games of that mood; it uses no game assets, and every sprite, backdrop and ornament is original and authored in code.
 
@@ -96,7 +96,7 @@ src/
 ├── backdrops/         Seeded pixel-art backdrops
 │   ├── generators/    One generator per scene, plus shared painting helpers
 │   └── preview/       Dev sheet at /?preview=backdrops
-├── mascot/            Cat familiar sprite engine
+├── mascot/            Cat companion sprite engine
 │   ├── art/           Palette-indexed parts, frames, gestures, outfits, headwear
 │   ├── behavior/      Event bus, hold-and-drag, motion, quips, scene tracking
 │   ├── react/         Mascot, QuipBubble, LanternGlow, useMascot
