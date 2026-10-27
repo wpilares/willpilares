@@ -230,7 +230,9 @@ const Gauge = ({ fact }: { fact: ProjectFact }) => {
           </radialGradient>
         </defs>
       </svg>
-      <span className="font-fell text-2xl text-parchment tabular-nums">{fact.value}</span>
+      <span className="font-serif text-3xl font-medium tracking-wide text-parchment [font-variant-numeric:lining-nums_tabular-nums]">
+        {fact.value}
+      </span>
       <span className="fell-label max-w-[11rem] leading-tight">
         {t(`journal.lab.facts.${fact.labelKey}`)}
       </span>
