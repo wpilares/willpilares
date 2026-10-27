@@ -73,22 +73,24 @@ export const SkillBook = ({ skill, category, shape, onLight }: SkillBookProps) =
       onBlur={() => setLit(false)}
     >
       <span aria-hidden="true" className="skill-book-band" />
-      <span
-        aria-hidden="true"
-        className="skill-book-medallion"
-        style={{ width: medallion, height: medallion }}
-      >
-        {skill.iconUrl !== '' && (
-          <img
-            src={skill.iconUrl}
-            alt=""
-            width={Math.round(medallion * 0.62)}
-            height={Math.round(medallion * 0.62)}
-            loading="lazy"
-            draggable={false}
-          />
-        )}
-      </span>
+      {shape.medallion && (
+        <span
+          aria-hidden="true"
+          className="skill-book-medallion"
+          style={{ width: medallion, height: medallion }}
+        >
+          {skill.iconUrl !== '' && (
+            <img
+              src={skill.iconUrl}
+              alt=""
+              width={Math.round(medallion * 0.62)}
+              height={Math.round(medallion * 0.62)}
+              loading="lazy"
+              draggable={false}
+            />
+          )}
+        </span>
+      )}
       <span aria-hidden="true" className="skill-book-title">
         <span style={{ fontSize: shape.fontSize }}>{skill.name}</span>
       </span>

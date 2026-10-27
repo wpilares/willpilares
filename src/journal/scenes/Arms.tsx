@@ -1,12 +1,6 @@
 import { Backdrop, backdropDepths } from '@backdrops'
-import {
-  BACKDROP_VERTICAL_TRAVEL,
-  BACKDROP_WIDTH,
-  backdropRectToStage,
-  bookcaseFrame,
-  bookcaseShelves,
-  layerBleed,
-} from '@backdrops/layout'
+import type { BackdropFit } from '@backdrops/Backdrop'
+import { ARMORY_VERTICAL_TRAVEL, bookcaseShelves } from '@backdrops/layout'
 import { useElementSize } from '@backdrops/useElementSize'
 import { mascotBus } from '@mascot/react'
 import { FogVeil, Scene, SceneLayer, SceneReveal, sceneById, segment, useSceneStage } from '@scenes'
@@ -15,6 +9,7 @@ import * as m from 'motion/react-m'
 import { useMemo, useRef } from 'react'
 import { skillShelves } from '@/constants'
 import { GlyphTitle } from '../glyphs'
+import { armsLayout } from './arms/armsLayout'
 import { shelfPlacement } from './arms/bookGeometry'
 import { PinnedShelfRow, type ShelfTiming, StaticShelfRow } from './arms/ShelfRow'
 import { createThrottle } from './throttle'
@@ -28,7 +23,6 @@ const FADE_START = 0.86
 const FADE_END = 0.95
 const EXIT_START = 0.88
 const WINDOW_ORIGIN = '86% 40%'
-const HEADING_GAP = 24
 const shelfDepth = backdropDepths.mid
 
 const shelfSpan = (SHELVES_END - SHELVES_START) / skillShelves.length
@@ -81,28 +75,41 @@ const ArmsHeading = () => (
 
 const PinnedArms = () => {
   const stageRef = useRef<HTMLDivElement>(null)
+  const insetRef = useRef<HTMLDivElement>(null)
+  const headingRef = useRef<HTMLDivElement>(null)
   const stage = useElementSize(stageRef)
+  const inset = useElementSize(insetRef)
+  const heading = useElementSize(headingRef)
   const onLight = useLanternStretch()
   const exit = useExitPan()
-  const bleed = layerBleed(shelfDepth)
-  const frameLeft = backdropRectToStage(
-    { x: bookcaseFrame.left, y: 0, width: 0, height: 0 },
+  const layout = armsLayout({
     stage,
-    BACKDROP_WIDTH,
-    bleed
-  ).x
+    reserve: inset.height,
+    margin: inset.width,
+    heading,
+    depth: shelfDepth,
+  })
+  const fit: BackdropFit = { ...layout.fit, travel: ARMORY_VERTICAL_TRAVEL }
 
   return (
-    <div ref={stageRef} className="absolute inset-0">
-      <Backdrop id="armory" layerStyles={exit} />
+    <div ref={stageRef} className="absolute inset-0" data-heading-placement={layout.placement}>
       <div
+        ref={insetRef}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-y-0 left-0 w-[40%] bg-gradient-to-r from-night/85 via-night/60 to-transparent"
+        className="pointer-events-none invisible absolute bottom-0 left-0 h-[var(--cat-reserve)] w-[var(--margin)]"
       />
+      <Backdrop id="armory" layerStyles={exit} fit={fit} />
+      {layout.placement === 'beside' && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 left-0 bg-gradient-to-r from-night/85 via-night/60 to-transparent"
+          style={{ width: Math.max(0, layout.bookcase.x) }}
+        />
+      )}
       {stage.width > 0 && (
         <SceneLayer
           depth={shelfDepth}
-          travel={BACKDROP_VERTICAL_TRAVEL}
+          travel={ARMORY_VERTICAL_TRAVEL}
           className="pointer-events-none"
         >
           <m.div className="absolute inset-0" style={exit.mid} data-bookcase>
@@ -113,7 +120,7 @@ const PinnedArms = () => {
                 <PinnedShelfRow
                   key={shelf.key}
                   shelf={shelf}
-                  placement={shelfPlacement(board, stage, bleed)}
+                  placement={shelfPlacement(board, layout.fit)}
                   timing={shelfTiming(order)}
                   onLight={onLight}
                 />
@@ -123,11 +130,13 @@ const PinnedArms = () => {
         </SceneLayer>
       )}
       <div
-        className="absolute top-[10svh] left-[var(--margin)]"
-        style={{ maxWidth: Math.max(0, frameLeft - HEADING_GAP) }}
+        className="absolute left-[var(--margin)]"
+        style={{ top: layout.headingTop, maxWidth: layout.headingMaxWidth }}
       >
         <SceneReveal start={0} end={0.1} exitStart={FADE_START} exitEnd={FADE_END}>
-          <ArmsHeading />
+          <div ref={headingRef} className="w-max">
+            <ArmsHeading />
+          </div>
         </SceneReveal>
       </div>
       <FogVeil />

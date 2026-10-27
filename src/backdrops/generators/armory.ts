@@ -1,25 +1,53 @@
 import {
+  ARMORY_CANVAS,
   BOOKCASE_BOARD_THICKNESS,
+  BOOKCASE_CROWN_HEIGHT,
+  BOOKCASE_CROWN_OVERHANG,
   type BookcaseShelf,
   bookcaseFrame,
   bookcaseShelves,
 } from '../layout'
-import { createPixelBuffer, type PixelBuffer } from '../painter'
+import { createPixelBuffer, type PixelBuffer, type Point } from '../painter'
 import type { Rng } from '../prng'
-import { candle, ditherFill, glow, HEIGHT, WIDTH } from './shared'
+import { candle, ditherFill, glow, HEIGHT } from './shared'
 import type { BackdropLayers } from './types'
 
-const FLOOR_Y = 152
-const SCONCES = [104, 264] as const
+const { width: CANVAS_WIDTH, height: CANVAS_HEIGHT, coreX: CORE_X, coreY: CORE_Y } = ARMORY_CANVAS
+const FLOOR_Y = CORE_Y + 152
+const WALL_FADE_ROWS = 20
+const SCONCES = [-88, 104, 264, 456] as const
 const SCONCE_BASE = 68
 const { left: FRAME_LEFT, right: FRAME_RIGHT, innerLeft, innerRight, innerTop } = bookcaseFrame
 const POST_WIDTH = innerLeft - FRAME_LEFT
 const lowestShelf = bookcaseShelves[bookcaseShelves.length - 1]
 const PLINTH_TOP = (lowestShelf?.boardTop ?? HEIGHT - 14) + BOOKCASE_BOARD_THICKNESS
 
+const toCore = (buffer: PixelBuffer): PixelBuffer => {
+  const shift = ([x, y]: Point): Point => [x + CORE_X, y + CORE_Y]
+  return {
+    width: buffer.width,
+    height: buffer.height,
+    data: buffer.data,
+    get: (x, y) => buffer.get(x + CORE_X, y + CORE_Y),
+    pixel: (x, y, ink) => buffer.pixel(x + CORE_X, y + CORE_Y, ink),
+    fillRect: (x, y, width, height, ink) =>
+      buffer.fillRect(x + CORE_X, y + CORE_Y, width, height, ink),
+    line: (x0, y0, x1, y1, ink) =>
+      buffer.line(x0 + CORE_X, y0 + CORE_Y, x1 + CORE_X, y1 + CORE_Y, ink),
+    circle: (cx, cy, radius, ink) => buffer.circle(cx + CORE_X, cy + CORE_Y, radius, ink),
+    ditherRect: (x, y, width, height, inkA, inkB, pattern) =>
+      buffer.ditherRect(x + CORE_X, y + CORE_Y, width, height, inkA, inkB, pattern),
+    polygon: (points, ink) => buffer.polygon(points.map(shift), ink),
+    toRgba: () => buffer.toRgba(),
+  }
+}
+
+const wallFadeLevel = (row: number): number =>
+  row < CORE_Y ? Math.round(16 - (6 * row) / CORE_Y) : Math.round(10 - (row - CORE_Y) * 0.5)
+
 const planks = (far: PixelBuffer, rng: Rng) => {
   let x = 0
-  while (x < WIDTH) {
+  while (x < CANVAS_WIDTH) {
     const width = rng.int(9, 13)
     far.fillRect(x, 0, width, FLOOR_Y, 'wood')
     far.line(x, 0, x, FLOOR_Y, 'night')
@@ -31,28 +59,31 @@ const planks = (far: PixelBuffer, rng: Rng) => {
     }
     x += width
   }
-  for (let row = 0; row < 20; row += 1) {
-    ditherFill(far, 0, row, WIDTH, 1, 'night', Math.round(10 - row * 0.5))
+  const fadeEnd = CORE_Y + WALL_FADE_ROWS
+  for (let row = 0; row < fadeEnd; row += 1) {
+    ditherFill(far, 0, row, CANVAS_WIDTH, 1, 'night', wallFadeLevel(row))
   }
-  ditherFill(far, 0, 20, WIDTH, FLOOR_Y - 20, 'night', 5)
+  ditherFill(far, 0, fadeEnd, CANVAS_WIDTH, FLOOR_Y - fadeEnd, 'night', 5)
 }
 
 const floor = (far: PixelBuffer) => {
-  far.fillRect(0, FLOOR_Y - 6, WIDTH, 6, 'woodLight')
-  far.fillRect(0, FLOOR_Y - 2, WIDTH, 2, 'night')
+  far.fillRect(0, FLOOR_Y - 6, CANVAS_WIDTH, 6, 'woodLight')
+  far.fillRect(0, FLOOR_Y - 2, CANVAS_WIDTH, 2, 'night')
   let y = FLOOR_Y
   let height = 3
-  while (y < HEIGHT) {
-    far.fillRect(0, y, WIDTH, height, 'wood')
-    far.line(0, y, WIDTH, y, 'woodLight')
-    for (let x = (y * 7) % 37; x < WIDTH; x += 37) far.line(x, y, x, y + height - 1, 'night')
+  while (y < CANVAS_HEIGHT) {
+    far.fillRect(0, y, CANVAS_WIDTH, height, 'wood')
+    far.line(0, y, CANVAS_WIDTH, y, 'woodLight')
+    for (let x = (y * 7) % 37; x < CANVAS_WIDTH; x += 37) {
+      far.line(x, y, x, y + height - 1, 'night')
+    }
     y += height
     height += 1
   }
 }
 
 const paintFar = (rng: Rng): PixelBuffer => {
-  const far = createPixelBuffer(WIDTH, HEIGHT)
+  const far = createPixelBuffer(CANVAS_WIDTH, CANVAS_HEIGHT)
   planks(far, rng)
   floor(far)
   return far
@@ -122,6 +153,16 @@ const frame = (mid: PixelBuffer) => {
   mid.line(FRAME_LEFT - 2, PLINTH_TOP + 3, FRAME_RIGHT + 1, PLINTH_TOP + 3, 'night')
   ditherFill(mid, FRAME_RIGHT, innerTop, 5, HEIGHT - innerTop, 'night', 10)
   ditherFill(mid, FRAME_LEFT - 4, innerTop, 4, HEIGHT - innerTop, 'night', 6)
+  mid.line(FRAME_LEFT - 2, HEIGHT - 1, FRAME_RIGHT + 1, HEIGHT - 1, 'night')
+  ditherFill(mid, FRAME_LEFT - 6, HEIGHT, FRAME_RIGHT - FRAME_LEFT + 12, 3, 'night', 9)
+}
+
+const crown = (mid: PixelBuffer) => {
+  const left = FRAME_LEFT - BOOKCASE_CROWN_OVERHANG
+  const width = FRAME_RIGHT - FRAME_LEFT + 2 * BOOKCASE_CROWN_OVERHANG
+  mid.fillRect(left, -BOOKCASE_CROWN_HEIGHT, width, BOOKCASE_CROWN_HEIGHT, 'wood')
+  mid.line(left, -BOOKCASE_CROWN_HEIGHT, left + width - 1, -BOOKCASE_CROWN_HEIGHT, 'woodLight')
+  mid.line(left, -1, left + width - 1, -1, 'night')
 }
 
 const bookend = (mid: PixelBuffer, x: number, boardTop: number, facing: -1 | 1) => {
@@ -197,7 +238,8 @@ const sconce = (mid: PixelBuffer, x: number) => {
 }
 
 const paintMid = (rng: Rng): PixelBuffer => {
-  const mid = createPixelBuffer(WIDTH, HEIGHT)
+  const canvas = createPixelBuffer(CANVAS_WIDTH, CANVAS_HEIGHT)
+  const mid = toCore(canvas)
   backPanel(mid, rng)
   compartmentShade(mid)
   bookcaseShelves.forEach((shelf, index) => {
@@ -205,8 +247,9 @@ const paintMid = (rng: Rng): PixelBuffer => {
     shelfOrnaments(mid, shelf, index)
   })
   frame(mid)
+  crown(mid)
   for (const x of SCONCES) sconce(mid, x)
-  return mid
+  return canvas
 }
 
 const table = (near: PixelBuffer) => {
@@ -224,7 +267,8 @@ const table = (near: PixelBuffer) => {
 }
 
 const paintNear = (rng: Rng): PixelBuffer => {
-  const near = createPixelBuffer(WIDTH, HEIGHT)
+  const canvas = createPixelBuffer(CANVAS_WIDTH, CANVAS_HEIGHT)
+  const near = toCore(canvas)
   for (const x of SCONCES) {
     glow(near, x, SCONCE_BASE - 10, 26, 'copper', 3)
     glow(near, x, SCONCE_BASE - 10, 14, 'ember', 4)
@@ -233,7 +277,7 @@ const paintNear = (rng: Rng): PixelBuffer => {
     }
   }
   table(near)
-  return near
+  return canvas
 }
 
 export const generateArmory = (rng: Rng): BackdropLayers => ({

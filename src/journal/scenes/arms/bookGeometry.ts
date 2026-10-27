@@ -1,11 +1,10 @@
 import {
-  BACKDROP_WIDTH,
+  armoryCoreRect,
   BOOKCASE_BOARD_THICKNESS,
   type BookcaseShelf,
-  backdropRectToStage,
-  backdropScale,
   bookcaseFrame,
-  type StageSize,
+  fittedRect,
+  type StageFit,
 } from '@backdrops/layout'
 
 export type SpineRange = {
@@ -23,17 +22,20 @@ export type SpineShape = {
   readonly lean: SpineLean
   readonly shade: number
   readonly fontSize: number
+  readonly medallion: boolean
 }
 
-export const MIN_SPINE_FONT = 8
+export const MIN_SPINE_FONT = 7
+export const MEDALLION_FONT_FLOOR = 8
 export const MAX_SPINE_FONT = 14
 export const READABLE_SPINE_FONT = 11
 export const SPINE_TRACKING = 0.08
 export const LEAN_DEGREES = 2
 export const MEDALLION_RATIO = 0.56
 export const SPINE_PADDING = 24
+export const BARE_SPINE_PADDING = 21
 
-const PINNED_HEIGHT_UNITS = [23, 26.6] as const
+const PINNED_HEIGHT_UNITS = [23, 27.2] as const
 const PINNED_WIDTH_UNITS = [6.6, 8.6] as const
 const LEAN_EVERY = 6
 
@@ -102,9 +104,11 @@ export const spineShape = (name: string, range: SpineRange): SpineShape => {
     range.minHeight,
     range.maxHeight
   )
-  const fitted = (height - reserve) / letteringEms(name)
+  const ems = letteringEms(name)
+  const medallion = (height - reserve) / ems >= MEDALLION_FONT_FLOOR
+  const fitted = (height - (medallion ? reserve : BARE_SPINE_PADDING)) / ems
   const fontSize = clamp(Math.min(fitted, width * 0.36), MIN_SPINE_FONT, MAX_SPINE_FONT)
-  return { height, width, lean: leanFrom(hash), shade: (hash >>> 16) % 2, fontSize }
+  return { height, width, lean: leanFrom(hash), shade: (hash >>> 16) % 2, fontSize, medallion }
 }
 
 export const leanAllowance = (shape: SpineShape): number =>
@@ -119,27 +123,19 @@ export type ShelfPlacement = {
   readonly unit: number
 }
 
-export const shelfPlacement = (
-  shelf: BookcaseShelf,
-  stage: StageSize,
-  bleed: number
-): ShelfPlacement => {
-  const board = backdropRectToStage(
-    {
+export const shelfPlacement = (shelf: BookcaseShelf, fit: StageFit): ShelfPlacement => {
+  const board = fittedRect(
+    armoryCoreRect({
       x: shelf.left,
       y: shelf.boardTop,
       width: shelf.right - shelf.left,
       height: BOOKCASE_BOARD_THICKNESS,
-    },
-    stage,
-    BACKDROP_WIDTH,
-    bleed
+    }),
+    fit
   )
-  const inner = backdropRectToStage(
-    { x: bookcaseFrame.innerLeft + 2, y: 0, width: 0, height: 0 },
-    stage,
-    BACKDROP_WIDTH,
-    bleed
+  const inner = fittedRect(
+    armoryCoreRect({ x: bookcaseFrame.innerLeft + 2, y: 0, width: 0, height: 0 }),
+    fit
   )
   return {
     left: board.x,
@@ -147,6 +143,6 @@ export const shelfPlacement = (
     boardTop: board.y,
     boardHeight: board.height,
     plaqueLeft: inner.x,
-    unit: backdropScale(stage, BACKDROP_WIDTH, bleed),
+    unit: fit.scale,
   }
 }
