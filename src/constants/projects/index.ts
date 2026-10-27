@@ -15,11 +15,17 @@ export const netpulseProject: Project = {
     'Docker Compose',
   ],
   lines: ['one', 'two', 'three', 'four', 'five'],
-  screenshot: {
-    src: '/projects/netpulse-dashboard.jpg',
-    alt: 'NetPulse dashboard with network summary and open alerts',
-    width: 1200,
-    height: 900,
+  media: {
+    video: {
+      webm: '/projects/netpulse-fault.webm',
+      mp4: '/projects/netpulse-fault.mp4',
+    },
+    poster: {
+      src: '/projects/netpulse-fault-poster.jpg',
+      alt: 'NetPulse dashboard: a downed host opens a critical drop-rate alert that later resolves',
+      width: 1000,
+      height: 750,
+    },
   },
   facts: [
     { value: '5 s', labelKey: 'interval', reading: 5, dialMax: 10 },

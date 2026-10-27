@@ -11,6 +11,16 @@ export interface ProjectScreenshot {
   readonly height: number
 }
 
+export interface ProjectVideoSources {
+  readonly webm: string
+  readonly mp4: string
+}
+
+export interface ProjectMedia {
+  readonly video: ProjectVideoSources
+  readonly poster: ProjectScreenshot
+}
+
 export interface ProjectFact {
   readonly value: string
   readonly labelKey: ProjectFactKey
@@ -22,7 +32,7 @@ export interface Project {
   readonly key: string
   readonly stack: readonly string[]
   readonly lines: readonly ProjectLineKey[]
-  readonly screenshot: ProjectScreenshot
+  readonly media: ProjectMedia
   readonly facts: readonly ProjectFact[]
   readonly version: string
   readonly status: ProjectStatus

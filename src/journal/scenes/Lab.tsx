@@ -7,10 +7,11 @@ import {
   type StageRect,
 } from '@backdrops/layout'
 import { useElementSize } from '@backdrops/useElementSize'
+import { useIntersectionObserver } from '@hooks'
 import { FogVeil, Scene, SceneLayer, SceneReveal, sceneById, segment, useSceneStage } from '@scenes'
 import { useTransform } from 'motion/react'
 import * as m from 'motion/react-m'
-import { useId, useRef } from 'react'
+import { type ReactNode, useEffect, useId, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { netpulseProject } from '@/constants'
 import type { ProjectFact, ProjectLineKey } from '@/types'
@@ -31,6 +32,8 @@ const FRAME_EDGE = 7
 const COLUMN_GAP = 40
 
 const mirrorDepth = backdropDepths.mid
+
+const GLASS_MEDIA_CLASS = 'h-full w-full object-cover object-top brightness-[0.82] sepia-[0.25]'
 
 const lineSpan = (LINES_END - LINES_START) / netpulseProject.lines.length
 
@@ -90,29 +93,71 @@ const JournalLine = ({ line }: { line: ProjectLineKey }) => (
   </p>
 )
 
-const MirrorGlass = () => {
+const MirrorGlass = ({ children }: { children: ReactNode }) => (
+  <div className="relative h-full w-full overflow-hidden bg-night">
+    {children}
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0"
+      style={{
+        backgroundImage:
+          'linear-gradient(128deg, rgba(233, 223, 200, 0.24) 0%, rgba(233, 223, 200, 0.06) 28%, transparent 42%, transparent 70%, rgba(201, 214, 227, 0.1) 100%), radial-gradient(ellipse at center, transparent 55%, rgba(11, 10, 15, 0.55) 100%)',
+      }}
+    />
+  </div>
+)
+
+const FaultVideo = () => {
   const { t } = useTranslation()
-  const { screenshot } = netpulseProject
+  const { video, poster } = netpulseProject.media
+  const [videoRef, isVisible] = useIntersectionObserver<HTMLVideoElement>({
+    threshold: 0.25,
+    triggerOnce: false,
+  })
+
+  useEffect(() => {
+    const element = videoRef.current
+    if (!element) return
+    if (isVisible) {
+      element.play().catch(() => element.pause())
+    } else if (!element.paused) {
+      element.pause()
+    }
+  }, [isVisible, videoRef])
+
   return (
-    <div className="relative h-full w-full overflow-hidden bg-night">
-      <img
-        src={screenshot.src}
-        alt={screenshot.alt}
-        title={t('journal.lab.name')}
-        width={screenshot.width}
-        height={screenshot.height}
-        loading="lazy"
-        className="h-full w-full object-cover object-top brightness-[0.82] sepia-[0.25]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            'linear-gradient(128deg, rgba(233, 223, 200, 0.24) 0%, rgba(233, 223, 200, 0.06) 28%, transparent 42%, transparent 70%, rgba(201, 214, 227, 0.1) 100%), radial-gradient(ellipse at center, transparent 55%, rgba(11, 10, 15, 0.55) 100%)',
-        }}
-      />
-    </div>
+    <video
+      ref={videoRef}
+      aria-label={poster.alt}
+      title={t('journal.lab.name')}
+      poster={poster.src}
+      width={poster.width}
+      height={poster.height}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      className={GLASS_MEDIA_CLASS}
+    >
+      <source src={video.webm} type="video/webm" />
+      <source src={video.mp4} type="video/mp4" />
+    </video>
+  )
+}
+
+const FaultPoster = () => {
+  const { t } = useTranslation()
+  const { poster } = netpulseProject.media
+  return (
+    <img
+      src={poster.src}
+      alt={poster.alt}
+      title={t('journal.lab.name')}
+      width={poster.width}
+      height={poster.height}
+      loading="lazy"
+      className={GLASS_MEDIA_CLASS}
+    />
   )
 }
 
@@ -294,7 +339,9 @@ const ScreenshotInMirror = ({ mirror }: { mirror: StageRect }) => {
           opacity,
         }}
       >
-        <MirrorGlass />
+        <MirrorGlass>
+          <FaultVideo />
+        </MirrorGlass>
       </m.div>
     </SceneLayer>
   )
@@ -363,7 +410,7 @@ const PinnedLab = () => {
 }
 
 const StaticLab = () => {
-  const { screenshot } = netpulseProject
+  const { poster } = netpulseProject.media
   return (
     <>
       <Backdrop id="lab" />
@@ -372,9 +419,11 @@ const StaticLab = () => {
         <LabHeading />
         <div
           className="w-full border-[6px] border-gold shadow-[0_0_0_2px_#0b0a0f,0_0_0_4px_rgba(184,115,51,0.6),0_18px_40px_rgba(0,0,0,0.6)]"
-          style={{ aspectRatio: `${screenshot.width} / ${screenshot.height}` }}
+          style={{ aspectRatio: `${poster.width} / ${poster.height}` }}
         >
-          <MirrorGlass />
+          <MirrorGlass>
+            <FaultPoster />
+          </MirrorGlass>
         </div>
         <div className="flex flex-col gap-3">
           {netpulseProject.lines.map((line) => (
