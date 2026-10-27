@@ -179,5 +179,34 @@
       "trick": "Haz un truco",
       "pet": "Acaricia al gato"
     }
+  },
+  "cv": {
+    "headings": {
+      "summary": "Perfil profesional",
+      "experience": "Experiencia",
+      "skills": "Habilidades",
+      "project": "Proyecto destacado",
+      "education": "Educación",
+      "languages": "Idiomas"
+    },
+    "project": {
+      "stack": "Tecnologías",
+      "repository": "Repositorio"
+    },
+    "education": {
+      "degree": "Bachiller en Ingeniería de Telecomunicaciones",
+      "institution": "Universidad Nacional de Ingeniería",
+      "location": "Lima, Perú"
+    },
+    "languages": {
+      "names": {
+        "spanish": "Español",
+        "english": "Inglés"
+      },
+      "levels": {
+        "native": "Nativo",
+        "intermediate": "Intermedio"
+      }
+    }
   }
 }

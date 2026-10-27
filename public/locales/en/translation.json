@@ -179,5 +179,34 @@
       "trick": "Do a trick",
       "pet": "Pet the cat"
     }
+  },
+  "cv": {
+    "headings": {
+      "summary": "Summary",
+      "experience": "Experience",
+      "skills": "Skills",
+      "project": "Featured project",
+      "education": "Education",
+      "languages": "Languages"
+    },
+    "project": {
+      "stack": "Stack",
+      "repository": "Repository"
+    },
+    "education": {
+      "degree": "Bachelor of Telecommunications Engineering",
+      "institution": "National University of Engineering",
+      "location": "Lima, Peru"
+    },
+    "languages": {
+      "names": {
+        "spanish": "Spanish",
+        "english": "English"
+      },
+      "levels": {
+        "native": "Native",
+        "intermediate": "Intermediate"
+      }
+    }
   }
 }
