@@ -1,12 +1,21 @@
+import {
+  BOOKCASE_BOARD_THICKNESS,
+  type BookcaseShelf,
+  bookcaseFrame,
+  bookcaseShelves,
+} from '../layout'
 import { createPixelBuffer, type PixelBuffer } from '../painter'
-import type { PaletteKey } from '../palette'
 import type { Rng } from '../prng'
-import { arch, candle, ditherFill, ditherPolygon, glow, HEIGHT, WIDTH } from './shared'
+import { candle, ditherFill, glow, HEIGHT, WIDTH } from './shared'
 import type { BackdropLayers } from './types'
 
 const FLOOR_Y = 152
-const WINDOW_X = 274
-const SCONCES = [184, 310] as const
+const SCONCES = [104, 264] as const
+const SCONCE_BASE = 68
+const { left: FRAME_LEFT, right: FRAME_RIGHT, innerLeft, innerRight, innerTop } = bookcaseFrame
+const POST_WIDTH = innerLeft - FRAME_LEFT
+const lowestShelf = bookcaseShelves[bookcaseShelves.length - 1]
+const PLINTH_TOP = (lowestShelf?.boardTop ?? HEIGHT - 14) + BOOKCASE_BOARD_THICKNESS
 
 const planks = (far: PixelBuffer, rng: Rng) => {
   let x = 0
@@ -25,6 +34,7 @@ const planks = (far: PixelBuffer, rng: Rng) => {
   for (let row = 0; row < 20; row += 1) {
     ditherFill(far, 0, row, WIDTH, 1, 'night', Math.round(10 - row * 0.5))
   }
+  ditherFill(far, 0, 20, WIDTH, FLOOR_Y - 20, 'night', 5)
 }
 
 const floor = (far: PixelBuffer) => {
@@ -41,184 +51,186 @@ const floor = (far: PixelBuffer) => {
   }
 }
 
-const windowPane = (far: PixelBuffer) => {
-  arch(far, WINDOW_X, 50, 28, 22, 104, 'woodLight')
-  arch(far, WINDOW_X, 50, 25, 19, 100, 'night')
-  for (let row = 28; row < 100; row += 1) {
-    for (let column = WINDOW_X - 25; column <= WINDOW_X + 25; column += 1) {
-      if (far.get(column, row) !== 'night') continue
-      const level = Math.round(2 + (100 - row) / 12)
-      if ((column * 3 + row * 5) % 16 < level) far.pixel(column, row, 'moonGlow')
-    }
-  }
-  far.circle(WINDOW_X + 10, 44, 7, 'moon')
-  far.fillRect(WINDOW_X - 1, 28, 2, 72, 'wood')
-  far.fillRect(WINDOW_X - 25, 64, 50, 2, 'wood')
-  far.fillRect(WINDOW_X - 25, 82, 50, 2, 'wood')
-  far.fillRect(WINDOW_X - 31, 100, 62, 4, 'woodLight')
-  far.fillRect(WINDOW_X - 31, 104, 62, 1, 'night')
-}
-
 const paintFar = (rng: Rng): PixelBuffer => {
   const far = createPixelBuffer(WIDTH, HEIGHT)
   planks(far, rng)
   floor(far)
-  windowPane(far)
   return far
 }
 
-const vial = (mid: PixelBuffer, x: number, shelfY: number, liquid: PaletteKey) => {
-  mid.circle(x + 3, shelfY - 4, 3, liquid)
-  mid.fillRect(x + 2, shelfY - 11, 3, 5, 'slate')
-  mid.fillRect(x + 2, shelfY - 12, 3, 1, 'wood')
-  mid.pixel(x + 2, shelfY - 5, 'moon')
-  return 8
-}
-
-const crate = (mid: PixelBuffer, x: number, shelfY: number, rng: Rng) => {
-  const width = rng.int(12, 18)
-  const height = rng.int(8, 12)
-  mid.fillRect(x, shelfY - height, width, height, 'woodLight')
-  mid.fillRect(x + 1, shelfY - height + 1, width - 2, height - 2, 'wood')
-  mid.line(x + 1, shelfY - height + 1, x + width - 2, shelfY - 2, 'woodLight')
-  mid.fillRect(x + width / 2 - 1, shelfY - height - 1, 3, 1, 'gold')
-  return width + 3
-}
-
-const books = (mid: PixelBuffer, x: number, shelfY: number, rng: Rng) => {
-  const count = rng.int(3, 6)
-  let offset = 0
-  for (let index = 0; index < count; index += 1) {
-    const width = rng.int(2, 4)
-    const height = rng.int(12, 18)
-    const ink = rng.pick<PaletteKey>(['blood', 'stone', 'slate', 'wood'])
-    mid.fillRect(x + offset, shelfY - height, width, height, ink)
-    mid.line(x + offset, shelfY - height + 2, x + offset + width - 1, shelfY - height + 2, 'gold')
-    offset += width
-  }
-  return offset + 3
-}
-
-const shot = (mid: PixelBuffer, x: number, shelfY: number) => {
-  for (let row = 0; row < 3; row += 1) {
-    for (let column = 0; column < 4 - row; column += 1) {
-      mid.circle(x + 2 + column * 3 + row * 1.5, shelfY - 2 - row * 3, 1, 'slate')
-      mid.pixel(x + 1 + column * 3 + row * 1.5, shelfY - 3 - row * 3, 'mist')
+const backPanel = (mid: PixelBuffer, rng: Rng) => {
+  const height = PLINTH_TOP - innerTop
+  let x = innerLeft
+  while (x < innerRight) {
+    const width = Math.min(rng.int(8, 12), innerRight - x)
+    mid.fillRect(x, innerTop, width, height, 'stone')
+    mid.line(x, innerTop, x, PLINTH_TOP - 1, 'night')
+    for (let grain = 0; grain < 7; grain += 1) {
+      const grainX = x + rng.int(2, Math.max(2, width - 2))
+      const grainY = rng.int(innerTop + 2, PLINTH_TOP - 8)
+      mid.line(grainX, grainY, grainX, grainY + rng.int(3, 9), 'ash')
     }
+    x += width
   }
-  return 16
+  ditherFill(mid, innerLeft, innerTop, 4, height, 'night', 9)
+  ditherFill(mid, innerRight - 4, innerTop, 4, height, 'night', 9)
 }
 
-const shelf = (mid: PixelBuffer, rng: Rng, y: number) => {
-  let x = 18
-  while (x < 166) {
-    const kind = rng.int(0, 3)
-    if (kind === 0) x += vial(mid, x, y, rng.pick<PaletteKey>(['blood', 'blood', 'moonGlow']))
-    else if (kind === 1) x += crate(mid, x, y, rng)
-    else if (kind === 2) x += books(mid, x, y, rng)
-    else x += shot(mid, x, y)
+const compartmentShade = (mid: PixelBuffer) => {
+  let ceiling = innerTop
+  for (const shelf of bookcaseShelves) {
+    ditherFill(mid, innerLeft, ceiling, innerRight - innerLeft, 2, 'night', 12)
+    ditherFill(mid, innerLeft, ceiling + 2, innerRight - innerLeft, 3, 'night', 6)
+    ditherFill(mid, innerLeft, shelf.boardTop - 2, innerRight - innerLeft, 2, 'night', 4)
+    ceiling = shelf.boardTop + BOOKCASE_BOARD_THICKNESS
   }
-  mid.fillRect(10, y, 166, 2, 'woodLight')
-  mid.fillRect(10, y + 2, 166, 3, 'wood')
-  mid.fillRect(10, y + 5, 166, 1, 'night')
-  for (const bracketX of [16, 166]) {
-    mid.polygon(
-      [
-        [bracketX, y + 5],
-        [bracketX + 6, y + 5],
-        [bracketX, y + 13],
-      ],
-      'wood'
+}
+
+const board = (mid: PixelBuffer, rng: Rng, shelf: BookcaseShelf) => {
+  const width = innerRight - innerLeft
+  mid.fillRect(innerLeft, shelf.boardTop, width, 1, 'woodLight')
+  mid.fillRect(innerLeft, shelf.boardTop + 1, width, BOOKCASE_BOARD_THICKNESS - 2, 'wood')
+  mid.fillRect(innerLeft, shelf.boardTop + BOOKCASE_BOARD_THICKNESS - 1, width, 1, 'night')
+  for (let grain = 0; grain < 6; grain += 1) {
+    const grainX = rng.int(innerLeft + 2, innerRight - 12)
+    mid.line(grainX, shelf.boardTop + 2, grainX + rng.int(4, 10), shelf.boardTop + 2, 'woodLight')
+  }
+}
+
+const post = (mid: PixelBuffer, x: number, innerEdge: number) => {
+  mid.fillRect(x, 0, POST_WIDTH, PLINTH_TOP, 'wood')
+  mid.line(x, 0, x, PLINTH_TOP, 'night')
+  mid.line(x + 1, 0, x + 1, PLINTH_TOP, 'woodLight')
+  mid.line(innerEdge, 0, innerEdge, PLINTH_TOP, 'night')
+  for (let y = 12; y < PLINTH_TOP; y += 23) mid.line(x + 3, y, x + 3, y + 6, 'woodLight')
+}
+
+const frame = (mid: PixelBuffer) => {
+  post(mid, FRAME_LEFT, innerLeft - 1)
+  post(mid, innerRight, innerRight)
+  mid.fillRect(FRAME_LEFT - 3, 0, FRAME_RIGHT - FRAME_LEFT + 6, innerTop, 'wood')
+  mid.line(FRAME_LEFT - 3, innerTop - 2, FRAME_RIGHT + 2, innerTop - 2, 'woodLight')
+  mid.line(FRAME_LEFT - 3, innerTop - 1, FRAME_RIGHT + 2, innerTop - 1, 'night')
+  mid.fillRect(
+    FRAME_LEFT - 2,
+    PLINTH_TOP,
+    FRAME_RIGHT - FRAME_LEFT + 4,
+    HEIGHT - PLINTH_TOP,
+    'wood'
+  )
+  mid.line(FRAME_LEFT - 2, PLINTH_TOP, FRAME_RIGHT + 1, PLINTH_TOP, 'woodLight')
+  mid.line(FRAME_LEFT - 2, PLINTH_TOP + 3, FRAME_RIGHT + 1, PLINTH_TOP + 3, 'night')
+  ditherFill(mid, FRAME_RIGHT, innerTop, 5, HEIGHT - innerTop, 'night', 10)
+  ditherFill(mid, FRAME_LEFT - 4, innerTop, 4, HEIGHT - innerTop, 'night', 6)
+}
+
+const bookend = (mid: PixelBuffer, x: number, boardTop: number, facing: -1 | 1) => {
+  mid.fillRect(x, boardTop - 13, 2, 13, 'slate')
+  mid.line(x, boardTop - 13, x, boardTop - 1, 'mist')
+  const footX = facing === 1 ? x : x - 2
+  mid.fillRect(footX, boardTop - 1, 4, 1, 'slate')
+  mid.pixel(x + (facing === 1 ? 1 : 0), boardTop - 14, 'gold')
+}
+
+const globe = (mid: PixelBuffer, x: number, boardTop: number) => {
+  const cx = x + 5
+  const cy = boardTop - 10
+  mid.fillRect(cx - 3, boardTop - 1, 7, 1, 'wood')
+  mid.line(cx, boardTop - 4, cx, boardTop - 2, 'gold')
+  mid.circle(cx, cy, 4, 'slate')
+  mid.pixel(cx - 2, cy - 1, 'copper')
+  mid.pixel(cx - 1, cy - 1, 'copper')
+  mid.pixel(cx + 1, cy + 1, 'copper')
+  mid.pixel(cx + 2, cy, 'copper')
+  mid.pixel(cx - 1, cy - 3, 'mist')
+  for (let row = -5; row <= 5; row += 1) {
+    const reach = Math.round(Math.sqrt(Math.max(0, 25 - row * row)))
+    mid.pixel(cx + reach, cy + row, 'gold')
+  }
+}
+
+const hourglass = (mid: PixelBuffer, x: number, boardTop: number) => {
+  const top = boardTop - 13
+  mid.fillRect(x, top, 6, 1, 'wood')
+  mid.fillRect(x, boardTop - 1, 6, 1, 'wood')
+  mid.line(x, top + 1, x, boardTop - 2, 'woodLight')
+  mid.line(x + 5, top + 1, x + 5, boardTop - 2, 'woodLight')
+  for (let row = 0; row < 5; row += 1) {
+    mid.line(
+      x + 1 + Math.floor(row / 2),
+      top + 1 + row,
+      x + 4 - Math.floor(row / 2),
+      top + 1 + row,
+      'mist'
+    )
+    mid.line(
+      x + 1 + Math.floor(row / 2),
+      boardTop - 2 - row,
+      x + 4 - Math.floor(row / 2),
+      boardTop - 2 - row,
+      row < 3 ? 'parchment' : 'mist'
     )
   }
+  mid.pixel(x + 2, top + 6, 'parchment')
 }
 
-const blade = (mid: PixelBuffer, fromX: number, fromY: number, toX: number, toY: number) => {
-  mid.line(fromX, fromY, toX, toY, 'slate')
-  mid.line(fromX + 1, fromY, toX + 1, toY, 'mist')
-  mid.line(fromX + 2, fromY, toX + 2, toY, 'slate')
-  const direction = Math.sign(toX - fromX)
-  mid.line(toX - 5, toY + direction * 5, toX + 5, toY - direction * 5, 'gold')
-  mid.line(toX, toY, toX + direction * 5, toY + 6, 'wood')
-  mid.line(toX + 1, toY, toX + 1 + direction * 5, toY + 6, 'wood')
-  mid.circle(toX + direction * 6, toY + 7, 1, 'gold')
+const candleStub = (mid: PixelBuffer, x: number, boardTop: number) => {
+  mid.fillRect(x, boardTop - 1, 5, 1, 'gold')
+  mid.pixel(x + 4, boardTop - 2, 'gold')
+  candle(mid, x + 2, boardTop - 1, 4)
 }
 
-const weapons = (mid: PixelBuffer) => {
-  mid.fillRect(196, 36, 42, 3, 'woodLight')
-  mid.circle(217, 37, 3, 'gold')
-  blade(mid, 196, 42, 230, 96)
-  blade(mid, 236, 42, 202, 96)
-  mid.fillRect(190, 116, 2, 4, 'wood')
-  mid.fillRect(240, 116, 2, 4, 'wood')
-  mid.fillRect(186, 114, 52, 2, 'slate')
-  mid.line(186, 114, 237, 114, 'mist')
-  mid.fillRect(236, 108, 2, 7, 'slate')
-  mid.fillRect(236, 107, 8, 2, 'slate')
-  mid.fillRect(243, 108, 2, 5, 'slate')
-  mid.fillRect(184, 114, 2, 2, 'gold')
+const shelfOrnaments = (mid: PixelBuffer, shelf: BookcaseShelf, index: number) => {
+  bookend(mid, shelf.left - 4, shelf.boardTop, 1)
+  const x = shelf.right + 2
+  if (index === 0) globe(mid, x, shelf.boardTop)
+  else if (index === 2) candleStub(mid, x + 1, shelf.boardTop)
+  else if (index === 3) bookend(mid, x + 1, shelf.boardTop, -1)
+  else hourglass(mid, x + 1, shelf.boardTop)
 }
 
 const sconce = (mid: PixelBuffer, x: number) => {
-  mid.fillRect(x - 2, 60, 5, 9, 'gold')
-  mid.fillRect(x - 1, 61, 3, 7, 'copper')
-  mid.fillRect(x - 4, 68, 9, 2, 'gold')
-  candle(mid, x, 68, 7)
+  mid.fillRect(x - 2, SCONCE_BASE - 8, 5, 9, 'gold')
+  mid.fillRect(x - 1, SCONCE_BASE - 7, 3, 7, 'copper')
+  mid.fillRect(x - 4, SCONCE_BASE, 9, 2, 'gold')
+  candle(mid, x, SCONCE_BASE, 7)
 }
 
 const paintMid = (rng: Rng): PixelBuffer => {
   const mid = createPixelBuffer(WIDTH, HEIGHT)
-  for (const y of [62, 98, 134]) shelf(mid, rng, y)
-  weapons(mid)
+  backPanel(mid, rng)
+  compartmentShade(mid)
+  bookcaseShelves.forEach((shelf, index) => {
+    board(mid, rng, shelf)
+    shelfOrnaments(mid, shelf, index)
+  })
+  frame(mid)
   for (const x of SCONCES) sconce(mid, x)
   return mid
 }
 
 const table = (near: PixelBuffer) => {
-  near.fillRect(0, 164, 132, 16, 'wood')
-  near.fillRect(0, 162, 134, 2, 'woodLight')
-  near.fillRect(0, 166, 132, 1, 'night')
+  near.fillRect(0, 164, 96, 16, 'wood')
+  near.fillRect(0, 162, 98, 2, 'woodLight')
+  near.fillRect(0, 166, 96, 1, 'night')
   near.fillRect(14, 155, 30, 7, 'parchment')
   near.line(29, 155, 29, 161, 'mist')
   near.line(17, 157, 26, 157, 'mist')
   near.line(32, 157, 41, 157, 'mist')
   near.line(17, 159, 24, 159, 'mist')
-  near.fillRect(100, 150, 6, 12, 'blood')
-  near.fillRect(101, 147, 4, 3, 'slate')
-  near.pixel(101, 152, 'ember')
+  near.fillRect(70, 150, 6, 12, 'blood')
+  near.fillRect(71, 147, 4, 3, 'slate')
+  near.pixel(71, 152, 'ember')
 }
 
 const paintNear = (rng: Rng): PixelBuffer => {
   const near = createPixelBuffer(WIDTH, HEIGHT)
-  const scratch = createPixelBuffer(WIDTH, HEIGHT)
-  const beam = [
-    [WINDOW_X - 24, 60],
-    [WINDOW_X + 24, 60],
-    [WINDOW_X - 30, HEIGHT],
-    [WINDOW_X - 128, HEIGHT],
-  ] as const
-  ditherPolygon(near, beam, 'moonGlow', 1, scratch)
-  ditherPolygon(
-    near,
-    [
-      [WINDOW_X - 14, 70],
-      [WINDOW_X + 10, 70],
-      [WINDOW_X - 50, HEIGHT],
-      [WINDOW_X - 100, HEIGHT],
-    ],
-    'moonGlow',
-    2,
-    scratch
-  )
-  for (let index = 0; index < 50; index += 1) {
-    const y = rng.int(70, 175)
-    const t = (y - 60) / (HEIGHT - 60)
-    const x = rng.int(Math.round(WINDOW_X - 24 - t * 104), Math.round(WINDOW_X + 24 - t * 54))
-    near.pixel(x, y, rng.next() < 0.3 ? 'moon' : 'mist')
-  }
   for (const x of SCONCES) {
-    glow(near, x, 58, 26, 'copper', 3)
-    glow(near, x, 58, 14, 'ember', 4)
+    glow(near, x, SCONCE_BASE - 10, 26, 'copper', 3)
+    glow(near, x, SCONCE_BASE - 10, 14, 'ember', 4)
+    for (let mote = 0; mote < 10; mote += 1) {
+      near.pixel(x + rng.int(-16, 16), SCONCE_BASE - 10 + rng.int(-18, 18), 'gold')
+    }
   }
   table(near)
   return near

@@ -74,21 +74,36 @@ describe('hunter and arms chapters', () => {
     expect(screen.getByText('journal.hunter.stats.squad')).toBeInTheDocument()
   })
 
-  it('lays out five shelves of engraved plates in the armory', () => {
+  it('shelves every skill as a named book under its category plaque', () => {
     mockMatchMedia(['(prefers-reduced-motion: reduce)'])
-    renderChapters()
+    const { container } = renderChapters()
     expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(5)
+    expect(container.querySelectorAll('[data-skill-book]')).toHaveLength(23)
     expect(screen.getByRole('button', { name: 'React' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'PostgreSQL' })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: 'MCP' })).toBeInTheDocument()
+    expect(screen.getByRole('list', { name: 'journal.arms.categories.ai' })).toBeInTheDocument()
   })
 
-  it('asks the cat to stretch at most once while plates are lit in quick succession', () => {
-    mockMatchMedia([])
+  it('lights a book for touch and lets it go on a second tap', () => {
+    mockMatchMedia(['(prefers-reduced-motion: reduce)'])
+    renderChapters()
+    const book = screen.getByRole('button', { name: 'Docker' })
+    fireEvent.pointerDown(book, { pointerType: 'touch' })
+    expect(book).toHaveAttribute('data-lit', 'true')
+    fireEvent.pointerDown(book, { pointerType: 'touch' })
+    expect(book).toHaveAttribute('data-lit', 'false')
+    fireEvent.pointerDown(book, { pointerType: 'mouse' })
+    expect(book).toHaveAttribute('data-lit', 'false')
+  })
+
+  it('asks the cat to stretch at most once while books are lit in quick succession', () => {
+    mockMatchMedia(['(prefers-reduced-motion: reduce)'])
     const events: MascotEvent[] = []
     const unsubscribe = mascotBus.subscribe((event) => events.push(event))
     renderChapters()
-    fireEvent.pointerEnter(screen.getByRole('button', { name: 'React', hidden: true }))
-    fireEvent.focus(screen.getByRole('button', { name: 'Docker', hidden: true }))
+    fireEvent.pointerEnter(screen.getByRole('button', { name: 'React' }))
+    fireEvent.focus(screen.getByRole('button', { name: 'Docker' }))
     unsubscribe()
     expect(events).toEqual([{ type: 'gesture', name: 'stretch' }])
   })

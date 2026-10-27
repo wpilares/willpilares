@@ -1,8 +1,13 @@
 import { describe, expect, it } from 'vitest'
 import {
+  BACKDROP_HEIGHT,
   BACKDROP_VERTICAL_TRAVEL,
+  BOOKCASE_BOARD_THICKNESS,
+  BOOKCASE_COMPARTMENT_HEIGHT,
   backdropRectToStage,
   backdropScale,
+  bookcaseFrame,
+  bookcaseShelves,
   CANDLE_FLAME_WICK_COLUMN,
   isPanoramaLayer,
   layerBleed,
@@ -74,5 +79,26 @@ describe('backdrop layout', () => {
   it('rests the prologue flame base directly on top of the wick', () => {
     expect(prologueFlameRect.y + prologueFlameRect.height).toBe(PROLOGUE_WICK_TOP)
     expect(prologueFlameRect.x + CANDLE_FLAME_WICK_COLUMN).toBe(PROLOGUE_CANDLE_X)
+  })
+
+  it('stacks five evenly spaced shelf boards inside the bookcase frame', () => {
+    expect(bookcaseShelves).toHaveLength(5)
+    const tops = bookcaseShelves.map((shelf) => shelf.boardTop)
+    const pitch = BOOKCASE_COMPARTMENT_HEIGHT + BOOKCASE_BOARD_THICKNESS
+    tops.slice(1).forEach((top, index) => {
+      expect(top - (tops[index] ?? 0)).toBe(pitch)
+    })
+    expect((tops[0] ?? 0) - BOOKCASE_COMPARTMENT_HEIGHT).toBe(bookcaseFrame.innerTop)
+    const lowest = bookcaseShelves[bookcaseShelves.length - 1]
+    expect((lowest?.boardTop ?? 0) + BOOKCASE_BOARD_THICKNESS).toBeLessThan(BACKDROP_HEIGHT - 4)
+  })
+
+  it('keeps every usable shelf span inside the frame with room for end decorations', () => {
+    for (const shelf of bookcaseShelves) {
+      expect(shelf.left).toBeGreaterThan(bookcaseFrame.innerLeft + 4)
+      expect(shelf.right).toBeLessThan(bookcaseFrame.innerRight - 5)
+      expect(shelf.right - shelf.left).toBeGreaterThanOrEqual(90)
+      expect(Number.isInteger(shelf.boardTop)).toBe(true)
+    }
   })
 })

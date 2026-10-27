@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { type BackdropId, backdropIds, generateBackdrop } from './generators'
+import { BOOKCASE_COMPARTMENT_HEIGHT, bookcaseShelves } from './layout'
 import type { PixelBuffer } from './painter'
 import { paletteKeys } from './palette'
 
@@ -65,5 +66,29 @@ describe('backdrop generators', () => {
     it('leaves at least a fifth of the near layer transparent', () => {
       expect(transparentShare(first.near)).toBeGreaterThanOrEqual(0.2)
     })
+  })
+})
+
+describe('armory bookcase', () => {
+  const { mid } = generateBackdrop('armory')
+  const backPanelInks = new Set(['stone', 'ash', 'night'])
+
+  it('lays a lit board top along every shelf span', () => {
+    for (const shelf of bookcaseShelves) {
+      for (let x = shelf.left; x < shelf.right; x += 1) {
+        expect(mid.get(x, shelf.boardTop)).toBe('woodLight')
+      }
+    }
+  })
+
+  it('keeps the middle of every shelf clear of painted books for the page to fill', () => {
+    for (const shelf of bookcaseShelves) {
+      const ceiling = shelf.boardTop - BOOKCASE_COMPARTMENT_HEIGHT
+      for (let y = ceiling; y < shelf.boardTop; y += 1) {
+        for (let x = shelf.left; x < shelf.right; x += 1) {
+          expect(backPanelInks.has(mid.get(x, y) ?? 'clear')).toBe(true)
+        }
+      }
+    }
   })
 })

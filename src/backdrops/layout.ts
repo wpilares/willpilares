@@ -75,6 +75,34 @@ export const labMirrorRect: StageRect = { x: 56, y: 36, width: 108, height: 84 }
 
 export const belfryMoon = { x: 160, y: 38, radius: 26 } as const
 
+export const bookcaseFrame = {
+  left: 118,
+  right: 250,
+  innerLeft: 124,
+  innerRight: 244,
+  innerTop: 9,
+} as const
+
+export const BOOKCASE_COMPARTMENT_HEIGHT = 28
+export const BOOKCASE_BOARD_THICKNESS = 5
+
+export type BookcaseShelf = {
+  readonly left: number
+  readonly right: number
+  readonly boardTop: number
+}
+
+const shelfRights: readonly number[] = [230, 234, 236, 236, 234]
+
+export const bookcaseShelves: readonly BookcaseShelf[] = shelfRights.map((right, index) => ({
+  left: bookcaseFrame.innerLeft + 7,
+  right,
+  boardTop:
+    bookcaseFrame.innerTop +
+    BOOKCASE_COMPARTMENT_HEIGHT +
+    index * (BOOKCASE_COMPARTMENT_HEIGHT + BOOKCASE_BOARD_THICKNESS),
+}))
+
 export const PROLOGUE_CANDLE_X = 160
 export const PROLOGUE_WAX_TOP = 106
 export const PROLOGUE_WICK_TOP = PROLOGUE_WAX_TOP - 3
