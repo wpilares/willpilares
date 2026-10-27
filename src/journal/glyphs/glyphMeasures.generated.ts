@@ -39,14 +39,14 @@ export const glyphMeasures: GlyphMeasureRecord = {
   },
   lab: {
     en: {
-      text: 'Current project',
-      width: 7574.1,
-      height: 1193.7,
+      text: 'Featured project',
+      width: 8189.3,
+      height: 1243.9,
     },
     es: {
-      text: 'Proyecto actual',
-      width: 7659,
-      height: 1243,
+      text: 'Proyecto destacado',
+      width: 9574.7,
+      height: 1237.3,
     },
   },
   raven: {

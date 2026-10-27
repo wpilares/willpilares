@@ -149,6 +149,10 @@ describe('past hunts and current hunt chapters', () => {
     expect(screen.getByText('journal.lab.facts.interval')).toBeInTheDocument()
     expect(screen.getByText('journal.lab.facts.detection')).toBeInTheDocument()
     expect(screen.getByText('journal.lab.facts.releases')).toBeInTheDocument()
+    expect(screen.getByText('~15 s')).toBeInTheDocument()
+    expect(screen.getByText('6')).toBeInTheDocument()
+    expect(screen.getByText(/journal\.lab\.status\.complete/)).toBeInTheDocument()
+    expect(screen.getByText('v1.0')).toBeInTheDocument()
     expect(screen.getByRole('img', { name: 'journal.lab.topology' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'journal.lab.viewCode' })).toHaveAttribute(
       'href',

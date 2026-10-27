@@ -3,12 +3,14 @@ import type { Project } from '@/types'
 export const netpulseProject: Project = {
   key: 'netpulse',
   stack: [
-    'Python 3.13',
+    'Python 3.14',
     'OS-Ken',
     'Mininet',
     'FastAPI',
-    'TimescaleDB',
+    'TimescaleDB 2.30',
+    'PostgreSQL 18',
     'React 19',
+    'TypeScript',
     'WebSockets',
     'Docker Compose',
   ],
@@ -21,10 +23,10 @@ export const netpulseProject: Project = {
   },
   facts: [
     { value: '5 s', labelKey: 'interval', reading: 5, dialMax: 10 },
-    { value: '≤ 5 s', labelKey: 'detection', reading: 5, dialMax: 60 },
-    { value: '4', labelKey: 'releases', reading: 4, dialMax: 5 },
+    { value: '~15 s', labelKey: 'detection', reading: 15, dialMax: 60 },
+    { value: '6', labelKey: 'releases', reading: 6, dialMax: 6 },
   ],
-  version: 'v0.4',
-  status: 'inProgress',
+  version: 'v1.0',
+  status: 'complete',
   repoUrl: 'https://github.com/wpilares/netpulse',
 }

@@ -1,4 +1,4 @@
-export type ProjectStatus = 'inProgress'
+export type ProjectStatus = 'complete'
 
 export type ProjectLineKey = 'one' | 'two' | 'three' | 'four' | 'five'
 

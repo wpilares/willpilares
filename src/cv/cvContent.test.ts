@@ -64,13 +64,14 @@ describe('buildCvContent', () => {
     const cv = buildCvContent('en', en)
 
     expect(cv.project.name).toBe('NetPulse')
-    expect(cv.project.status).toBe('In progress')
+    expect(cv.project.status).toBe('Complete')
     expect(cv.project.url).toBe('https://github.com/wpilares/netpulse')
     expect(cv.project.stack).toContain('OS-Ken')
+    expect(cv.project.stack).toContain('Python 3.14')
     expect(cv.project.summary).toHaveLength(5)
     expect(cv.project.summary.join(' ')).not.toMatch(/<\/?accent>/)
     expect(cv.project.summary[0]).toBe(
-      "This is NetPulse, a real-time SDN monitoring platform I'm building."
+      'This is NetPulse, a real-time SDN monitoring platform I built end to end, released as v1.0.'
     )
   })
 
