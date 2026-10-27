@@ -4,8 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "bunx --bun vite",
-    "build": "tsc && bunx --bun vite build",
+    "dev": "bun scripts/build-cv.tsx && bunx --bun vite",
+    "build": "bun scripts/build-cv.tsx && tsc && bunx --bun vite build",
     "preview": "bunx --bun vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -15,6 +15,7 @@
     "ci": "biome ci --changed",
     "cursors": "bun scripts/build-cursors.ts",
     "glyphs": "bun scripts/build-glyph-titles.ts",
+    "cv": "bun scripts/build-cv.tsx",
     "prepare": "husky"
   },
   "dependencies": {
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.12",
+    "@react-pdf/renderer": "^4.9.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.2",
