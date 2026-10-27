@@ -106,7 +106,11 @@ export const buildCvContent = (language: CvLanguage, translation: CvTranslation)
       href: contact.href,
     })),
     headings: cv.headings,
-    summary: `${journal.hunter.statement} ${journal.hunter.description}`,
+    summary: [
+      journal.hunter.statement,
+      stripMarkup(journal.hunter.notes.one),
+      journal.hunter.description,
+    ].join(' '),
     experience: buildExperience(translation.experience.companies),
     skills: skillShelves.map((shelf) => ({
       category: journal.arms.categories[shelf.key],

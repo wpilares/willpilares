@@ -9,7 +9,7 @@ describe('buildCvContent', () => {
 
     expect(cv.language).toBe('en')
     expect(cv.name).toBe('Willber Pilares')
-    expect(cv.title).toBe('Senior Software Engineer')
+    expect(cv.title).toBe('Software Engineer')
     expect(cv.contacts).toEqual([
       { label: 'Email', value: 'wgpilaresc@gmail.com', href: 'mailto:wgpilaresc@gmail.com' },
       {
@@ -24,7 +24,10 @@ describe('buildCvContent', () => {
   it('summarises the profile from the about chapter copy', () => {
     const cv = buildCvContent('en', en)
 
-    expect(cv.summary).toBe(`${en.journal.hunter.statement} ${en.journal.hunter.description}`)
+    expect(cv.summary).toBe(
+      'I build the foundations other teams rely on. For seven years I have shipped backend and full-stack systems that stay fast under real traffic. ' +
+        en.journal.hunter.description
+    )
   })
 
   it('lists the experience newest first with company, role, period and highlights', () => {
