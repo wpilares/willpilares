@@ -7,6 +7,7 @@ import { type RefObject, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { ContactLink } from '@/types'
 import { GlyphTitle } from '../glyphs'
+import { type BrandMark, brandMarkPaths } from './brandMarks'
 
 const ravenMeta = sceneById('raven')
 
@@ -14,7 +15,7 @@ const email = 'wgpilaresc@gmail.com'
 const COPIED_FEEDBACK_MS = 2000
 const FLIGHT_SECONDS = 1.2
 
-type SealLink = ContactLink & { readonly initial: string }
+type SealLink = ContactLink & { readonly mark: BrandMark }
 
 const RAVEN_ROWS: readonly string[] = [
   'n..............n',
@@ -67,13 +68,13 @@ const useSealLinks = (): readonly SealLink[] => {
       title: t('journal.raven.links.github'),
       value: 'github.com/wpilares',
       href: 'https://github.com/wpilares',
-      initial: 'G',
+      mark: 'github',
     },
     {
       title: t('journal.raven.links.linkedin'),
       value: 'linkedin.com/in/wpilaresc',
       href: 'https://linkedin.com/in/wpilaresc',
-      initial: 'in',
+      mark: 'linkedin',
     },
   ]
 }
@@ -177,9 +178,17 @@ const WaxSeals = () => {
             target="_blank"
             rel="noopener noreferrer"
             title={link.value}
-            className="flex h-16 w-16 items-center justify-center rounded-[48%_52%_50%_50%] bg-blood font-fell text-2xl text-parchment shadow-[inset_0_-3px_0_rgba(0,0,0,0.4),0_0_0_3px_rgba(139,30,30,0.45),0_6px_14px_rgba(0,0,0,0.55)] transition-colors duration-300 hover:bg-ember"
+            className="flex h-16 w-16 items-center justify-center rounded-[48%_52%_50%_50%] bg-blood text-parchment shadow-[inset_0_-3px_0_rgba(0,0,0,0.4),0_0_0_3px_rgba(139,30,30,0.45),0_6px_14px_rgba(0,0,0,0.55)] transition-colors duration-300 hover:bg-ember"
           >
-            <span aria-hidden="true">{link.initial}</span>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 128 128"
+              className="h-8 w-8 fill-current drop-shadow-[0_1px_0_rgba(0,0,0,0.45)]"
+            >
+              {brandMarkPaths[link.mark].map((d) => (
+                <path key={d.slice(0, 24)} d={d} fillRule="evenodd" clipRule="evenodd" />
+              ))}
+            </svg>
             <span className="sr-only">{link.title}</span>
           </a>
         </li>

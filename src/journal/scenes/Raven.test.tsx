@@ -146,6 +146,16 @@ describe('Raven', () => {
       'https://linkedin.com/in/wpilaresc'
     )
   })
+
+  it('stamps each seal with its brand mark instead of a letter', () => {
+    renderScene(<Raven />)
+
+    for (const name of ['journal.raven.links.github', 'journal.raven.links.linkedin']) {
+      const seal = screen.getByRole('link', { name })
+      expect(seal.querySelector('svg[aria-hidden="true"] path')).not.toBeNull()
+      expect(seal).not.toHaveTextContent(/^(G|in)/)
+    }
+  })
 })
 
 describe('Archive', () => {
