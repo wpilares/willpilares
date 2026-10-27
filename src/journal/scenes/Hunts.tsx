@@ -22,6 +22,7 @@ import { useCallback, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { CompanyData, ExperienceData } from '@/types'
 import data from '../../../data.json'
+import { GlyphTitle } from '../glyphs'
 import { galleryPanProgress, visibleShare } from './galleryPan'
 
 const huntsMeta = sceneById('hunts')
@@ -74,17 +75,14 @@ const HighlightedText = ({ text }: { text: string }) => (
   </>
 )
 
-const HuntsHeading = () => {
-  const { t } = useTranslation()
-  return (
-    <header className="flex items-baseline gap-4">
-      <span aria-hidden="true" className="chapter-numeral">
-        III
-      </span>
-      <h2 className="journal-title-sm text-parchment">{t('journal.chapters.hunts.title')}</h2>
-    </header>
-  )
-}
+const HuntsHeading = () => (
+  <header className="flex items-baseline gap-4">
+    <span aria-hidden="true" className="chapter-numeral">
+      III
+    </span>
+    <GlyphTitle id="hunts" as="h2" size="var(--glyph-title)" className="text-parchment" />
+  </header>
+)
 
 const Candle = () => (
   <span aria-hidden="true" className="absolute -top-2 -right-2 flex flex-col items-center">

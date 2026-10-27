@@ -10,6 +10,7 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({
     t: (key: string, options?: { returnObjects?: boolean }) =>
       options?.returnObjects === true && key.endsWith('.descriptions') ? bullets : key,
+    i18n: { language: 'en' },
   }),
 }))
 

@@ -17,7 +17,6 @@ export default {
         moon: '#c9d6e3',
       },
       fontFamily: {
-        blackletter: ['"UnifrakturMaguntia"', 'serif'],
         fell: ['"IM Fell English"', 'serif'],
         serif: ['"EB Garamond Variable"', 'Georgia', 'serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace'],

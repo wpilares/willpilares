@@ -6,6 +6,7 @@ import * as m from 'motion/react-m'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { type HeroStat, heroStats } from '@/constants'
+import { GlyphTitle } from '../glyphs'
 import { TallyMarks } from './TallyMarks'
 
 const hunterMeta = sceneById('hunter')
@@ -23,7 +24,7 @@ const JournalPage = () => {
         <span aria-hidden="true" className="chapter-numeral text-blood">
           I
         </span>
-        <h2 className="journal-title-sm text-night">{t('journal.chapters.hunter.title')}</h2>
+        <GlyphTitle id="hunter" as="h2" size="var(--glyph-title)" className="text-night" />
       </header>
       <p className="mt-5 text-2xl leading-snug font-semibold md:text-[1.7rem]">
         {t('journal.hunter.statement')}

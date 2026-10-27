@@ -5,6 +5,7 @@ import { useTransform } from 'motion/react'
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { type SkillPlate, type SkillShelf, skillShelves } from '@/constants'
+import { GlyphTitle } from '../glyphs'
 import { createThrottle } from './throttle'
 
 const armsMeta = sceneById('arms')
@@ -25,17 +26,14 @@ const useLanternStretch = (): (() => void) =>
     }
   }, [])
 
-const ArmsHeading = () => {
-  const { t } = useTranslation()
-  return (
-    <header className="flex items-baseline gap-4">
-      <span aria-hidden="true" className="chapter-numeral">
-        II
-      </span>
-      <h2 className="journal-title-sm text-parchment">{t('journal.chapters.arms.title')}</h2>
-    </header>
-  )
-}
+const ArmsHeading = () => (
+  <header className="flex items-baseline gap-4">
+    <span aria-hidden="true" className="chapter-numeral">
+      II
+    </span>
+    <GlyphTitle id="arms" as="h2" size="var(--glyph-title)" className="text-parchment" />
+  </header>
+)
 
 const EngravedPlate = ({ skill, onLight }: { skill: SkillPlate; onLight: () => void }) => (
   <li>

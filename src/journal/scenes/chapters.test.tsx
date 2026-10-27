@@ -9,7 +9,7 @@ import { Hunts } from './Hunts'
 import { Lab } from './Lab'
 
 vi.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (key: string) => key }),
+  useTranslation: () => ({ t: (key: string) => key, i18n: { language: 'en' } }),
   Trans: ({ i18nKey }: { i18nKey: string }) => i18nKey,
 }))
 
@@ -66,7 +66,7 @@ describe('hunter and arms chapters', () => {
   it('writes the journal page, both notes and four tallies for the hunter', () => {
     mockMatchMedia(['(prefers-reduced-motion: reduce)'])
     renderChapters()
-    expect(screen.getByRole('heading', { name: 'journal.chapters.hunter.title' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'About me' })).toBeVisible()
     expect(screen.getByText('journal.hunter.statement')).toBeInTheDocument()
     expect(screen.getByText('journal.hunter.notes.one')).toBeInTheDocument()
     expect(screen.getByText('journal.hunter.notes.two')).toBeInTheDocument()
