@@ -1,5 +1,6 @@
 import { cvPdf } from '@assets'
 import { Backdrop } from '@backdrops'
+import { DualLabel } from '@components'
 import {
   FogVeil,
   Scene,
@@ -32,15 +33,18 @@ const CityContent = () => {
   const { t } = useTranslation()
 
   return (
-    <div className="grid-page absolute inset-x-0 bottom-0 pb-[max(14svh,var(--cat-reserve))] md:pb-[max(10svh,var(--cat-reserve))]">
+    <div className="grid-page absolute inset-x-0 bottom-0 isolate pb-[max(14svh,var(--cat-reserve))] md:pb-[max(10svh,var(--cat-reserve))]">
+      <div aria-hidden="true" className="city-text-scrim" />
       <SceneReveal
         start={0}
         end={0.15}
         exitStart={0.75}
         exitEnd={0.95}
-        className="col-span-full flex flex-col items-start gap-6 md:col-span-9"
+        className="relative z-10 col-span-full flex flex-col items-start gap-6 md:col-span-9"
       >
-        <p className="fell-label text-parchment">{t('journal.city.role')}</p>
+        <p className="fell-label legible-on-scene text-xs tracking-[0.14em] text-parchment sm:text-sm md:text-base md:tracking-[0.18em]">
+          {t('journal.city.role')}
+        </p>
         <GlyphTitle
           id="name"
           as="h1"
@@ -52,13 +56,16 @@ const CityContent = () => {
         </p>
         <div className="flex flex-wrap items-center gap-3">
           <a href="#contact" className="btn-seal">
-            {t('journal.city.ctaContact')}
+            <DualLabel
+              themed={t('journal.city.ctaContact')}
+              plain={t('journal.city.ctaContactPlain')}
+            />
           </a>
           <a href={cvPdf} download className="btn-ghost-gothic">
-            {t('journal.city.ctaCv')}
+            <DualLabel themed={t('journal.city.ctaCv')} plain={t('journal.city.ctaCvPlain')} />
           </a>
         </div>
-        <p className="fell-label flex items-center gap-2">
+        <p className="fell-label legible-on-scene flex items-center gap-2 text-parchment">
           <span aria-hidden="true" className="wax-dot" />
           {t('journal.city.availability')}
         </p>

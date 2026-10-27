@@ -12,6 +12,7 @@ vi.mock('react-i18next', () => ({
 }))
 
 const email = 'wgpilaresc@gmail.com'
+const emailButton = /^wgpilaresc@gmail\.com,\s*journal\.raven\.copyEmail$/
 const copiedLabel = 'journal.raven.copied'
 const originalLocation = window.location
 const originalMatchMedia = window.matchMedia
@@ -84,7 +85,7 @@ describe('Raven', () => {
     const emit = vi.spyOn(mascotBus, 'emit')
     renderScene(<Raven />)
 
-    fireEvent.click(screen.getByRole('button', { name: email }))
+    fireEvent.click(screen.getByRole('button', { name: emailButton }))
 
     await vi.waitFor(() => {
       expect(screen.getByRole('button', { name: copiedLabel })).toBeInTheDocument()
@@ -98,7 +99,7 @@ describe('Raven', () => {
     stubClipboard(vi.fn().mockResolvedValue(undefined))
     renderScene(<Raven />)
 
-    fireEvent.click(screen.getByRole('button', { name: email }))
+    fireEvent.click(screen.getByRole('button', { name: emailButton }))
     await vi.waitFor(() => {
       expect(screen.getByRole('button', { name: copiedLabel })).toBeInTheDocument()
     })
@@ -107,7 +108,7 @@ describe('Raven', () => {
       vi.advanceTimersByTime(2000)
     })
 
-    expect(screen.getByRole('button', { name: email })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: emailButton })).toBeInTheDocument()
   })
 
   it('falls back to a mailto navigation when the clipboard is unavailable', () => {
@@ -116,11 +117,11 @@ describe('Raven', () => {
     const emit = vi.spyOn(mascotBus, 'emit')
     renderScene(<Raven />)
 
-    fireEvent.click(screen.getByRole('button', { name: email }))
+    fireEvent.click(screen.getByRole('button', { name: emailButton }))
 
     expect(assign).toHaveBeenCalledWith(`mailto:${email}`)
     expect(emit).not.toHaveBeenCalled()
-    expect(screen.getByRole('button', { name: email })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: emailButton })).toBeInTheDocument()
   })
 
   it('falls back to a mailto navigation when writing to the clipboard fails', async () => {
@@ -128,10 +129,10 @@ describe('Raven', () => {
     const assign = stubLocationAssign()
     renderScene(<Raven />)
 
-    fireEvent.click(screen.getByRole('button', { name: email }))
+    fireEvent.click(screen.getByRole('button', { name: emailButton }))
 
     await vi.waitFor(() => expect(assign).toHaveBeenCalledWith(`mailto:${email}`))
-    expect(screen.getByRole('button', { name: email })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: emailButton })).toBeInTheDocument()
   })
 
   it('seals the GitHub and LinkedIn links', () => {
@@ -145,6 +146,16 @@ describe('Raven', () => {
       'href',
       'https://linkedin.com/in/wpilaresc'
     )
+  })
+
+  it('stamps each seal with its brand mark instead of a letter', () => {
+    renderScene(<Raven />)
+
+    for (const name of ['journal.raven.links.github', 'journal.raven.links.linkedin']) {
+      const seal = screen.getByRole('link', { name })
+      expect(seal.querySelector('svg[aria-hidden="true"] path')).not.toBeNull()
+      expect(seal).not.toHaveTextContent(/^(G|in)/)
+    }
   })
 })
 

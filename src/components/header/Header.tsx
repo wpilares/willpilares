@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { DualLabel } from '../dualLabel'
 
 const languages = [
   { code: 'en', label: 'EN' },
@@ -40,7 +41,7 @@ export const Header = () => {
           </fieldset>
 
           <a href="#contact" className="btn-seal whitespace-nowrap">
-            {t('header.getInTouch')}
+            <DualLabel themed={t('header.getInTouch')} plain={t('header.getInTouchPlain')} />
           </a>
         </nav>
       </div>
