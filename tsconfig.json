@@ -30,8 +30,6 @@
       "@journal/*": ["src/journal/*"],
       "@backdrops": ["src/backdrops/index.ts"],
       "@backdrops/*": ["src/backdrops/*"],
-      "@assets": ["src/assets/index.ts"],
-      "@assets/*": ["src/assets/*"],
       "@utils": ["src/utils/index.ts"],
       "@utils/*": ["src/utils/*"]
     }
