@@ -60,14 +60,16 @@ const styles = StyleSheet.create({
 
 type SectionProps = {
   readonly title: string
-  readonly children: ReactNode
+  readonly lead: ReactNode
+  readonly children?: ReactNode
 }
 
-const Section = ({ title, children }: SectionProps) => (
+const Section = ({ title, lead, children }: SectionProps) => (
   <View style={styles.section}>
-    <Text style={styles.heading} minPresenceAhead={40}>
-      {title}
-    </Text>
+    <View wrap={false}>
+      <Text style={styles.heading}>{title}</Text>
+      {lead}
+    </View>
     {children}
   </View>
 )
@@ -96,43 +98,66 @@ const Header = ({ cv }: { readonly cv: CvContent }) => (
   </View>
 )
 
-const Experience = ({ cv }: { readonly cv: CvContent }) => (
-  <Section title={cv.headings.experience}>
-    {cv.experience.map((entry) => (
-      <View key={entry.company} style={styles.entry}>
-        <View style={styles.entryHeader} wrap={false}>
+const ExperienceEntry = ({ entry }: { readonly entry: CvContent['experience'][number] }) => {
+  const [firstHighlight, ...otherHighlights] = entry.highlights
+  return (
+    <View style={styles.entry}>
+      <View wrap={false}>
+        <View style={styles.entryHeader}>
           <Text>
             <Text style={styles.strong}>{entry.position}</Text>
             {` · ${entry.company}`}
           </Text>
           <Text style={styles.period}>{entry.period}</Text>
         </View>
-        {entry.highlights.map((highlight) => (
-          <Bullet key={highlight}>{highlight}</Bullet>
-        ))}
+        {firstHighlight && <Bullet>{firstHighlight}</Bullet>}
       </View>
-    ))}
-  </Section>
-)
+      {otherHighlights.map((highlight) => (
+        <Bullet key={highlight}>{highlight}</Bullet>
+      ))}
+    </View>
+  )
+}
+
+const Experience = ({ cv }: { readonly cv: CvContent }) => {
+  const [firstEntry, ...otherEntries] = cv.experience
+  return (
+    <Section
+      title={cv.headings.experience}
+      lead={firstEntry && <ExperienceEntry entry={firstEntry} />}
+    >
+      {otherEntries.map((entry) => (
+        <ExperienceEntry key={entry.company} entry={entry} />
+      ))}
+    </Section>
+  )
+}
 
 const Skills = ({ cv }: { readonly cv: CvContent }) => (
-  <Section title={cv.headings.skills}>
-    {cv.skills.map((group) => (
+  <Section
+    title={cv.headings.skills}
+    lead={cv.skills.map((group) => (
       <Text key={group.category} style={styles.line}>
         <Text style={styles.strong}>{`${group.category}: `}</Text>
         {group.skills.join(', ')}
       </Text>
     ))}
-  </Section>
+  />
 )
 
 const Project = ({ cv }: { readonly cv: CvContent }) => (
-  <Section title={cv.headings.project}>
-    <View style={styles.entryHeader} wrap={false}>
-      <Text style={styles.strong}>{cv.project.name}</Text>
-      <Text style={styles.period}>{cv.project.status}</Text>
-    </View>
-    <Text style={styles.line}>{cv.project.summary.join(' ')}</Text>
+  <Section
+    title={cv.headings.project}
+    lead={
+      <>
+        <View style={styles.entryHeader}>
+          <Text style={styles.strong}>{cv.project.name}</Text>
+          <Text style={styles.period}>{cv.project.status}</Text>
+        </View>
+        <Text style={styles.line}>{cv.project.summary.join(' ')}</Text>
+      </>
+    }
+  >
     <Text style={styles.line}>
       <Text style={styles.strong}>{`${cv.project.stackLabel}: `}</Text>
       {cv.project.stack.join(', ')}
@@ -147,19 +172,25 @@ const Project = ({ cv }: { readonly cv: CvContent }) => (
 )
 
 const Education = ({ cv }: { readonly cv: CvContent }) => (
-  <Section title={cv.headings.education}>
-    <View style={styles.entryHeader} wrap={false}>
-      <Text style={styles.strong}>{cv.education.degree}</Text>
-      <Text style={styles.period}>{cv.education.period}</Text>
-    </View>
-    <Text>{`${cv.education.institution}, ${cv.education.location}`}</Text>
-  </Section>
+  <Section
+    title={cv.headings.education}
+    lead={
+      <>
+        <View style={styles.entryHeader}>
+          <Text style={styles.strong}>{cv.education.degree}</Text>
+          <Text style={styles.period}>{cv.education.period}</Text>
+        </View>
+        <Text>{`${cv.education.institution}, ${cv.education.location}`}</Text>
+      </>
+    }
+  />
 )
 
 const Languages = ({ cv }: { readonly cv: CvContent }) => (
-  <Section title={cv.headings.languages}>
-    <Text>{cv.languages.map((entry) => `${entry.name} (${entry.level})`).join(', ')}</Text>
-  </Section>
+  <Section
+    title={cv.headings.languages}
+    lead={<Text>{cv.languages.map((entry) => `${entry.name} (${entry.level})`).join(', ')}</Text>}
+  />
 )
 
 const CvDocument = ({ cv }: { readonly cv: CvContent }) => (
@@ -171,9 +202,7 @@ const CvDocument = ({ cv }: { readonly cv: CvContent }) => (
   >
     <Page size="A4" style={styles.page}>
       <Header cv={cv} />
-      <Section title={cv.headings.summary}>
-        <Text>{cv.summary}</Text>
-      </Section>
+      <Section title={cv.headings.summary} lead={<Text>{cv.summary}</Text>} />
       <Experience cv={cv} />
       <Skills cv={cv} />
       <Project cv={cv} />
