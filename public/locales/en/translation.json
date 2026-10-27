@@ -70,7 +70,7 @@
       "ctaCv": "Download the scroll",
       "ctaCvPlain": "Download my CV",
       "availability": "Open to senior roles",
-      "role": "Software Engineer · Squad Lead"
+      "role": "Software Engineer"
     },
     "chapters": {
       "hunter": {
@@ -95,16 +95,16 @@
     },
     "hunter": {
       "statement": "I build the foundations other teams rely on.",
-      "description": "From React interfaces to Python, Node.js and serverless backends on AWS. At Whitelion Technology I lead a squad of developers, own the shared component library and the Keycloak-based authentication platform, and work AI-first with Claude, OpenCode and MCP servers, with code review and automated tests keeping the bar high.",
+      "description": "From React interfaces to Python, Node.js and serverless backends on AWS. I design shared component libraries and authentication platforms, mentor through code review, and work AI-first with Claude and MCP servers, with automated tests keeping the bar high.",
       "notes": {
         "one": "For seven years I have shipped <accent>backend and full-stack systems</accent> that stay fast under real traffic.",
-        "two": "Today I lead a squad and <accent>pair daily with AI tools</accent> to move faster without lowering the bar."
+        "two": "Today I <accent>pair daily with AI tools</accent> to move faster without lowering the bar."
       },
       "stats": {
         "years": "Years of experience",
         "sso": "Apps secured with SSO",
         "library": "Projects on my UI library",
-        "squad": "Devs in my squad"
+        "apps": "Full-stack apps shipped"
       }
     },
     "arms": {
@@ -178,6 +178,35 @@
       "end": "End of the journal",
       "trick": "Do a trick",
       "pet": "Pet the cat"
+    }
+  },
+  "cv": {
+    "headings": {
+      "summary": "Summary",
+      "experience": "Experience",
+      "skills": "Skills",
+      "project": "Featured project",
+      "education": "Education",
+      "languages": "Languages"
+    },
+    "project": {
+      "stack": "Stack",
+      "repository": "Repository"
+    },
+    "education": {
+      "degree": "Bachelor of Telecommunications Engineering",
+      "institution": "National University of Engineering",
+      "location": "Lima, Peru"
+    },
+    "languages": {
+      "names": {
+        "spanish": "Spanish",
+        "english": "English"
+      },
+      "levels": {
+        "native": "Native",
+        "intermediate": "Intermediate"
+      }
     }
   }
 }

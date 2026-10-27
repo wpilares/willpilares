@@ -1,6 +1,6 @@
 # Willber Pilares — Portfolio
 
-Personal portfolio of a Software Engineer and squad lead with 7+ years building production systems end-to-end.
+Personal portfolio of a Software Engineer with 7+ years building production systems end-to-end.
 
 **Live:** [wpilares.vercel.app](https://wpilares.vercel.app)
 

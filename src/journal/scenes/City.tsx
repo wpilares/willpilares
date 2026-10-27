@@ -1,4 +1,3 @@
-import { cvPdf } from '@assets'
 import { Backdrop } from '@backdrops'
 import { DualLabel } from '@components'
 import {
@@ -13,6 +12,7 @@ import {
 import { useTransform } from 'motion/react'
 import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
+import { cvHref } from '@/cv/cvFile'
 import { GlyphTitle } from '../glyphs'
 
 const cityMeta = sceneById('city')
@@ -30,7 +30,7 @@ const EntrySeam = () => {
 }
 
 const CityContent = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   return (
     <div className="grid-page absolute inset-x-0 bottom-0 isolate pb-[max(14svh,var(--cat-reserve))] md:pb-[max(10svh,var(--cat-reserve))]">
@@ -61,7 +61,7 @@ const CityContent = () => {
               plain={t('journal.city.ctaContactPlain')}
             />
           </a>
-          <a href={cvPdf} download className="btn-ghost-gothic">
+          <a href={cvHref(i18n.language)} download className="btn-ghost-gothic">
             <DualLabel themed={t('journal.city.ctaCv')} plain={t('journal.city.ctaCvPlain')} />
           </a>
         </div>
