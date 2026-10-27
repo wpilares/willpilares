@@ -125,11 +125,11 @@
         "two": "Una red Mininet bajo un <accent>controlador OS-Ken</accent> envía estadísticas de puertos a TimescaleDB cada cinco segundos.",
         "three": "El dashboard muestra <accent>KPIs en vivo, la topología y el throughput por puerto</accent> mediante WebSockets.",
         "four": "<accent>Baselines EWMA</accent> puntúan cada puerto; las anomalías abren alertas que puedes reconocer.",
-        "five": "La inyección de fallos lo demuestra: un host caído genera una <accent>alerta crítica de drop rate</accent> en un solo poll."
+        "five": "La inyección de fallos lo demuestra: un host caído genera una <accent>alerta crítica de drop rate</accent> en la siguiente medición, en menos de cinco segundos."
       },
       "facts": {
-        "poll": "intervalo de poll",
-        "alert": "hasta una alerta crítica",
+        "interval": "entre cada medición",
+        "detection": "para detectar un host caído",
         "releases": "versiones publicadas"
       },
       "gauges": "Lecturas",

@@ -125,11 +125,11 @@
         "two": "A Mininet network under an <accent>OS-Ken controller</accent> streams port stats into TimescaleDB every five seconds.",
         "three": "The dashboard shows <accent>live KPIs, the topology and per-port throughput</accent> over WebSockets.",
         "four": "<accent>EWMA baselines</accent> score every port; anomalies open alerts you can acknowledge.",
-        "five": "Fault injection proves it: a downed host raises a <accent>critical drop-rate alert</accent> within one poll."
+        "five": "Fault injection proves it: a downed host raises a <accent>critical drop-rate alert</accent> on the next reading, in under five seconds."
       },
       "facts": {
-        "poll": "poll interval",
-        "alert": "to a critical alert",
+        "interval": "between readings",
+        "detection": "to flag a downed host",
         "releases": "releases shipped"
       },
       "gauges": "Readings",

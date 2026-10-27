@@ -146,8 +146,8 @@ describe('past hunts and current hunt chapters', () => {
     for (const line of ['one', 'two', 'three', 'four', 'five']) {
       expect(screen.getByText(`journal.lab.lines.${line}`)).toBeInTheDocument()
     }
-    expect(screen.getByText('journal.lab.facts.poll')).toBeInTheDocument()
-    expect(screen.getByText('journal.lab.facts.alert')).toBeInTheDocument()
+    expect(screen.getByText('journal.lab.facts.interval')).toBeInTheDocument()
+    expect(screen.getByText('journal.lab.facts.detection')).toBeInTheDocument()
     expect(screen.getByText('journal.lab.facts.releases')).toBeInTheDocument()
     expect(screen.getByRole('img', { name: 'journal.lab.topology' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'journal.lab.viewCode' })).toHaveAttribute(

@@ -20,8 +20,8 @@ export const netpulseProject: Project = {
     height: 900,
   },
   facts: [
-    { value: '5 s', labelKey: 'poll', reading: 5, dialMax: 10 },
-    { value: '1 poll', labelKey: 'alert', reading: 1, dialMax: 5 },
+    { value: '5 s', labelKey: 'interval', reading: 5, dialMax: 10 },
+    { value: '≤ 5 s', labelKey: 'detection', reading: 5, dialMax: 60 },
     { value: '4', labelKey: 'releases', reading: 4, dialMax: 5 },
   ],
   version: 'v0.4',
