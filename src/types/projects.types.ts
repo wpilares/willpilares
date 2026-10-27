@@ -1,4 +1,4 @@
-export type ProjectStatus = 'inProgress'
+export type ProjectStatus = 'complete'
 
 export type ProjectLineKey = 'one' | 'two' | 'three' | 'four' | 'five'
 
@@ -9,6 +9,16 @@ export interface ProjectScreenshot {
   readonly alt: string
   readonly width: number
   readonly height: number
+}
+
+export interface ProjectVideoSources {
+  readonly webm: string
+  readonly mp4: string
+}
+
+export interface ProjectMedia {
+  readonly video: ProjectVideoSources
+  readonly poster: ProjectScreenshot
 }
 
 export interface ProjectFact {
@@ -22,7 +32,7 @@ export interface Project {
   readonly key: string
   readonly stack: readonly string[]
   readonly lines: readonly ProjectLineKey[]
-  readonly screenshot: ProjectScreenshot
+  readonly media: ProjectMedia
   readonly facts: readonly ProjectFact[]
   readonly version: string
   readonly status: ProjectStatus

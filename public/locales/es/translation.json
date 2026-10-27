@@ -83,7 +83,7 @@
         "title": "Trayectoria"
       },
       "lab": {
-        "title": "Proyecto actual"
+        "title": "Proyecto destacado"
       },
       "raven": {
         "title": "Manda un cuervo"
@@ -124,22 +124,22 @@
     "lab": {
       "name": "NetPulse",
       "lines": {
-        "one": "Este es <accent>NetPulse</accent>, una plataforma de monitoreo SDN en tiempo real que estoy construyendo.",
+        "one": "Este es <accent>NetPulse</accent>, una plataforma de monitoreo SDN en tiempo real que construí de principio a fin, publicada como v1.0.",
         "two": "Una red Mininet bajo un <accent>controlador OS-Ken</accent> envía estadísticas de puertos a TimescaleDB cada cinco segundos.",
         "three": "El dashboard muestra <accent>KPIs en vivo, la topología y el throughput por puerto</accent> mediante WebSockets.",
-        "four": "<accent>Baselines EWMA</accent> puntúan cada puerto; las anomalías abren alertas que puedes reconocer.",
-        "five": "La inyección de fallos lo demuestra: un host caído genera una <accent>alerta crítica de drop rate</accent> en la siguiente medición, en menos de cinco segundos."
+        "four": "<accent>Baselines EWMA</accent> puntúan cada puerto; una alerta se abre solo tras tres señales consecutivas, se enruta a webhooks según su severidad y los baselines sobreviven a los reinicios.",
+        "five": "La inyección de fallos lo demuestra: un host caído abre una <accent>alerta crítica de drop rate</accent> en 13 a 18 segundos y se resuelve sola alrededor de un minuto después de que el fallo desaparece."
       },
       "facts": {
         "interval": "entre cada medición",
-        "detection": "para detectar un host caído",
+        "detection": "para confirmar un host caído",
         "releases": "versiones publicadas"
       },
       "gauges": "Lecturas",
       "topology": "Topología: el switch s1 enlaza s2 y s3; s2 atiende a 10.0.0.1 y 10.0.0.2, s3 atiende a 10.0.0.3 y 10.0.0.4.",
       "stack": "Forjado con",
       "status": {
-        "inProgress": "En desarrollo"
+        "complete": "Completado"
       },
       "viewCode": "Ver el código"
     },

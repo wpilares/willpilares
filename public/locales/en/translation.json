@@ -83,7 +83,7 @@
         "title": "Career"
       },
       "lab": {
-        "title": "Current project"
+        "title": "Featured project"
       },
       "raven": {
         "title": "Send a raven"
@@ -124,22 +124,22 @@
     "lab": {
       "name": "NetPulse",
       "lines": {
-        "one": "This is <accent>NetPulse</accent>, a real-time SDN monitoring platform I'm building.",
+        "one": "This is <accent>NetPulse</accent>, a real-time SDN monitoring platform I built end to end, released as v1.0.",
         "two": "A Mininet network under an <accent>OS-Ken controller</accent> streams port stats into TimescaleDB every five seconds.",
         "three": "The dashboard shows <accent>live KPIs, the topology and per-port throughput</accent> over WebSockets.",
-        "four": "<accent>EWMA baselines</accent> score every port; anomalies open alerts you can acknowledge.",
-        "five": "Fault injection proves it: a downed host raises a <accent>critical drop-rate alert</accent> on the next reading, in under five seconds."
+        "four": "<accent>EWMA baselines</accent> score every port; an alert opens only after three consecutive signals, is routed to webhooks by severity, and baselines survive restarts.",
+        "five": "Fault injection proves it: a downed host opens a <accent>critical drop-rate alert</accent> within 13 to 18 seconds and resolves on its own about a minute after the fault clears."
       },
       "facts": {
         "interval": "between readings",
-        "detection": "to flag a downed host",
+        "detection": "to confirm a downed host",
         "releases": "releases shipped"
       },
       "gauges": "Readings",
       "topology": "Topology: switch s1 links s2 and s3; s2 serves 10.0.0.1 and 10.0.0.2, s3 serves 10.0.0.3 and 10.0.0.4.",
       "stack": "Forged with",
       "status": {
-        "inProgress": "In progress"
+        "complete": "Complete"
       },
       "viewCode": "View the code"
     },
