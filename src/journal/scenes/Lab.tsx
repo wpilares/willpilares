@@ -14,6 +14,7 @@ import { useId, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { netpulseProject } from '@/constants'
 import type { ProjectFact, ProjectLineKey } from '@/types'
+import { GlyphTitle } from '../glyphs'
 import { gaugeTicks, needleAngle } from './gauge'
 
 const labMeta = sceneById('lab')
@@ -71,17 +72,14 @@ const cablePath = (from: TopologyNode, to: TopologyNode): string => {
   return `M ${from.x} ${from.y} Q ${midX} ${sagY} ${to.x} ${to.y}`
 }
 
-const LabHeading = () => {
-  const { t } = useTranslation()
-  return (
-    <header className="flex items-baseline gap-4">
-      <span aria-hidden="true" className="chapter-numeral">
-        IV
-      </span>
-      <h2 className="journal-title-sm text-parchment">{t('journal.chapters.lab.title')}</h2>
-    </header>
-  )
-}
+const LabHeading = () => (
+  <header className="flex items-baseline gap-4">
+    <span aria-hidden="true" className="chapter-numeral">
+      IV
+    </span>
+    <GlyphTitle id="lab" as="h2" size="var(--glyph-title)" className="text-parchment" />
+  </header>
+)
 
 const JournalLine = ({ line }: { line: ProjectLineKey }) => (
   <p className="font-fell text-lg leading-snug text-parchment italic">
@@ -232,7 +230,9 @@ const Gauge = ({ fact }: { fact: ProjectFact }) => {
           </radialGradient>
         </defs>
       </svg>
-      <span className="font-fell text-2xl text-parchment tabular-nums">{fact.value}</span>
+      <span className="font-serif text-3xl font-medium tracking-wide text-parchment [font-variant-numeric:lining-nums_tabular-nums]">
+        {fact.value}
+      </span>
       <span className="fell-label max-w-[11rem] leading-tight">
         {t(`journal.lab.facts.${fact.labelKey}`)}
       </span>

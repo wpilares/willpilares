@@ -8,7 +8,7 @@ import { Epilogue } from './Epilogue'
 import { Raven } from './Raven'
 
 vi.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: (key: string) => key }),
+  useTranslation: () => ({ t: (key: string) => key, i18n: { language: 'en' } }),
 }))
 
 const email = 'wgpilaresc@gmail.com'
@@ -75,7 +75,7 @@ describe('Raven', () => {
     const { container } = renderScene(<Raven />)
 
     expect(container.querySelector('section#contact')).toHaveAttribute('data-scene', 'raven')
-    expect(screen.getByRole('heading', { name: 'journal.chapters.raven.title' })).toBeVisible()
+    expect(screen.getByRole('heading', { name: 'Send a raven' })).toBeVisible()
   })
 
   it('copies the email, shows the copied label and emits the copied quip', async () => {
@@ -181,7 +181,7 @@ describe('Epilogue', () => {
   it('closes the journal inside a footer landmark', () => {
     renderScene(<Epilogue />)
 
-    expect(screen.getByRole('contentinfo')).toHaveTextContent('journal.epilogue.end')
+    expect(screen.getByRole('contentinfo')).toHaveTextContent('End of the journal')
   })
 
   it('asks the cat for a trick and a purr', () => {

@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import { type BackdropId, backdropIds, generateBackdrop } from './generators'
+import {
+  ARMORY_CANVAS,
+  BOOKCASE_COMPARTMENT_HEIGHT,
+  bookcaseBounds,
+  bookcaseShelves,
+} from './layout'
 import type { PixelBuffer } from './painter'
 import { paletteKeys } from './palette'
 
@@ -7,12 +13,13 @@ type Size = readonly [width: number, height: number]
 
 const standard: Size = [320, 180]
 const panorama: Size = [960, 180]
+const armoryCanvas: Size = [ARMORY_CANVAS.width, ARMORY_CANVAS.height]
 
 const expectedSizes: Record<BackdropId, { far: Size; mid: Size; near: Size }> = {
   prologue: { far: standard, mid: standard, near: standard },
   city: { far: standard, mid: standard, near: standard },
   street: { far: standard, mid: standard, near: standard },
-  armory: { far: standard, mid: standard, near: standard },
+  armory: { far: armoryCanvas, mid: armoryCanvas, near: armoryCanvas },
   gallery: { far: standard, mid: panorama, near: panorama },
   lab: { far: standard, mid: standard, near: standard },
   archive: { far: standard, mid: standard, near: standard },
@@ -65,5 +72,49 @@ describe('backdrop generators', () => {
     it('leaves at least a fifth of the near layer transparent', () => {
       expect(transparentShare(first.near)).toBeGreaterThanOrEqual(0.2)
     })
+  })
+})
+
+describe('armory bookcase', () => {
+  const { far, mid } = generateBackdrop('armory')
+  const backPanelInks = new Set(['stone', 'ash', 'night'])
+  const at = (layer: PixelBuffer, x: number, y: number) =>
+    layer.get(x + ARMORY_CANVAS.coreX, y + ARMORY_CANVAS.coreY)
+
+  it('fades the top of the wall into full night so the canvas edge never shows', () => {
+    for (let x = 0; x < ARMORY_CANVAS.width; x += 1) expect(far.get(x, 0)).toBe('night')
+  })
+
+  it('carries the wall and floor across the side areas beside the bookcase', () => {
+    const floorRow = ARMORY_CANVAS.height - 1
+    for (const x of [0, 40, ARMORY_CANVAS.width - 40, ARMORY_CANVAS.width - 1]) {
+      expect(far.get(x, floorRow)).not.toBe('night')
+      expect(far.get(x, ARMORY_CANVAS.coreY + 100)).not.toBeNull()
+    }
+  })
+
+  it('crowns the bookcase at the top of its bounds', () => {
+    const centre = bookcaseBounds.x + bookcaseBounds.width / 2
+    expect(mid.get(centre, bookcaseBounds.y)).toBe('woodLight')
+    expect(mid.get(centre, bookcaseBounds.y - 1)).toBeNull()
+  })
+
+  it('lays a lit board top along every shelf span', () => {
+    for (const shelf of bookcaseShelves) {
+      for (let x = shelf.left; x < shelf.right; x += 1) {
+        expect(at(mid, x, shelf.boardTop)).toBe('woodLight')
+      }
+    }
+  })
+
+  it('keeps the middle of every shelf clear of painted books for the page to fill', () => {
+    for (const shelf of bookcaseShelves) {
+      const ceiling = shelf.boardTop - BOOKCASE_COMPARTMENT_HEIGHT
+      for (let y = ceiling; y < shelf.boardTop; y += 1) {
+        for (let x = shelf.left; x < shelf.right; x += 1) {
+          expect(backPanelInks.has(at(mid, x, y) ?? 'clear')).toBe(true)
+        }
+      }
+    }
   })
 })

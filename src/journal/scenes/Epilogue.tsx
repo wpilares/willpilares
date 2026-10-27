@@ -2,6 +2,7 @@ import { Backdrop, CandleFlame } from '@backdrops'
 import { mascotBus } from '@mascot'
 import { Scene, sceneById } from '@scenes'
 import { useTranslation } from 'react-i18next'
+import { GlyphTitle } from '../glyphs'
 import { OWNER_NAME } from '../identity'
 
 const epilogueMeta = sceneById('epilogue')
@@ -24,7 +25,7 @@ const EpilogueText = () => {
   return (
     <footer className="flex flex-col items-center gap-5 text-center">
       <div aria-hidden="true" className="filigree-rule w-[min(80vw,28rem)]" />
-      <p className="journal-title-sm text-parchment">{t('journal.epilogue.end')}</p>
+      <GlyphTitle id="epilogue" size="var(--glyph-title)" className="text-parchment" />
       <p className="fell-label">
         © {year} {OWNER_NAME}
       </p>

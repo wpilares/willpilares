@@ -10,17 +10,22 @@ import {
   backdropLayerNames,
   isPanoramaLayer,
   layerBleed,
+  layerSize,
   panoramaOverflow,
+  type StageFit,
 } from './layout'
 import { useBackdrop } from './useBackdrop'
 import { useElementSize } from './useElementSize'
 
 type BackdropLayerStyles = Partial<Record<BackdropLayerName, MotionStyle>>
 
+export type BackdropFit = StageFit & { readonly travel: number }
+
 type BackdropProps = {
   readonly id: BackdropId
   readonly className?: string
   readonly layerStyles?: BackdropLayerStyles
+  readonly fit?: BackdropFit
 }
 
 const pixelated: CSSProperties = { imageRendering: 'pixelated' }
@@ -47,7 +52,22 @@ const StyledLayer = ({ style, children }: { style?: MotionStyle; children: React
     children
   )
 
-export const Backdrop = ({ id, className, layerStyles }: BackdropProps) => {
+const fittedLayerStyle = (
+  id: BackdropId,
+  layer: BackdropLayerName,
+  fit: BackdropFit
+): CSSProperties => {
+  const size = layerSize(id, layer)
+  return {
+    ...pixelated,
+    left: fit.x,
+    top: fit.y,
+    width: size.width * fit.scale,
+    height: size.height * fit.scale,
+  }
+}
+
+export const Backdrop = ({ id, className, layerStyles, fit }: BackdropProps) => {
   const urls = useBackdrop(id)
   const isStatic = useSceneIsStatic()
   const stageRef = useRef<HTMLDivElement>(null)
@@ -83,6 +103,19 @@ export const Backdrop = ({ id, className, layerStyles }: BackdropProps) => {
               <SceneLayer key={layer} depth={depth} axis="x" travel={overflow / depth}>
                 <StyledLayer style={layerStyles?.[layer]}>
                   <LayerImage src={urls[layer]} className={panoramaImageClass} style={pixelated} />
+                </StyledLayer>
+              </SceneLayer>
+            )
+          }
+          if (fit) {
+            return (
+              <SceneLayer key={layer} depth={depth} travel={fit.travel}>
+                <StyledLayer style={layerStyles?.[layer]}>
+                  <LayerImage
+                    src={urls[layer]}
+                    className="absolute max-w-none"
+                    style={fittedLayerStyle(id, layer, fit)}
+                  />
                 </StyledLayer>
               </SceneLayer>
             )

@@ -2,7 +2,7 @@ export type ProjectStatus = 'inProgress'
 
 export type ProjectLineKey = 'one' | 'two' | 'three' | 'four' | 'five'
 
-export type ProjectFactKey = 'poll' | 'alert' | 'releases'
+export type ProjectFactKey = 'interval' | 'detection' | 'releases'
 
 export interface ProjectScreenshot {
   readonly src: string

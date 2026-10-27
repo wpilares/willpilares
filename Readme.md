@@ -8,7 +8,7 @@ Personal portfolio of a Software Engineer and squad lead with 7+ years building 
 
 ## Overview
 
-A bilingual (English / Spanish) portfolio told as a gothic Victorian hunter's journal. Scrolling turns the pages of nine scenes: an ink prologue, the city under the moon, the hunter's study, the armory of skills, a gallery of past hunts, the inventor's lab for NetPulse, an archive of hunts to come, a belfry to send a raven, and a candlelit epilogue. Every backdrop is procedural pixel art generated from a seed and painted to a canvas, and an orange-and-white cat companion with a cape, hat and lantern walks along, reacts to the scene in view, changes outfit per chapter, and can be picked up and dragged.
+A bilingual (English / Spanish) portfolio told as a gothic Victorian hunter's journal. Scrolling turns the pages of nine scenes: an ink prologue, the city under the moon, the hunter's study, the armory of skills, a gallery of the career so far, the inventor's lab for NetPulse, an archive of projects to come, a belfry to send a raven, and a candlelit epilogue. Every backdrop is procedural pixel art generated from a seed and painted to a canvas, and an orange-and-white cat companion with a cape, hat and lantern walks along, reacts to the scene in view, changes outfit per chapter, and can be picked up and dragged.
 
 The aesthetic is inspired by gothic Victorian fiction and games of that mood; it uses no game assets, and every sprite, backdrop and ornament is original and authored in code.
 
@@ -18,7 +18,7 @@ The aesthetic is inspired by gothic Victorian fiction and games of that mood; it
 |------|-------|
 | UI | React 18, TypeScript 5, Tailwind CSS 3 |
 | Motion | `motion` (scroll progress, lazy-loaded animation features, `motion/mini` for one-off flights) |
-| Fonts | `@fontsource/unifrakturmaguntia` (titles), `@fontsource/im-fell-english` (labels and numerals), `@fontsource-variable/eb-garamond` (body) |
+| Fonts | `@fontsource/im-fell-english` (labels and numerals), `@fontsource-variable/eb-garamond` (body), Flesh and Blood by JoannaVu (name and chapter titles, shipped only as pre-outlined SVG paths) |
 | Build | Vite 8, Bun |
 | i18n | i18next, react-i18next, HTTP backend, browser language detector |
 | Quality | Biome, Vitest, Testing Library, Husky |
@@ -32,11 +32,12 @@ The aesthetic is inspired by gothic Victorian fiction and games of that mood; it
 | **Static mode for reduced motion and small screens** | When `prefers-reduced-motion` is set or the viewport is under 768 px, scenes render as ordinary stacked pages: no pinning, no parallax, the gallery becomes a vertical list, and the mascot shows a still frame. Content is identical in both modes. |
 | **Seeded backdrop generators painted to canvas** (`src/backdrops`) | Every backdrop is a pure function of a seeded PRNG that paints palette-indexed pixel buffers for far, mid and near layers. Buffers are rendered to canvas once, cached as image URLs and scaled with `image-rendering: pixelated`. Generators are deterministic and unit-tested, and overlay geometry (gallery frames, lab mirror, belfry moon, parallax travel) lives in one module, `layout.ts`, shared by the painters and the React overlays. |
 | **Sprite engine with parts-based cat frames** (`src/mascot`) | Frames are composed from palette-indexed parts (body, cape, headwear, lantern) authored as strings, so art is diffable and editable in code. A gesture state machine, a canvas renderer and anchor resolution are tested independently; one hook (`useMascot`) binds the canvas, scene tracking and pointer events. |
+| **Display titles as pre-outlined SVG paths** (`src/journal/glyphs`) | The name, chapter titles, archive heading and closing line use Flesh and Blood by JoannaVu, a font that is free for non-commercial use but may not be redistributed. The font file never enters the repository or the bundle: `JOURNAL_DISPLAY_FONT=/path/to/font.ttf bun run glyphs` reads the titles from both locale files, fails on any character the font lacks, and writes kerned outlines on a 1000-unit em to `glyphTitles.generated.ts`. `GlyphTitle` renders each outline as an `aria-hidden` SVG beside a visually hidden copy of the text, and a test fails when the locale copy and the committed outlines drift apart. |
 | **Native pixel-art cursors** (`src/cursors`, `public/cursors`) | A quill, a pointing glove and an open and gripping glove for the cat are authored as palette-keyed 32×32 strings in `art.ts` and exported to 1x and 2x PNGs with `bun run cursors`. They are plain CSS `cursor` values with `image-set()` and a keyword fallback, never a JavaScript follower, and fall back to system cursors under forced colours or a coarse pointer. |
 | **Lazy motion features and bundle discipline** | `LazyMotion` loads `domAnimation` in its own chunk, components use the `m` primitives, backdrop generators load on demand, and the raven flight uses `motion/mini`. Dev previews are code-split and never ship in the main path. |
 | **Content lives in translation files and data** (`public/locales`, `data.json`, `src/constants`) | Copy, experience and metrics change far more often than components. Adding a job or a language never touches JSX. |
 | **Translations loaded over HTTP** | Only the active language is downloaded, and locale files can be updated without rebuilding components. |
-| **Gothic design tokens** (`night`, `stone`, `ash`, `parchment`, `blood`, `ember`, `gold`, `moon`) | One dark palette is the theme, so there is no light/dark toggle and no `dark:` variants to keep in sync. Blackletter is reserved for the name, chapter titles and the closing line; proper nouns and labels use EB Garamond or IM Fell for legibility. |
+| **Gothic design tokens** (`night`, `stone`, `ash`, `parchment`, `blood`, `ember`, `gold`, `moon`) | One dark palette is the theme, so there is no light/dark toggle and no `dark:` variants to keep in sync. The display face is reserved for the name, chapter titles and the closing line; proper nouns and labels use EB Garamond or IM Fell for legibility. |
 | **Accessibility by default** | Static mode honours reduced motion, interactive elements have visible focus states, decorative canvases are hidden from assistive technology, and status changes (copied email, quips) are announced through live regions. |
 | **Pure helpers for presentation logic** | Metric highlighting, tally marks, gauges, pan mapping and moon phases are tested pure functions rendered as React nodes, with no `dangerouslySetInnerHTML`. |
 | **Biome instead of ESLint + Prettier** | One fast tool for linting and formatting, enforced on every commit. |
@@ -116,8 +117,8 @@ data.json              Companies: key, name, logo, stack
 
 - **Journal copy:** every visible line lives under `journal.*` in `public/locales/en/translation.json` and `public/locales/es/translation.json`; chapter titles are `journal.chapters.<id>.title`. Keep both files in step.
 - **New job:** add an entry to `data.json` and its `position`, `period` and `descriptions` under `experience.companies.<key>` in both locale files. The gallery hangs one portrait per frame centre in `src/backdrops/layout.ts`; add a centre there when adding a fifth company.
-- **Current hunt (NetPulse):** edit `src/constants/projects/index.ts` for stack, facts and screenshot, and `journal.lab.*` for its copy.
-- **Hunts yet to come:** edit the volumes under `journal.archive.volumes.*` and their list in `src/journal/scenes/Archive.tsx`.
+- **Current project (NetPulse):** edit `src/constants/projects/index.ts` for stack, facts and screenshot, and `journal.lab.*` for its copy.
+- **Projects yet to come:** edit the volumes under `journal.archive.volumes.*` and their list in `src/journal/scenes/Archive.tsx`.
 - **Mascot quips:** edit `mascot.quips.*` in both locale files; the keys are typed in `src/mascot/behavior/bus.ts`.
 - **Hunter stats:** edit `src/constants/stats/index.ts` and `journal.hunter.stats.*`.
 - **Skills:** save the icon as `public/icons/<slug>.svg`, then add the name, its slug and the shelf entry in `src/constants/skills/index.ts`, with the shelf label under `journal.arms.categories.*`.

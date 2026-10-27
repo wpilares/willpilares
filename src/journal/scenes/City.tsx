@@ -12,7 +12,7 @@ import {
 import { useTransform } from 'motion/react'
 import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
-import { OWNER_FIRST_NAME, OWNER_LAST_NAME } from '../identity'
+import { GlyphTitle } from '../glyphs'
 
 const cityMeta = sceneById('city')
 
@@ -41,10 +41,12 @@ const CityContent = () => {
         className="col-span-full flex flex-col items-start gap-6 md:col-span-9"
       >
         <p className="fell-label text-parchment">{t('journal.city.role')}</p>
-        <h1 className="name-title text-parchment">
-          <span className="block md:inline">{OWNER_FIRST_NAME}</span>{' '}
-          <span className="block md:inline">{OWNER_LAST_NAME}</span>
-        </h1>
+        <GlyphTitle
+          id="name"
+          as="h1"
+          size="var(--glyph-name)"
+          className="name-title max-w-full text-parchment"
+        />
         <p className="max-w-[34rem] text-xl text-parchment md:text-2xl">
           {t('journal.city.tagline')}
         </p>

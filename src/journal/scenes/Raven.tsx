@@ -6,6 +6,7 @@ import { animate } from 'motion/mini'
 import { type RefObject, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { ContactLink } from '@/types'
+import { GlyphTitle } from '../glyphs'
 
 const ravenMeta = sceneById('raven')
 
@@ -129,7 +130,7 @@ const RavenHeading = () => {
       <span aria-hidden="true" className="chapter-numeral">
         V
       </span>
-      <h2 className="journal-title-sm text-parchment">{t('journal.chapters.raven.title')}</h2>
+      <GlyphTitle id="raven" as="h2" size="var(--glyph-title)" className="text-parchment" />
       <p className="mt-2 font-fell text-3xl text-parchment italic md:text-4xl">
         {t('journal.raven.headline')}
       </p>

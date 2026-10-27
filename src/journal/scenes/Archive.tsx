@@ -2,6 +2,7 @@ import { Backdrop } from '@backdrops'
 import { FogVeil, Scene, SceneReveal, sceneById, useSceneStage } from '@scenes'
 import { useId } from 'react'
 import { useTranslation } from 'react-i18next'
+import { GlyphTitle } from '../glyphs'
 
 const archiveMeta = sceneById('archive')
 
@@ -35,7 +36,7 @@ const ArchiveHeading = () => {
   return (
     <header className="flex flex-col items-center gap-2 text-center">
       <p className="fell-label">{t('journal.archive.label')}</p>
-      <h2 className="journal-title-sm text-parchment">{t('journal.archive.title')}</h2>
+      <GlyphTitle id="archive" as="h2" size="var(--glyph-title)" className="text-parchment" />
     </header>
   )
 }
