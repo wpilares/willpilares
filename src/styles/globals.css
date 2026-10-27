@@ -407,6 +407,11 @@
     overflow: hidden;
   }
 
+  .dual-label,
+  .dual-label > span {
+    text-decoration: inherit;
+  }
+
   .dual-label__themed,
   .dual-label__plain {
     grid-area: 1 / 1;
@@ -430,9 +435,27 @@
     transform: none;
   }
 
+  .touch-only {
+    display: none;
+  }
+
   @media (hover: none) {
+    .touch-only {
+      display: block;
+    }
+
     .dual-label__themed,
     .dual-label__separator {
+      display: none;
+    }
+
+    .dual-label--touch-themed > .dual-label__themed {
+      display: block;
+      opacity: 1;
+      transform: none;
+    }
+
+    .dual-label--touch-themed > .dual-label__plain {
       display: none;
     }
 

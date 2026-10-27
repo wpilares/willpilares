@@ -25,6 +25,20 @@ describe('DualLabel', () => {
     expect(screen.getByRole('link', { name: /^Send a raven,\s*Message me$/ })).toBeInTheDocument()
   })
 
+  it('can keep the themed text on touch screens when it carries the information', () => {
+    const { container } = render(
+      <DualLabel themed="wgpilaresc@gmail.com" plain="Copy my email" onTouch="themed" />
+    )
+
+    expect(container.querySelector('.dual-label')).toHaveClass('dual-label--touch-themed')
+  })
+
+  it('shows the plain text on touch screens by default', () => {
+    const { container } = render(<DualLabel themed="Send a raven" plain="Message me" />)
+
+    expect(container.querySelector('.dual-label')).not.toHaveClass('dual-label--touch-themed')
+  })
+
   it('marks which text is themed and which is plain for the swap styles', () => {
     const { container } = render(<DualLabel themed="Send a raven" plain="Message me" />)
 

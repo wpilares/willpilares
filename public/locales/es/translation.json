@@ -166,6 +166,8 @@
       "headline": "¿Construimos algo?",
       "availability": "Abierto a roles senior y problemas difíciles.",
       "copied": "El cuervo ya partió",
+      "copyEmail": "Copiar mi correo",
+      "tapToCopy": "Toca para copiar",
       "links": {
         "email": "Email",
         "github": "GitHub",

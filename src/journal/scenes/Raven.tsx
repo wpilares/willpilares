@@ -1,5 +1,6 @@
 import { BACKDROP_WIDTH, Backdrop, backdropDepths } from '@backdrops'
 import { backdropRectToStage, belfryMoon, layerBleed } from '@backdrops/layout'
+import { DualLabel } from '@components'
 import { mascotBus } from '@mascot'
 import { FogVeil, Scene, SceneReveal, SceneWindow, sceneById, useSceneStage } from '@scenes'
 import { animate } from 'motion/mini'
@@ -158,8 +159,13 @@ const Letter = ({ copied, onCopy, buttonRef }: LetterProps) => {
         onClick={onCopy}
         className="break-all text-center font-fell text-2xl text-parchment underline decoration-gold/70 decoration-2 underline-offset-8 transition-colors duration-300 hover:text-ember hover:decoration-ember md:text-4xl"
       >
-        {copied ? copiedLabel : email}
+        {copied ? (
+          copiedLabel
+        ) : (
+          <DualLabel themed={email} plain={t('journal.raven.copyEmail')} onTouch="themed" />
+        )}
       </button>
+      <p className="fell-label touch-only">{t('journal.raven.tapToCopy')}</p>
       <p role="status" aria-live="polite" className="sr-only">
         {copied ? copiedLabel : ''}
       </p>

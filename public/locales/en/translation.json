@@ -166,6 +166,8 @@
       "headline": "Shall we build something?",
       "availability": "Open to senior roles and hard problems.",
       "copied": "The raven has flown",
+      "copyEmail": "Copy my email",
+      "tapToCopy": "Tap to copy",
       "links": {
         "email": "Email",
         "github": "GitHub",
