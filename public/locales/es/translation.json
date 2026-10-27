@@ -1,6 +1,7 @@
 {
   "header": {
-    "getInTouch": "Manda un cuervo"
+    "getInTouch": "Manda un cuervo",
+    "getInTouchPlain": "Escríbeme"
   },
   "experience": {
     "companies": {
@@ -65,7 +66,9 @@
     "city": {
       "tagline": "Desde 2019 persigo lo que se rompe en producción.",
       "ctaContact": "Manda un cuervo",
+      "ctaContactPlain": "Mándame un mensaje",
       "ctaCv": "Descargar el pergamino",
+      "ctaCvPlain": "Descargar mi CV",
       "availability": "Disponible para roles senior",
       "role": "Software Engineer · Squad Lead"
     },

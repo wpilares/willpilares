@@ -51,11 +51,14 @@ describe('journal opening', () => {
     renderJournal()
 
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Willber Pilares')
-    expect(screen.getByRole('link', { name: 'journal.city.ctaContact' })).toHaveAttribute(
-      'href',
-      '#contact'
-    )
-    expect(screen.getByRole('link', { name: 'journal.city.ctaCv' })).toHaveAttribute('download')
+    expect(
+      screen.getByRole('link', {
+        name: /^journal\.city\.ctaContact,\s*journal\.city\.ctaContactPlain$/,
+      })
+    ).toHaveAttribute('href', '#contact')
+    expect(
+      screen.getByRole('link', { name: /^journal\.city\.ctaCv,\s*journal\.city\.ctaCvPlain$/ })
+    ).toHaveAttribute('download')
   })
 
   it('anchors the city as the home scene that keeps the hero cat sitting', () => {

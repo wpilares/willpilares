@@ -1,6 +1,7 @@
 {
   "header": {
-    "getInTouch": "Send a raven"
+    "getInTouch": "Send a raven",
+    "getInTouchPlain": "Message me"
   },
   "experience": {
     "companies": {
@@ -65,7 +66,9 @@
     "city": {
       "tagline": "Since 2019 I have been hunting what breaks in production.",
       "ctaContact": "Send a raven",
+      "ctaContactPlain": "Message me",
       "ctaCv": "Download the scroll",
+      "ctaCvPlain": "Download my CV",
       "availability": "Open to senior roles",
       "role": "Software Engineer · Squad Lead"
     },

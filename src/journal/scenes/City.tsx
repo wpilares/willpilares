@@ -1,5 +1,6 @@
 import { cvPdf } from '@assets'
 import { Backdrop } from '@backdrops'
+import { DualLabel } from '@components'
 import {
   FogVeil,
   Scene,
@@ -52,10 +53,13 @@ const CityContent = () => {
         </p>
         <div className="flex flex-wrap items-center gap-3">
           <a href="#contact" className="btn-seal">
-            {t('journal.city.ctaContact')}
+            <DualLabel
+              themed={t('journal.city.ctaContact')}
+              plain={t('journal.city.ctaContactPlain')}
+            />
           </a>
           <a href={cvPdf} download className="btn-ghost-gothic">
-            {t('journal.city.ctaCv')}
+            <DualLabel themed={t('journal.city.ctaCv')} plain={t('journal.city.ctaCvPlain')} />
           </a>
         </div>
         <p className="fell-label flex items-center gap-2">

@@ -385,6 +385,55 @@
     @apply inline-flex items-center gap-2 rounded-full border border-gold/60 px-5 py-3 font-fell text-sm uppercase tracking-[0.14em] text-parchment transition-colors duration-300 hover:bg-gold/10;
   }
 
+  .dual-label {
+    display: inline-grid;
+    justify-items: center;
+    overflow: hidden;
+  }
+
+  .dual-label__themed,
+  .dual-label__plain {
+    grid-area: 1 / 1;
+    transition:
+      opacity 220ms ease-out,
+      transform 260ms ease-out;
+  }
+
+  .dual-label__plain {
+    opacity: 0;
+    transform: translateY(70%);
+  }
+
+  :is(a, button):is(:hover, :focus-visible) > .dual-label > .dual-label__themed {
+    opacity: 0;
+    transform: translateY(-70%);
+  }
+
+  :is(a, button):is(:hover, :focus-visible) > .dual-label > .dual-label__plain {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (hover: none) {
+    .dual-label__themed,
+    .dual-label__separator {
+      display: none;
+    }
+
+    .dual-label__plain {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dual-label__themed,
+    .dual-label__plain {
+      transition: none;
+      transform: none;
+    }
+  }
+
   .wax-dot {
     @apply inline-block h-2.5 w-2.5 rounded-full bg-blood;
     box-shadow:
