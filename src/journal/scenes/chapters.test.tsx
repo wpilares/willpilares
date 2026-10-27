@@ -71,7 +71,7 @@ describe('hunter and arms chapters', () => {
     expect(screen.getByText('journal.hunter.notes.one')).toBeInTheDocument()
     expect(screen.getByText('journal.hunter.notes.two')).toBeInTheDocument()
     expect(screen.getByText('journal.hunter.stats.years')).toBeInTheDocument()
-    expect(screen.getByText('journal.hunter.stats.squad')).toBeInTheDocument()
+    expect(screen.getByText('journal.hunter.stats.apps')).toBeInTheDocument()
   })
 
   it('shelves every skill as a named book under its category plaque', () => {

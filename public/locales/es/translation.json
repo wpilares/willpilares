@@ -70,7 +70,7 @@
       "ctaCv": "Descargar el pergamino",
       "ctaCvPlain": "Descargar mi CV",
       "availability": "Disponible para roles senior",
-      "role": "Software Engineer · Squad Lead"
+      "role": "Senior Software Engineer"
     },
     "chapters": {
       "hunter": {
@@ -95,16 +95,16 @@
     },
     "hunter": {
       "statement": "Construyo las bases en las que se apoyan otros equipos.",
-      "description": "Desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. En Whitelion Technology lidero un squad de desarrolladores, soy responsable de la biblioteca de componentes compartida y de la plataforma de autenticación basada en Keycloak, y trabajo con un enfoque AI-first con Claude, OpenCode y servidores MCP, con code review y pruebas automatizadas que mantienen el nivel alto.",
+      "description": "Desde interfaces en React hasta backends en Python, Node.js y serverless en AWS. Diseño bibliotecas de componentes compartidas y plataformas de autenticación, acompaño a otros desarrolladores con code review y trabajo con un enfoque AI-first con Claude y servidores MCP, con pruebas automatizadas que mantienen el nivel alto.",
       "notes": {
         "one": "Llevo siete años entregando <accent>sistemas backend y full-stack</accent> que se mantienen rápidos con tráfico real.",
-        "two": "Hoy lidero un squad y <accent>trabajo a diario con herramientas de IA</accent> para avanzar más rápido sin bajar el nivel."
+        "two": "Hoy <accent>trabajo a diario con herramientas de IA</accent> para avanzar más rápido sin bajar el nivel."
       },
       "stats": {
         "years": "Años de experiencia",
         "sso": "Apps integradas con SSO",
         "library": "Proyectos con mi biblioteca UI",
-        "squad": "Devs en mi squad"
+        "apps": "Apps full-stack entregadas"
       }
     },
     "arms": {

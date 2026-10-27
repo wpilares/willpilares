@@ -9,7 +9,7 @@ describe('buildCvContent', () => {
 
     expect(cv.language).toBe('en')
     expect(cv.name).toBe('Willber Pilares')
-    expect(cv.title).toBe('Software Engineer · Squad Lead')
+    expect(cv.title).toBe('Senior Software Engineer')
     expect(cv.contacts).toEqual([
       { label: 'Email', value: 'wgpilaresc@gmail.com', href: 'mailto:wgpilaresc@gmail.com' },
       {
