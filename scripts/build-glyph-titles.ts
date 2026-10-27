@@ -2,12 +2,14 @@ import { parse } from 'opentype.js'
 import en from '../public/locales/en/translation.json'
 import es from '../public/locales/es/translation.json'
 import {
+  type GlyphLanguage,
   type GlyphOutline,
-  type GlyphTitleId,
   glyphLanguages,
   glyphTitleIds,
+  lazyGlyphIds,
 } from '../src/journal/glyphs/glyphIds'
 import { glyphSources, missingCharacters, outlineFrame } from '../src/journal/glyphs/glyphOutline'
+import { compactPathData } from '../src/journal/glyphs/pathData'
 import { OWNER_NAME } from '../src/journal/identity'
 
 declare const Bun: {
@@ -20,7 +22,7 @@ declare const Bun: {
 
 const EM = 1000
 const PADDING = 24
-const OUTPUT = new URL('../src/journal/glyphs/glyphTitles.generated.ts', import.meta.url)
+const GLYPHS_DIR = new URL('../src/journal/glyphs/', import.meta.url)
 
 const fontPath = Bun.env.JOURNAL_DISPLAY_FONT
 if (!fontPath) {
@@ -40,6 +42,9 @@ if (missing.length > 0) {
     `The display font has no glyph for: ${missing.map((char) => `"${char}"`).join(', ')}`
   )
 }
+if (sources.name.en !== sources.name.es) {
+  throw new Error('The name outline is shared by both languages, so its text must match.')
+}
 
 const outline = (text: string): GlyphOutline => {
   const frame = outlineFrame(
@@ -47,17 +52,11 @@ const outline = (text: string): GlyphOutline => {
     PADDING
   )
   const path = font.getPath(text, frame.offsetX, frame.offsetY, EM, { kerning: true })
-  return {
-    text,
-    d: path.toPathData(1),
-    width: frame.width,
-    height: frame.height,
-    baseline: frame.baseline,
-  }
+  return { text, width: frame.width, height: frame.height, d: compactPathData(path.commands) }
 }
 
-const record = Object.fromEntries(
-  glyphTitleIds.map((id) => [
+const outlines = Object.fromEntries(
+  lazyGlyphIds.map((id) => [
     id,
     Object.fromEntries(
       glyphLanguages.map((language) => [language, outline(sources[id][language])])
@@ -65,14 +64,57 @@ const record = Object.fromEntries(
   ])
 )
 
-const moduleSource = `import type { GlyphTitleRecord } from './glyphIds'
+const json = (value: unknown): string => JSON.stringify(value, null, 2)
 
-export const glyphTitles: GlyphTitleRecord = ${JSON.stringify(record, null, 2)}
-`
+const modules: readonly (readonly [string, string])[] = [
+  [
+    'glyphName.generated.ts',
+    `import type { GlyphOutline } from './glyphIds'
 
-await Bun.write(OUTPUT, moduleSource)
-const formatted = Bun.spawnSync(['bunx', 'biome', 'format', '--write', OUTPUT.pathname])
-if (formatted.exitCode !== 0) throw new Error('Biome could not format the generated glyph titles.')
+export const nameOutline: GlyphOutline = ${json(outline(sources.name.en))}
+`,
+  ],
+  [
+    'glyphMeasures.generated.ts',
+    `import type { GlyphMeasureRecord } from './glyphIds'
 
-const generated: readonly GlyphTitleId[] = glyphTitleIds
-await Bun.write(Bun.stdout, `Outlined ${generated.length} titles: ${generated.join(', ')}\n`)
+export const glyphMeasures: GlyphMeasureRecord = ${json(
+      Object.fromEntries(
+        lazyGlyphIds.map((id) => [
+          id,
+          Object.fromEntries(
+            glyphLanguages.map((language) => {
+              const { text, width, height } = outlines[id][language]
+              return [language, { text, width, height }]
+            })
+          ),
+        ])
+      )
+    )}
+`,
+  ],
+  ...glyphLanguages.map(
+    (language: GlyphLanguage) =>
+      [
+        `glyphTitles.${language}.generated.ts`,
+        `import type { GlyphPathRecord } from './glyphIds'
+
+export const glyphPaths: GlyphPathRecord = ${json(
+          Object.fromEntries(lazyGlyphIds.map((id) => [id, outlines[id][language].d]))
+        )}
+`,
+      ] as const
+  ),
+]
+
+for (const [file, source] of modules) {
+  const output = new URL(file, GLYPHS_DIR)
+  await Bun.write(output, source)
+  const formatted = Bun.spawnSync(['bunx', 'biome', 'format', '--write', output.pathname])
+  if (formatted.exitCode !== 0) throw new Error(`Biome could not format ${file}.`)
+}
+
+await Bun.write(
+  Bun.stdout,
+  `Outlined ${glyphTitleIds.length} titles into ${modules.map(([file]) => file).join(', ')}\n`
+)

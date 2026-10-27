@@ -1,9 +1,11 @@
 import type { MotionValue } from 'motion/react'
 import { type CSSProperties, type RefObject, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import type { GlyphOutline, GlyphTitleId } from './glyphIds'
+import type { GlyphLanguage, GlyphMeasure, GlyphTitleId, LazyGlyphId } from './glyphIds'
+import { glyphMeasures } from './glyphMeasures.generated'
+import { nameOutline } from './glyphName.generated'
 import { glyphLanguage, outlineContours } from './glyphOutline'
-import { glyphTitles } from './glyphTitles.generated'
+import { useGlyphTitles } from './useGlyphTitles'
 
 const EM_UNITS = 1000
 const INK_STROKE_WIDTH = 10
@@ -67,41 +69,58 @@ const InkOutline = ({ d, strokeProgress, fillProgress }: InkOutlineProps) => {
   )
 }
 
-const outlineStyle = (outline: GlyphOutline, size: string): CSSProperties => ({
+type GlyphFigureProps = Omit<GlyphTitleProps, 'id'> & {
+  readonly measure: GlyphMeasure
+  readonly d: string | undefined
+}
+
+type LazyGlyphTitleProps = Omit<GlyphTitleProps, 'id'> & {
+  readonly id: LazyGlyphId
+  readonly language: GlyphLanguage
+}
+
+const outlineStyle = (measure: GlyphMeasure, size: string): CSSProperties => ({
   display: 'block',
-  width: `calc(${size} * ${outline.width / EM_UNITS})`,
+  width: `calc(${size} * ${measure.width / EM_UNITS})`,
   maxWidth: '100%',
   height: 'auto',
-  aspectRatio: `${outline.width} / ${outline.height}`,
+  aspectRatio: `${measure.width} / ${measure.height}`,
   overflow: 'visible',
 })
 
-export const GlyphTitle = ({
-  id,
+const GlyphFigure = ({
   as: Tag = 'p',
   className,
   size,
   strokeProgress,
   fillProgress,
-}: GlyphTitleProps) => {
-  const { i18n } = useTranslation()
-  const outline = glyphTitles[id][glyphLanguage(i18n.language)]
+  measure,
+  d,
+}: GlyphFigureProps) => (
+  <Tag className={className}>
+    <span className="sr-only">{measure.text}</span>
+    <svg
+      aria-hidden="true"
+      viewBox={`0 0 ${measure.width} ${measure.height}`}
+      preserveAspectRatio="xMinYMid meet"
+      style={outlineStyle(measure, size)}
+    >
+      {d === undefined ? null : strokeProgress ? (
+        <InkOutline d={d} strokeProgress={strokeProgress} fillProgress={fillProgress} />
+      ) : (
+        <path d={d} fill="currentColor" />
+      )}
+    </svg>
+  </Tag>
+)
 
-  return (
-    <Tag className={className}>
-      <span className="sr-only">{outline.text}</span>
-      <svg
-        aria-hidden="true"
-        viewBox={`0 0 ${outline.width} ${outline.height}`}
-        preserveAspectRatio="xMinYMid meet"
-        style={outlineStyle(outline, size)}
-      >
-        {strokeProgress ? (
-          <InkOutline d={outline.d} strokeProgress={strokeProgress} fillProgress={fillProgress} />
-        ) : (
-          <path d={outline.d} fill="currentColor" />
-        )}
-      </svg>
-    </Tag>
-  )
+const LazyGlyphTitle = ({ id, language, ...props }: LazyGlyphTitleProps) => {
+  const paths = useGlyphTitles(language)
+  return <GlyphFigure {...props} measure={glyphMeasures[id][language]} d={paths?.[id]} />
+}
+
+export const GlyphTitle = ({ id, ...props }: GlyphTitleProps) => {
+  const { i18n } = useTranslation()
+  if (id === 'name') return <GlyphFigure {...props} measure={nameOutline} d={nameOutline.d} />
+  return <LazyGlyphTitle {...props} id={id} language={glyphLanguage(i18n.language)} />
 }
